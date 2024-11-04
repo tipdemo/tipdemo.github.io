@@ -983,9 +983,9 @@ font-weight: bold;
     background-color: #0072C6;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
-    position: absolute;
+/*     position: absolute;
     top: 0;
-    left: 0;
+    left: 0; */
 }
 
 .card-content {

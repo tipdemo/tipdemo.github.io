@@ -2030,10 +2030,14 @@ function handleMandateQR(data, timestamp) {
       return;
   }
 
+  addCardScreen.style.display = 'none'; // Verberg addCardScreen
+
   // Vul de mandate-modal met gegevens uit de QR-code
-  populateMandateModal(data);
+  populateMandateModal(data); // Roep de aparte functie aan
 }
 
+
+// Functie om de mandate-modal te vullen
 function populateMandateModal(data) {
   console.log('populateMandateModal aangeroepen met data:', data); // Debugging log
 
@@ -2042,69 +2046,123 @@ function populateMandateModal(data) {
 
   // Toon de naam van de requester
   const requesterElement = document.getElementById('mandate-requester');
-  console.log('Updating mandate-requester:', data.requester || 'Onbekende requester');
   requesterElement.textContent = data.requester || 'Onbekende requester';
+  console.log('Naam van requester:', requesterElement.textContent); // Debugging log
 
   // Toon de reden van het verzoek
   const reasonElement = document.getElementById('mandate-reason');
-  if (data.reason) {
-    reasonElement.textContent = data.reason;
-    console.log('Updating mandate-reason:', data.reason);
-  } else {
-    reasonElement.textContent = 'Geen reden opgegeven.';
-    console.log('Updating mandate-reason: Geen reden opgegeven.');
-  }
+  reasonElement.textContent = data.reason || 'Geen reden opgegeven.';
+  console.log('Reden van het verzoek:', reasonElement.textContent); // Debugging log
 
   // Vul de gegevens-container met de opgehaalde gegevens
   const mandateDataContainer = document.getElementById('mandate-data-container');
   mandateDataContainer.innerHTML = ''; // Maak de container leeg
 
-  data.mandate.forEach((item, idx) => {
-    // Gebruik fieldMapping om leesbare namen te verkrijgen
-    const mappedIssuedBy = fieldMapping[item.issuedBy] || item.issuedBy;
-    const mappedName = fieldMapping[item.name.toLowerCase()] || item.name;
+  // Voeg de mandate gegevens toe
+  if (Array.isArray(data.mandate)) {
+      data.mandate.forEach((item, idx) => {
+          const mappedIssuedBy = fieldMapping[item.issuedBy] || item.issuedBy;
+          const mappedName = fieldMapping[item.name.toLowerCase()] || item.name;
 
-    console.log(`Adding mandate detail for item ${idx}: IssuedBy=${mappedIssuedBy}, Name=${mappedName}`);
+          const detail = document.createElement('div');
+          detail.className = 'mandate-detail';
+          detail.innerHTML = `
+              <p>Naam uitgever: ${mappedIssuedBy}</p>
+              <p>Gegevens: ${mappedName}</p>
+          `;
 
-    // Maak een element aan om de informatie weer te geven
-    const detail = document.createElement('div');
-    detail.className = 'mandate-detail';
+          if (idx < data.mandate.length - 1) {
+              const hr = document.createElement('hr');
+              detail.appendChild(hr);
+          }
 
-    // Voeg een gestructureerde weergave toe van de uitgever en het kaartje
-    detail.innerHTML = `
-      <p>Naam uitgever: ${mappedIssuedBy} </p>
-      <p>Gegevens: ${mappedName}</p>
-    `;
+          mandateDataContainer.appendChild(detail);
+          console.log(`Gegevens toegevoegd voor ${mappedIssuedBy}: ${mappedName}`); // Debugging log
+      });
+  }
 
-    // Voeg een divider toe voor nette scheiding, behalve na de laatste item
-    if (idx < data.mandate.length - 1) {
-      const hr = document.createElement('hr');
-      detail.appendChild(hr);
-    }
+  // Verwerk de gevraagde rdfcm data en groepeer ze per kaartje
+  if (Array.isArray(data.rdfcm)) {
+      let fieldsByCard = {};
 
-    // Voeg het detail toe aan de container
-    mandateDataContainer.appendChild(detail);
-  });
+      data.rdfcm.forEach((field) => {
+          const fieldName = fieldMapping[field] || field;
+
+          // Zoek het bijbehorende kaartje in 'credentials'
+          const matchingCard = credentials.find(cred => cred.data && cred.data.hasOwnProperty(fieldName));
+
+          if (matchingCard) {
+              if (!fieldsByCard[matchingCard.name]) {
+                  fieldsByCard[matchingCard.name] = { data: matchingCard.data, fields: [] };
+              }
+              fieldsByCard[matchingCard.name].fields.push(fieldName);
+          } else {
+              console.warn(`Veld '${fieldName}' niet gevonden in de credentials.`);
+          }
+      });
+
+      // Itereer over elk kaartje en maak de kaart elementen aan in de modal
+      Object.keys(fieldsByCard).forEach((cardName) => {
+          const cardInfo = fieldsByCard[cardName];
+
+          // Maak kaart container aan
+          const cardContainer = document.createElement('div');
+          cardContainer.className = 'card-container';
+
+          // Maak kaart header aan
+          const cardHeader = document.createElement('div');
+          cardHeader.className = 'card-header';
+          cardHeader.style.backgroundColor = '#B5DEF4'; // Voeg een achtergrondkleur toe
+          cardHeader.textContent = cardName;
+
+          cardContainer.appendChild(cardHeader);
+
+          // Voeg de gevraagde velden toe
+          const cardDetails = document.createElement('div');
+          cardDetails.className = 'card-details';
+
+          cardInfo.fields.forEach(fieldName => {
+              const value = cardInfo.data[fieldName] || 'Niet beschikbaar';
+
+              const detailRow = document.createElement('div');
+              detailRow.className = 'detail-row';
+
+              const labelDiv = document.createElement('div');
+              labelDiv.className = 'label';
+              labelDiv.textContent = `${fieldName}:`;
+
+              const valueDiv = document.createElement('div');
+              valueDiv.className = 'value';
+              valueDiv.textContent = value;
+
+              detailRow.appendChild(labelDiv);
+              detailRow.appendChild(valueDiv);
+
+              cardDetails.appendChild(detailRow);
+              console.log(`Toegevoegd aan ${cardName}: ${fieldName} - ${value}`); // Debugging log
+          });
+
+          cardContainer.appendChild(cardDetails);
+          mandateDataContainer.appendChild(cardContainer);
+      });
+  }
 
   // Vul de overeenkomst informatie (bijv. opslagduur) met fieldMapping
   const agreementElement = document.getElementById('mandate-agreement');
   if (data.a && fieldMapping.a && fieldMapping.a[data.a]) {
-    agreementElement.textContent = fieldMapping.a[data.a];
-    console.log('Updating mandate-agreement:', fieldMapping.a[data.a]);
+      agreementElement.textContent = fieldMapping.a[data.a];
   } else {
-    agreementElement.textContent = fieldMapping.a ? 'Geen overeenkomst gevonden.' : data.a || 'Geen overeenkomst opgegeven.';
-    console.log('Updating mandate-agreement:', fieldMapping.a ? 'Geen overeenkomst gevonden.' : data.a || 'Geen overeenkomst opgegeven.');
+      agreementElement.textContent = 'Geen overeenkomst gevonden.';
   }
 
-
-  //vul requester in
+  // Vul requester informatie in het akkoordgedeelte
   const mandateRequesterAgreement = document.getElementById('mandate-requester-agreement');
-  mandateRequesterAgreement.textContent = data.requester
+  mandateRequesterAgreement.textContent = data.requester;
 
-
-  // Toon de Mandate Modal
+  // Toon de mandate-modal
   document.getElementById('mandate-modal').style.display = 'flex';
 }
+
 
 // Event listener voor de "Stoppen" knop in de mandate-modal
 document.getElementById('mandate-stop-button').addEventListener('click', () => {
@@ -2116,34 +2174,21 @@ document.getElementById('mandate-stop-button').addEventListener('click', () => {
   walletScreen.style.display = 'block';
   bottomNav.style.display = 'flex';
 
-  // Controleer of de QR-code scanner actief is en stop deze indien nodig
-  if (html5QrCode) {
-    html5QrCode.stop().then(() => {
-      console.log("QR scanner stopped.");
-    }).catch(err => {
-      console.error("Failed to stop scanner: ", err);
-    });
-  }
-
   // Herstel de scanner en interface
   resetQrScanner();
-
-  // Toon het wallet-screen, verberg add-card screen, toon bottom-nav
-  walletScreen.style.display = 'block';
-  addCardScreen.style.display = 'none';
-  bottomNav.style.display = 'flex';
 });
 
+// Functie om de QR scanner te resetten
 function resetQrScanner() {
   console.log("Resetting QR scanner...");
 
-  // Verberg de camera- en sluitknoppen
+  // Hier zou je de logica moeten hebben voor het stoppen van de scanner
   if (html5QrCode) {
-    html5QrCode.stop().then(() => {
-      console.log("QR scanner stopped.");
-    }).catch(err => {
-      console.error("Failed to stop scanning: ", err);
-    });
+      html5QrCode.stop().then(() => {
+          console.log("QR scanner stopped.");
+      }).catch(err => {
+          console.error("Failed to stop scanner: ", err);
+      });
   }
   
   // Verberg de camera en toon de scan-knop weer
@@ -2162,7 +2207,6 @@ document.getElementById('mandate-accept-button').addEventListener('click', () =>
   // Toon het pincode bevestigingsscherm
   document.getElementById('mandate-pin-confirmation-screen').style.display = 'flex';
 });
-
 
 // Event listener voor de "Bevestigen" knop in het mandate-pin-confirmation-screen
 document.getElementById('confirm-pin-mandate').addEventListener('click', () => {
@@ -2197,18 +2241,19 @@ function processMandate(data) {
 
   // Creëer een machtiging kaartje voor de machtigingen-sectie
   const machtigingCard = {
-      type: 'mandate',
-      requester: data.requester || 'Onbekende requester',
-      reason: data.reason || 'Geen reden opgegeven',
-      mandate: data.mandate.map(item => ({
-          issuedBy: fieldMapping[item.issuedBy] || item.issuedBy,
-          name: fieldMapping[item.name.toLowerCase()] || item.name
-      })),
-      a: fieldMapping.a[data.a] || data.a,
-      actionTimestamp: timestamp,
-      isShareAction: false,
-      name: `Machtiging - ${data.requester}` // Nodig voor displayCredentials indien nodig
-  };
+    type: 'mandate',
+    requester: data.requester || 'Onbekende requester',
+    reason: data.reason || 'Geen reden opgegeven',
+    mandate: data.mandate.map(item => ({
+        issuedBy: fieldMapping[item.issuedBy] || item.issuedBy,
+        name: fieldMapping[item.name.toLowerCase()] || item.name
+    })),
+    a: fieldMapping.a[data.a] || data.a,
+    rdfcm: data.rdfcm || [],  // Voeg rdfcm toe als je deze wilt opslaan
+    actionTimestamp: timestamp,
+    isShareAction: false,
+    name: `Machtiging - ${data.requester}`
+};
 
   credentials.push(machtigingCard);
   saveCredentials();
