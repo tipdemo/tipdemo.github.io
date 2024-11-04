@@ -2571,7 +2571,13 @@ const messageTexts = {
   ipa5: 'IPA-5 Deel uw diploma met ons voor het aanmeldingsproces. Haal uw diploma op bij DUO.',
   ipa6: 'IPA-6 Wij willen graag dat u uw diploma met ons deelt voor het aanmeldingsproces. Klik op de volgende link: <a href="#" id="share-link">Diploma ophalen</a> om uw diploma op te halen in de catalogus van de wallet',
   ipa7: 'IPA-7 Deel uw diploma met ons voor het aanmeldingsproces. Klik op de volgende link: <a href="#" id="ipa7-share-link">Diploma delen</a>',
-  ipa8: 'IPA-8 Woningcorporatie Leijendakje heeft een machtiging aangevraagd om namens u gegevens éénmalig op te halen voor een financiële check. Klik op de volgende link: <a href="#" id="ipa8-mandate-link">Eénmalige machtiging ophalen gegevens bekijken</a>'
+  ipa8: 'IPA-8 Woningcorporatie Leijendak heeft een machtiging aangevraagd om namens u gegevens éénmalig op te halen voor een financiële check. Klik op de volgende link: <a href="#" id="ipa8-mandate-link">Eénmalige machtiging ophalen gegevens bekijken</a>',
+  notaris: 'Test bericht',
+  woningcorporatie: 'Test bericht',
+  verzekering: 'Test bericht',
+  justis: 'Test bericht',
+  duo: 'Test bericht',
+  pensioenfonds: 'Test bericht'
 };
 
 
@@ -2628,7 +2634,7 @@ const IPA8MessageButton = document.getElementById('IPA-8-message-button');
 
 IPA8MessageButton.addEventListener('click', () => {
     // Voeg het mock-bericht toe en gebruik de tekst vanuit het object
-    addMockMessageToTrustedContacts('Woningcorporatie Leijendakje', messageTexts.ipa8, 'ipa8'); 
+    addMockMessageToTrustedContacts('Woningcorporatie Leijendak', messageTexts.ipa8, 'ipa8'); 
 
     // Verberg het instellingen-scherm
     instellingenSection.style.display = 'none';
@@ -2639,6 +2645,50 @@ IPA8MessageButton.addEventListener('click', () => {
     // Toon het wallet-scherm
     walletScreen.style.display = 'block';
 });
+
+
+const NotarisMessageButton = document.getElementById('notaris-message-button');
+const WoningcorporatieMessageButton = document.getElementById('woningcorporatie-message-button');
+const VerzekeringMessageButton = document.getElementById('verzekering-message-button');
+const JustisMessageButton = document.getElementById('justis-message-button');
+const DuoMessageButton = document.getElementById('duo-message-button');
+const PensioenfondsMessageButton = document.getElementById('pensioenfonds-message-button');
+
+NotarisMessageButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    addMockMessageToTrustedContacts('Notaris', 'Test bericht', 'notaris');
+});
+
+WoningcorporatieMessageButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    addMockMessageToTrustedContacts('Woningcorporatie', 'Test bericht', 'woningcorporatie');
+});
+
+VerzekeringMessageButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    addMockMessageToTrustedContacts('Verzekering', 'Test bericht', 'verzekering');
+});
+
+JustisMessageButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    addMockMessageToTrustedContacts('Justis', 'Test bericht', 'justis');
+});
+
+DuoMessageButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    addMockMessageToTrustedContacts('Duo', 'Test bericht', 'duo');
+});
+
+PensioenfondsMessageButton.addEventListener('click', (e) => {
+    e.preventDefault();
+    addMockMessageToTrustedContacts('Pensioenfonds', 'Test bericht', 'pensioenfonds');
+});
+
+
+
+
+
+
 
 function openMessageDetails(sender, message, datetime, messageType) {
 
@@ -2706,7 +2756,7 @@ function openMessageDetails(sender, message, datetime, messageType) {
               // Mock mandate QR data
               const mockMandateData = {
                   type: "mandate",
-                  requester: "Woningcorporatie Leijendakje",
+                  requester: "Woningcorporatie Leijendak",
                   reason: "financiële check",
                   mandate: [{ issuedBy: "BD", name: "Inkomensverklaring" }],
                   a: "12t"
@@ -2745,8 +2795,8 @@ function addMockMessageToTrustedContacts(sender, message, messageType) {
           case 'belastingdienst':
               logoHTML = '<img src="belastingdienstlogo.svg" alt="Belastingdienst logo" class="logo-icon">';
               break;
-          case 'woningcorporatie leijendakje':
-              logoHTML = '<img src="woningcorporatielogo.svg" alt="Leijendakje logo" class="logo-icon">';
+          case 'woningcorporatie leijendak':
+              logoHTML = '<img src="woningcorporatielogo.svg" alt="Leijendak logo" class="logo-icon">';
               break;
           case 'werkgever ipa 5':
               logoHTML = '<img src="ipa5logo.svg" alt="IPA 5 logo" class="logo-icon">';
@@ -2757,6 +2807,36 @@ function addMockMessageToTrustedContacts(sender, message, messageType) {
           case 'werkgever ipa 7':
               logoHTML = '<img src="ipa7logo.svg" alt="IPA 7 logo" class="logo-icon">';
               break;
+              case 'duo':
+                logoHTML = '<img src="duologo.svg" alt="DUO logo" class="logo-icon">';
+                break;
+            case 'justis':
+                logoHTML = '<img src="bdlogo.svg" alt="Justis logo" class="logo-icon">';
+                break;
+        case 'woningcorporatie':
+        logoHTML = `
+            <div class="icon-circle" style="background-color: #4abd84;">
+                <i class="fas fa-home"></i>
+            </div>`;
+            break;
+            case 'notaris':
+                logoHTML = `
+                    <div class="icon-circle" style="background-color: #1E3A5F;">
+                        <i class="fas fa-pen-nib" style="color: white;"></i>
+                    </div>`;
+                break;
+            case 'verzekering':
+                logoHTML = `
+                    <div class="icon-circle" style="background-color: #9ac1db;">
+                        <i class="fas fa-shield-alt" style="color: white;"></i>
+                    </div>`;
+                break;
+            case 'pensioenfonds':
+                logoHTML = `
+                    <div class="icon-circle" style="background-color: #0a73ad;">
+                        <i class="fas fa-piggy-bank" style="color: white;"></i>        
+                    </div>`;
+                break;
           default:
               logoHTML = '';
               break;
