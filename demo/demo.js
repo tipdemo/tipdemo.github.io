@@ -263,12 +263,11 @@ machtigingNavbarItem.addEventListener('click', () => {
 });
 
 function convertToStandardDate(dateString) {
-  // Converteer 'DD-MM-YYYY, HH:mm:ss' naar 'YYYY-MM-DDTHH:mm:ss'
+  // Converteer 'DD-MM-YYYY, HH:mm:ss' naar 'YYYY-MM-DDTHH:mm:ss' met twee cijfers voor dag en maand
   let [datePart, timePart] = dateString.split(', ');
-  let [day, month, year] = datePart.split('-'); // Gebruik '-' als scheidingsteken
+  let [day, month, year] = datePart.split('-').map(part => part.padStart(2, '0')); // Pad dag en maand met nullen
   return `${year}-${month}-${day}T${timePart}`;
 }
-
 
 
 function showActivities() {
@@ -2799,24 +2798,24 @@ function addMockMessageToTrustedContacts(sender, message, messageType) {
       messagesGrid.appendChild(messageItem);
 
       // Voeg loggings toe om de datums te controleren tijdens sorteren
-   /*    console.log("Berichten voor sortering:", Array.from(messagesGrid.children).map(msg => msg.querySelector('.message-datetime').textContent));
+  console.log("Berichten voor sortering:", Array.from(messagesGrid.children).map(msg => msg.querySelector('.message-datetime').textContent));
 
-       */
+    
 // Sorteer de berichten in `messages-grid` op datum in aflopende volgorde (nieuwste eerst)
 const sortedMessages = Array.from(messagesGrid.children)
     .sort((a, b) => {
         const dateStrA = a.querySelector('.message-datetime').textContent;
         const dateStrB = b.querySelector('.message-datetime').textContent;
-       /*  console.log("Oorspronkelijke datum A:", dateStrA, "Geconverteerde datum A:", convertToStandardDate(dateStrA));
+        console.log("Oorspronkelijke datum A:", dateStrA, "Geconverteerde datum A:", convertToStandardDate(dateStrA));
         console.log("Oorspronkelijke datum B:", dateStrB, "Geconverteerde datum B:", convertToStandardDate(dateStrB));
- */
+ 
         const dateA = new Date(convertToStandardDate(dateStrA));
         const dateB = new Date(convertToStandardDate(dateStrB));
         return dateB - dateA; // Aflopende volgorde (nieuwste eerst)
     });
 
-/* console.log("Berichten na sortering:", sortedMessages.map(msg => msg.querySelector('.message-datetime').textContent));
- */
+console.log("Berichten na sortering:", sortedMessages.map(msg => msg.querySelector('.message-datetime').textContent));
+ 
 
       // Leeg het grid en voeg de gesorteerde berichten toe zonder reverse
       messagesGrid.innerHTML = '';
