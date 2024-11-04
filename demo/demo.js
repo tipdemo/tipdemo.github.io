@@ -156,7 +156,8 @@ const fieldMapping = {
   SVB: 'Sociale Verzekeringsbank (SVB)',
   ln: 'Lengte',          
   ph: 'Foto',   
-  LEID: 'Legal entity nummer',
+  issuedBy: 'Uitgegeven door',
+  LEID: 'Organisatie nummer',
   Issued_Date: 'Uitgiftedatum',
   Issued_to_subject: 'Uitgegeven aan',
   Algemeen_profiel: 'Algemeen profiel',
@@ -699,6 +700,7 @@ function startQrScan() {
                           if (
                             data.hasOwnProperty(key) &&
                             key !== 'rdfci' &&
+                            key !== 'issuedBy' &&
                             key !== 'a' &&
                             key !== 't' &&
                             key !== 'name' &&
@@ -941,6 +943,12 @@ function getFieldValue(field) {
 
 
 function populateRdfciModal(data) {
+ // Voeg console.log toe om de inhoud van 'data' te controleren
+ console.log("Data in populateRdfciModal:", data);
+
+   // Verwijder het 'Issuer' veld
+   delete data.Issuer;
+
   // Vul de vaste delen in
   document.getElementById('rdfci-issuedBy').innerText = data.issuedBy || 'Onbekende uitgever';
 
@@ -951,32 +959,32 @@ function populateRdfciModal(data) {
   const rdfciNameElement = document.getElementById('rdfci-name');
   rdfciNameElement.innerHTML = ''; // Leeg de inhoud
 
-  // **Nieuw uit te geven kaart tonen op de plaats van 'rdfci-name'**
-  // Maak kaart container aan voor de nieuw uit te geven kaart
-  const newCardContainer = document.createElement('div');
-  newCardContainer.className = 'card-container';
+    // **Nieuw uit te geven kaart tonen op de plaats van 'rdfci-name'**
+    // Maak een container voor de nieuwe kaart
+    const newCardContainer = document.createElement('div');
+    newCardContainer.className = 'card-container';
 
-  // Maak kaart header aan
-  const newCardHeader = document.createElement('div');
-  newCardHeader.className = 'card-header';
-  newCardHeader.style.backgroundColor = '#0061A6'; // Stel een kleur in voor de nieuwe kaart
+    // Maak een header met de kaartnaam in een gekleurde balk
+    const newCardHeader = document.createElement('div');
+    newCardHeader.className = 'card-header';
+    newCardHeader.style.backgroundColor = '#B5DEF4'; // Kleur voor de header
+    newCardHeader.style.color = '#152A62'; // Tekstkleur in de header
+    newCardHeader.style.fontWeight = 'bold'; // Vetgedrukte tekst
+    newCardHeader.style.padding = '10px'; // Padding voor ruimte rond de tekst
+    newCardHeader.style.textAlign = 'center'; // Centreer de tekst
+    newCardHeader.textContent = data.name || 'Onbekend kaartje'; // Kaartnaam in de header
 
-  // Voeg de header toe aan de kaartcontainer
-  newCardContainer.appendChild(newCardHeader);
+    // Voeg de header toe aan de kaartcontainer
+    newCardContainer.appendChild(newCardHeader);
 
-  // Maak kaart content aan
-  const newCardContent = document.createElement('div');
-  newCardContent.className = 'card-content';
+    // Maak de kaartcontent aan
+    const newCardContent = document.createElement('div');
+    newCardContent.className = 'card-content';
 
-  // Voeg kaart titel toe
-  const newCardTitleElement = document.createElement('div');
-  newCardTitleElement.className = 'card-title';
-  newCardTitleElement.textContent = data.name || 'Onbekend kaartje';
-  newCardContent.appendChild(newCardTitleElement);
+    // Voeg kaartdetails toe
+    const newCardDetails = document.createElement('div');
+    newCardDetails.className = 'card-details';
 
-  // Voeg de details van de uit te geven kaart toe
-  const newCardDetails = document.createElement('div');
-  newCardDetails.className = 'card-details';
 
   for (let key in data) {
     if (
@@ -984,11 +992,11 @@ function populateRdfciModal(data) {
       key !== 'rdfci' &&
       key !== 'a' &&
       key !== 't' &&
-      key !== 'issuedBy' &&
+/*       key !== 'issuedBy' && */
       key !== 'name' &&
       key !== 'reason' &&
       key !== 'verifier' &&
-      key !== 'issuer' &&
+  /*     key !== 'issuer' && */
       key !== 'type' &&
       key !== 'requester'
     ) {
