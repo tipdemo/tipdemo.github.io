@@ -395,15 +395,15 @@ const cardStyles = {
   },
 
   'rijbewijs': {
-    iconClass: 'fas fa-car',
-    iconColor: '#e4b6c3',
-    textColor: '#52202e'
+    imagePath: 'bdlogo.svg',
+    iconColor: null,
+     textColor: '#4A6C85'
   },
 
   'diploma verpleegkunde': {
   imagePath: 'duologo.svg',  // Path naar je diploma-afbeelding
   iconColor: null,
-  textColor: '#333'
+   textColor: '#4A6C85'
   },
 
   // Voeg meer kaartstijlen toe indien nodig

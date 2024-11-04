@@ -66,7 +66,7 @@ font-weight: bold; /* Maak de tekst vetgedrukt */
 /* *** Wallet screen *** */
 #wallet-screen {
     padding: 5px;
-    padding-bottom: 80px; /* Voeg voldoende ruimte toe, afhankelijk van de hoogte van de bottom nav */
+    padding-bottom: 80px;
 }
 
 /* Sectie met de titel 'Mijn Digitale Bewijzen' */
@@ -334,6 +334,11 @@ font-weight: bold; /* Maak de tekst vetgedrukt */
    
 }
 
+.modal-header p {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
 .modal-content {
     background-color: white;
     padding: 5px; 
@@ -349,10 +354,6 @@ font-weight: bold; /* Maak de tekst vetgedrukt */
   margin-top: 20px;
 }
 
-.modal-header p {
-    font-weight: bold;
-    margin-top: 20px;
-}
 
 .modal-content h2{
 margin-bottom: 20px;
@@ -407,9 +408,9 @@ p {
     margin-bottom: 40px;
 }
 
-#rdfcv-question-text p{
-    font-weight: bold;
-    }
+#rdfcv-question-text {
+font-weight: bold;
+}
 
 /* *** Welkomstscherm Stijlen *** */
 #welcome-screen {
@@ -842,6 +843,7 @@ p {
 #issuer-success-screen .modal-content {
     width: 100%;
 }
+
 
 .button-container {
     position: absolute;
@@ -1722,25 +1724,11 @@ p {
 .details-mandate-header {
     
     margin-bottom: 10px;
- 
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 #mandate-details-content hr{
     margin-top: 10px;
     margin-bottom: 10px;
-}
-
-.button-container-center {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center; /* Horizontaal uitlijnen */
-    align-items: center; /* Verticaal uitlijnen */
 }
 
 /* *** Trusted Contacts Stijlen *** */
@@ -1951,7 +1939,7 @@ margin-top: 40px;
 .top-button-container-start-screen {
     display: flex;
     justify-content: flex-start; /* Lijn de knoppen links uit */
-    gap: 20px; /* Voeg ruimte tussen de knoppen toe */
+    gap: 35px; /* Voeg ruimte tussen de knoppen toe */
     margin-top: 20px; /* Optioneel: Voeg marge boven de knoppen toe */
   }
   
@@ -1980,43 +1968,48 @@ margin-top: 40px;
     transition: background-color 0.3s ease;
   }
   
-  /* Hover-effect voor de gehele sectie, zodat zowel de cirkel als de tekst reageren op hover */
-#open-card-catalogue:hover .circle-btn {
-    background-color: #218838; /* Groene achtergrond voor de cirkel */
+
+#open-card-catalogue .circle-btn {
+    background-color: #01089F; 
 }
 
-#open-card-catalogue:hover .catalogue-text {
-    color: #218838; /* Groene kleur voor de tekst */
+/* Stijl voor de tekst onder de knop */
+.catalogue-text {
+    font-size: 14px;
+    color:  #494949; 
+    text-align: center; /* Tekst gecentreerd onder de knop */
+   
+  }
+
+
+/* Hover-effect voor de gehele sectie, zodat zowel de cirkel als de tekst reageren op hover */
+#open-card-catalogue:hover .circle-btn {
+    background-color: #000ac5; 
 }
 
 /* Zorg ervoor dat het icoon wit blijft bij hover */
 #open-card-catalogue:hover .circle-btn i {
     color: white; /* Icoon blijft wit */
 }
-  
-  /* Stijl voor de tekst onder de knop */
-  .catalogue-text {
-    font-size: 14px;
-    color:  #4a90e2; /* Groene tekstkleur */
-    text-align: center; /* Tekst gecentreerd onder de knop */
-   
-  }
+
+#open-card-catalogue:hover .catalogue-text {
+    color:  #494949; 
+}
 
 
-
- /*QR-scan text */
+/*QR-scan text */
  #qr-scan-button .qr-scan-button-text {
-    color:  #4a90e2; 
+    color:  #494949; 
     font-size: 14px;
 }
 
-  /* Hover-effect voor de gehele QR-scan sectie */
+/* Hover-effect voor de gehele QR-scan sectie */
 #qr-scan-button:hover .circle-btn {
-    background-color: #3366b3; 
+    background-color: #508fee; 
 }
 
 #qr-scan-button:hover .qr-scan-button-text {
-    color: #3366b3; /* Groene kleur voor de tekst */
+    color:  #494949; 
 }
 
 /* Zorg ervoor dat het QR-icoon wit blijft bij hover */
@@ -2024,16 +2017,18 @@ margin-top: 40px;
     color: white; /* Icoon blijft wit */
 }
 
+#sign-button .circle-btn{
+    background-color: #3fd65d;
+}
 
-.sign-button-text {
-    color:  #4a90e2; 
+#sign-button .sign-button-text{
+    color:  #494949; 
     font-size: 14px;
 }
 
-
-
 .background-clickable-sections {
     margin-top: 40px;
+    
 }
 
   /* Stijl voor de klikbare sectie 'Mijn digitale bewijzen' */
