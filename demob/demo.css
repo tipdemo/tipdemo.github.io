@@ -1863,6 +1863,18 @@ font-weight: bold;
     margin-right: 5px; /* Voeg ruimte toe tussen het logo en de tekst */
 }
 
+.icon-circle {
+    width: 50px; /* Pas deze aan naar gewenste grootte */
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Zorgt voor een cirkelvorm */
+    font-size: 20px; /* Grootte van het FA-icoon */
+    color: white; /* Kleur van het FA-icoon */
+}
+
+
 .message-content {
     flex: 1;
     display: flex;
@@ -1876,6 +1888,7 @@ font-weight: bold;
     justify-content: space-between;
     align-items: center;
 }
+
 
 .message-sender {
     font-weight: bold;
