@@ -163,6 +163,7 @@ const fieldMapping = {
   Algemeen_profiel: 'Algemeen profiel',
   Specifiek_profiel: 'Specifiek profiel',
   Attestation_Trust_Type: 'Type attestatie',
+  dipvk: 'Diploma Verpleegkunde',
   a: {
     '12t': 'opslag: 12 maanden, gedeeld met derden: nee',
     '60t': 'opslag: 60 maanden, gedeeld met derden: nee',
@@ -699,7 +700,7 @@ function startQrScan() {
                           if (
                             data.hasOwnProperty(key) &&
                             key !== 'rdfci' &&
-                            key !== 'issuedBy' &&
+                            
                             key !== 'a' &&
                             key !== 't' &&
                             key !== 'name' &&
@@ -957,6 +958,7 @@ function populateRdfciModal(data) {
   // Verwijder de oude inhoud van 'rdfci-name' en voeg de nieuw uit te geven kaart toe
   const rdfciNameElement = document.getElementById('rdfci-name');
   rdfciNameElement.innerHTML = ''; // Leeg de inhoud
+ 
 
     // **Nieuw uit te geven kaart tonen op de plaats van 'rdfci-name'**
     // Maak een container voor de nieuwe kaart
@@ -1060,6 +1062,7 @@ function populateRdfciModal(data) {
       console.warn(`Veld '${fieldName}' niet gevonden in de credentials.`);
     }
   });
+  
 
   // Itereer over elk kaartje en maak de kaart elementen aan
   Object.keys(fieldsByCard).forEach((cardName) => {
@@ -1139,6 +1142,8 @@ function populateRdfciModal(data) {
     detailsContainer.appendChild(cardContainer);
   });
 
+  
+
   // Verwerk de overeenkomst informatie
   if (data.a) {
     const agreementFields = fieldMapping.a[data.a] || data.a;
@@ -1146,13 +1151,15 @@ function populateRdfciModal(data) {
   } else {
     document.getElementById('rdfci-agreement').innerText = 'Geen overeenkomst gevonden.';
   }
+  console.log("Fields by card after grouping:", fieldsByCard);
+
 }
 
 // rdfci pinconfirmation
 confirmPinIssuerBtn.onclick = () => {
   const data = window.currentRdfciData;
   const timestamp = new Date().toLocaleString();
-
+  console.log("Data in confirmPinIssuerBtn.onclick:", data);
   // Maak een nieuw object voor de gemapte data
   const mappedData = {};
 
@@ -1164,7 +1171,7 @@ confirmPinIssuerBtn.onclick = () => {
       key !== 'a' &&
       key !== 't' &&
       key !== 'name' &&
-    
+      key !== 'issuedBy' &&
       key !== 'reason' &&
       key !== 'verifier' &&
       key !== 'issuer' &&
@@ -1175,7 +1182,7 @@ confirmPinIssuerBtn.onclick = () => {
       mappedData[fieldName] = data[key];
     }
   }
-
+  console.log("Mapped data for credential:", mappedData);
   // Sla het kaartje op met de gemapte data
   credentials.push({
     name: data.name || 'Onbekend kaartje',
@@ -1186,7 +1193,7 @@ confirmPinIssuerBtn.onclick = () => {
   });
 
   saveCredentials();
-
+  console.log("Credentials after adding new card:", credentials);
   // Toon het issuer success-scherm
   goToIssuerSuccessScreen(data.name, data.issuedBy);
 
@@ -1217,6 +1224,8 @@ function populateRdfcvModal(data) {
   data.rdfcv.forEach((field) => {
     const fieldName = fieldMapping[field] || field; // Gebruik field mapping
 
+    console.log(`Mapping field '${field}' to '${fieldName}'`);
+
     // Zoek of het veld hoort bij een kaartje in credentials
     let matchingCard = credentials.find(cred => {
       // Zoek in cred.data of het veld bestaat
@@ -1224,11 +1233,13 @@ function populateRdfcvModal(data) {
     });
 
     if (!matchingCard) {
+      console.warn(`Veld of kaartje '${fieldName}' niet gevonden in the credentials.`);
       // Als niet gevonden, controleer of er een kaartje is waarvan de naam overeenkomt met fieldName
       matchingCard = credentials.find(cred => cred.name === fieldName);
     }
 
     if (matchingCard) {
+      console.log(`Found matching card for '${fieldName}':`, matchingCard); 
       const cardName = matchingCard.name;
 
       if (!fieldsByCard[cardName]) {
@@ -1268,6 +1279,9 @@ function populateRdfcvModal(data) {
         cardHeader.style.backgroundColor = '#445580';
         break;
       case 'Verklaring Omtrent Gedrag (VOG)':
+        cardHeader.style.backgroundColor = '#0061A6';
+        break;
+        case 'Diploma Verpleegkunde':
         cardHeader.style.backgroundColor = '#0061A6';
         break;
       default:

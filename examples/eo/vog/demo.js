@@ -86,13 +86,13 @@ function toggleButtons() {
             const exampleButton = document.createElement('button');
             exampleButton.innerHTML = '<i class="fas fa-lightbulb"></i> Naar voorbeelden';
             exampleButton.className = 'go-example';
-            exampleButton.onclick = ()=> window.location.href = 'https://www.eutw.nl/examples'; // Ga naar www.eutw.nl
+            exampleButton.onclick = ()=> window.location.href = 'https://www.tipdemo.nl/examples'; // Ga naar www.eutw.nl
 
             // Voeg de 'Terug naar hoofdwebsite'-knop toe met Font Awesome icoon
             const homeButton = document.createElement('button');
             homeButton.innerHTML = '<i class="fas fa-home"></i> Terug naar hoofdwebsite';
             homeButton.className = 'go-home';
-            homeButton.onclick = () => window.location.href = 'https://www.eutw.nl'; // Ga naar www.eutw.nl
+            homeButton.onclick = () => window.location.href = 'https://www.tipdemo.nl'; // Ga naar www.eutw.nl
 
             // Voeg de knoppen toe aan de button-container
             buttonContainer.appendChild(exampleButton);

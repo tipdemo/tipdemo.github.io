@@ -81,21 +81,21 @@ function toggleButtons() {
         }
 
         // Controleer of de knoppen al bestaan voordat je ze toevoegt
-        if (!document.querySelector('.close-tab') && !document.querySelector('.go-home')) {
+        if (!document.querySelector('.go-example') && !document.querySelector('.go-home')) {
             // Voeg de 'Sluiten tabblad'-knop toe met Font Awesome icoon
-            const closeButton = document.createElement('button');
-            closeButton.innerHTML = '<i class="fas fa-window-close"></i> Sluit tabblad';
-            closeButton.className = 'close-tab';
-            closeButton.onclick = () => window.close(); // Sluit het tabblad
+            const exampleButton = document.createElement('button');
+            exampleButton.innerHTML = '<i class="fas fa-lightbulb"></i> Naar voorbeelden';
+            exampleButton.className = 'go-example';
+            exampleButton.onclick = ()=> window.location.href = 'https://www.tipdemo.nl/examples/eo'; // 
 
             // Voeg de 'Terug naar hoofdwebsite'-knop toe met Font Awesome icoon
             const homeButton = document.createElement('button');
             homeButton.innerHTML = '<i class="fas fa-home"></i> Terug naar hoofdwebsite';
             homeButton.className = 'go-home';
-            homeButton.onclick = () => window.location.href = 'https://www.eutw.nl'; // Ga naar www.eutw.nl
+            homeButton.onclick = () => window.location.href = 'https://www.tipdemo.nl'; // 
 
             // Voeg de knoppen toe aan de button-container
-            buttonContainer.appendChild(closeButton);
+            buttonContainer.appendChild(exampleButton);
             buttonContainer.appendChild(homeButton);
         }
 

@@ -92,7 +92,7 @@ function toggleButtons() {
             const homeButton = document.createElement('button');
             homeButton.innerHTML = '<i class="fas fa-home"></i> Terug naar hoofdwebsite';
             homeButton.className = 'go-home';
-            homeButton.onclick = () => window.location.href = 'https://www.eutw.nl'; // Ga naar www.eutw.nl
+            homeButton.onclick = () => window.location.href = 'https://www.tipdemo.nl'; 
 
             // Voeg de knoppen toe aan de button-container
             buttonContainer.appendChild(closeButton);

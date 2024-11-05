@@ -61,6 +61,7 @@ button.prev, button.next {
     transition: all 0.3s ease;
     margin: 0 10px; /* Ruimte tussen de knoppen behouden */
     border: none; /* Verwijder standaard button rand */
+    cursor: pointer;
 }
 
 button.prev:hover, button.next:hover {
@@ -122,6 +123,7 @@ button.go-example, button.go-home {
     margin: 0 10px;
     border: none;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 button.go-example:hover, button.go-home:hover {
