@@ -160,7 +160,7 @@ font-weight: bold; /* Maak de tekst vetgedrukt */
     flex-direction: column; /* Maak de kaart horizontaal */
     align-items: flex-start; /* Verticaal centreren van inhoud */
     justify-content: flex-start;
-    width: calc(100% - 10px);
+    width: calc(100% - 30px);
     height: 180px;
     margin: 10px auto;
     cursor: pointer;
@@ -193,6 +193,31 @@ font-weight: bold; /* Maak de tekst vetgedrukt */
     font-size: 14px;
     color: #555;
   }
+
+/* Media query voor schermen kleiner dan 370px */
+@media (max-width: 370px) {
+    .card, .default-card {
+        aspect-ratio: 16 / 9;
+        width: auto;
+        height: auto;
+        padding: 15px; /* Minder padding */
+    }
+
+    .card img {
+        width: 25px; /* Verkleinen van het logo */
+        height: 25px;
+        margin-bottom: 8px;
+    }
+
+    .card .card-text h3 {
+        font-size: 16px; /* Kleinere lettergrootte voor h3 */
+    }
+
+    .card .card-text p {
+        font-size: 12px; /* Kleinere lettergrootte voor p */
+    }
+}
+
 
 
 
