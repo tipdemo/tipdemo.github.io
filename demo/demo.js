@@ -407,6 +407,22 @@ const cardStyles = {
    textColor: '#4A6C85'
   },
 
+  'toegangspas': {
+    iconClass: 'fas fa-file-signature',
+ iconColor: '#D4A5D7',
+    textColor: '#7A3E9D'
+    },
+
+    'machtiging diensten': {
+    iconClass: '  fas fa-key',
+ iconColor: '#00588E', 
+    textColor: '#00588E'
+    },
+
+
+
+  
+
   // Voeg meer kaartstijlen toe indien nodig
 };
 
