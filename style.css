@@ -566,3 +566,39 @@ strong {
   height: auto;
   margin-bottom: 20px; /* Voegt ruimte toe tussen de afbeeldingen */
 }
+
+
+@media (max-width: 768px) {
+
+  body {
+    padding: 5px;
+  }
+
+  .main-container {
+    padding: 1px;
+  }
+
+  .main-nav {
+    padding: 1px;
+  }
+
+  .main-nav ul {
+    
+    gap: 3px; /* Voeg wat ruimte tussen de links toe */
+  }
+
+  .main-nav li {
+    width: 100%; /* Zorg ervoor dat elk item de volledige breedte van de container gebruikt */
+  }
+
+  .nav-link i {
+    display: none; /* Verberg de iconen */
+  }
+
+  .nav-link {
+    display: block; /* Zorg ervoor dat de link een blok-element is voor betere touch-navigatie */
+    padding: 10px; /* Voeg wat extra ruimte rond de links toe */
+    text-align: left; /* Links uitlijnen van de tekst */
+    font-size: 10px; /* Pas de tekstgrootte aan voor kleinere schermen */
+  }
+}
