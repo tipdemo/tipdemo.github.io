@@ -2088,7 +2088,7 @@ function populateMandateModal(data) {
     detail.innerHTML = `
       <p>Naam uitgever: ${mappedIssuedBy} </p>
       <p>Gegevens: ${mappedName}</p>
-    `;
+   `;
 
     // Voeg een divider toe voor nette scheiding, behalve na de laatste item
     if (idx < data.mandate.length - 1) {
@@ -2100,16 +2100,34 @@ function populateMandateModal(data) {
     mandateDataContainer.appendChild(detail);
   });
 
-  // Vul de overeenkomst informatie (bijv. opslagduur) met fieldMapping
-  const agreementElement = document.getElementById('mandate-agreement');
-  if (data.a && fieldMapping.a && fieldMapping.a[data.a]) {
+// Vul de overeenkomst informatie (bijv. opslagduur) met fieldMapping
+const agreementElement = document.getElementById('mandate-agreement');
+if (data.a && fieldMapping.a && fieldMapping.a[data.a]) {
     agreementElement.textContent = fieldMapping.a[data.a];
-    console.log('Updating mandate-agreement:', fieldMapping.a[data.a]);
-  } else {
-    agreementElement.textContent = fieldMapping.a ? 'Geen overeenkomst gevonden.' : data.a || 'Geen overeenkomst opgegeven.';
-    console.log('Updating mandate-agreement:', fieldMapping.a ? 'Geen overeenkomst gevonden.' : data.a || 'Geen overeenkomst opgegeven.');
+} else {
+    agreementElement.textContent = 'Geen overeenkomst gevonden.';
+}
+
+// Controleer of geldigheidsduur en intrekbaar beschikbaar zijn en voeg deze toe als <p>-elementen
+if (data.geldigheidsduur || data.intrekbaar) {
+  const detailContainer = document.createElement('div');
+  detailContainer.className = 'additional-details';
+
+  if (data.geldigheidsduur) {
+      const durationElement = document.createElement('p');
+      durationElement.textContent = `Geldigheidsduur: ${data.geldigheidsduur}`;
+      detailContainer.appendChild(durationElement);
   }
 
+  if (data.intrekbaar) {
+      const retractableElement = document.createElement('p');
+      retractableElement.textContent = `Intrekbaar: ${data.intrekbaar}`;
+      detailContainer.appendChild(retractableElement);
+  }
+
+  // Voeg de extra details toe aan de div met id "mandate-agreement"
+  agreementElement.appendChild(detailContainer);
+}
 
   //vul requester in
   const mandateRequesterAgreement = document.getElementById('mandate-requester-agreement');
@@ -2223,6 +2241,16 @@ function processMandate(data) {
       isShareAction: false,
       name: `Machtiging - ${data.requester}` // Nodig voor displayCredentials indien nodig
   };
+
+  // Voeg geldigheidsduur toe als het bestaat
+  if (data.geldigheidsduur) {
+    machtigingCard.geldigheidsduur = data.geldigheidsduur;
+  }
+
+  // Voeg intrekbaar toe als het bestaat
+  if (data.intrekbaar) {
+    machtigingCard.intrekbaar = data.intrekbaar;
+  }
 
   credentials.push(machtigingCard);
   saveCredentials();
@@ -2395,10 +2423,18 @@ function showMandateDetails(mandate) {
   `;
 
   detailsHTML += `
-    <div class="divider"></div>
-    <p><strong>Overeenkomst:</strong></p>
-    <p>${fieldMapping.a[mandate.a] || mandate.a}</p>
-  `;
+  <div class="divider"></div>
+  <p><strong>Overeenkomst:</strong></p>
+  <p>${fieldMapping.a[mandate.a] || mandate.a}</p>
+`;
+
+if (mandate.geldigheidsduur) {
+  detailsHTML += `<p><strong>Geldigheidsduur:</strong> ${mandate.geldigheidsduur}</p>`;
+}
+
+if (mandate.intrekbaar) {
+  detailsHTML += `<p><strong>Intrekbaar:</strong> ${mandate.intrekbaar}</p>`;
+}
 
   document.getElementById('mandate-details-content').innerHTML = detailsHTML;
 
@@ -2772,6 +2808,8 @@ function openMessageDetails(sender, message, datetime, messageType) {
                   type: "mandate",
                   requester: "Woningcorporatie Leijendak",
                   reason: "financiële check",
+                  geldigheidsduur: "30 dagen",
+                  intrekbaar: "Niet intrekbaar",
                   mandate: [{ issuedBy: "BD", name: "Inkomensverklaring" }],
                   a: "12t"
               };
