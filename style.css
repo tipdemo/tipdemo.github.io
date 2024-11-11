@@ -650,3 +650,12 @@ strong {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+.section-examples {
+  transition: opacity 0.3s ease;
+}
+
+.hidden {
+  opacity: 0;
+  display: none;
+}

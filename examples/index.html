@@ -10,25 +10,25 @@
 </head>
 <body>
   <div class="main-container">
-    <nav id="main-nav" class="main-nav">
+    <nav id="main-nav" class="main-nav" aria-label="Hoofdnavigatie">
      
     </nav>
     <hr>
-    <div id="breadcrumbs"></div>
+    <div id="breadcrumbs" role="navigation" aria-label="Breadcrumbs"></div>
 
     <h2>Voorbeelden</h2>
     <p>In onderstaande voorbeelden kun je het gebruik van de handelingsomgeving met wallet functionaliteiten testen in verschillende fictieve situaties.
-    Kies een van de volgende opties of zoek in de zoekbalk.</p>
-    <div class="search-container">
+    Bekijk de volgende voorbeelden of voer een zoekwoord in.</p>
+    <div class="search-container" role="search">
       <input type="text" id="searchBar" placeholder="Zoek voorbeelden...">
     </div>
-
+    <p id="noResultsMessage" style="display:none;" aria-live="polite">Geen resultaten gevonden.</p>
 
     <!-- Sectie: Aan de slag bij een werkgever -->
     <section class="section-examples">
       <h2>Aan de slag bij een werkgever</h2>
       <div id="tags">
-        <div class="tag">Economie</div>
+        <div class="tag" onclick="filterByTag('Economie')">Economie</div>
         <div class="tag">Werkgever</div>
         <div class="tag">VOG</div>
         <div class="tag">Diploma</div>
@@ -181,19 +181,29 @@
     document.getElementById('searchBar').addEventListener('keyup', filterSections);
 
     function filterSections() {
-      var input = document.getElementById('searchBar');
-      var filter = input.value.toUpperCase();
-      var sections = document.getElementsByClassName('section-examples');
+  var input = document.getElementById('searchBar');
+  var filter = input.value.toUpperCase();
+  var sections = document.getElementsByClassName('section-examples');
+  var hasResults = false;
 
-      for (var i = 0; i < sections.length; i++) {
-        var txtValue = sections[i].textContent || sections[i].innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          sections[i].style.display = "";
-        } else {
-          sections[i].style.display = "none";
-        }
-      }
+  for (var i = 0; i < sections.length; i++) {
+    var txtValue = sections[i].textContent || sections[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      sections[i].style.display = "";
+      hasResults = true;
+    } else {
+      sections[i].style.display = "none";
     }
+  }
+
+  document.getElementById('noResultsMessage').style.display = hasResults ? "none" : "block";
+}
+
+function filterByTag(tag) {
+  var input = document.getElementById('searchBar');
+  input.value = tag; // Zet het tag-woord in het zoekveld
+  filterSections(); // Roep de zoekfunctie opnieuw aan
+}
   </script>
 </body>
 </html>
