@@ -2070,10 +2070,25 @@ function populateMandateModal(data) {
   // Sla de Mandate data op voor later gebruik
   window.currentMandateData = data;
 
-  // Toon de naam van de requester
-  const requesterElement = document.getElementById('mandate-requester');
-  console.log('Updating mandate-requester:', data.requester || 'Onbekende requester');
-  requesterElement.textContent = data.requester || 'Onbekende requester';
+   // Selecteer het bestaande 'mandate-content' element
+   const mandateContentDiv = document.querySelector('.mandate-content-request');
+
+   // Controleer of het element bestaat
+   if (!mandateContentDiv) {
+     console.error('mandate-content element niet gevonden in de DOM.');
+     return;
+   }
+ 
+   // Vul de `innerHTML` van `mandateContentDiv` met de gewenste inhoud
+ 
+   mandateContentDiv.innerHTML = `
+    <p>De volgende partij vraagt een machtiging:</p>
+    <p><strong>Handelsnaam:</strong> ${data.requester}</p>
+    <p><strong>Organisatie ID:</strong> ${data.LEID}</p>
+    
+       
+   `;
+
 
   // Toon de reden van het verzoek
   const reasonElement = document.getElementById('mandate-reason');
@@ -2093,6 +2108,10 @@ function populateMandateModal(data) {
     // Gebruik fieldMapping om leesbare namen te verkrijgen
     const mappedIssuedBy = fieldMapping[item.issuedBy] || item.issuedBy;
     const mappedName = fieldMapping[item.name.toLowerCase()] || item.name;
+    const dienst = item.dienst || 'Onbekende dienst';
+    const leid = data.LEID || 'Niet beschikbaar';
+    const handelsnaam = data.requester || 'Niet beschikbaar';
+
 
     console.log(`Adding mandate detail for item ${idx}: IssuedBy=${mappedIssuedBy}, Name=${mappedName}`);
 
@@ -2102,8 +2121,9 @@ function populateMandateModal(data) {
 
     // Voeg een gestructureerde weergave toe van de uitgever en het kaartje
     detail.innerHTML = `
-      <p>Naam uitgever: ${mappedIssuedBy} </p>
-      <p>Gegevens: ${mappedName}</p>
+      <p>Dienstverlener: ${mappedIssuedBy}</p>
+      <p>Dienst: ${item.dienst}</p>
+      <p>Gegevens: ${item.name}</p>
    `;
 
     // Voeg een divider toe voor nette scheiding, behalve na de laatste item
@@ -2224,6 +2244,7 @@ document.getElementById('confirm-pin-mandate').addEventListener('click', () => {
       return;
   }
 
+  console.log(currentData);
   // Sla de Mandate credentials op
   processMandate(currentData);
 
@@ -2247,10 +2268,12 @@ function processMandate(data) {
   const machtigingCard = {
       type: 'mandate',
       requester: data.requester || 'Onbekende requester',
+      leid: data.LEID, 
       reason: data.reason || 'Geen reden opgegeven',
       mandate: data.mandate.map(item => ({
           issuedBy: fieldMapping[item.issuedBy] || item.issuedBy,
-          name: fieldMapping[item.name.toLowerCase()] || item.name
+          name: fieldMapping[item.name.toLowerCase()] || item.name,
+          dienst: fieldMapping[item.dienst] || item.dienst
       })),
       a: fieldMapping.a[data.a] || data.a,
       actionTimestamp: timestamp,
@@ -2412,16 +2435,20 @@ function showMandateDetails(mandate) {
   
   let detailsHTML = `
     <p><strong>Aanvrager:</strong> ${mandate.requester}</p>
-    <p><strong>Machtiging afgegeven op:</strong> ${mandate.actionTimestamp}</p> <!-- Voeg datum en tijd toe -->
+    <p><strong>Organisatie ID:</strong> ${mandate.leid}</p>
+      <div class="divider"></div>
     <p><strong>Reden verzoek:</strong> ${mandate.reason}</p>
+    <p><strong>Machtiging afgegeven op:</strong> ${mandate.actionTimestamp}</p>
     <div class="divider"></div>
-    <p><strong>Gegevens die ${mandate.requester} mag ophalen:</strong></p>
+    <p><strong>Tot welke dienstverleners en diensten heeft ${mandate.requester} toegang:</strong></p>
     
   `;
 
   mandate.mandate.forEach(item => {
     detailsHTML += `
-      <p>Naam uitgever: ${fieldMapping[item.issuedBy] || item.issuedBy}</p>
+ 
+      <p>Dienstverlener: ${fieldMapping[item.issuedBy] || item.issuedBy}</p>
+      <p>Dienst: ${fieldMapping[item.name.toLowerCase()] || item.dienst}</p>
       <p>Gegevens: ${fieldMapping[item.name.toLowerCase()] || item.name}</p>
       
     `;
@@ -2431,9 +2458,6 @@ function showMandateDetails(mandate) {
   detailsHTML += `
     <div class="divider"></div>
     <p><strong>Gevraagde gegevens voor ophalen:</strong></p>
-    <p>Voornaam: Willeke Liselotte</p>
-    <p>Achternaam: De Bruijn</p>
-    <p>Geboortedatum: 10 maart 1980</p>
     <p>Burgerservicenummer (BSN): 938391772</p>
    
   `;
@@ -2445,11 +2469,11 @@ function showMandateDetails(mandate) {
 `;
 
 if (mandate.geldigheidsduur) {
-  detailsHTML += `<p><strong>Geldigheidsduur:</strong> ${mandate.geldigheidsduur}</p>`;
+  detailsHTML += `<p>Geldigheidsduur: ${mandate.geldigheidsduur}</p>`;
 }
 
 if (mandate.intrekbaar) {
-  detailsHTML += `<p><strong>Intrekbaar:</strong> ${mandate.intrekbaar}</p>`;
+  detailsHTML += `<p>Intrekbaar: ${mandate.intrekbaar}</p>`;
 }
 
   document.getElementById('mandate-details-content').innerHTML = detailsHTML;
