@@ -17,66 +17,78 @@
     <div id="breadcrumbs"></div>
 
     <h2>Voorbeelden</h2>
-    <p> In onderstaande voorbeelden kun je het gebruik van de handelingsomgeving met wallet functionaliteiten testen in verschillende fictieve situaties.
-Kies een van de volgende opties: </p>
-    <hr>
+    <p>In onderstaande voorbeelden kun je het gebruik van de handelingsomgeving met wallet functionaliteiten testen in verschillende fictieve situaties.
+    Kies een van de volgende opties of zoek in de zoekbalk.</p>
+    <div class="search-container">
+      <input type="text" id="searchBar" placeholder="Zoek voorbeelden...">
+    </div>
+
 
     <!-- Sectie: Aan de slag bij een werkgever -->
-    <section class="sectie">
+    <section class="section-examples">
       <h2>Aan de slag bij een werkgever</h2>
+      <div id="tags">
+        <div class="tag">Economie</div>
+        <div class="tag">Werkgever</div>
+        <div class="tag">VOG</div>
+        <div class="tag">Diploma</div>
+      </div>
       <p>
-        Willeke gaat aan de slag bij een nieuwe werkgever en daarbij komt nogal wat administratie kijken. 
-        Gelukkig biedt haar nieuwe werkgever de mogelijkheid om een handelingsomgeving te gebruiken om deze zaken te regelen. 
-        In plaats van een kopie paspoort aanleveren, handtekeningen inscannen, digitale bewijzen mailen en handmatig valideren, 
-        pdf-formulieren handmatig bewerken en invullen met kans op fouten bij overtypen van gegevens kan ze nu met hoge betrouwbaarheid, 
-        gemak en efficiëntie het proces doorlopen omdat het proces gestandaardiseerd is, via veilige kanalen verloopt, handmatig overtypen 
-        niet meer nodig is en bewijzen automatisch worden gevalideerd.
-    </p>
+        Willeke gaat aan de slag bij een nieuwe werkgever en daarbij komt nogal wat administratie kijken. Gelukkig biedt haar nieuwe werkgever de mogelijkheid om 
+        een handelingsomgeving met walletfunctionaliteiten gebruiken om deze zaken te regelen.
+      </p>
       <a class="read-more" href="eo/index.html" aria-label="Lees meer over aan de slag bij een werkgever">Lees meer</a>
     </section>
 
-    <hr>
-
-    <!-- Secties voor de andere voorbeelden -->
-    <section class="sectie">
+    <!-- Overige secties -->
+    <section class="section-examples">
       <h2>Hypotheek aanvragen</h2>
       <p>Volgt later.</p>
     </section>
 
-    <hr>
-
-    <section class="sectie">
-      <h2>Toegang met kwalificatie tot registers</h2>
+    <section class="section-examples">
+      <h2>Toegang tot registers met bewijs van kwalificatie</h2>
       <p>Volgt later.</p>
     </section>
 
-    <hr>
-
-    <section class="sectie">
+    <section class="section-examples">
       <h2>Logistiek en mobiliteit</h2>
       <p>Volgt later.</p>
     </section>
 
-    <hr>
-
-    <section class="sectie">
+    <section class="section-examples">
       <h2>Dienstverlening gemeentes</h2>
       <p>Volgt later.</p>
     </section>
 
-    <hr>
-
-    <section class="sectie">
+    <section class="section-examples">
       <h2>WMO indicatie</h2>
       <p>Volgt later.</p>
     </section>
-
-    <hr>
   </div>
+
   <script src="/navbar.js"></script>
   <script src="/breadcrumbs.js"></script>
   <script src="/accordeon.js"></script>
   
+  <script>
+    // Event listener voor de zoekbalk
+    document.getElementById('searchBar').addEventListener('keyup', filterSections);
 
+    function filterSections() {
+      var input = document.getElementById('searchBar');
+      var filter = input.value.toUpperCase();
+      var sections = document.getElementsByClassName('section-examples');
+
+      for (var i = 0; i < sections.length; i++) {
+        var txtValue = sections[i].textContent || sections[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          sections[i].style.display = "";
+        } else {
+          sections[i].style.display = "none";
+        }
+      }
+    }
+  </script>
 </body>
 </html>

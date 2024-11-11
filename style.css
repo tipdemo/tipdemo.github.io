@@ -299,6 +299,16 @@ ul li {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+.section-examples {
+  border-radius: 8px;
+  background-color: #fefeff;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  padding: 31px;
+}
+
 /* Styling voor secties */
 .sectie {
   border-radius: 8px;
@@ -482,55 +492,55 @@ strong {
 
 
 
-/* data tabel reuirements */
+/* data tabel requirements */
+
 
 #search-input {
-  width: 300px;          /* Breedte van de zoekbalk */
-  height: 40px;          /* Hoogte van de zoekbalk */
-  padding: 10px;         /* Binnenruimte voor de tekst */
-  font-size: 16px;       /* Grotere tekstgrootte */
+  width: 300px;         
+  height: 40px;          
+  padding: 10px;        
+  font-size: 16px;     
   border: 1px solid #ccc;
-  border-radius: 5px;    /* Afgeronde hoeken voor de zoekbalk */
-  margin-bottom: 20px;   /* Witruimte tussen zoekbalk en tabel */
+  border-radius: 5px;   
+  margin-bottom: 20px;  
 }
 
 #data-table {
   width: 100%;
-  table-layout: fixed;    /* Vaste breedte van de kolommen */
+  table-layout: fixed;    
   border-collapse: collapse;
 }
 
 #data-table th, #data-table td {
-  border: 1px solid #ccc;      /* Lichtgrijze lijnen voor rijen en kolommen */
+  border: 1px solid #ccc;    
   padding: 10px;
-  text-align: left;            /* Links uitlijnen van de tekst */
-  vertical-align: top;         /* Tekst altijd bovenin de cel beginnen */
-  white-space: pre-wrap;       /* Nieuwe regels binnen een cel weergeven */
-  word-wrap: break-word;       /* Lange woorden afbreken zodat ze in de cel passen */
+  text-align: left;           
+  vertical-align: top;        
+  white-space: pre-wrap;    
+  word-wrap: break-word;     
 }
 
 #data-table th {
-  background-color: #f9f9f9;   /* Optioneel: achtergrondkleur voor koppen */
+  background-color: #f9f9f9; 
 }
 
 /* Stijl voor de eerste kolom om deze breder te maken */
 #data-table th:first-child, 
 #data-table td:first-child {
-  width: 60%;                 /* Maak de eerste kolom breder (bijv. 20%) */
+  width: 60%;                
 }
 
 #data-table th {
-  background-color: #f9f9f9;  /* Optioneel: achtergrondkleur voor koppen */
+  background-color: #f9f9f9;  
 }
-
 #data-table th:first-child,
 #data-table td:first-child {
-  border-right: 3px solid #999; /* Maak de rechterrand van de eerste kolom dikker */
+  border-right: 3px solid #999; 
 }
 
 #data-table th:last-child,
 #data-table td:last-child {
-  width: 10%;            /* Maak de laatste kolom 20% smaller */
+  width: 10%;           
 }
 
 .tag {
@@ -553,7 +563,7 @@ strong {
 #data-table a:hover {
   text-decoration: underline;  /* Voeg een onderstreping toe wanneer je met de muis over de link gaat */
 }
-
+ 
 
 /* image containers for research/IPA/index.html */
 .image-container {
@@ -605,4 +615,32 @@ strong {
     text-align: left; /* Links uitlijnen van de tekst */
     font-size: 10px; /* Pas de tekstgrootte aan voor kleinere schermen */
   }
+}
+
+#tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 1px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+.tag {
+  font-size: 8px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+#searchBar {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
