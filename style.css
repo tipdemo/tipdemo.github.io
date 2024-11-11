@@ -185,6 +185,9 @@ p {
 #breadcrumbs  {
 display: flex;
 flex-direction: row;
+color: gray;
+  font-size: 12px;
+
 }
 
 #breadcrumbs a {
@@ -305,8 +308,10 @@ ul li {
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
-  border: 1px solid #ccc;
-  padding: 31px;
+  border: 1px solid #ddd;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
 }
 
 /* Styling voor secties */
