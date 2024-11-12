@@ -2012,7 +2012,7 @@ document.addEventListener('DOMContentLoaded', function () {
           "Issued_to_subject": "Willeke Liselotte de Bruijn",
           "Type": "A, B, D1, T",
           "rdfci": [/* "gn", "sn", "bd", "bsn" */],
-          "a": "12t",
+          "a": "w",
           "t": "w"
         };
 
