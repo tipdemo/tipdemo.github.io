@@ -410,8 +410,8 @@ const cardStyles = {
 
   'toegangspas': {
     iconClass: 'fas fa-file-signature',
- iconColor: '#D4A5D7',
-    textColor: '#7A3E9D'
+ iconColor: '#58AE65',
+    textColor: '#58AE65'
     },
 
     'machtiging diensten': {
