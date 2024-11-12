@@ -2847,10 +2847,11 @@ function openMessageDetails(sender, message, datetime, messageType) {
               const mockMandateData = {
                   type: "mandate",
                   requester: "Woningcorporatie Leijendak",
+                  LEID: "NL_KVK_00000000"
                   reason: "financiële check",
                   geldigheidsduur: "30 dagen",
                   intrekbaar: "Niet intrekbaar",
-                  mandate: [{ issuedBy: "BD", name: "Inkomensverklaring" }],
+                  mandate: [{ issuedBy: "BD", dienst: "Gegevensuitvraag Inkomensafhankelijke Huurregelingen", name: "Inkomensverklaring" }],
                   a: "12t"
               };
 
