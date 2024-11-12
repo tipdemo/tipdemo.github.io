@@ -47,11 +47,13 @@ a {
 
 #title-mainpage {
   margin-bottom: 5px;
+  padding-left: 10px;
 }
 
 #subtitle-mainpage {
 margin-top: 5px;
 font-weight: bolder;
+padding-left: 10px;
 }
 
 #introtext-mainpage {
