@@ -165,9 +165,10 @@ const fieldMapping = {
   Attestation_Trust_Type: 'Type attestatie',
   dipvk: 'Diploma Verpleegkunde',
   a: {
-    '12t': 'opslag: 12 maanden, gedeeld met derden: nee',
-    '60t': 'opslag: 60 maanden, gedeeld met derden: nee',
-    'w': 'Bewaarplicht en datadeling met derden volgens wettelijke richtlijn'
+    '12t': 'Opslag: 12 maanden, gedeeld met derden: nee',
+    '60t': 'Opslag: 60 maanden, gedeeld met derden: nee',
+    'w': 'Bewaarplicht en datadeling met derden volgens wettelijke richtlijn',
+    'b' : 'Volgens bedrijfsrichtlijnen'
   }
 };
 
@@ -2847,7 +2848,7 @@ function openMessageDetails(sender, message, datetime, messageType) {
               const mockMandateData = {
                   type: "mandate",
                   requester: "Woningcorporatie Leijendak",
-                  LEID: "NL_KVK_00000000"
+                  LEID: "NL_KVK_00000000",
                   reason: "financiële check",
                   geldigheidsduur: "30 dagen",
                   intrekbaar: "Niet intrekbaar",
