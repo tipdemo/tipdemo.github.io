@@ -167,7 +167,7 @@ const fieldMapping = {
   a: {
     '12t': 'Opslag: 12 maanden, gedeeld met derden: nee',
     '60t': 'Opslag: 60 maanden, gedeeld met derden: nee',
-    'w': 'Bewaarplicht en datadeling met derden volgens wettelijke richtlijn',
+    'w': 'Bewaarplicht en datadeling met derden volgens wettelijke richtlijnen',
     'b' : 'Volgens bedrijfsrichtlijnen'
   }
 };
