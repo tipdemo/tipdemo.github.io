@@ -589,42 +589,6 @@ strong {
   margin-bottom: 20px; /* Voegt ruimte toe tussen de afbeeldingen */
 }
 
-
-@media (max-width: 768px) {
-
-  body {
-    padding: 5px;
-  }
-
-  .main-container {
-    padding: 1px;
-  }
-
-  .main-nav {
-    padding: 1px;
-  }
-
-  .main-nav ul {
-    
-    gap: 3px; /* Voeg wat ruimte tussen de links toe */
-  }
-
-  .main-nav li {
-    width: 100%; /* Zorg ervoor dat elk item de volledige breedte van de container gebruikt */
-  }
-
-  .nav-link i {
-    display: none; /* Verberg de iconen */
-  }
-
-  .nav-link {
-    display: block; /* Zorg ervoor dat de link een blok-element is voor betere touch-navigatie */
-    padding: 10px; /* Voeg wat extra ruimte rond de links toe */
-    text-align: left; /* Links uitlijnen van de tekst */
-    font-size: 10px; /* Pas de tekstgrootte aan voor kleinere schermen */
-  }
-}
-
 #tags {
   display: flex;
   flex-wrap: wrap;
@@ -660,4 +624,96 @@ strong {
 .hidden {
   opacity: 0;
   display: none;
+}
+
+
+
+
+@media (max-width: 768px) {
+
+  body {
+    padding: 5px;
+    overflow-x: hidden; /* Vermijd horizontaal scrollen */
+  }
+
+  .main-container {
+    padding: 5px;
+    max-width: 100%; /* Zorgt ervoor dat de container op kleinere schermen de volledige breedte benut */
+  }
+
+  .main-nav {
+    padding: 1px;
+  }
+
+  .main-nav ul {
+    gap: 3px; /* Voeg wat ruimte tussen de links toe */
+    flex-direction: row;
+  }
+
+
+  .nav-link i {
+    display: none; /* Verberg de iconen */
+  }
+
+  .nav-link {
+    display: block; /* Zorg ervoor dat de link een blok-element is voor betere touch-navigatie */
+    padding: 10px; /* Voeg wat extra ruimte rond de links toe */
+    text-align: left; /* Links uitlijnen van de tekst */
+    font-size: 10px; /* Pas de tekstgrootte aan voor kleinere schermen */
+  }
+
+  /* Maak de knoppen responsief */
+  .button-demolist, #io {
+    min-width: unset;
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+    padding: 10px 5px;
+    font-size: 16px;
+  }
+
+  .section-examples {
+    padding-left: 15px; 
+    padding-right: 15px;
+    padding-bottom: 10px;
+  }
+
+  p, .sectie p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  /* Zorg ervoor dat de ul-lijst flexibele en mooie uitlijning heeft */
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+.sectie {
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+#searchBar {
+    box-sizing: border-box;
+    }
+
+#hoofdpagina-accordion-header {
+  font-size: 15px;
+    }
+
+#title-mainpage {
+  font-size: 22px;
+}
+
+#subtitle-mainpage {
+  font-size: 14px;
+}
+
 }
