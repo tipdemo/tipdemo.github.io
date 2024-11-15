@@ -248,6 +248,66 @@
         </div>
     </section>
 
+    <!-- *** Bestandenverkenner Modal (signfromstorage) *** -->
+  <section id="signfromstorage-file-explorer-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p><strong>Selecteer een document om te ondertekenen</strong></p>
+      </div>
+      <div class="divider"></div>
+      <div class="file-input-container">
+        <input type="file" id="signfromstorage-file-input" accept=".pdf,.doc,.docx" />
+      </div>
+      <div class="button-container">
+        <button id="signfromstorage-file-explorer-close-button" class="stop-button">Sluiten</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- *** Bevestigings Modal (signfromstorage) *** -->
+  <section id="signfromstorage-confirm-sign-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <p><strong>Ondertekenen document:</strong></p>
+      </div>
+      <div class="divider"></div>
+      <p id="signfromstorage-confirm-document-text"></p>
+      <div class="divider"></div>
+      <div class="button-container">
+        <button id="signfromstorage-confirm-sign-stop-button" class="stop-button">Stoppen</button>
+        <button id="signfromstorage-confirm-sign-accept-button" class="share-button">Akkoord</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- *** Pincode Confirmatie Modal (signfromstorage) *** -->
+  <section id="signfromstorage-pin-confirmation-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h2>Voer uw pincode in om het document te ondertekenen</h2>
+      <div class="pin-input">
+        <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+        <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      </div>
+      <button id="signfromstorage-confirm-pin" class="orange-btn confirm-pin">Bevestigen</button>
+    </div>
+  </section>
+
+  <!-- *** Sign Success Screen (signfromstorage) *** -->
+  <section id="signfromstorage-success-screen" class="modal" style="display: none;">
+    <div class="modal-content">
+      <h2>Succes!</h2>
+      <div class="divider"></div>
+      <p>Het document is succesvol ondertekend en opgeslagen in je wallet.</p>
+      <div class="button-container">
+        <button id="signfromstorage-close-success-btn" class="share-button">Sluiten</button>
+      </div>
+    </div>
+  </section>
+
     <!-- Voeg het script hier toe zodat de DOM volledig is geladen -->
     <script src="demo.js"></script>
 

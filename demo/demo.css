@@ -957,10 +957,41 @@ font-weight: bold;
     margin-top: 40px;
 }
 
+#signfromstorage-success-screen .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
 
 .extra-space {
     margin-bottom: 15px; /* Voeg witruimte toe onder deze paragrafen */
   }
+
+
+  .file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.fake-file-btn {
+    padding: 10px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.fake-file-btn:hover {
+    background-color: #d5d5d5;
+}
+
+
 
 #close-issuer-success-btn {
     width: 150px;
@@ -2086,6 +2117,9 @@ margin-top: 40px;
 #sign-button .sign-button-text{
     color:  #494949; 
     font-size: 14px;
+    font-size: 12px;
+  width: 52px;
+  text-align: center;
 }
 
 .background-clickable-sections {

@@ -67,11 +67,11 @@
   </a>
 
  <!-- Sign knop -->
- <a id="sign-button" class="catalogue-btn" onclick="showMessage()">
+ <a id="sign-button" class="catalogue-btn">
   <div class="circle-btn">
     <i class="fas fa-file-signature"></i> 
   </div>
-  <span class="sign-button-text">Sign</span>
+  <span class="sign-button-text">Sign from storage</span>
 </a>
 
 </div>
@@ -983,6 +983,76 @@
   </div>
 </section>
 
+
+<!-- *** Bestandenverkenner Modal (signfromstorage) *** -->
+<section id="signfromstorage-file-explorer-modal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Selecteer een document om te ondertekenen</h3>
+    </div>
+    <div class="divider"></div>
+   <div class="file-input-container">
+      <input type="file" id="signfromstorage-file-input" accept=".pdf,.doc,.docx" />
+    </div>
+      <!-- *** Fictieve Bestanden *** -->
+      <div class="file-list">
+        <button class="fake-file-btn" data-filename="Arbeidscontract.pdf">Arbeidscontract.pdf</button>
+        <button class="fake-file-btn" data-filename="Overeenkomst Tweede Partij.docx">Algemene arbeidsvoorwaardes.docx</button>
+        <button class="fake-file-btn" data-filename="Overeenkomst Tweede Partij.docx">Offerte.pdf</button>
+        <button class="fake-file-btn" data-filename="Overeenkomst Tweede Partij.docx">NDA.docx</button>
+      </div>
+    <div class="button-container">
+      <button id="signfromstorage-file-explorer-close-button" class="stop-button">Sluiten</button>
+    </div>
+  </div>
+</section>
+
+<!-- *** Bevestigings Modal (signfromstorage) *** -->
+<section id="signfromstorage-confirm-sign-modal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>Ondertekenen document</h3>
+    </div>
+    <div class="divider"></div>
+    <p id="signfromstorage-confirm-document-text"></p>
+    <div class="divider"></div>
+    <div class="button-container">
+      <button id="signfromstorage-confirm-sign-stop-button" class="stop-button">Stoppen</button>
+      <button id="signfromstorage-confirm-sign-accept-button" class="share-button">Akkoord</button>
+    </div>
+  </div>
+</section>
+
+<!-- *** Pincode Confirmatie Modal (signfromstorage) *** -->
+<section id="signfromstorage-pin-confirmation-modal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h2>Voer uw pincode in om het document te ondertekenen</h2>
+    <div class="pin-input">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+    </div>
+    <button id="signfromstorage-confirm-pin" class="orange-btn confirm-pin">Bevestigen</button>
+  </div>
+</section>
+
+<!-- *** Sign Success Screen (signfromstorage) *** -->
+<section id="signfromstorage-success-screen" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h2>Geslaagd!</h2>
+    <div class="divider"></div>
+    <p>Het document is succesvol ondertekend</p>
+    <div class="button-container">
+    <button id="signfromstorage-download-btn" class="share-button" style="background-color: green;">Download</button>
+    </div>
+    <div class="button-container">
+      <button id="signfromstorage-close-success-btn" class="stop-button">Sluiten</button>
+    </div>
+  </div>
+</section>
 
   <!-- *** Scripts *** -->
   <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>

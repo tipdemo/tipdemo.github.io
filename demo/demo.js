@@ -130,6 +130,28 @@ const signdocSuccessScreen = document.getElementById('signdoc-success-screen');
 const closeSigndocSuccessBtn = document.getElementById('close-signdoc-success-btn');
 
 
+// *** SignFromStorage Elementen ***
+const signFromStorageButton = document.getElementById('sign-button');
+
+// Bestandenverkenner Modal SignFromStorage
+const signFromStorageFileExplorerModal = document.getElementById('signfromstorage-file-explorer-modal');
+const signFromStorageFileInput = document.getElementById('signfromstorage-file-input');
+const signFromStorageFileExplorerCloseButton = document.getElementById('signfromstorage-file-explorer-close-button');
+
+// Bevestigings Modal SignFromStorage
+const signFromStorageConfirmSignModal = document.getElementById('signfromstorage-confirm-sign-modal');
+const signFromStorageConfirmDocumentText = document.getElementById('signfromstorage-confirm-document-text');
+const signFromStorageConfirmSignStopButton = document.getElementById('signfromstorage-confirm-sign-stop-button');
+const signFromStorageConfirmSignAcceptButton = document.getElementById('signfromstorage-confirm-sign-accept-button');
+
+// Pincode Confirmatie Modal SignFromStorage
+const signFromStoragePinConfirmationModal = document.getElementById('signfromstorage-pin-confirmation-modal');
+const signFromStorageConfirmPinBtn = document.getElementById('signfromstorage-confirm-pin');
+
+// Successcherm Modal SignFromStorage
+const signFromStorageSuccessScreen = document.getElementById('signfromstorage-success-screen');
+const signFromStorageCloseSuccessBtn = document.getElementById('signfromstorage-close-success-btn');
+
 
 // *** Trusted Contacts Elementen ***
 const contactsNavbarItem = document.getElementById('contacts-navbar-item');
@@ -314,6 +336,9 @@ function showActivities() {
 
       if (cred.type === 'signdoc') return true;
 
+      // signFromStorage acties
+      if (cred.type === 'signfromstorage') return true;
+
       // Issuer acties: heeft 'issuedBy' en is geen 'mandate'
       if (cred.issuedBy && cred.type !== 'mandate') return true;
 
@@ -349,6 +374,14 @@ function showActivities() {
           // Signdoc actie
           activityItem.innerHTML = `
               <strong style="color: #152A62;">Document ondertekend aangeboden door ${cred.issuedBy}</strong><br>
+              <span style="color: #152A62;">${cred.data.documentName}</span><br>
+              <span style="color: #152A62;">${cred.actionTimestamp}</span>
+          `;
+
+        } else if (cred.type === 'signfromstorage') {
+          // SignFromStorage actie
+          activityItem.innerHTML = `
+              <strong style="color: #152A62;">Document ondertekend uit storage</strong><br>
               <span style="color: #152A62;">${cred.data.documentName}</span><br>
               <span style="color: #152A62;">${cred.actionTimestamp}</span>
           `;
@@ -3358,8 +3391,202 @@ searchInput.addEventListener('input', function() {
 
 
 
-
-
+/* 
 function showMessage() {
   alert("Functie wordt later toegevoegd");
+} */
+
+  let currentSigningDocument = {
+    name: '',
+    isFake: false
+};
+
+
+// *** Event Listeners voor SignFromStorage Flow ***
+signFromStorageButton.addEventListener('click', () => {
+  signFromStorageFileExplorerModal.style.display = 'flex';
+});
+
+signFromStorageFileExplorerCloseButton.addEventListener('click', () => {
+  signFromStorageFileExplorerModal.style.display = 'none';
+  signFromStorageFileInput.value = ''; // Reset het file input
+});
+
+const fileListContainer = document.querySelector('.file-list');
+fileListContainer.addEventListener('click', (event) => {
+    if (event.target && event.target.classList.contains('fake-file-btn')) {
+        const filename = event.target.getAttribute('data-filename');
+        signFromStorageConfirmDocumentText.textContent = `Wil je dit document "${filename}" ondertekenen?`;
+        signFromStorageFileExplorerModal.style.display = 'none';
+        signFromStorageConfirmSignModal.style.display = 'flex';
+
+        // Update currentSigningDocument
+        currentSigningDocument.name = filename;
+        currentSigningDocument.isFake = true;
+
+        // Voeg de 'clicked' klasse toe en verwijder deze van andere buttons
+        const allFakeButtons = document.querySelectorAll('.fake-file-btn');
+        allFakeButtons.forEach(btn => btn.classList.remove('clicked'));
+        event.target.classList.add('clicked');
+    }
+});
+
+
+signFromStorageFileInput.addEventListener('change', (event) => {
+  const file = event.target.files[0];
+  if (file) {
+      signFromStorageConfirmDocumentText.textContent = `Wil je dit document "${file.name}" ondertekenen?`;
+      signFromStorageFileExplorerModal.style.display = 'none';
+      signFromStorageConfirmSignModal.style.display = 'flex';
+  }
+}); 
+
+
+
+signFromStorageConfirmSignStopButton.addEventListener('click', () => {
+  signFromStorageConfirmSignModal.style.display = 'none';
+  signFromStorageFileInput.value = ''; // Reset het file input
+});
+
+signFromStorageConfirmSignAcceptButton.addEventListener('click', () => {
+  signFromStorageConfirmSignModal.style.display = 'none';
+  signFromStoragePinConfirmationModal.style.display = 'flex';
+  resetPinInputs(); // Reset de pincode-invoervelden
+});
+
+signFromStorageConfirmPinBtn.addEventListener('click', () => {
+  // Hier kun je pincode verificatie toevoegen indien nodig
+
+  // Voor demonstratiedoeleinden gaan we ervan uit dat de pincode correct is
+
+  // Haal de huidige timestamp op
+  const timestamp = new Date().toLocaleString();
+
+
+  // Haal de geselecteerde bestandsnaam op
+  let documentName = 'Onbekend document';
+  const file = signFromStorageFileInput.files[0];
+  if (file) {
+      documentName = file.name;
+  } else {
+      // Controleer of een fictief bestand recent is geselecteerd
+      const lastClickedFakeFile = document.querySelector('.file-list .fake-file-btn.clicked');
+      if (lastClickedFakeFile) {
+        console.log ("fictief bestand wordt gebruikt voor ondertekening");
+          documentName = lastClickedFakeFile.getAttribute('data-filename');
+      }
+  }
+
+   // Controleer of documentName correct is ingesteld
+   console.log('Document Name:', documentName);
+
+
+  // Maak een nieuw credential object voor de signFromStorage actie
+  const newCredential = {
+      name: documentName, // Gebruik de documentnaam als naam
+      issuedBy: 'Gebruiker', // Je kunt dit aanpassen naar de juiste partij indien beschikbaar
+      type: 'signfromstorage', // Nieuwe type naam om verwarring te voorkomen
+      actionTimestamp: timestamp,
+      isShareAction: false,
+      data: {
+          documentName: documentName,
+          issuedBy: 'Gebruiker', // Pas aan indien beschikbaar
+          // Voeg indien nodig andere relevante data toe
+      }
+  };
+
+  // Voeg de nieuwe actie toe aan credentials
+  credentials.push(newCredential);
+  saveCredentials();
+  showActivities(); // Update het activiteitenoverzicht
+
+  // Verberg het pincode-confirmatiescherm
+  signFromStoragePinConfirmationModal.style.display = 'none';
+
+  // Toon het successcherm
+  signFromStorageSuccessScreen.style.display = 'flex';
+
+  signFromStorageFileInput.value = ''; // Reset file input na gebruik
+});
+
+signFromStorageCloseSuccessBtn.addEventListener('click', () => {
+  signFromStorageSuccessScreen.style.display = 'none';
+  bottomNav.style.display = 'flex';
+  // Voeg eventuele andere acties toe om terug te keren naar het hoofdscherm
+
+
+});
+
+// Event listener voor de Download knop
+const signFromStorageDownloadBtn = document.getElementById('signfromstorage-download-btn');
+
+signFromStorageDownloadBtn.addEventListener('click', () => {
+    if (currentSigningDocument.isFake) {
+        // Voeg het ondertekende document toe aan de fake list
+        addSignedDocumentToFakeList(currentSigningDocument.name);
+        alert('Het ondertekende document is toegevoegd aan de bestandenlijst.');
+    } else {
+        // Toon een melding dat het ondertekende document niet beschikbaar is in de demo
+        alert('In deze demo-omgeving is het ondertekende document niet beschikbaar.');
+    }
+
+    // Sluit het successcherm
+    signFromStorageSuccessScreen.style.display = 'none';
+
+    // Reset currentSigningDocument
+    currentSigningDocument = {
+        name: '',
+        isFake: false
+    };
+});
+
+// *** Functie om een ondertekend document toe te voegen aan de fake file list ***
+function addSignedDocumentToFakeList(originalDocName) {
+  console.log ("add signed doc to list started");
+  // Haal de huidige datum en tijd op in een geschikt formaat
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+
+  const formattedDate = `${year}${month}${day}-${hours}${minutes}${seconds}`;
+  
+  // Splits de originele bestandsnaam om de extensie te behouden
+  const lastDotIndex = originalDocName.lastIndexOf('.');
+  const baseName = lastDotIndex !== -1 ? originalDocName.substring(0, lastDotIndex) : originalDocName;
+  const extension = lastDotIndex !== -1 ? originalDocName.substring(lastDotIndex) : '.pdf'; // Default extensie
+
+  // Maak de nieuwe bestandsnaam
+  const signedDocName = `${baseName}-signed-${formattedDate}${extension}`;
+
+  // Maak een nieuw knop-element aan
+  const newFakeFileButton = document.createElement('button');
+  newFakeFileButton.classList.add('fake-file-btn');
+  newFakeFileButton.setAttribute('data-filename', signedDocName);
+  newFakeFileButton.textContent = signedDocName;
+
+  // Voeg een klik-event listener toe aan het nieuwe knop-element
+  newFakeFileButton.addEventListener('click', () => {
+      signFromStorageConfirmDocumentText.textContent = `Wil je dit document "${signedDocName}" ondertekenen?`;
+      signFromStorageFileExplorerModal.style.display = 'none';
+      signFromStorageConfirmSignModal.style.display = 'flex';
+
+      // Voeg de 'clicked' klasse toe en verwijder deze van andere buttons
+      fakeFileButtons.forEach(btn => btn.classList.remove('clicked'));
+      newFakeFileButton.classList.add('clicked');
+  });
+
+  // Voeg het nieuwe knop-element toe aan de file list
+  const fileListContainer = document.querySelector('.file-list');
+  fileListContainer.appendChild(newFakeFileButton);
+
 }
+
+// *** Initialisatie bij Pagina Laden ***
+window.onload = () => {
+  loadCredentials();
+  showActivities(); // Zorg dat activiteiten worden weergegeven
+};
