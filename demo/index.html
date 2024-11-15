@@ -933,7 +933,7 @@
 <section id="signdoc-modal" class="modal" style="display: none;">
   <div class="modal-content">
     <div class="modal-header">
-      <p><strong>Wilt u dit document ondertekenen?</strong></p>
+      <h3>Wilt u dit document ondertekenen?</h3>
     </div>
     <div class="divider"></div>
 
@@ -1053,6 +1053,51 @@
     </div>
   </div>
 </section>
+
+
+<!-- RDFCF Modal -->
+<div id="rdfcf-modal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h4>Wilt u deze gegevens aan het formulier toevoegen?</h4>
+    <p><strong>Formulier:</strong> <span id="rdfcf-form-name"></span></p>
+    <div id="rdfcf-details-container">
+      <!-- The requested data will be displayed here -->
+    </div>
+    <div class="button-container">
+      <button id="rdfcf-stop-button" class="stop-button">Stoppen</button>
+      <button id="rdfcf-accept-button" class="share-button">Akkoord</button>
+    </div>
+  </div>
+</div>
+
+<!-- RDFCF PIN Confirmation Screen -->
+<div id="pin-confirmation-screen-rdfcf" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h2>Voer uw pincode in</h2>
+    <div class="pin-input">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+    </div>
+    
+    <button id="confirm-pin-rdfcf" class="orange-btn confirm-pin">Bevestigen</button>
+
+  </div>
+</div>
+
+<!-- RDFCF Success Screen -->
+<div id="rdfcf-success-screen" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h2>Succes!</h2>
+    <p>De gegevens zijn succesvol toegevoegd aan het formulier.</p>
+    <div class="button-container">
+    <button id="close-rdfcf-success-btn"  class="share-button">Sluiten</button>
+  </div>
+  </div>
+</div>
 
   <!-- *** Scripts *** -->
   <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>

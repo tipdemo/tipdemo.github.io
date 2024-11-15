@@ -130,6 +130,21 @@ const signdocSuccessScreen = document.getElementById('signdoc-success-screen');
 const closeSigndocSuccessBtn = document.getElementById('close-signdoc-success-btn');
 
 
+// *** RDFCF Modal Elements ***
+const rdfcfModal = document.getElementById('rdfcf-modal');
+const rdfcfDetailsContainer = document.getElementById('rdfcf-details-container');
+const rdfcfAcceptButton = document.getElementById('rdfcf-accept-button');
+const rdfcfStopButton = document.getElementById('rdfcf-stop-button');
+
+// RDFCF PIN Confirmation Elements
+const pinConfirmationScreenRdfcf = document.getElementById('pin-confirmation-screen-rdfcf');
+const confirmPinRdfcfBtn = document.getElementById('confirm-pin-rdfcf');
+
+// RDFCF Success Screen Elements
+const rdfcfSuccessScreen = document.getElementById('rdfcf-success-screen');
+const closeRdfcfSuccessBtn = document.getElementById('close-rdfcf-success-btn');
+
+
 // *** SignFromStorage Elementen ***
 const signFromStorageButton = document.getElementById('sign-button');
 
@@ -189,6 +204,7 @@ const closeCurrentCardsBtn = document.getElementById('close-current-cards');
 
 const fieldMapping = {
   gn: 'Voornaam',
+  vl: 'Voorletter(s)',
   sn: 'Achternaam',
   bd: 'Geboortedatum',
   bsn: 'Burgerservicenummer (BSN)',
@@ -322,86 +338,85 @@ function convertToStandardDate(dateString) {
 
 
 function showActivities() {
-  activitiesList.innerHTML = ''; // Leeg de lijst
+  activitiesList.innerHTML = ''; // Clear the list
 
-  // Filter credentials voor activiteiten:
-  // - Share actions (isShareAction: true)
-  // - Mandate activities (isActivity: true)
-  // - Issuer actions (cred.issuedBy aanwezig en type niet 'mandate')
+  // Filter credentials for activities
   const filteredActivities = credentials.filter(cred => {
-      if (!cred.actionTimestamp) return false;
+    if (!cred.actionTimestamp) return false;
 
-      // Share actions en Mandate activiteiten
-      if (cred.isShareAction || cred.isActivity) return true;
+    // Include share actions, activities, and specific types
+    if (cred.isShareAction || cred.isActivity) return true;
 
-      if (cred.type === 'signdoc') return true;
+    if (cred.type === 'signdoc' || cred.type === 'signfromstorage' || cred.type === 'rdfcf') return true;
 
-      // signFromStorage acties
-      if (cred.type === 'signfromstorage') return true;
+    // Issuer actions
+    if (cred.issuedBy && cred.type !== 'mandate') return true;
 
-      // Issuer acties: heeft 'issuedBy' en is geen 'mandate'
-      if (cred.issuedBy && cred.type !== 'mandate') return true;
-
-      return false;
+    return false;
   });
 
-  // Sorteer de activiteiten op datum en tijd (meest recente eerst)
+  // Sort activities by date and time (most recent first)
   filteredActivities.sort((a, b) => {
-      let dateA = Date.parse(convertToStandardDate(a.actionTimestamp));
-      let dateB = Date.parse(convertToStandardDate(b.actionTimestamp));
-      return dateB - dateA;
+    let dateA = Date.parse(convertToStandardDate(a.actionTimestamp));
+    let dateB = Date.parse(convertToStandardDate(b.actionTimestamp));
+    return dateB - dateA;
   });
 
-  // Voeg activiteiten toe aan de lijst
+  // Add activities to the list
   filteredActivities.forEach((cred) => {
-      let activityItem = document.createElement('li');
+    let activityItem = document.createElement('li');
 
-      if (cred.isShareAction) {
-          // Verifier-actie
-          activityItem.innerHTML = `
-              <strong style="color: #152A62;">${cred.name}</strong><br>
-              <span style="color: #152A62;">Gegevens gedeeld</span><br>
-              <span style="color: #152A62;">${cred.actionTimestamp}</span>
-          `;
-      } else if (cred.isActivity) {
-          // Machtiging-actie
-          activityItem.innerHTML = `
-              <strong style="color: #152A62;">Machtiging aan ${cred.requester}</strong><br>
-              <span style="color: #152A62;">Reden: ${cred.reason}</span><br>
-              <span style="color: #152A62;">${cred.actionTimestamp}</span>
-          `;
-        } else if (cred.type === 'signdoc') {
-          // Signdoc actie
-          activityItem.innerHTML = `
-              <strong style="color: #152A62;">Document ondertekend aangeboden door ${cred.issuedBy}</strong><br>
-              <span style="color: #152A62;">${cred.data.documentName}</span><br>
-              <span style="color: #152A62;">${cred.actionTimestamp}</span>
-          `;
+    if (cred.type === 'rdfcf') {
+      // Form submission action
+      activityItem.innerHTML = `
+        <strong style="color: #152A62;">Formulier ingevuld: ${cred.formName}</strong><br>
+        <span style="color: #152A62;">Gegevens gedeeld</span><br>
+        <span style="color: #152A62;">${cred.actionTimestamp}</span>
+      `;
+    } else if (cred.isShareAction) {
+      // Verifier action
+      activityItem.innerHTML = `
+        <strong style="color: #152A62;">${cred.name}</strong><br>
+        <span style="color: #152A62;">Gegevens gedeeld</span><br>
+        <span style="color: #152A62;">${cred.actionTimestamp}</span>
+      `;
+    } else if (cred.isActivity) {
+      // Mandate action
+      activityItem.innerHTML = `
+        <strong style="color: #152A62;">Machtiging aan ${cred.requester}</strong><br>
+        <span style="color: #152A62;">Reden: ${cred.reason}</span><br>
+        <span style="color: #152A62;">${cred.actionTimestamp}</span>
+      `;
+    } else if (cred.type === 'signdoc') {
+      // Signdoc action
+      activityItem.innerHTML = `
+        <strong style="color: #152A62;">Document ondertekend aangeboden door ${cred.issuedBy}</strong><br>
+        <span style="color: #152A62;">${cred.data.documentName}</span><br>
+        <span style="color: #152A62;">${cred.actionTimestamp}</span>
+      `;
+    } else if (cred.type === 'signfromstorage') {
+      // SignFromStorage action
+      activityItem.innerHTML = `
+        <strong style="color: #152A62;">Document ondertekend uit storage</strong><br>
+        <span style="color: #152A62;">${cred.data.documentName}</span><br>
+        <span style="color: #152A62;">${cred.actionTimestamp}</span>
+      `;
+    } else if (cred.issuedBy && cred.type !== 'mandate') {
+      // Issuer action
+      const issuerInfo = cred.issuedBy ? cred.issuedBy : "Onbekende uitgever";
+      activityItem.innerHTML = `
+        <strong style="color: #152A62;">${issuerInfo}</strong><br>
+        <span style="color: #152A62;">${cred.name} opgehaald</span><br>
+        <span style="color: #152A62;">${cred.actionTimestamp}</span>
+      `;
+    }
 
-        } else if (cred.type === 'signfromstorage') {
-          // SignFromStorage actie
-          activityItem.innerHTML = `
-              <strong style="color: #152A62;">Document ondertekend uit storage</strong><br>
-              <span style="color: #152A62;">${cred.data.documentName}</span><br>
-              <span style="color: #152A62;">${cred.actionTimestamp}</span>
-          `;
+    // Add divider
+    const divider = document.createElement('div');
+    divider.className = 'activity-divider';
 
-      } else if (cred.issuedBy && cred.type !== 'mandate') {
-          // Issuer-actie
-          const issuerInfo = cred.issuedBy ? cred.issuedBy : "Onbekende uitgever";
-          activityItem.innerHTML = `
-              <strong style="color: #152A62;">${issuerInfo}</strong><br>
-              <span style="color: #152A62;">${cred.name} opgehaald</span><br>
-              <span style="color: #152A62;">${cred.actionTimestamp}</span>
-          `;
-      }
-
-      // Voeg scheidingslijn toe
-      const divider = document.createElement('div');
-      divider.className = 'activity-divider';
-
-      activitiesList.appendChild(activityItem);
-      activitiesList.appendChild(divider);
+    activitiesList.appendChild(activityItem);
+    activitiesList.appendChild(divider);
   });
 }
 
@@ -490,16 +505,8 @@ const cardStyles = {
     textColor: '#00588E'
     },
 
-
-
-  
-
   // Voeg meer kaartstijlen toe indien nodig
 };
-
-
-
-
 
 
 function displayCredentials() {
@@ -511,12 +518,14 @@ function displayCredentials() {
       cred.isShareAction ||
       cred.isActivity ||
       cred.type === 'mandate' ||
-      cred.type === 'signfromstorage' // Voeg deze regel toe
+      cred.type === 'signdoc' ||
+      cred.type === 'signfromstorage' ||
+      cred.type === 'rdfcf'
     ) {
       console.log(`Credential at index ${index} has type:`, cred.type);
       return;
     }
-    
+
     // Controleer of cred.name bestaat en is een string
     if (typeof cred.name !== 'string') {
     //  console.warn(`Credential at index ${index} ontbreekt 'name' property:`, cred);
@@ -575,12 +584,13 @@ function loadDefaultCredentials() {
       isShareAction: false,
       data: {
         'Voornaam': 'Willeke Liselotte',
+        'Voorletter(s)': 'W. L.',
         'Achternaam': 'De Bruijn',
-        'Geboortedatum': '10 maart, 1980',
+        'Geboortedatum': '10-03-1980',
         'Geboorteplaats': 'Delft',
         'Geboorteland': 'Nederland',
         'Geslacht': 'Vrouw',
-        'Burgerservicenummer (BSN)': '938391772',
+        'Burgerservicenummer (BSN)': '999999990',
         'Nationaliteit': 'Nederlands',
         'Geldigheid paspoort': '17 juli 2034',
         'Ouder dan 18': 'Ja'
@@ -594,7 +604,7 @@ function loadDefaultCredentials() {
         'Straat': 'Wilhelmina van Pruisenweg',
         'Huisnummer': '52',
         'Postcode': '2595 AN',
-        'Plaatsnaam': 'Den Haag'
+        'Woonplaats': 'Den Haag'
       }
     },
       // Nieuw kaartje "Foto" toevoegen
@@ -635,8 +645,6 @@ function loadCredentials() {
 function saveCredentials() {
   localStorage.setItem('credentials', JSON.stringify(credentials));
 }
-
-
 
 
 function showDetails(credential, index) {
@@ -771,6 +779,14 @@ function startQrScan() {
               else if (data.type === "signdoc") {
                         console.log("Signdoc QR-code herkend.");
                         populateModalSignDoc(data);
+                    } 
+
+              else if (data.type === "form" && data.rdfcf) {
+                      console.log("RDFCF QR-code detected.");
+                      window.currentRdfcfData = data;
+            
+                      // Populate the RDFCF modal
+                      populateRdfcfModal(data);
                     } 
 
               // Stap 3: Controleer of het een issuer QR-code is (rdfci)
@@ -949,8 +965,6 @@ pinInputs.forEach((box, index) => {
         }
     });
 });
-
-
 
 
 
@@ -1562,10 +1576,10 @@ function populateRdfcvModal(data) {
         cardHeader.style.backgroundColor = '#B9E4E2';
         break;
       case 'Woonadres':
-        cardHeader.style.backgroundColor = '#445580';
+        cardHeader.style.backgroundColor = '#b9e4e2';
         break;
       case 'Verklaring Omtrent Gedrag (VOG)':
-        cardHeader.style.backgroundColor = '#0061A6';
+        cardHeader.style.backgroundColor = '#b9e4e2';
         break;
         case 'Diploma Verpleegkunde':
         cardHeader.style.backgroundColor = '#0061A6';
@@ -3595,4 +3609,210 @@ function addSignedDocumentToFakeList(originalDocName) {
 window.onload = () => {
   loadCredentials();
   showActivities(); // Zorg dat activiteiten worden weergegeven
+};
+
+function populateRdfcfModal(data) {
+  // Set the form name
+  const rdfcfFormNameElement = document.getElementById('rdfcf-form-name');
+  rdfcfFormNameElement.textContent = data.formName || 'Onbekend formulier';
+  addCardScreen.style.display = 'none';
+  rdfcfModal.style.display = 'flex';
+
+  // Clear previous details
+  rdfcfDetailsContainer.innerHTML = '';
+
+  // Group the fields by card
+  let fieldsByCard = {};
+
+  data.rdfcf.forEach((field) => {
+    const fieldName = fieldMapping[field] || field; // Use field mapping
+
+    // Try to find a credential where the credential's name matches the fieldName (whole card)
+    let matchingCard = credentials.find(cred => cred.name === fieldName);
+
+    if (matchingCard) {
+      const cardName = matchingCard.name;
+
+      if (!fieldsByCard[cardName]) {
+        fieldsByCard[cardName] = { data: matchingCard.data, fields: [], showAllFields: true };
+      }
+    } else {
+      // If no matching card by name, try to find a credential that has the field in its data
+      matchingCard = credentials.find(cred => cred.data && cred.data.hasOwnProperty(fieldName));
+
+      if (matchingCard) {
+        const cardName = matchingCard.name;
+
+        if (!fieldsByCard[cardName]) {
+          fieldsByCard[cardName] = { data: matchingCard.data, fields: [], showAllFields: false };
+        }
+
+        fieldsByCard[cardName].fields.push(fieldName);
+      } else {
+        console.warn(`Field or card '${fieldName}' not found in credentials.`);
+      }
+    }
+  });
+
+  // Iterate over each card and create the card elements
+  Object.keys(fieldsByCard).forEach((cardName) => {
+    const cardInfo = fieldsByCard[cardName];
+
+    // Create card container
+    const cardContainer = document.createElement('div');
+    cardContainer.className = 'card-container';
+
+    // Create card header
+    const cardHeader = document.createElement('div');
+    cardHeader.className = 'card-header';
+    cardHeader.textContent = cardName;
+
+    // Set the background color based on the card name if desired
+    if (cardName === 'Persoonlijke data') {
+      cardHeader.style.backgroundColor = '#ffffff';
+    } else if (cardName === 'Verklaring Omtrent Gedrag (VOG)') {
+      cardHeader.style.backgroundColor = '#ffffff';
+    } else {
+      cardHeader.style.backgroundColor = '#ffffff'; // Default color
+    }
+
+    // Create card content container
+    const cardContent = document.createElement('div');
+    cardContent.className = 'card-content';
+
+    // Add the header and content to the card container
+    cardContainer.appendChild(cardHeader);
+    cardContainer.appendChild(cardContent);
+
+    // Create card details
+    const cardDetails = document.createElement('div');
+    cardDetails.className = 'card-details';
+
+    if (cardInfo.showAllFields) {
+      // Add all details from the card
+      for (let key in cardInfo.data) {
+        if (cardInfo.data.hasOwnProperty(key)) {
+          const detailRow = document.createElement('div');
+          detailRow.className = 'detail-row';
+
+          const labelDiv = document.createElement('div');
+          labelDiv.className = 'label';
+          labelDiv.textContent = `${key}:`;
+
+          const valueDiv = document.createElement('div');
+          valueDiv.className = 'value';
+
+          const value = cardInfo.data[key];
+
+          if (key === 'Foto') {
+            const img = document.createElement('img');
+            img.src = value;
+            img.alt = 'Foto';
+            img.style.width = '100%';
+            valueDiv.appendChild(img);
+          } else {
+            valueDiv.textContent = value || 'Niet beschikbaar';
+          }
+
+          detailRow.appendChild(labelDiv);
+          detailRow.appendChild(valueDiv);
+
+          cardDetails.appendChild(detailRow);
+        }
+      }
+    } else {
+      // Add only the specific requested fields
+      cardInfo.fields.forEach(fieldName => {
+        const value = cardInfo.data[fieldName];
+
+        const detailRow = document.createElement('div');
+        detailRow.className = 'detail-row';
+
+        const labelDiv = document.createElement('div');
+        labelDiv.className = 'label';
+        labelDiv.textContent = `${fieldName}:`;
+
+        const valueDiv = document.createElement('div');
+        valueDiv.className = 'value';
+        if (fieldName === 'Foto') {
+          const img = document.createElement('img');
+          img.src = value;
+          img.alt = 'Foto';
+          img.style.width = '100%';
+          valueDiv.appendChild(img);
+        } else {
+          valueDiv.textContent = value || 'Niet beschikbaar';
+        }
+
+        detailRow.appendChild(labelDiv);
+        detailRow.appendChild(valueDiv);
+
+        cardDetails.appendChild(detailRow);
+      });
+    }
+
+    // Add the card details to the card content
+    cardContent.appendChild(cardDetails);
+
+    // Add the card to the container
+    rdfcfDetailsContainer.appendChild(cardContainer);
+  });
+}
+
+
+
+
+
+
+
+
+// Event listener for the accept button
+rdfcfAcceptButton.onclick = () => {
+  // Show the PIN confirmation screen
+  pinConfirmationScreenRdfcf.style.display = 'flex';
+  rdfcfModal.style.display = 'none';
+  resetPinInputs();
+};
+
+// Event listener for the stop button
+rdfcfStopButton.onclick = () => {
+  rdfcfModal.style.display = 'none';
+  addCardScreen.style.display = 'none';
+  walletScreen.style.display = 'block';
+  bottomNav.style.display = 'flex';
+  resetQrScanner();
+};
+
+confirmPinRdfcfBtn.onclick = () => {
+  // After PIN confirmation, show success screen
+  pinConfirmationScreenRdfcf.style.display = 'none';
+  rdfcfSuccessScreen.style.display = 'flex';
+  resetPinInputs();
+
+  // Save the shared data action
+  if (window.currentRdfcfData) {
+    saveRdfcfSharedData(window.currentRdfcfData);
+    console.log("RDFCF data saved:", credentials);
+  } else {
+    console.error("No RDFCF data available to save.");
+  }
+};
+
+function saveRdfcfSharedData(data) {
+  const timestamp = new Date().toLocaleString();
+  credentials.push({
+    type: 'rdfcf',
+    formName: data.formName || 'Onbekend formulier',
+    sharedData: data.rdfcf.map(field => fieldMapping[field] || field),
+    actionTimestamp: timestamp,
+    isShareAction: true // Mark as share action
+  });
+  saveCredentials();
+}
+
+closeRdfcfSuccessBtn.onclick = () => {
+  rdfcfSuccessScreen.style.display = 'none';
+  addCardScreen.style.display = 'none';
+  walletScreen.style.display = 'block';
+  bottomNav.style.display = 'flex';
 };
