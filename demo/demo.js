@@ -507,11 +507,16 @@ function displayCredentials() {
 
   credentials.forEach((cred, index) => {
     // Sla share actions, activiteiten en mandates over in de wallet-weergave
-    if (cred.isShareAction || cred.isActivity || cred.type === 'mandate') {
+    if (
+      cred.isShareAction ||
+      cred.isActivity ||
+      cred.type === 'mandate' ||
+      cred.type === 'signfromstorage' // Voeg deze regel toe
+    ) {
       console.log(`Credential at index ${index} has type:`, cred.type);
       return;
     }
-
+    
     // Controleer of cred.name bestaat en is een string
     if (typeof cred.name !== 'string') {
     //  console.warn(`Credential at index ${index} ontbreekt 'name' property:`, cred);
@@ -3488,6 +3493,7 @@ signFromStorageConfirmPinBtn.addEventListener('click', () => {
       type: 'signfromstorage', // Nieuwe type naam om verwarring te voorkomen
       actionTimestamp: timestamp,
       isShareAction: false,
+    
       data: {
           documentName: documentName,
           issuedBy: 'Gebruiker', // Pas aan indien beschikbaar
