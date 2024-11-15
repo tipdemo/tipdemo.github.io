@@ -114,6 +114,23 @@ const mandateSuccessRequester = document.getElementById('mandate-success-request
 const viewMandateButton = document.getElementById('view-mandate-button');
 const closeMandateSuccessButton = document.getElementById('close-mandate-success-button');
 
+// *** Signdoc Elementen ***
+const signdocModal = document.getElementById('signdoc-modal');
+const signdocDocumentElement = document.getElementById('signdoc-document');
+const signdocIssuedByElement = document.getElementById('signdoc-issuedBy');
+const signdocStopButton = document.getElementById('signdoc-stop-button');
+const signdocAcceptButton = document.getElementById('signdoc-accept-button');
+
+// *** Signdoc Pincode Confirmation ***
+const pinConfirmationScreenSigndoc = document.getElementById('pin-confirmation-screen-signdoc');
+const confirmPinSigndocBtn = document.getElementById('confirm-pin-signdoc');
+
+// *** Signdoc Success Screen ***
+const signdocSuccessScreen = document.getElementById('signdoc-success-screen');
+const closeSigndocSuccessBtn = document.getElementById('close-signdoc-success-btn');
+
+
+
 // *** Trusted Contacts Elementen ***
 const contactsNavbarItem = document.getElementById('contacts-navbar-item');
 const trustedContactsSection = document.getElementById('trusted-contacts-section');
@@ -295,6 +312,8 @@ function showActivities() {
       // Share actions en Mandate activiteiten
       if (cred.isShareAction || cred.isActivity) return true;
 
+      if (cred.type === 'signdoc') return true;
+
       // Issuer acties: heeft 'issuedBy' en is geen 'mandate'
       if (cred.issuedBy && cred.type !== 'mandate') return true;
 
@@ -326,6 +345,14 @@ function showActivities() {
               <span style="color: #152A62;">Reden: ${cred.reason}</span><br>
               <span style="color: #152A62;">${cred.actionTimestamp}</span>
           `;
+        } else if (cred.type === 'signdoc') {
+          // Signdoc actie
+          activityItem.innerHTML = `
+              <strong style="color: #152A62;">Document ondertekend aangeboden door ${cred.issuedBy}</strong><br>
+              <span style="color: #152A62;">${cred.data.documentName}</span><br>
+              <span style="color: #152A62;">${cred.actionTimestamp}</span>
+          `;
+
       } else if (cred.issuedBy && cred.type !== 'mandate') {
           // Issuer-actie
           const issuerInfo = cred.issuedBy ? cred.issuedBy : "Onbekende uitgever";
@@ -689,8 +716,8 @@ function startQrScan() {
                 csasModal.style.display = 'flex';     
             
               }
-                  // ** Stap 2 codeblok voor RDFCV**
-                  else if (data.type === "verifier" && data.rdfcv) {
+              // ** Stap 2 codeblok voor RDFCV**
+              else if (data.type === "verifier" && data.rdfcv) {
                     console.log("RDFCV QR-code herkend.");
 
                     // Sla de RDFCV data op voor later gebruik
@@ -702,122 +729,130 @@ function startQrScan() {
                     // Toon de RDFCV modal
                     rdfcvModal.style.display = 'flex';
                   }
+              // ** Nieuwe stap voor Signdoc **
+              else if (data.type === "signdoc") {
+                        console.log("Signdoc QR-code herkend.");
+                        populateModalSignDoc(data);
+                    } 
 
               // Stap 3: Controleer of het een issuer QR-code is (rdfci)
                else if (data.issuedBy && data.name) {
                   console.log("Issuer QR-code herkend.");
 
-                  if (data.rdfci) {
-                      console.log("Issuer QR-code met rdfci herkend.");
+                        if (data.rdfci) {
+                            console.log("Issuer QR-code met rdfci herkend.");
 
-                       // Check for multiple cards to issue
-                      if (Array.isArray(data.cardsToIssue) && data.cardsToIssue.length > 0) {
-                      console.log("Meerdere kaarten gevonden in rdfci flow.");
+                            // Check for multiple cards to issue
+                            if (Array.isArray(data.cardsToIssue) && data.cardsToIssue.length > 0) {
+                            console.log("Meerdere kaarten gevonden in rdfci flow.");
 
-                      // Vul de modal met de kaarten die uitgegeven moeten worden
-                       populateMultipleRdfciModal(data);
+                            // Vul de modal met de kaarten die uitgegeven moeten worden
+                            populateMultipleRdfciModal(data);
 
-                      // Toon de multiple RDFCI modal
-                      rdfciMultipleModal.style.display = 'flex';
-                      } else {
+                            // Toon de multiple RDFCI modal
+                            rdfciMultipleModal.style.display = 'flex';
+                            } else {
 
-                      // Vul de modal met de nieuwe functie
-                      populateRdfciModal(data);
+                            // Vul de modal met de nieuwe functie
+                            populateRdfciModal(data);
 
-                      // Toon het extra vraagscherm
-                      rdfciModal.style.display = 'flex';
+                            // Toon het extra vraagscherm
+                            rdfciModal.style.display = 'flex';
 
-                      rdfciAcceptButton.onclick = () => {
-                        const timestamp = new Date().toLocaleString();
-                      
-                        // Maak een nieuw object voor de gemapte data
-                        const mappedData = {};
-                      
-                        // Itereer over de keys in 'data' en map de veldnamen
-                        for (let key in data) {
-                          if (
-                            data.hasOwnProperty(key) &&
-                            key !== 'rdfci' &&
+                            rdfciAcceptButton.onclick = () => {
+                              const timestamp = new Date().toLocaleString();
                             
-                            key !== 'a' &&
-                            key !== 't' &&
-                            key !== 'name' &&
-                            key !== 'reason' &&
-                            key !== 'verifier' &&
-                            key !== 'issuer' &&
-                            key !== 'type' &&
-                            key !== 'requester'
-                          ) {
-                            const fieldName = fieldMapping[key] || key;
-                            mappedData[fieldName] = data[key];
+                              // Maak een nieuw object voor de gemapte data
+                              const mappedData = {};
+                            
+                              // Itereer over de keys in 'data' en map de veldnamen
+                              for (let key in data) {
+                                if (
+                                  data.hasOwnProperty(key) &&
+                                  key !== 'rdfci' &&
+                                  
+                                  key !== 'a' &&
+                                  key !== 't' &&
+                                  key !== 'name' &&
+                                  key !== 'reason' &&
+                                  key !== 'verifier' &&
+                                  key !== 'issuer' &&
+                                  key !== 'type' &&
+                                  key !== 'requester'
+                                ) {
+                                  const fieldName = fieldMapping[key] || key;
+                                  mappedData[fieldName] = data[key];
+                                }
+                              }
+                            
+                              // Sla het kaartje op met de gemapte data
+                              credentials.push({
+                                name: data.name || 'Onbekend kaartje',
+                                issuedBy: data.issuedBy || 'Onbekende uitgever',
+                                actionTimestamp: timestamp,
+                                isShareAction: false,
+                                data: mappedData // Gebruik de gemapte data
+                              });
+                            
+                              saveCredentials();
+                            
+                                // Toon het issuer success-scherm
+                                goToIssuerSuccessScreen(data.name, data.issuedBy);
+
+                                // Sluit het extra vraagscherm
+                                rdfciModal.style.display = 'none';
+                            };
+
+                            rdfciStopButton.onclick = () => {
+                                rdfciModal.style.display = 'none';
+                                addCardScreen.style.display = 'none';
+                                walletScreen.style.display = 'block';
+                                bottomNav.style.display = 'flex';
+                                resetQrScanner();
+                            };
                           }
+
+                        } else {
+                            // Toon de bestaande issuer modal
+                            issuerQuestionModal.style.display = 'flex';
+                            console.log("Issuer modal geopend.");
+
+                            const issuerName = data.issuedBy || 'Onbekende uitgever';
+                            const cardName = data.name || 'Onbekend kaartje';
+                            document.getElementById('issuer-data').innerText = cardName;
+                            document.getElementById('issuer-issuedBy').innerText = issuerName;
+
+                            saveButton.onclick = () => {
+                                console.log("Opslaan-knop ingedrukt voor issuer.");
+                                credentials.push({
+                                    name: cardName,
+                                    issuedBy: issuerName,
+                                    actionTimestamp: timestamp,
+                                    isShareAction: false,
+                                    data: {
+                                      kaartDetails: data,  // Sla alle kaartdetails op
+                                      gevraagdeGegevens: data.rdfci.map(field => fieldMapping[field] || field)  // Gebruik fieldmapping om de gevraagde gegevens op te slaan
+                                  }
+                                });
+                                saveCredentials();
+                                console.log("Issuer gegevens opgeslagen in de wallet.");
+
+                                goToIssuerSuccessScreen(cardName, issuerName);
+                                console.log("Issuer success-scherm weergegeven.");
+
+                                issuerQuestionModal.style.display = 'none';
+                            };
+
+                            stopButtonIssuer.onclick = () => {
+                                console.log("Stop-knop ingedrukt. Issuer actie geannuleerd.");
+                                issuerQuestionModal.style.display = 'none';
+                                resetQrScanner();
+                            };
                         }
-                      
-                        // Sla het kaartje op met de gemapte data
-                        credentials.push({
-                          name: data.name || 'Onbekend kaartje',
-                          issuedBy: data.issuedBy || 'Onbekende uitgever',
-                          actionTimestamp: timestamp,
-                          isShareAction: false,
-                          data: mappedData // Gebruik de gemapte data
-                        });
-                      
-                        saveCredentials();
-                      
-                          // Toon het issuer success-scherm
-                          goToIssuerSuccessScreen(data.name, data.issuedBy);
+                }
 
-                          // Sluit het extra vraagscherm
-                          rdfciModal.style.display = 'none';
-                      };
-
-                      rdfciStopButton.onclick = () => {
-                          rdfciModal.style.display = 'none';
-                          addCardScreen.style.display = 'none';
-                          walletScreen.style.display = 'block';
-                          bottomNav.style.display = 'flex';
-                          resetQrScanner();
-                      };
-                    }
-
-                  } else {
-                      // Toon de bestaande issuer modal
-                      issuerQuestionModal.style.display = 'flex';
-                      console.log("Issuer modal geopend.");
-
-                      const issuerName = data.issuedBy || 'Onbekende uitgever';
-                      const cardName = data.name || 'Onbekend kaartje';
-                      document.getElementById('issuer-data').innerText = cardName;
-                      document.getElementById('issuer-issuedBy').innerText = issuerName;
-
-                      saveButton.onclick = () => {
-                          console.log("Opslaan-knop ingedrukt voor issuer.");
-                          credentials.push({
-                              name: cardName,
-                              issuedBy: issuerName,
-                              actionTimestamp: timestamp,
-                              isShareAction: false,
-                              data: {
-                                kaartDetails: data,  // Sla alle kaartdetails op
-                                gevraagdeGegevens: data.rdfci.map(field => fieldMapping[field] || field)  // Gebruik fieldmapping om de gevraagde gegevens op te slaan
-                            }
-                          });
-                          saveCredentials();
-                          console.log("Issuer gegevens opgeslagen in de wallet.");
-
-                          goToIssuerSuccessScreen(cardName, issuerName);
-                          console.log("Issuer success-scherm weergegeven.");
-
-                          issuerQuestionModal.style.display = 'none';
-                      };
-
-                      stopButtonIssuer.onclick = () => {
-                          console.log("Stop-knop ingedrukt. Issuer actie geannuleerd.");
-                          issuerQuestionModal.style.display = 'none';
-                          resetQrScanner();
-                      };
-                  }
-              } else {
+         
+               else {
                   console.log("Onbekende QR-code structuur.");
               }
 
@@ -2585,6 +2620,81 @@ document.getElementById('close-mandate-success-button').addEventListener('click'
 
   console.log("Terug naar wallet-screen.");
 });
+
+
+
+
+
+// Functie om de Signdoc modal te vullen en te tonen
+function populateModalSignDoc(data) {
+  // Populate the modal with data
+  signdocDocumentElement.textContent = data.documentName || 'Onbekend document';
+  signdocIssuedByElement.textContent = data.issuedBy || 'Onbekende uitgever';
+
+  // Show the signdoc modal
+  signdocModal.style.display = 'flex';
+}
+
+// Event listener voor de stop-knop in de Signdoc modal
+signdocStopButton.addEventListener('click', () => {
+  signdocModal.style.display = 'none';
+  addCardScreen.style.display = 'none';
+  walletScreen.style.display = 'block';
+  bottomNav.style.display = 'flex';
+  resetQrScanner();
+});
+
+// Event listener voor de accept-knop in de Signdoc modal
+signdocAcceptButton.addEventListener('click', () => {
+  signdocModal.style.display = 'none';
+  pinConfirmationScreenSigndoc.style.display = 'flex';
+  resetPinInputs(); // Reset de pincode-invoervelden
+});
+
+// Event listener voor de confirm-knop in de Signdoc pincode confirmation
+confirmPinSigndocBtn.addEventListener('click', () => {
+  // Hier kun je pincode verificatie toevoegen indien nodig
+
+  // Voor demonstratiedoeleinden gaan we ervan uit dat de pincode correct is
+
+  // Haal de huidige timestamp op
+  const timestamp = new Date().toLocaleString();
+
+  // Maak een nieuw credential object voor de signdoc actie
+  const newCredential = {
+    name: signdocDocumentElement.textContent || 'Onbekend document', // Gebruik de documentnaam
+    issuedBy: signdocIssuedByElement.textContent || 'Onbekende uitgever',
+    type: 'signdoc',
+    actionTimestamp: timestamp,
+    isShareAction: false,
+    data: {
+        documentName: signdocDocumentElement.textContent,
+        issuedBy: signdocIssuedByElement.textContent,
+        // Voeg indien nodig andere relevante data toe
+    }
+};
+
+  // Voeg de nieuwe actie toe aan credentials
+  credentials.push(newCredential);
+  saveCredentials();
+  showActivities(); // Update het activiteitenoverzicht
+
+  // Verberg het pincode-confirmatiescherm
+  pinConfirmationScreenSigndoc.style.display = 'none';
+
+  // Toon het successcherm
+  signdocSuccessScreen.style.display = 'flex';
+});
+
+// Event listener voor de sluitknop in het Signdoc success scherm
+closeSigndocSuccessBtn.addEventListener('click', () => {
+  signdocSuccessScreen.style.display = 'none';
+  addCardScreen.style.display = 'none';
+  walletScreen.style.display = 'block';
+  bottomNav.style.display = 'flex';
+});
+
+
 
 
 // Functie om een mock QR-code te verwerken

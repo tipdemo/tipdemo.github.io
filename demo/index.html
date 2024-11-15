@@ -929,6 +929,61 @@
 </section>
 
 
+<!-- *** Signdoc Modal *** -->
+<section id="signdoc-modal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <div class="modal-header">
+      <p><strong>Wilt u dit document ondertekenen?</strong></p>
+    </div>
+    <div class="divider"></div>
+
+    <!-- Gegevens sectie -->
+    <p><strong>Document:</strong></p>
+    <p id="signdoc-document"></p>
+    <div class="divider"></div>
+
+    <!-- Uitgegeven door sectie -->
+    <p><strong>Uitgegeven door:</strong></p>
+    <p id="signdoc-issuedBy"></p>
+    <div class="divider"></div>
+
+    <!-- Knoppen -->
+    <div class="button-container">
+      <button id="signdoc-stop-button" class="stop-button">Stoppen</button>
+      <button id="signdoc-accept-button" class="share-button">Akkoord</button>
+    </div>
+  </div>
+</section>
+
+<!-- *** Pincode Bevestiging-scherm (Signdoc) *** -->
+<section id="pin-confirmation-screen-signdoc" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h2>Voer uw pincode in om het document te ondertekenen</h2>
+    <div class="pin-input">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+      <input type="password" maxlength="1" class="pin-box" inputmode="numeric">
+    </div>
+    <button id="confirm-pin-signdoc" class="orange-btn confirm-pin">Bevestigen</button>
+  </div>
+</section>
+
+<!-- *** Signdoc Success Screen *** -->
+<section id="signdoc-success-screen" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h2>Succes!</h2>
+    <div class="divider"></div>
+    <p>Het document is succesvol ondertekend</p>
+    <div class="button-container">
+      <button id="close-signdoc-success-btn" class="share-button">Sluiten</button>
+    </div>
+  </div>
+</section>
+
+
   <!-- *** Scripts *** -->
   <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
   <script src="demo.js"></script>

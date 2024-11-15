@@ -870,6 +870,7 @@ font-weight: bold;
 }
 
 
+
 .button-container {
     position: absolute;
     bottom: 20px;
@@ -949,6 +950,13 @@ font-weight: bold;
     justify-content: center;
     margin-top: 20px;
 }
+
+#signdoc-success-screen .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
 
 .extra-space {
     margin-bottom: 15px; /* Voeg witruimte toe onder deze paragrafen */
