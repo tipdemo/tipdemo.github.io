@@ -944,6 +944,16 @@ font-weight: bold;
     margin-top: 20px;
 }
 
+#issuer-multiple-success-screen .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.extra-space {
+    margin-bottom: 15px; /* Voeg witruimte toe onder deze paragrafen */
+  }
+
 #close-issuer-success-btn {
     width: 150px;
     background-color:#2681cc;
@@ -1005,7 +1015,11 @@ font-weight: bold;
 .card-header {
     height: 40px;
     width: 100%;
-    background-color: #0072C6;
+    background-color: #B5DEF4; /* Nieuwe achtergrondkleur */
+    color: #152A62; /* Nieuwe tekstkleur */
+    font-weight: bold; /* Vetgedrukte tekst */
+    padding: 10px; /* Ruimte rond de tekst */
+    text-align: center; /* Centreer de tekst */
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     position: absolute;

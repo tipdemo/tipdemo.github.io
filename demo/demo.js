@@ -31,7 +31,7 @@ const activitiesList = document.getElementById('activities-list');
 const backActivitiesBtn = document.getElementById('back-activities-btn');
 const activityScreen = document.getElementById('activities-section');
 
-// *** Pincode Bevestiging Elementen ***
+// *** Pincode Bevestiging Elementen verifier ***
 const pinConfirmationScreenVerifier = document.getElementById('pin-confirmation-screen-verifier');
 const confirmPinBtnVerifier = document.getElementById('confirm-pin-verifier');
 
@@ -48,6 +48,13 @@ const saveButton = document.getElementById('save-button'); // Opslaan-knop
 const stopButtonIssuer = document.getElementById('stop-button-issuer'); // Stop-knop voor issuer
 const issuerSuccessScreen = document.getElementById('issuer-success-screen');
 const closeIssuerSuccessBtn = document.getElementById('close-issuer-success-btn'); // Sluitknop voor successcherm
+
+// Issuer elementen meerdere kaarten 
+const rdfciMultipleModal = document.getElementById('rdfci-multiple-modal');
+const rdfciMultipleAcceptButton = document.getElementById('rdfci-multiple-accept-button');
+const rdfciMultipleStopButton = document.getElementById('rdfci-multiple-stop-button');
+const closeRdfciMultipleModal = document.getElementById('close-rdfci-multiple-modal');
+const closeIssuerMultipleSuccessBtn = document.getElementById('close-issuer-multiple-success-button');
 
 // *** Verifier elementen ***
 const shareQuestionModal = document.getElementById('share-question-modal');
@@ -159,10 +166,13 @@ const fieldMapping = {
   issuedBy: 'Uitgegeven door',
   LEID: 'Organisatie nummer',
   Issued_Date: 'Uitgiftedatum',
+  ID: 'Uitgiftedatum',
   Issued_to_subject: 'Uitgegeven aan',
+  ITS: 'Uitgegeven aan',
   Algemeen_profiel: 'Algemeen profiel',
   Specifiek_profiel: 'Specifiek profiel',
   Attestation_Trust_Type: 'Type attestatie',
+  ATT: 'Type attestatie',
   dipvk: 'Diploma Verpleegkunde',
   a: {
     '12t': 'Opslag: 12 maanden, gedeeld met derden: nee',
@@ -700,6 +710,17 @@ function startQrScan() {
                   if (data.rdfci) {
                       console.log("Issuer QR-code met rdfci herkend.");
 
+                       // Check for multiple cards to issue
+                      if (Array.isArray(data.cardsToIssue) && data.cardsToIssue.length > 0) {
+                      console.log("Meerdere kaarten gevonden in rdfci flow.");
+
+                      // Vul de modal met de kaarten die uitgegeven moeten worden
+                       populateMultipleRdfciModal(data);
+
+                      // Toon de multiple RDFCI modal
+                      rdfciMultipleModal.style.display = 'flex';
+                      } else {
+
                       // Vul de modal met de nieuwe functie
                       populateRdfciModal(data);
 
@@ -757,6 +778,7 @@ function startQrScan() {
                           bottomNav.style.display = 'flex';
                           resetQrScanner();
                       };
+                    }
 
                   } else {
                       // Toon de bestaande issuer modal
@@ -1220,6 +1242,180 @@ confirmPinIssuerBtn.onclick = () => {
   // Reset de QR scanner als deze actief is
   resetQrScanner();
 };
+
+    // Issuing meerdere kaarten
+    function populateMultipleRdfciModal(data) {
+      console.log("populateMultipleRdfciModal aangeroepen met data:", data);
+      
+      // Sla de data op voor de accept-knop
+      window.currentRdfciData = data;
+
+      // Vul de overeenkomst informatie
+      const agreementElement = document.getElementById('rdfci-multiple-agreement');
+      if (data.a && fieldMapping.a && fieldMapping.a[data.a]) {
+          agreementElement.innerText = fieldMapping.a[data.a];
+      } else {
+          agreementElement.innerText = 'Bewaarplicht en datadeling met derden volgens wettelijke richtlijnen';
+      }
+
+      // Leeg de details-container
+      const detailsContainer = document.getElementById('rdfci-multiple-details-container');
+      detailsContainer.innerHTML = '';
+
+      // Definieer de sleutels die je wilt uitsluiten
+      const excludedKeys = ['rdfci', 'a', 't', 'type', 'issuer', 'verifier', 'requester', 'name'];
+
+      // Itereer over elke kaart en voeg deze toe aan de modal
+      data.cardsToIssue.forEach((cardData, index) => {
+          const cardContainer = document.createElement('div');
+          cardContainer.className = 'card-container';
+
+          // Voeg kaart header toe
+          const cardHeader = document.createElement('div');
+          cardHeader.className = 'card-header';
+          cardHeader.textContent = cardData.name;
+          cardContainer.appendChild(cardHeader);
+
+          // Maak een div voor de kaartinhoud
+          const cardContent = document.createElement('div');
+          cardContent.className = 'card-content';
+
+          // Itereer over de kaartdata en voeg key-value paren toe, exclusief bepaalde sleutels
+          for (let key in cardData) {
+              if (cardData.hasOwnProperty(key)) {
+                  if (excludedKeys.includes(key)) {
+                      continue; // Sla deze sleutels over
+                  }
+
+                  // Haal de leesbare veldnaam op via fieldMapping, anders gebruik de originele sleutel
+                  const fieldName = fieldMapping[key] || key;
+
+                  // Maak een div voor de detailrij
+                  const detailRow = document.createElement('div');
+                  detailRow.className = 'detail-row';
+
+                  // Maak een div voor het label
+                  const labelDiv = document.createElement('div');
+                  labelDiv.className = 'label';
+                  labelDiv.textContent = `${fieldName}:`;
+
+                  // Maak een div voor de waarde
+                  const valueDiv = document.createElement('div');
+                  valueDiv.className = 'value';
+
+                  // Speciaal geval voor afbeeldingen (indien aanwezig)
+                  if (fieldName.toLowerCase() === 'foto') {
+                      const img = document.createElement('img');
+                      img.src = cardData[key];
+                      img.alt = 'Foto';
+                      img.style.width = '100%'; // Pas de grootte naar wens aan
+                      valueDiv.appendChild(img);
+                  } else {
+                      // Voor andere velden, toon de tekstwaarde
+                      valueDiv.textContent = cardData[key] || 'Niet beschikbaar';
+                  }
+
+                  // Voeg label en waarde toe aan de detailrij
+                  detailRow.appendChild(labelDiv);
+                  detailRow.appendChild(valueDiv);
+
+                  // Voeg de detailrij toe aan de kaartinhoud
+                  cardContent.appendChild(detailRow);
+              }
+          }
+
+          // Voeg de kaartinhoud toe aan de kaartcontainer
+          cardContainer.appendChild(cardContent);
+
+          // Voeg de kaartcontainer toe aan de details container
+          detailsContainer.appendChild(cardContainer);
+      });
+
+      // Toon de multiple RDFCI modal
+      rdfciMultipleModal.style.display = 'flex';
+  }
+
+  // Accepteren van meerdere kaarten
+  rdfciMultipleAcceptButton.onclick = () => {
+      const data = window.currentRdfciData;
+      if (!data) {
+          console.error("Data is niet beschikbaar.");
+          return;
+      }
+      const timestamp = new Date().toLocaleString();
+
+      // Itereer over elke kaart en sla deze op als een aparte credential
+      data.cardsToIssue.forEach(card => {
+          const mappedData = {};
+
+          // Gebruik fieldMapping om de veldnamen te mappen indien nodig
+          for (let key in card) {
+              if (card.hasOwnProperty(key)) {
+                  const fieldName = fieldMapping[key] || key;
+                  mappedData[fieldName] = card[key];
+              }
+          }
+
+          // Voeg het nieuwe credential toe
+          credentials.push({
+              name: card.name || 'Onbekend kaartje',
+              issuedBy: card.issuedBy || 'Onbekende uitgever',
+              actionTimestamp: timestamp,
+              isShareAction: false,
+              data: mappedData
+          });
+      });
+
+      saveCredentials();
+      console.log("Credentials na toevoegen multiple RDFCI:", credentials);
+
+      // Toon het issuer success-scherm
+      goToMultipleIssuerSuccessScreen(data.cardsToIssue.map(card => card.name), data.issuedBy);
+
+      // Sluit de multiple RDFCI modal
+      rdfciMultipleModal.style.display = 'none';
+  };
+
+  // Event listener voor het stoppen van meerdere kaarten
+  rdfciMultipleStopButton.onclick = () => {
+      rdfciMultipleModal.style.display = 'none';
+      addCardScreen.style.display = 'none';
+      walletScreen.style.display = 'block';
+      bottomNav.style.display = 'flex';
+      resetQrScanner();
+  };
+
+
+
+
+
+function goToMultipleIssuerSuccessScreen(cardNames, issuerName) {
+  
+
+  const issuerMultipleSuccessScreen = document.getElementById('issuer-multiple-success-screen');
+  issuerMultipleSuccessScreen.style.display = 'flex';
+
+
+  // Vul de nieuwe tekstvelden in het successcherm
+  const cardNamesHTML = cardNames.map(name => `<li>${name}</li>`).join('');
+  document.getElementById('issuer-success-data').innerHTML = `<ul>${cardNamesHTML}</ul>`;
+  document.getElementById('issuer-success-issuedBy').innerText = issuerName;
+
+    // Sla op en werk de UI bij
+    saveCredentials();
+    displayCredentials();
+    console.log("Multiple RDFCI kaarten opgeslagen:", credentials);
+
+
+  // Sluitknop logica voor het sluiten van het successcherm
+  closeIssuerMultipleSuccessBtn.onclick = () => {
+    issuerMultipleSuccessScreen.style.display = 'none';
+      addCardScreen.style.display = 'none';
+      walletScreen.style.display = 'block';
+      bottomNav.style.display = 'flex'; // Toon de navigatiebalk onderaan opnieuw
+  };
+}
+
 
 
 
