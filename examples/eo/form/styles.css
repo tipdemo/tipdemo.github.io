@@ -87,6 +87,23 @@ button.prev:hover, button.next:hover {
     margin-bottom: 40px;
   }
 
+  /* Styling voor QR-code in een tweekolomsindeling */
+.qr-code-container {
+  display: flex;
+  justify-content: center; /* QR-code centreren in de tweede kolom */
+  align-items: center;
+  padding: 10px;
+  background: #f9f9f9; /* Optioneel: lichte achtergrond voor QR-code */
+  border: 1px solid #ccc; /* Rand rondom QR-code */
+  border-radius: 8px; /* Afgeronde hoeken */
+}
+
+.qr-code-container img {
+  max-width: 100%; /* QR-code responsief maken */
+  height: auto;
+  display: block;
+}
+
 
 
 #logo-container-innovatiemakers  {
@@ -183,4 +200,179 @@ button.close-tab i, button.go-home i {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-content {
+  display: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.accordion-content.expanded {
+  display: block;
+}
+
+.accordion-header {
+  cursor: pointer;
+  background: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.accordion-header i {
+  float: right;
+  transition: transform 0.3s;
+}
+
+.accordion-header i.rotate {
+  transform: rotate(180deg);
+}
+/* Form grid styling */
+.form-grid {
+  display: grid;
+  grid-template-columns: 400px 1fr; /* Maak de eerste kolom breder */
+  row-gap: 10px; /* Ruimte tussen rijen */
+  column-gap: 20px; /* Ruimte tussen label en invoerveld */
+  margin-bottom: 20px;
+}
+
+/* Brede eerste kolom alleen voor vraag 2 */
+.form-grid-vraag2 {
+  grid-template-columns: 400px 1fr; /* Maak de eerste kolom breder */
+}
+
+.form-row {
+  display: contents; /* Zorgt ervoor dat de inhoud de juiste kolomstructuur behoudt */
+}
+
+.form-row label {
+  text-align: left; /* Labels links uitlijnen */
+  padding-right: 10px; /* Extra ruimte tussen label en veld */
+  font-weight: bold; /* Labels standaard vetgedrukt */
+}
+
+.form-row input {
+  width: 100%; /* Zorg ervoor dat de invoervelden niet buiten de container vallen */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box; /* Zorg ervoor dat padding wordt meegerekend in de breedte */
+}
+
+.form-row input:focus {
+  outline: none;
+  border-color: #007BFF; /* Blauwe rand bij focus */
+  box-shadow: 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.form-help-text {
+  font-size: 12px;
+  color: #666; /* Neutrale kleur voor minder nadruk */
+  margin: 5px 0 0 0; /* Zorgt voor wat ruimte boven en geen ruimte onder */
+  line-height: 1.4;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Ruimte tussen de invoervelden */
+}
+
+.radio-option {
+  display: grid;
+  grid-template-columns: 20px auto auto; /* Drie kolommen: radiobutton, tekst en invoerveld */
+  align-items: center; /* Zorg dat alles verticaal wordt uitgelijnd */
+  gap: 10px; /* Ruimte tussen elementen */
+}
+
+.radio-option input[type="radio"] {
+  margin-top: 0; /* Verwijder ongewenste extra marges boven de radiobutton */
+  margin-right: 10px; /* Ruimte tussen radiobutton en tekst */
+}
+
+.radio-option label {
+  display: flex;
+  align-items: center; /* Zorg dat tekst en invoerveld op één lijn staan */
+  gap: 5px; /* Ruimte tussen tekst en invoerveld */
+  width: 150px; /* Stel een vaste breedte in voor consistentie */
+}
+
+.radio-option input[type="date"] {
+  margin-left: 5px; /* Extra ruimte tussen tekst en invoerveld */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  width: auto; /* Houd de breedte compact */
+  min-width: 150px; /* Zorg dat de datuminvoer een minimale breedte heeft */
+}
+
+/* Extra ruimte tussen radio-opties */
+.input-group .radio-option:not(:last-child) {
+  margin-bottom: 10px; /* Ruimte tussen de radiobuttonopties */
+}
+
+/* Specifieke styling voor labels in vraag 2 */
+.form-grid-vraag2 label {
+  font-size: 14px; /* Kleinere tekst */
+  font-weight: normal; /* Normaal gewicht (niet vetgedrukt) */
+  color: #333; /* Optioneel: subtielere tekstkleur */
+  line-height: 1.5; /* Zorgt voor betere leesbaarheid bij langere tekst */
+}
+
+.form-grid-vraag2 .form-help-text {
+  font-size: 12px; /* Helptekst blijft kleiner dan het label */
+  color: #666; /* Neutrale kleur voor minder nadruk */
+  margin-top: 5px;
+}
+
+/* Divider tussen vragen */
+.divider {
+  grid-column: 1 / -1; /* Laat de divider over beide kolommen heen lopen */
+  border-bottom: 1px solid #d3d3d3; /* Lichtgrijze streep */
+  margin: 20px 0; /* Ruimte boven en onder de streep */
+  width: 100%; /* Zorg ervoor dat de streep over de volledige breedte gaat */
+  box-sizing: border-box; /* Zorg dat marges correct worden berekend */
+}
+
+#auto-fill-label {
+  font-size: 14px; /* Kleinere tekst */
+  font-weight: normal; /* Normaal gewicht (niet vetgedrukt) */
+  color: #333; /* Optioneel: subtielere tekstkleur */
+  line-height: 1.5; /* Zorgt voor betere leesbaarheid bij langere tekst */
+}
+
+#auto-fill-button {
+  background-color: #596f88;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#auto-fill-button:hover {
+  background-color: #0056b3;
+}
+
+/* Stijl voor de knopcontainer */
+.autofill-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Uitlijnen zoals andere elementen in het formulier */
+  padding-top: 10px; /* Optionele ruimte boven de knop */
 }

@@ -2817,7 +2817,7 @@ function showMandateDetails(mandate) {
   detailsHTML += `
     <div class="divider"></div>
     <p><strong>Gevraagde gegevens voor ophalen:</strong></p>
-    <p>Burgerservicenummer (BSN): 938391772</p>
+    <p>Burgerservicenummer (BSN): 999999990</p>
    
   `;
 

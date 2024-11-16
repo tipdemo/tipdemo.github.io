@@ -15,7 +15,7 @@
         <div class="subsection">
             <h1>Intro demo</h1>
             <hr>
-            <h4><strong>formulier Model Opgaaf gegevens voor de loonheffingen invullen en ondertekenen</strong></h4>
+            <h4>Formulier Model Opgaaf gegevens voor de loonheffingen invullen en ondertekenen</h4>
             <p>
                 De werkgever van Willeke vraagt aan haar of ze het formulier Model Opgaaf gegevens voor de loonheffingen wil invullen en ondertekenen.
                 
@@ -55,22 +55,283 @@
                 U kunt de QR code onder het formulier scannen met uw handelingsomgeving (www.tipdemo.nl/demo) om uw gegevens in te vullen.
             </p>
             <hr>
-         
+    
+            <!-- Vragenlijst met accordeon -->
+            <div class="accordion-header" aria-expanded="false" aria-controls="intro-section">
+                <span>Waarom dit formulier?</span>
+                <i>▼</i>
+            </div>
+            <div id="intro-section" class="accordion-content" aria-hidden="true">
+                <div class="two-columns">
+                    <p>
+                        Uw werkgever of uitkeringsinstantie moet loonbelasting/premie volksverzekeringen inhouden op uw loon of uitkering.
+                        Daarvoor heeft uw werkgever of uitkeringsinstantie uw gegevens nodig. Die kunt u op dit formulier invullen. Geef ook aan
+                        of u wilt dat deze werkgever of uitkeringsinstantie de loonheffingskorting toepast. Door deze korting betaalt u minder loonbelasting/premie volksverzekeringen.
+                    </p>
+                    <p>
+                        Als u uw persoonlijke gegevens niet – of fout – opgeeft, moet uw werkgever of uitkeringsinstantie 52% loonbelasting/premie volksverzekeringen inhouden.
+                        Dit hoge tarief geldt ook als u zich niet bij uw werkgever legitimeert.
+                        <br><br>
+                        <strong>Invullen en inleveren:</strong><br>
+                        Lever dit formulier ingevuld en ondertekend in bij uw werkgever of uitkeringsinstantie. Doe dat vóór uw 1e werkdag. Gaat u werken op dezelfde dag waarop
+                        uw werkgever u aanneemt? Dan moet u deze opgaaf inleveren vóór u gaat werken. Als u een uitkering krijgt, moet u deze opgaaf inleveren voor de 1e betaling.
+                    </p>
+                    <p>
+                        Levert u dit formulier in bij uw werkgever omdat u in dienst treedt? Dan moet u een geldig identiteitsbewijs laten zien. Uw werkgever moet daar een kopie van maken.
+                        <br><br>
+                        <strong>Let op!</strong><br>
+                        Als er iets in uw gegevens verandert nadat u dit formulier hebt ingeleverd, moet u dit schriftelijk aan uw werkgever of uitkeringsinstantie doorgeven.
+                        U kunt ook daarvoor dit formulier gebruiken.
+                    </p>
+                </div>
+            </div>
+
+            <div class="accordion-header" role="button" aria-expanded="false" aria-controls="section-uw-gegevens" tabindex="0" aria-describedby="accordion-instruction">
+                <span>1. Uw gegevens</span>
+                <i>▼</i>
+            </div>
+            <p id="accordion-instruction" class="sr-only">Druk op Enter of Spatie om deze sectie uit te klappen of in te klappen.</p>
+            
+
+            <div id="section-uw-gegevens" class="accordion-content" role="region" aria-hidden="true">
+                <form class="form-grid"  autocomplete="off" aria-labelledby="form-title">
+                    <h2 id="form-title" class="sr-only">Uw gegevens invullen</h2>
+                    
+                    <!-- Voorletters -->
+                    <div class="form-row">
+                        <label for="voorletters" id="voorletters-label">Voorletter(s):</label>
+                        <input type="text" id="voorletters" name="voorletters" placeholder="Bijv. A.B." 
+                               aria-labelledby="voorletters-label" required>
+                    </div>
+                    
+                    <!-- Achternaam -->
+                    <div class="form-row">
+                        <label for="achternaam" id="achternaam-label">Achternaam:</label>
+                        <input type="text" id="achternaam" name="achternaam" placeholder="Achternaam" 
+                               aria-labelledby="achternaam-label" required>
+                    </div>
+                    
+                    <!-- BSN -->
+                    <div class="form-row">
+                        <label for="bsn" id="bsn-label">Burgerservicenummer (BSN):</label>
+                        <input type="text" id="bsn" name="bsn" placeholder="123456789" 
+                               aria-labelledby="bsn-label" aria-describedby="bsn-help" required>
+                        <span id="bsn-help" class="sr-only">Voer hier uw negencijferige BSN in.</span>
+                    </div>
+                    
+                    <!-- Adres -->
+                    <div class="form-row">
+                        <label for="adres" id="adres-label">Straat en huisnummer:</label>
+                        <input type="text" id="adres" name="adres" placeholder="Straatnaam 123" 
+                               aria-labelledby="adres-label" required>
+                    </div>
+                    
+                    <!-- Postcode -->
+                    <div class="form-row">
+                        <label for="postcode" id="postcode-label">Postcode:</label>
+                        <input type="text" id="postcode" name="postcode" placeholder="1234 AB" 
+                            aria-labelledby="postcode-label" aria-describedby="postcode-help" required>
+                        <span id="postcode-help" class="sr-only">Voer een geldige postcode in, bijvoorbeeld 1234 AB.</span>
+                    </div>
+
+                    <!-- Woonplaats -->
+                    <div class="form-row">
+                        <label for="woonplaats" id="woonplaats-label">Woonplaats:</label>
+                        <input type="text" id="woonplaats" name="woonplaats" placeholder="Plaatsnaam" 
+                            aria-labelledby="woonplaats-label" aria-describedby="woonplaats-help" required>
+                        <span id="woonplaats-help" class="sr-only">Voer hier de naam van uw woonplaats in.</span>
+                    </div>
 
 
-            <!-- PDF-weergave -->
-            <div class="pdf-container">
-                <iframe src="model_opgaaf_gegevens_loonheffingen_lh0082z11fol.pdf#toolbar=0" width="100%" height="800px"></iframe>
+                    <!-- Geboortedatum -->
+                    <div class="form-row">
+                        <label for="geboortedatum" id="geboortedatum-label">Geboortedatum:</label>
+                        <input type="date" id="geboortedatum" name="geboortedatum" 
+                               aria-labelledby="geboortedatum-label" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label id="land-regio-label">
+                            Land en Regio:
+                            <p id="land-regio-help" class="form-help-text">Alleen invullen als u in het buitenland woont.</p>
+                        </label>
+                        <div class="input-group">
+                            <input type="text" id="land" name="land" placeholder="Bijv. Duitsland" 
+                                   aria-labelledby="land-regio-label" aria-describedby="land-regio-help">
+                            <input type="text" id="regio" name="regio" placeholder="Bijv. Beieren" 
+                                   aria-labelledby="land-regio-label" aria-describedby="land-regio-help">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label id="qr-code-label">
+                            Scan bijgaande QR-code voor invoeren van velden met uw handelingsomgeving:
+                        </label>
+                        <div class="qr-code-container">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?data=%7B%22type%22%3A%22signdoc%22%2C%22documentName%22%3A%22Model%20Opgaaf%20gegevens%20voor%20de%20loonheffingen%22%2C%22issuedBy%22%3A%22Innovatiemakers%22%7D&size=300x300" 
+                                 alt="QR Code for Signing Document" aria-labelledby="qr-code-label">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <label  id="auto-fill-label">
+                            Vanwege demo doeleinden: Klik op de knop om de velden automatisch in te vullen met voorbeeldgegevens:
+                        </label>
+                        <div class="autofill-button-container">
+                            <button type="button" id="auto-fill-button">Velden automatisch invullen</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            
+    
+            <div class="accordion-header" aria-expanded="false" aria-controls="section2" tabindex="0">
+                <span>2. Loonheffingskorting toepassen</span>
+                <i>▼</i>
+            </div>
+            <div id="section2" class="accordion-content" aria-hidden="true">
+                <div class="form-grid form-grid-vraag2">
+                    <!-- Vraag 2a -->
+                    <div class="form-row">
+                        <label for="vraag2a">
+                            2a. Wilt u dat deze werkgever of uitkeringsinstantie de loonheffingskorting toepast?
+                            <p class="form-help-text">
+                                U kunt de loonheffingskorting maar door 1 werkgever of uitkeringsinstantie laten toepassen.
+                                Zie ook de toelichting onderaan.
+                            </p>
+                        </label>
+                        <div class="input-group">
+                            <div class="radio-option">
+                                <input type="radio" id="vraag2a-ja" name="vraag2a" value="ja">
+                                <label for="vraag2a-ja">Ja, toepassen vanaf:</label>
+                                <input type="date" name="toepassen_vanaf" aria-label="Toepassen vanaf datum">
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="vraag2a-nee" name="vraag2a" value="nee">
+                                <label for="vraag2a-nee">Nee, niet (meer) toepassen vanaf:</label>
+                                <input type="date" name="niet_toepassen_vanaf" aria-label="Niet toepassen vanaf datum">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <!-- Vraag 2b -->
+                    <div class="form-row">
+                        <label for="vraag2b">
+                            2b. Wilt u dat deze werkgever of uitkeringsinstantie de alleenstaande-ouderenkorting toepast?
+                            <p class="form-help-text">
+                                U mag de alleenstaande-ouderenkorting alleen laten toepassen als u recht hebt op deze korting
+                                en als u vraag 2a met 'Ja' hebt beantwoord. Zie ook de toelichting onderaan.
+                            </p>
+                        </label>
+                        <div class="input-group">
+                            <div class="radio-option">
+                                <input type="radio" id="vraag2b-ja" name="vraag2b" value="ja">
+                                <label for="vraag2b-ja">Ja</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="vraag2b-nee" name="vraag2b" value="nee">
+                                <label for="vraag2b-nee">Nee</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+    
+                <div class="accordion-header" aria-expanded="false" aria-controls="section3">
+                    <span>3. Ondertekening</span>
+                    <i>▼</i>
+                </div>
+                <div id="section3" class="accordion-content" aria-hidden="true">
+                      
+                        <form class="form-grid" aria-labelledby="form-title">
+                        <label id="qr-code-label">
+                            Scan bijgaande QR-code met uw handelingsomgeving ter ondertekening van het formulier:
+                        </label>
+                        <div class="qr-code-container">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?data=%7B%22type%22%3A%22signdoc%22%2C%22documentName%22%3A%22Model%20Opgaaf%20gegevens%20voor%20de%20loonheffingen%22%2C%22issuedBy%22%3A%22Innovatiemakers%22%7D&size=300x300" alt="QR Code for Signing Document">
+       
+                        </div>
+                    </div>
+                </form>
+                </div>
             </div>
     
-            <p>Scan de QR code met uw handelingsomgeving (www.tipdemo.nl/demo) om uw gegevens automatisch toe te voegen aan het formulier.</p>
-            <!-- QR-code -->
-            <div class="qr-code">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?data=%7B%22type%22%3A%22form%22%2C%22formName%22%3A%22Model%20Opgaaf%20gegevens%20voor%20de%20loonheffingen%22%2C%22rdfcf%22%3A%5B%22vl%22%2C%22sn%22%2C%22bd%22%2C%22bsn%22%2C%22Woonadres%22%5D%7D&size=300x300" alt="QR Code for Model Opgaaf gegevens voor de loonheffingen">
+
+            <div class="accordion-header" aria-expanded="false" aria-controls="section-toelichting" tabindex="0">
+                <span>Toelichting bij de vragen</span>
+                <i>▼</i>
             </div>
+            <div id="section-toelichting" class="accordion-content" aria-hidden="true">
+                <p>
+                   
+                    <h4>Bij vraag 1c</h4><br>
+                    Hebt u meerdere adressen in Nederland of een adres in Nederland en het buitenland? Dan kunt u de volgende vragen gebruiken om te bepalen welk adres u moet invullen:
+                </p>
+                <ul>
+                    <li>Welke woning staat u duurzaam ter beschikking? Daarmee bedoelen we: een woning die u langdurig zelf kunt bewonen, zoals een huur- of koopwoning. Het mag niet gaan om een woning die bedoeld is voor korte verblijven, zoals een vakantiewoning.</li>
+                    <li>Waar is het centrum van uw maatschappelijke leven? U kunt dit bepalen aan de hand van de volgende vragen:
+                        <ul>
+                            <li>Waar bent u ingeschreven in de basisregistratie persoonsgegevens?</li>
+                            <li>Waar verblijven uw partner, uw echtgeno(o)t(e) of uw kinderen?</li>
+                            <li>Waar gaan uw kinderen naar school?</li>
+                            <li>Waar bent u lid van bijvoorbeeld een sportvereniging?</li>
+                            <li>Waar hebt u uw verzekeringen afgesloten?</li>
+                            <li>Op welk van de adressen is het uw bedoeling om te wonen?</li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>
+                    Vul het adres in dat u het meest als antwoord op bovenstaande vragen hebt gegeven. Twijfelt u toch nog? Neem dan contact op met uw belastingkantoor of bel de BelastingTelefoon: 0800 - 0543.
+                </p>
+                <div class="divider"></div>
+
+                <p>
+                    <h4>Bij vraag 2a</h4><br>
+                    Iedere werknemer en uitkeringsgerechtigde die aan de voorwaarden voldoet, heeft recht op de zogenoemde loonheffingskorting. De loonheffingskorting is de verzamelnaam voor de 5 heffingskortingen waarmee uw werkgever of uitkeringsinstantie rekening houdt bij het bepalen van de in te houden loonbelasting/premie volksverzekeringen. Uw werkgever of uitkeringsinstantie berekent automatisch de korting die voor u geldt. U mag deze korting maar door 1 werkgever of door 1 uitkeringsinstantie toe laten passen.
+                </p>
+                <p>
+                    Geef aan of u de loonheffingskorting door deze werkgever of uitkeringsinstantie wilt laten toepassen.
+                </p>
+                <p>
+                    <strong>Let op!</strong><br>
+                    De alleenstaande-ouderenkorting maakt deel uit van de loonheffingskorting. Dat betekent dat uw werkgever of uitkeringsinstantie de alleenstaande-ouderenkorting alleen mag toepassen als deze de loonheffingskorting toepast. U hoeft vraag 2b dus niet in te vullen als u bij vraag 2a aangeeft dat u de loonheffingskorting niet wilt laten toepassen.
+                </p>
+                <p>
+                    <strong>Meerdere uitkeringen bij dezelfde uitkeringsinstantie en loonheffingskorting</strong><br>
+                    Krijgt u 2 of meer uitkeringen tegelijkertijd van dezelfde uitkeringsinstantie? Dan past de uitkeringsinstantie de loonheffingskorting toe op het totaalbedrag van uw uitkeringen.
+                </p>
+                <p>
+                    <strong>Meerdere dienstbetrekkingen bij dezelfde werkgever en loonheffingskorting</strong><br>
+                    Krijgt u van uw werkgever tegelijkertijd loon uit 2 of meer dienstbetrekkingen? Dan geldt de loonheffingskorting maar voor 1 van die lonen. U kiest zelf welk loon. Vul voor elke dienstbetrekking dan een apart formulier in.
+                </p>
+                <p>
+                    De werkgever kan de lonen ook bij elkaar optellen en de loonheffingskorting toepassen op het totaal van de lonen. In dat geval hoeft u niet te wachten op een belastingteruggaaf na afloop van het jaar. Of u hoeft minder bij te betalen via uw aangifte inkomstenbelasting.
+                </p>
+                <p>
+                    <strong>Voorlopige aanslag en loonheffingskorting</strong><br>
+                    Krijgt u de algemene heffingskorting maandelijks in de vorm van een voorlopige aanslag? En gaat u werken of krijgt u een uitkering waarbij u de loonheffingskorting door uw werkgever of uitkeringsinstantie laat toepassen? Dan moet u de voorlopige aanslag direct laten wijzigen of stopzetten. Anders krijgt u te veel heffingskorting en moet u dat later aan de Belastingdienst terugbetalen.
+                </p>
+                <p>
+                    <strong>Bijstandsuitkering en loonheffingskorting</strong><br>
+                    Gaat u werken naast uw bijstandsuitkering? Vraag dan uw werkgever om de loonheffingskorting toe te passen en informeer de gemeente hierover. De gemeente houdt dan rekening met de loonheffingskorting die uw werkgever toepast.
+                </p>
+                <div class="divider"></div>
+
+                <p>
+                    <h4>Bij vraag 2b</h4><br>
+                    Uw werkgever of uitkeringsinstantie kan niet zelf vaststellen of u recht hebt op de alleenstaande-ouderenkorting. Daarom moet u dat hier aangeven.
+                </p>
+            </div>
+            
+
+
 
             <p>
-               Vanwege demonstratie doeleinden: klik na scannen van de QR code op volgende. 
+               Vanwege demonstratie doeleinden: klik na invullen op volgende.
             </p>
         </div>
         <div class="button-container">
@@ -85,31 +346,11 @@
             <hr>
             <h4>Verzoek formulier Model Opgaaf gegevens voor de loonheffingen invullen en ondertekenen</h4>
             <p>
-                Uw gegevens zijn toegevoegd. <br>
-                U kunt nu de resterende onderdelen verder invullen. <br>
-                Resterende onderdelen:<br>
-                2 Loonheffingskorting toepassen <br>
-                2.A <br>
-                2.B <br><br>
-                Na invullen kunt u het document ondertekenen met uw handelingsomgeving door de QR code onder het document te scannen.
+                
 
             </p>
             <hr>
             
-            <!-- PDF-weergave -->
-            <div class="pdf-container">
-                <iframe src="model_opgaaf_gegevens_loonheffingen_filled.pdf#toolbar=0" width="100%" height="600px"></iframe>
-            </div>
-    
-            <p>Scan de QR code met uw handelingsomgeving (www.tipdemo.nl/demo) om het formulier te ondertekenen.</p>
-            <!-- QR-code -->
-            <div class="qr-code">
-                <img src="https://api.qrserver.com/v1/create-qr-code/?data=%7B%22type%22%3A%22signdoc%22%2C%22documentName%22%3A%22Model%20Opgaaf%20gegevens%20voor%20de%20loonheffingen%22%2C%22issuedBy%22%3A%22Innovatiemakers%22%7D&size=300x300" alt="QR Code for Signing Document">
-            </div>
-        
-            <p>
-               Vanwege demonstratie doeleinden: klik na scannen van de QR code op volgende. 
-            </p>
         </div>
         <div class="button-container">
             <button class="prev">Terug</button>
@@ -199,6 +440,19 @@
 
     <!-- Voeg het script hier toe zodat de DOM volledig is geladen -->
     <script src="demo.js"></script>
+    <script src="accordeon.js"></script>
+    <script>
+        document.getElementById('auto-fill-button').addEventListener('click', function () {
+            // Vul de gegevens in zoals in de PDF
+            document.getElementById('voorletters').value = 'W.L.';
+            document.getElementById('achternaam').value = 'de Bruijn';
+            document.getElementById('bsn').value = '999999990';
+            document.getElementById('adres').value = 'Wilhelmina van Pruisenweg 52';
+            document.getElementById('postcode').value = '2595 AN';
+            document.getElementById('woonplaats').value = 'Den Haag';
+            document.getElementById('geboortedatum').value = '1980-03-11';
+        });
+        </script>
 
 </body>
 </html>
