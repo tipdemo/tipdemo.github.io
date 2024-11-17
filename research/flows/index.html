@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Onderzoek use cases</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="/style.css">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+</head>
+<body>
+  <div class="main-container">
+    <nav id="main-nav" class="main-nav" aria-label="Hoofdnavigatie">
+     
+    </nav>
+    <hr>
+    <div id="breadcrumbs" role="navigation" aria-label="Breadcrumbs"></div>
+
+    <h2>Onderzoek use cases</h2>
+    <p>Onderstaand worden use cases uitgewerkt in het kader van onderzoek. <br>
+      Deze use cases kunnen nog onvolkomenheden of fouten bevatten. <br>
+    Bekijk de volgende use cases of voer een zoekwoord in.</p>
+    <div class="search-container" role="search">
+      <input type="text" id="searchBar" placeholder="Zoek voorbeelden...">
+    </div>
+    <p id="noResultsMessage" style="display:none;" aria-live="polite">Geen resultaten gevonden.</p>
+
+    <!-- Sectie: Aan de slag bij een werkgever -->
+    <section class="section-examples">
+      <h2>Digitaal formulier ondertekenen</h2>
+      <div id="tags">
+      </div>
+      <p>
+        Willeke wil voor indiensttreden het formulier Opgaaf gegevens voor de loonheffingen invullen en ondertekenen.
+      </p>
+      <a class="read-more" href="eo/form/index.html" aria-label="Lees meer over formulier Opgaaf gegevens voor de loonheffingen invullen en ondertekenen">Lees meer</a>
+    </section>
+
+    <section class="section-examples">
+      <h2>Machtiging namens een organisatie</h2>
+      <div id="tags">
+      </div>
+      <p>
+        Het bedrijf waar Willeke werkt wil haar machtigen om de omzetbelastinb (BTW) voor het bedrijf te doen.
+      </p>
+      <a class="read-more" href="eo/om/index.html" aria-label="Lees meer over machtiging namens een organisatie">Lees meer</a>
+    </section>
+
+
+    <section class="section-examples">
+      <h2>Logistiek: machtigen en ondertekenen</h2>
+      <div id="tags">
+      </div>
+      <p>
+        Willeke is eigenaar van een transportbedrijf en zelf ook één van de chauffeurs. Ze gaat een vracht ophalen bij de haven van Rotterdam.
+      </p>
+      <a class="read-more" href="logistics/log1/index.html" aria-label="Lees meer over Logistiek: machtigen en ondertekenen">Lees meer</a>
+    </section>
+   
+</div>
+
+
+
+
+
+  <script src="/navbar.js"></script>
+  <script src="/breadcrumbs.js"></script>
+  <script src="/accordeon.js"></script>
+  
+  <script>
+    // Event listener voor de zoekbalk
+    document.getElementById('searchBar').addEventListener('keyup', filterSections);
+
+    function filterSections() {
+  var input = document.getElementById('searchBar');
+  var filter = input.value.toUpperCase();
+  var sections = document.getElementsByClassName('section-examples');
+  var hasResults = false;
+
+  for (var i = 0; i < sections.length; i++) {
+    var txtValue = sections[i].textContent || sections[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      sections[i].style.display = "";
+      hasResults = true;
+    } else {
+      sections[i].style.display = "none";
+    }
+  }
+
+  document.getElementById('noResultsMessage').style.display = hasResults ? "none" : "block";
+}
+
+function filterByTag(tag) {
+  var input = document.getElementById('searchBar');
+  input.value = tag; // Zet het tag-woord in het zoekveld
+  filterSections(); // Roep de zoekfunctie opnieuw aan
+}
+  </script>
+</body>
+</html>

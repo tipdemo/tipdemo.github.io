@@ -94,15 +94,15 @@ function toggleButtons() {
         if (!document.querySelector('.go-example') && !document.querySelector('.go-home')) {
             // Voeg de 'Sluiten tabblad'-knop toe met Font Awesome icoon
             const exampleButton = document.createElement('button');
-            exampleButton.innerHTML = '<i class="fas fa-lightbulb"></i> Naar voorbeelden';
+            exampleButton.innerHTML = '<i class="fas fa-lightbulb"></i> Naar Onderzoek';
             exampleButton.className = 'go-example';
-            exampleButton.onclick = ()=> window.location.href = 'https://www.tipdemo.nl/examples/eo'; // Ga naar www.eutw.nl
+            exampleButton.onclick = ()=> window.location.href = 'https://www.tipdemo.nl/research/flows'; 
 
             // Voeg de 'Terug naar hoofdwebsite'-knop toe met Font Awesome icoon
             const homeButton = document.createElement('button');
             homeButton.innerHTML = '<i class="fas fa-home"></i> Terug naar hoofdwebsite';
             homeButton.className = 'go-home';
-            homeButton.onclick = () => window.location.href = 'https://www.tipdemo.nl'; // Ga naar www.eutw.nl
+            homeButton.onclick = () => window.location.href = 'https://www.tipdemo.nl'; 
 
             // Voeg de knoppen toe aan de button-container
             buttonContainer.appendChild(exampleButton);

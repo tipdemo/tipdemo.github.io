@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function() {
       "requirements": "Randvoorwaarden",
       
       "contact": "Contact en feedback",
+
+      "flows" : "Onderzoek use cases",
       
       // Voeg hier andere mappings toe indien nodig
     };

@@ -1,5 +1,5 @@
 const demoConfig = {
-    totalSteps: 8 // Definieer hier het aantal stappen voor deze demo
+    totalSteps: 3 // Definieer hier het aantal stappen voor deze demo
 };
 
 let currentStep = 1; // Houd de huidige stap bij
@@ -86,7 +86,7 @@ function toggleButtons() {
             const exampleButton = document.createElement('button');
             exampleButton.innerHTML = '<i class="fas fa-lightbulb"></i> Naar voorbeelden';
             exampleButton.className = 'go-example';
-            exampleButton.onclick = ()=> window.location.href = 'https://www.tipdemo.nl/examples/eo';
+            exampleButton.onclick = ()=> window.location.href = 'https://www.tipdemo.nl/examples';
 
             // Voeg de 'Terug naar hoofdwebsite'-knop toe met Font Awesome icoon
             const homeButton = document.createElement('button');
@@ -108,43 +108,5 @@ window.addEventListener('pageshow', function(event) {
     if (event.persisted) {
         // Als de pagina uit de cache is geladen, forceer dan een herlaad
         window.location.reload();
-    }
-});
-
-
-function showStep(step) {
-    // Verberg alle stappen
-    document.querySelectorAll('.step').forEach((section) => {
-        section.classList.remove('active');
-        section.style.display = 'none'; // Verberg alle secties
-    });
-
-    // Toon de juiste stap
-    const stepToShow = document.getElementById(`step-${step}`);
-    if (stepToShow) {
-        stepToShow.classList.add('active');
-        stepToShow.style.display = 'block'; // Toon alleen de actieve sectie
-    }
-
-    // Voeg specifieke klasse toe aan body voor stap 2
-    if (step === 2) {
-        document.body.classList.add('step-2-active');
-    } else {
-        document.body.classList.remove('step-2-active');
-    }
-
-    // Pas de knoppenlogica aan
-    toggleButtons();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Bestaande code...
-
-    // Voeg een eventlistener toe aan de knop 'Bevestig Uitgifte'
-    const issueButton = document.getElementById('uitgifte-button');
-    if (issueButton) {
-        issueButton.addEventListener('click', () => {
-            goToStep(3); // Navigeer naar stap 3
-        });
     }
 });
