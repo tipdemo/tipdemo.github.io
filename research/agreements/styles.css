@@ -170,6 +170,54 @@ form {
   gap: 15px; /* Ruimte tussen de rijen */
 }
 
+/* Telefoonframe */
+.phone {
+  width: 308px;
+  height: 638px;
+  background-color: #000; /* Zwarte rand zoals een telefoon */
+  border-radius: 40px; /* Afgeronde hoeken */
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Schaduw voor diepte-effect */
+  padding: 20px; /* Ruimte tussen het scherm en het omhulsel */
+  box-sizing: border-box;
+  margin: 20px auto; /* Centreer de telefoon op de pagina */
+}
+
+/* Scherm van de telefoon */
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background-color: #fff; /* Wit scherm binnen het frame */
+  border-radius: 30px; /* Afgeronde hoeken van het scherm */
+  overflow: hidden; /* Zorg dat inhoud binnen het scherm blijft */
+  padding: 10px;
+  box-sizing: border-box;
+  padding-top: 20px;
+}
+
+/* Styling voor de vragen */
+.question {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* Divider onder de vraag */
+.divider-below-question {
+  width: 100%;
+  height: 2px;
+  background-color: #007bff; /* Blauwe lijn */
+  margin-bottom: 15px;
+}
+
+/* Wrapper voor elke vraag en zijn opties */
+.question-block {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
 /* Verberg standaard checkbox */
 .custom-checkbox input[type="checkbox"] {
   display: none; /* Verberg standaard browser-checkbox */
@@ -180,6 +228,7 @@ form {
   display: flex;
   align-items: flex-start; /* Flexibele uitlijning voor meerdere regels */
   gap: 10px; /* Ruimte tussen checkbox en tekst */
+  margin-bottom: 10px; /* Ruimte onder elke optie */
 }
 
 /* Checkbox vierkantje (via span) */
@@ -188,7 +237,7 @@ form {
   width: 25px; /* Grootte van de checkbox */
   height: 25px;
   border: 2px solid #007bff; /* Blauwe rand */
-  border-radius: 4px; /* Ronde hoeken */
+  border-radius: 0px; /* Ronde hoeken */
   background-color: #fff; /* Witte achtergrond */
   transition: all 0.3s; /* Soepele overgangseffecten */
   position: relative; /* Voor het plaatsen van het vinkje */
@@ -215,7 +264,6 @@ form {
 .checkbox-text {
   font-size: 16px; /* Tekstgrootte */
   color: #333; /* Tekstkleur */
- /*  line-height: 1.5;  */
   flex-grow: 1; /* Laat de tekst uitbreiden indien nodig */
 }
 
@@ -225,13 +273,94 @@ form {
   font-size: 14px; /* Kleinere tekstgrootte voor invoerveld */
 }
 
+textarea {
+  width: 100%; /* Zorgt ervoor dat het veld net zo breed is als de container */
+  resize: vertical; /* Staat verticaal uitschuiven toe */
+  min-height: 2em; /* Zorgt dat het minimaal twee regels hoog is */
+  padding: 5px; /* Voor een prettige afstand van tekst tot rand */
+  font-family: inherit; /* Gebruik dezelfde lettertype als de rest */
+  font-size: 1rem; /* Zorg voor consistente tekstgrootte */
+  box-sizing: border-box; /* Inclusief padding in breedte */
+  border: 1px solid #ccc; /* Optioneel, voor een duidelijke rand */
+  border-radius: 4px; /* Optioneel, voor afgeronde hoeken */
+}
+
+#text-area{
+  justify-content: flex-start;
+  display: flex;
+}
+
+
+/* Algemene styling voor de knoppen-container */
+.button-container-wallet {
+  display: flex;
+  justify-content: space-evenly;
+ padding-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+/* Styling voor beide knoppen */
+.button-container-wallet button {
+  flex: 1;
+  margin: 0 10px;
+  padding: 10px 15px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+}
+
+/* Specifieke styling voor de Stoppen-knop */
+.cancel-button {
+  background-color: #ffffff; /* Rood */
+  color: #007bff;
+  border: 2px solid #007bff; /* Blauwe rand */
+  
+}
+
+
+
+/* Specifieke styling voor de Akkoord-knop */
+.accept-button {
+  background-color: #007bff; /* Groen */
+  color: #fff;
+  border: none;
+}
+
+
+#smaller-wallet-p p{
+  font-size: 14px;
+}
+
+#smaller-wallet-p li {
+  font-size: 14px;
+}
+
+#smallest-wallet-p p{
+  font-size: 10px;
+}
+
+#smallest-wallet-p li {
+  font-size: 10px;
+}
+
 /* Responsieve aanpassingen */
 @media (max-width: 768px) {
+  .phone {
+    width: 300px;
+    height: 600px;
+  }
+
   .checkbox-box {
-      width: 20px; /* Kleinere checkbox voor kleinere schermen */
-      height: 20px;
+    width: 20px; /* Kleinere checkbox voor kleinere schermen */
+    height: 20px;
   }
   .checkbox-text {
-      font-size: 14px; /* Kleinere tekst */
+    font-size: 14px; /* Kleinere tekst */
+  }
+  .question {
+    font-size: 16px;
   }
 }

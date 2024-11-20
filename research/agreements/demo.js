@@ -28,12 +28,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-      // Voeg iconen en tekst aan de knoppen
-      document.querySelectorAll('.next').forEach(button => {
+    // Voeg iconen en tekst aan de knoppen
+    document.querySelectorAll('.next').forEach(button => {
         button.innerHTML = 'Volgende stap <i class="fas fa-arrow-right"></i>';
     });
     document.querySelectorAll('.prev').forEach(button => {
         button.innerHTML = '<i class="fas fa-arrow-left"></i> Vorige stap';
+    });
+
+    // Exclusief checkbox gedrag
+    const exclusiveCheckboxes = document.querySelectorAll('input.exclusive[type="checkbox"]');
+    
+    exclusiveCheckboxes.forEach((checkbox) => {
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                // Vind alle andere checkboxes met dezelfde 'name'
+                const name = checkbox.getAttribute('name');
+                const checkboxes = document.querySelectorAll(`input.exclusive[name="${name}"]`);
+                checkboxes.forEach((cb) => {
+                    if (cb !== checkbox) {
+                        cb.checked = false; // Deselecteer andere checkboxes
+                    }
+                });
+            }
+        });
     });
 });
 
@@ -57,6 +75,9 @@ function showStep(step) {
         stepToShow.classList.add('active');
         stepToShow.style.display = 'block'; // Toon alleen de actieve sectie
     }
+
+    // Scroll naar boven bij het tonen van een nieuwe stap
+    window.scrollTo(0, 0);
 
     // Pas de knoppenlogica aan
     toggleButtons();
@@ -82,17 +103,18 @@ function toggleButtons() {
 
         // Controleer of de knoppen al bestaan voordat je ze toevoegt
         if (!document.querySelector('.go-example') && !document.querySelector('.go-home')) {
-            // Voeg de 'Sluiten tabblad'-knop toe met Font Awesome icoon
+            // Voeg de 'Naar voorbeelden'-knop toe met Font Awesome icoon
             const exampleButton = document.createElement('button');
             exampleButton.innerHTML = '<i class="fas fa-lightbulb"></i> Naar voorbeelden';
             exampleButton.className = 'go-example';
-            exampleButton.onclick = ()=> window.location.href = 'https://www.tipdemo.nl/examples/eo';
+            exampleButton.onclick = () => window.location.href = 'https://www.tipdemo.nl/examples/eo';
 
             // Voeg de 'Terug naar hoofdwebsite'-knop toe met Font Awesome icoon
             const homeButton = document.createElement('button');
             homeButton.innerHTML = '<i class="fas fa-home"></i> Terug naar hoofdwebsite';
             homeButton.className = 'go-home';
-            homeButton.onclick = () => window.location.href = 'https://www.tipdemo.nl'; 
+            homeButton.onclick = () => window.location.href = 'https://www.tipdemo.nl';
+
             // Voeg de knoppen toe aan de button-container
             buttonContainer.appendChild(exampleButton);
             buttonContainer.appendChild(homeButton);

@@ -13,7 +13,17 @@
     <div class="subsection">
         <h1>Inleiding</h1>
         <p>
-            In deze demo laten we zien hoe datadeling werkt via de Europese identiteitswallet. Je krijgt verschillende scenario's en vragen te zien over transparantie, gebruiksvriendelijkheid en implicaties van datadeling. De stappen laten zien hoe organisaties data opvragen en delen.
+            De Europese identiteitswallets komen eraan; de invoering staat gepland voor 2026.<br>
+            Vertrouwen in deze oplossing draait niet alleen om het veilig opslaan en delen van gegevens, maar ook om wat er daarna met die gegevens gebeurt.<br>
+            Welke afspraken zijn nodig om te garanderen dat de verwerking van jouw data na het delen veilig blijft en in lijn is met jouw toestemming?<br>
+            En hoe zorgen we ervoor dat gebruikers toestemming kunnen geven op een begrijpelijke manier? <br><br>
+        </p>
+        <p>
+            In deze vragenlijst onderzoeken we hoe datadeling met een Europese identiteitswallet eruit kan zien.<br>
+            Wanneer is het duidelijk, en wanneer ontstaan onduidelijkheden? Denk hierbij ook aan de huidige praktijk rondom cookies.<br>
+            Echter, dit gaat niet over cookies: het gaat om waardevolle, geverifieerde persoonlijke data.<br>
+            De belangen om deze data te verzamelen en combineren voor andere doeleinden zijn daarmee enorm.<br>
+            De noodzaak om deze gegevens veilig en verantwoord te verwerken maakt een zorgvuldige aanpak daarom cruciaal om vertrouwen te creëren in het stelsel van de Europese digitale identiteit.
         </p>
     </div>
     <div class="button-container">
@@ -25,35 +35,93 @@
 <section id="step-2" class="step">
     <div class="subsection">
         <h1>Hoofdstuk 1: Transparantie over datadeling</h1>
-        <p>Bekijk onderstaand scherm:</p>
-        <div class="wallet-screen">
-            <p><strong>Wil je de volgende data delen met</strong></p>
-            <p><strong>Hypotheek Advies</strong></p>
-            <ul>
-                <li>Voornaam</li>
-                <li>Achternaam</li>
-                <li>Straat</li>
-                <li>Postcode</li>
-                <li>Woonplaats</li>
-                <li>Geboortedatum</li>
-                <li>Verzamelinkomen</li>
-            </ul>
-            <p><strong>Overeenkomst:</strong> Volgens onze privacyvoorwaarden.</p>
-            <p><em>(De privacyvoorwaarden zijn lang en ondoorzichtig, zoals personalisatie, marketing, begrijpen van publiek door data uit verschillende bronnen te combineren.)</em></p>
+        <p>Bekijk onderstaand scherm van een wallet dat een datadeel-verzoek toont van een fictief bedrijf:</p>
+        <div class="phone">
+            <div class="phone-screen">
+                <div class="wallet-screen">
+                    <p><strong>Wil je de volgende data delen met Hypotheek kiezer?</strong></p>
+                    <hr>
+                    <ul>
+                        <li>Voornaam</li>
+                        <li>Achternaam</li>
+                        <li>Straat</li>
+                        <li>Postcode</li>
+                        <li>Woonplaats</li>
+                        <li>Geboortedatum</li>
+                        <li>Telefoonnummer</li>
+                        <li>Verzamelinkomen</li>
+                    </ul>
+                    <p><strong>Overeenkomst:</strong></p> 
+                    <p>Volgens onze <a href="privacyverklaring.html" target="_blank">
+                        privacyvoorwaarden.
+                    </a></p>
+
+                    <div class="button-container-wallet">
+                        <button class="cancel-button">Stoppen</button>
+                        <button class="accept-button">Akkoord</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <h4>VRAAG:</h4>
         <form>
-            <p>Welke data deel je voor welk doel door akkoord te geven?</p>
-            <label><input type="radio" name="data-purpose" value="hypotheekadvies"> Alleen voor hypotheekadvies</label><br>
-            <label><input type="radio" name="data-purpose" value="hypotheek-en-marketing"> Voor hypotheekadvies én marketing</label><br>
-            <label><input type="radio" name="data-purpose" value="privacyvoorwaarden"> Voor alles wat in de privacyvoorwaarden staat</label><br>
-            <label><input type="radio" name="data-purpose" value="ik-weet-het-niet"> Ik weet het niet</label>
-            <p>Heb je de voorwaarden doorgelezen?</p>
-            <label><input type="radio" name="read-terms" value="niet-gekeken"> Nee, niet gekeken</label><br>
-            <label><input type="radio" name="read-terms" value="te-lang-en-complex"> Nee, deze waren te lang en complex</label><br>
-            <label><input type="radio" name="read-terms" value="gestopt-met-lezen"> Ja, maar ik ben gestopt met lezen</label><br>
-            <label><input type="radio" name="read-terms" value="begrijp-niet-helemaal"> Ja, maar ik begrijp ze niet helemaal</label><br>
-            <label><input type="radio" name="read-terms" value="volledig-begrijpen"> Ja, en ik begrijp ze volledig en kan de implicaties overzien</label>
+            <div class="question-block">
+                <div>
+                    <p class="question">Voor welk doel wordt je data verwerkt door akkoord te geven?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="data-purpose" value="hypotheekadvies" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Alleen voor hypotheekadvies</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="data-purpose" value="hypotheek-en-marketing" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Voor hypotheekadvies én marketing</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="data-purpose" value="privacyvoorwaarden" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Voor alles wat in de privacyvoorwaarden staat</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="data-purpose" value="ik-weet-het-niet" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ik weet het niet</div>
+                </label>
+            </div>
+            <div class="question-block">
+                <div>
+                    <p class="question">Heb je de privacy-voorwaarden doorgelezen?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="read-terms" value="niet-gekeken" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee, niet gekeken</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="read-terms" value="te-lang-en-complex" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee, deze waren te lang en complex</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="read-terms" value="gestopt-met-lezen" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja, maar ik ben gestopt met lezen</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="read-terms" value="begrijp-niet-helemaal" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja, maar ik begrijp ze niet helemaal</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="read-terms" value="volledig-begrijpen" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja, en ik begrijp ze volledig en kan de implicaties overzien</div>
+                </label>
+            </div>
         </form>
     </div>
     <div class="button-container">
@@ -67,32 +135,121 @@
     <div class="subsection">
         <h1>Hoofdstuk 1: Transparantie over datadeling (vervolg)</h1>
         <p>Bekijk onderstaand scherm:</p>
-        <div class="wallet-screen">
-            <p><strong>Wil je de volgende data delen met</strong></p>
-            <p><strong>Hypotheek Advies (fictief)</strong></p>
-            <ul>
-                <li>Voornaam</li>
-                <li>Achternaam</li>
-                <li>Straat</li>
-                <li>Postcode</li>
-                <li>Woonplaats</li>
-                <li>Geboortedatum</li>
-                <li>Verzamelinkomen</li>
-            </ul>
-            <p><strong>Overeenkomst:</strong></p>
-            <ul>
-                <li>Personalisatie</li>
-                <li>Marketing</li>
-                <li>Begrijpen van publiek</li>
-            </ul>
+
+        <div class="phone">
+            <div class="phone-screen">
+                <div class="wallet-screen" id="smaller-wallet-p">
+                    <p><strong>Wil je de volgende data delen met Hypotheek kiezer?</strong></p>
+                    <hr>
+                    <ul>
+                        <li>Voornaam</li>
+                        <li>Achternaam</li>
+                        <li>Straat</li>
+                        <li>Postcode</li>
+                        <li>Woonplaats</li>
+                        <li>Geboortedatum</li>
+                        <li>Telefoonnummer</li>
+                        <li>Verzamelinkomen</li>
+                    </ul>
+                    <p><strong>Overeenkomst:</strong></p> 
+                    <p>Uw data wordt gebruikt voor de volgende doelen</p>
+                    <ul>
+                        <li>Personalisatie</li>
+                        <li>Marketing</li>
+                        <li>Begrijpen van publiek</li>
+                    </ul>
+                    <p>Volgens onze <a href="privacyverklaring.html" target="_blank">
+                        privacyvoorwaarden.
+                    </a></p>
+                    <div class="button-container-wallet">
+                        <button class="cancel-button">Stoppen</button>
+                        <button class="accept-button">Akkoord</button>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <h4>VRAAG:</h4>
         <form>
-            <p>Wordt duidelijk wat "personalisatie" en "marketing" inhoudt?</p>
-            <label><input type="radio" name="personalisation-marketing" value="ja-volledig"> Ja, volledig</label><br>
-            <label><input type="radio" name="personalisation-marketing" value="nee-niet-echt"> Nee, niet echt</label><br>
-            <label><input type="radio" name="personalisation-marketing" value="ik-weet-het-niet"> Ik weet het niet</label>
-        </form>
+
+            <div class="question-block">
+                <div>
+                    <p class="question">Wordt het op deze manier duidelijker wat de doelen zijn?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="clear-goals" value="ja" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="clear-goals" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+           
+            <div class="question-block">
+                <div>
+                    <p class="question">Is voor jou duidelijk wat "personalisatie", "marketing" en "begrijpen van publiek" inhoudt?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="personalisation-marketing" value="ja-volledig" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja, volledig</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="personalisation-marketing" value="nee-niet-echt" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee, niet echt</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="personalisation-marketing" value="ik-weet-het-niet" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ik weet het niet</div>
+                </label>
+            </div>
+            <div class="question-block">
+                <div>
+                    <p class="question">Is duidelijk welke impact dit akkoord heeft op je privacy?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="privacy-impact" value="ja-volledig" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja, volledig</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="privacy-impact" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+
+    <div class="question-block">
+        <div>
+            <p class="question">Is duidelijk of je data wordt gedeeld met derden?</p>
+            <div class="divider-below-question"></div>
+        </div>
+        <label class="custom-checkbox">
+            <input type="checkbox" name="data-sharing" value="ja-duidelijk" class="exclusive">
+            <span class="checkbox-box"></span>
+            <div class="checkbox-text">Ja, duidelijk</div>
+        </label>
+        <label class="custom-checkbox">
+            <input type="checkbox" name="data-sharing" value="nee-onduidelijk" class="exclusive">
+            <span class="checkbox-box"></span>
+            <div class="checkbox-text">Nee, onduidelijk</div>
+        </label>
+        <label class="custom-checkbox">
+            <input type="checkbox" name="data-sharing" value="ik-weet-het-niet" class="exclusive">
+            <span class="checkbox-box"></span>
+            <div class="checkbox-text">Ik weet het niet</div>
+        </label>
+    </div>
+</form>
+
     </div>
     <div class="button-container">
         <button class="prev">Terug</button>
@@ -105,36 +262,80 @@
     <div class="subsection">
         <h1>Hoofdstuk 2: Datadeling met derden</h1>
         <p>Bekijk onderstaand scherm:</p>
-        <div class="wallet-screen">
-            <p><strong>Wil je de volgende data delen met</strong></p>
-            <p><strong>Hypotheek Advies (fictief)</strong></p>
-            <ul>
-                <li>Voornaam</li>
-                <li>Achternaam</li>
-                <li>Straat</li>
-                <li>Postcode</li>
-                <li>Woonplaats</li>
-                <li>Geboortedatum</li>
-                <li>Verzamelinkomen</li>
-            </ul>
-            <p><strong>Overeenkomst:</strong></p>
-            <ul>
-                <li>Personalisatie</li>
-                <li>Marketing</li>
-                <li>Begrijpen van publiek</li>
-            </ul>
+
+       <div class="phone">
+            <div class="phone-screen">
+                <div class="wallet-screen" id="smallest-wallet-p">
+                    <p><strong>Wil je de volgende data delen met Hypotheek kiezer?</strong></p>
+                    <hr>
+                    <ul>
+                        <li>Voornaam</li>
+                        <li>Achternaam</li>
+                        <li>Straat</li>
+                        <li>Postcode</li>
+                        <li>Woonplaats</li>
+                        <li>Geboortedatum</li>
+                        <li>Telefoonnummer</li>
+                        <li>Verzamelinkomen</li>
+                    </ul>
+                    <p><strong>Overeenkomst:</strong></p> 
+                    <p>Uw data wordt gebruikt voor de volgende doelen</p>
+                    <ul>
+                        <li>Personalisatie</li>
+                        <li>Marketing</li>
+                        <li>Begrijpen van publiek</li>
+                    </ul>
+                    <p>Uw data wordt gedeeld met derden</p>
+                    <ul>
+                        <li>Partij X</li>
+                        <li>Partij Y</li>
+                        <li>Partij Z</li>
+                    </ul>
+                    <p>Volgens onze <a href="privacyverklaring.html" target="_blank">
+                        privacyvoorwaarden.
+                    </a></p>
+                    <div class="button-container-wallet">
+                        <button class="cancel-button">Stoppen</button>
+                        <button class="accept-button">Akkoord</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <h4>VRAAG:</h4>
         <form>
-            <p>Wordt het op deze manier duidelijker wat de doelen zijn?</p>
-            <label><input type="radio" name="clear-goals" value="ja"> Ja</label><br>
-            <label><input type="radio" name="clear-goals" value="nee"> Nee</label><br>
-            <p>Is duidelijk welke impact dit akkoord heeft op je privacy?</p>
-            <label><input type="radio" name="privacy-impact" value="ja-volledig"> Ja, volledig</label><br>
-            <label><input type="radio" name="privacy-impact" value="nee"> Nee</label><br>
-            <p>Is duidelijk of deze gegevens gedeeld worden met derden?</p>
-            <label><input type="radio" name="third-party-sharing" value="ja"> Ja</label><br>
-            <label><input type="radio" name="third-party-sharing" value="nee"> Nee</label>
+            <div class="question-block">
+                <div>
+                    <p class="question">Is duidelijk wat de derden doen met de data?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="third-party-sharing" value="ja" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="third-party-sharing" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+            <div class="question-block">
+                <div>
+                    <p class="question">Is duidelijk welke impact dit akkoord heeft op je privacy?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="privacy-impact" value="ja-volledig" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja, volledig</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="privacy-impact" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+           
         </form>
     </div>
     <div class="button-container">
@@ -146,44 +347,136 @@
 <!-- Stap 5: Hoofdstuk 3 -->
 <section id="step-5" class="step">
     <div class="subsection">
-        <h1>Hoofdstuk 3: Praktische implicaties</h1>
-        <h4>Gedragspsychologische focus:</h4>
+        <h1>Hoofdstuk 3: Praktische implicaties en gedragspsychologie</h1>
+        
         <form>
-            <p>Hoe vaak lees je privacyvoorwaarden voordat je akkoord geeft?</p>
-            <label><input type="radio" name="read-privacy-terms" value="altijd"> Altijd</label><br>
-            <label><input type="radio" name="read-privacy-terms" value="soms"> Soms</label><br>
-            <label><input type="radio" name="read-privacy-terms" value="zelden"> Zelden</label><br>
-            <label><input type="radio" name="read-privacy-terms" value="nooit"> Nooit</label>
-            
-            <p>Vind je dat bedrijven met een commercieel belang altijd transparant zijn over hoe ze data verwerken?</p>
-            <label><input type="radio" name="commercial-transparency" value="ja"> Ja</label><br>
-            <label><input type="radio" name="commercial-transparency" value="nee"> Nee</label>
-            
-            <p>Denk je dat mensen die een datadelingsovereenkomst beoordelen altijd de tijd, aandacht en energie hebben om deze door te lezen?</p>
-            <label><input type="radio" name="read-time" value="ja"> Ja</label><br>
-            <label><input type="radio" name="read-time" value="nee"> Nee</label>
-            
-            <p>Denk je dat mensen de implicaties begrijpen van het delen van data?</p>
-            <label><input type="radio" name="understand-implications" value="ja-volledig"> Ja, volledig</label><br>
-            <label><input type="radio" name="understand-implications" value="nee"> Nee</label>
-            
-            <p>Denk je dat bedrijven soms bewust technieken toepassen om je aan te sturen richting acceptatie van voorwaarden?</p>
-            <label><input type="radio" name="techniques" value="ja"> Ja</label><br>
-            <label><input type="radio" name="techniques" value="nee"> Nee</label>
-            
-            <p>Hoe beïnvloeden lange en complexe voorwaarden het gedrag?</p>
-            <label><input type="checkbox" name="complex-terms" value="ontmoedigen"> Het ontmoedigt gebruikers om voorwaarden te lezen</label><br>
-            <label><input type="checkbox" name="complex-terms" value="sneller-akkoord"> Het maakt gebruikers sneller akkoord zonder te begrijpen</label><br>
-            <label><input type="checkbox" name="complex-terms" value="andere"> Andere: <input type="text" name="complex-terms-other"></label>
-            
-            <p>Kunnen voorwaarden wel zowel duidelijkheid bieden én alle nuances en implicaties verduidelijken?</p>
-            <label><input type="radio" name="clear-and-nuances" value="ja"> Ja, dat is mogelijk</label><br>
-            <label><input type="radio" name="clear-and-nuances" value="nee"> Nee, dat is praktisch onmogelijk</label>
-            
-            <p>Vind je dat datadeling via een wallet een opt-in (actieve toestemming) of een opt-out (automatisch, tenzij geweigerd) moet zijn?</p>
-            <label><input type="radio" name="opt-in-out" value="opt-in"> Opt-in</label><br>
-            <label><input type="radio" name="opt-in-out" value="opt-out"> Opt-out</label>
+            <!-- Vraag 1 -->
+            <div class="question-block">
+                <div>
+                    <p class="question">Hoe vaak lees je privacyvoorwaarden voordat je akkoord geeft?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="read-privacy-terms" value="altijd" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Altijd</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="read-privacy-terms" value="soms" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Soms</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="read-privacy-terms" value="zelden" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Zelden</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="read-privacy-terms" value="nooit" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nooit</div>
+                </label>
+            </div>
+        
+            <!-- Vraag 2 -->
+            <div class="question-block">
+                <div>
+                    <p class="question">Vind je dat bedrijven met een commercieel belang altijd transparant zijn over hoe ze data verwerken?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="commercial-transparency" value="ja" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="commercial-transparency" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+        
+            <!-- Vraag 3 -->
+            <div class="question-block">
+                <div>
+                    <p class="question">Denk je dat mensen die een datadelingsovereenkomst beoordelen altijd de tijd, aandacht en energie hebben om deze door te lezen?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="read-time" value="ja" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="read-time" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+        
+            <!-- Vraag 4 -->
+            <div class="question-block">
+                <div>
+                    <p class="question">Denk je dat mensen de implicaties begrijpen van het delen van data?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="understand-implications" value="ja-volledig" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja, volledig</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="understand-implications" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+        
+            <!-- Vraag 5 -->
+            <div class="question-block">
+                <div>
+                    <p class="question">Denk je dat bedrijven soms bewust technieken toepassen om je aan te sturen richting acceptatie van voorwaarden?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="techniques" value="ja" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="techniques" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+        
+            <!-- Vraag 6 -->
+            <div class="question-block">
+                <div>
+                    <p class="question">Hoe beïnvloeden lange en complexe voorwaarden het gedrag?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="complex-terms" value="ontmoedigen">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Het ontmoedigt gebruikers om voorwaarden te lezen</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="complex-terms" value="sneller-akkoord">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Het maakt gebruikers sneller akkoord zonder te begrijpen</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="complex-terms" value="andere">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text" id="text-area">
+                        Andere:
+                        <textarea name="complex-terms-other" placeholder="Specificeer..." rows="2"></textarea>
+                    </div>
+                </label>
+            </div>
         </form>
+        
     </div>
     <div class="button-container">
         <button class="prev">Terug</button>
@@ -196,41 +489,88 @@
     <div class="subsection">
         <h1>Hoofdstuk 4: Loyaliteitskaart en gerechtvaardigd belang</h1>
         <p>Bekijk onderstaand scherm:</p>
-        <div class="wallet-screen">
-            <p><strong>Wil je de volgende data delen met</strong></p>
-            <p><strong>Loyaliteitskaart (ficief)</strong></p>
-            <ul>
-                <li>Voornaam</li>
-                <li>Achternaam</li>
-                <li>Straat</li>
-                <li>Postcode</li>
-                <li>Woonplaats</li>
-                <li>Geboortedatum</li>
-                <li>Verzamelinkomen</li>
-            </ul>
-            <p><strong>Overeenkomst:</strong></p>
-            <ul>
-                <li>Voornaam en geboortedatum: voor personalisatie</li>
-                <li>Marketing: door</li>
-                <li>Partij X</li>
-                <li>Partij Y</li>
-                <li>Partij Z</li>
-            </ul>
+        <div class="phone">
+            <div class="phone-screen">
+                <div class="wallet-screen">
+                    <p><strong>Wil je de volgende data delen met</strong></p>
+                    <p><strong>Loyaliteitskaart (ficief)</strong></p>
+                    <ul>
+                        <li>Voornaam</li>
+                        <li>Achternaam</li>
+                        <li>Straat</li>
+                        <li>Postcode</li>
+                        <li>Woonplaats</li>
+                        <li>Geboortedatum</li>
+                        <li>Verzamelinkomen</li>
+                    </ul>
+                    <p><strong>Overeenkomst:</strong></p>
+                    <ul>
+                        <li>Voornaam en geboortedatum: voor personalisatie</li>
+                        <li>Marketing: door</li>
+                        <li>Partij X</li>
+                        <li>Partij Y</li>
+                        <li>Partij Z</li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <h4>VRAAG:</h4>
         <form>
-            <p>Is het duidelijk welke data je moet delen voor uitvoering van de loyaliteitskaart en welke additioneel is?</p>
-            <label><input type="radio" name="loyalty-required" value="ja"> Ja</label><br>
-            <label><input type="radio" name="loyalty-required" value="nee"> Nee</label>
-            
-            <p>Is een commercieel belang volgens de AVG een gerechtvaardigd belang?</p>
-            <label><input type="radio" name="commercial-legitimate" value="ja"> Ja</label><br>
-            <label><input type="radio" name="commercial-legitimate" value="nee"> Nee</label>
-            
-            <p>Mag je een verzoek tot datadeling volgens een gerechtvaardigd belang weigeren?</p>
-            <label><input type="radio" name="legitimate-refusal" value="ja"> Ja</label><br>
-            <label><input type="radio" name="legitimate-refusal" value="nee"> Nee</label>
+            <!-- Vraag 1 -->
+            <div class="question-block">
+                <div>
+                    <p class="question">Is het duidelijk welke data je moet delen voor uitvoering van de loyaliteitskaart en welke additioneel is?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="loyalty-required" value="ja" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="loyalty-required" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+        
+            <!-- Vraag 2 -->
+            <div class="question-block">
+                <div>
+                    <p class="question">Is een commercieel belang volgens de AVG een gerechtvaardigd belang?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="commercial-legitimate" value="ja" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="commercial-legitimate" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+        
+            <!-- Vraag 3 -->
+            <div class="question-block">
+                <div>
+                    <p class="question">Mag je een verzoek tot datadeling volgens een gerechtvaardigd belang weigeren?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="legitimate-refusal" value="ja" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="legitimate-refusal" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
         </form>
+        
     </div>
     <div class="button-container">
         <button class="prev">Terug</button>
@@ -243,40 +583,52 @@
     <div class="subsection">
         <h1>Hoofdstuk 5: Oplossingen</h1>
         <form>
-            <p>Denk je dat zonder aanpassingen in het huidige beleid transparantie, duidelijkheid en gebruiksvriendelijkheid vanzelf verandert?</p>
-            <label><input type="radio" name="policy-change" value="ja"> Ja</label><br>
-            <label><input type="radio" name="policy-change" value="nee"> Nee</label>
+            <div class="question-block">
+                <div>
+                    <p class="question">Denk je dat zonder aanpassingen in het huidige beleid transparantie, duidelijkheid en gebruiksvriendelijkheid vanzelf verandert?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="policy-change" value="ja" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="policy-change" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+            <div class="question-block">
+                <div>
+                    <p class="question">Welke oplossingen denk je dat zouden werken om misbruik van data te voorkomen?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="solutions" value="afsprakenstelsels">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Afsprakenstelsel met aanvullende regels</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="solutions" value="keurmerk">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Een keurmerk dat bedrijven beoordeelt op transparantie</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="solutions" value="catalogus">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Catalogus met bedrijven die voldoen aan strenge eisen</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="complex-terms" value="andere">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text" id="text-area">
+                        Andere:
+                        <textarea name="complex-terms-other" placeholder="Specificeer..." rows="2"></textarea>
+                    </div>
+                </label>
+            </div>
         </form>
-        
-        <form>
-            <p>Welke oplossingen denk je dat zouden werken om misbruik van data te voorkomen?</p>
-            <label class="custom-checkbox">
-                <input type="checkbox" name="solutions" value="afsprakenstelsels">
-                <span class="checkbox-box"></span>
-                <div class="checkbox-text">Afsprakenstelsels met aanvullende regels bovenop de AVG</div>
-            </label>
-            <label class="custom-checkbox">
-                <input type="checkbox" name="solutions" value="keurmerk">
-                <span class="checkbox-box"></span>
-                <div class="checkbox-text">Een keurmerk dat bedrijven beoordeelt op transparantie</div>
-            </label>
-            <label class="custom-checkbox">
-                <input type="checkbox" name="solutions" value="berekening">
-                <span class="checkbox-box"></span>
-                <div class="checkbox-text">Een berekening aan de kant van de gebruiker over wat de voorwaarden betekenen</div>
-            </label>
-            <label class="custom-checkbox">
-                <input type="checkbox" name="solutions" value="catalogus">
-                <span class="checkbox-box"></span>
-                <div class="checkbox-text">Catalogus met bedrijven die voldoen aan strenge eisen</div>
-            </label>
-            <label class="custom-checkbox">
-                <input type="checkbox" name="solutions" value="andere">
-                <span class="checkbox-box"></span>
-                <div class="checkbox-text">Andere: <input type="text" name="solutions-other" placeholder="Specificeer..."></div>
-            </label>
-        </form>
-        
     </div>
     <div class="button-container">
         <button class="prev">Terug</button>
@@ -284,17 +636,13 @@
     </div>
 </section>
 
-
-
+<!-- Stap 8: Einde demo -->
 <section id="step-8" class="step">
     <div class="subsection">
         <h1>Einde demo</h1>
         <hr>
-        <h4><strong>Eind vragenlijst</strong></h4>
-        <p> Afsluitende tekst
-
-
-        </p>
+        <h3>Eind vragenlijst</h3>
+        <p> Afsluitende tekst</p>
     </div>
     <div class="button-container">
         <button class="prev">Terug</button>
