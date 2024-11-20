@@ -180,7 +180,8 @@ form {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Schaduw voor diepte-effect */
   padding: 20px; /* Ruimte tussen het scherm en het omhulsel */
   box-sizing: border-box;
-  margin: 20px auto; /* Centreer de telefoon op de pagina */
+  margin: auto; /* Centreer de telefoon op de pagina */
+  margin-bottom: 80px;
 }
 
 /* Scherm van de telefoon */
@@ -193,6 +194,12 @@ form {
   padding: 10px;
   box-sizing: border-box;
   padding-top: 20px;
+}
+
+.wallet-screen ul {
+  padding-left: 0; /* Verwijdert de standaard inspringing */
+  margin-left: 0;  /* Verwijdert eventuele marge */
+  list-style-position: inside; /* Zorgt dat de bullets binnen de lijstinhoud vallen */
 }
 
 /* Styling voor de vragen */
@@ -315,8 +322,8 @@ textarea {
 /* Specifieke styling voor de Stoppen-knop */
 .cancel-button {
   background-color: #ffffff; /* Rood */
-  color: #007bff;
-  border: 2px solid #007bff; /* Blauwe rand */
+  color: #474d53;
+  border: 2px solid #7d90a4; /* Blauwe rand */
   
 }
 
@@ -324,7 +331,7 @@ textarea {
 
 /* Specifieke styling voor de Akkoord-knop */
 .accept-button {
-  background-color: #007bff; /* Groen */
+  background-color: #7d90a4; /* Groen */
   color: #fff;
   border: none;
 }
