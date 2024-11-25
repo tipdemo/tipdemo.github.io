@@ -2203,3 +2203,19 @@ margin-top: 40px;
 
   }
 
+#ppop-download-button {
+
+    background-color: green;
+  }
+
+
+
+#ppop-success-screen .button-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+}
+
+#ppop-modal .modal-content {
+    width: 90%;
+}

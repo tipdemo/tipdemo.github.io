@@ -145,6 +145,26 @@ const rdfcfSuccessScreen = document.getElementById('rdfcf-success-screen');
 const closeRdfcfSuccessBtn = document.getElementById('close-rdfcf-success-btn');
 
 
+// *** PPOP Elements ***
+const ppopModal = document.getElementById('ppop-modal');
+const ppopAmountElement = document.getElementById('ppop-amount');
+const ppopRequesterElement = document.getElementById('ppop-requester');
+const ppopDetailsContainer = document.getElementById('ppop-details-container');
+const ppopStopButton = document.getElementById('ppop-stop-button');
+const ppopAcceptButton = document.getElementById('ppop-accept-button');
+
+// PPOP PIN Confirmation Elements
+const ppopPinConfirmationScreen = document.getElementById('ppop-pin-confirmation-screen');
+const confirmPinPpopBtn = document.getElementById('confirm-pin-ppop');
+
+// PPOP Success Screen Elements
+const ppopSuccessScreen = document.getElementById('ppop-success-screen');
+const ppopSuccessRequester = document.getElementById('ppop-success-requester');
+const ppopInvoiceLink = document.getElementById('ppop-invoice-link');
+const ppopDownloadButton = document.getElementById('ppop-download-button');
+const ppopCloseSuccessButton = document.getElementById('ppop-close-success-button');
+
+
 // *** SignFromStorage Elementen ***
 const signFromStorageButton = document.getElementById('sign-button');
 
@@ -210,6 +230,7 @@ const fieldMapping = {
   bsn: 'Burgerservicenummer (BSN)',
   omv: 'Organisatiemachtiging VOG',
   vog: 'Verklaring Omtrent Gedrag (VOG)',
+  VOG: 'Verklaring Omtrent Gedrag (VOG)',
   nat: 'Nationaliteit',
   val: 'Geldigheid paspoort',
   UWV: 'Uitvoeringsinstituut Werknemersverzekeringen (UWV)',
@@ -227,6 +248,8 @@ const fieldMapping = {
   Algemeen_profiel: 'Algemeen profiel',
   Specifiek_profiel: 'Specifiek profiel',
   Attestation_Trust_Type: 'Type attestatie',
+  IBAN: 'IBAN',
+IADR: 'Factuur-adres',
   ATT: 'Type attestatie',
   dipvk: 'Diploma Verpleegkunde',
   a: {
@@ -338,71 +361,78 @@ function convertToStandardDate(dateString) {
 
 
 function showActivities() {
-  activitiesList.innerHTML = ''; // Clear the list
+  activitiesList.innerHTML = ''; // Maak de lijst leeg
 
-  // Filter credentials for activities
+  // Filter credentials voor activiteiten
   const filteredActivities = credentials.filter(cred => {
     if (!cred.actionTimestamp) return false;
 
-    // Include share actions, activities, and specific types
+    // Neem share actions, activiteiten en specifieke types op
     if (cred.isShareAction || cred.isActivity) return true;
 
-    if (cred.type === 'signdoc' || cred.type === 'signfromstorage' || cred.type === 'rdfcf') return true;
+    if (cred.type === 'signdoc' || cred.type === 'signfromstorage' || cred.type === 'rdfcf' || cred.type === 'ppop') return true;
 
-    // Issuer actions
+    // Issuer acties
     if (cred.issuedBy && cred.type !== 'mandate') return true;
 
     return false;
   });
 
-  // Sort activities by date and time (most recent first)
+  // Sorteer activiteiten op datum en tijd (meest recent eerst)
   filteredActivities.sort((a, b) => {
     let dateA = Date.parse(convertToStandardDate(a.actionTimestamp));
     let dateB = Date.parse(convertToStandardDate(b.actionTimestamp));
     return dateB - dateA;
   });
 
-  // Add activities to the list
+  // Voeg activiteiten toe aan de lijst
   filteredActivities.forEach((cred) => {
     let activityItem = document.createElement('li');
 
     if (cred.type === 'rdfcf') {
-      // Form submission action
+      // Formulier actie
       activityItem.innerHTML = `
         <strong style="color: #152A62;">Formulier ingevuld: ${cred.formName}</strong><br>
         <span style="color: #152A62;">Gegevens gedeeld</span><br>
         <span style="color: #152A62;">${cred.actionTimestamp}</span>
       `;
     } else if (cred.isShareAction) {
-      // Verifier action
+      // Verifier actie
       activityItem.innerHTML = `
         <strong style="color: #152A62;">${cred.name}</strong><br>
         <span style="color: #152A62;">Gegevens gedeeld</span><br>
         <span style="color: #152A62;">${cred.actionTimestamp}</span>
       `;
     } else if (cred.isActivity) {
-      // Mandate action
+      // Machtiging actie
       activityItem.innerHTML = `
         <strong style="color: #152A62;">Machtiging aan ${cred.requester}</strong><br>
         <span style="color: #152A62;">Reden: ${cred.reason}</span><br>
         <span style="color: #152A62;">${cred.actionTimestamp}</span>
       `;
     } else if (cred.type === 'signdoc') {
-      // Signdoc action
+      // Signdoc actie
       activityItem.innerHTML = `
         <strong style="color: #152A62;">Document ondertekend aangeboden door ${cred.issuedBy}</strong><br>
         <span style="color: #152A62;">${cred.data.documentName}</span><br>
         <span style="color: #152A62;">${cred.actionTimestamp}</span>
       `;
     } else if (cred.type === 'signfromstorage') {
-      // SignFromStorage action
+      // SignFromStorage actie
       activityItem.innerHTML = `
         <strong style="color: #152A62;">Document ondertekend uit storage</strong><br>
         <span style="color: #152A62;">${cred.data.documentName}</span><br>
         <span style="color: #152A62;">${cred.actionTimestamp}</span>
       `;
+    } else if (cred.type === 'ppop') {
+      // PPOP actie
+      activityItem.innerHTML = `
+        <strong style="color: #152A62;">Betaling uitgevoerd aan ${cred.issuedBy}</strong><br>
+        <span style="color: #152A62;">Bedrag: ${cred.currency} ${cred.amount}</span><br>
+        <span style="color: #152A62;">${cred.actionTimestamp}</span>
+      `;
     } else if (cred.issuedBy && cred.type !== 'mandate') {
-      // Issuer action
+      // Issuer actie
       const issuerInfo = cred.issuedBy ? cred.issuedBy : "Onbekende uitgever";
       activityItem.innerHTML = `
         <strong style="color: #152A62;">${issuerInfo}</strong><br>
@@ -411,7 +441,7 @@ function showActivities() {
       `;
     }
 
-    // Add divider
+    // Voeg een scheidingslijn toe
     const divider = document.createElement('div');
     divider.className = 'activity-divider';
 
@@ -445,6 +475,20 @@ const cardStyles = {
     iconColor: null,
     textColor: '#4A6C85' // Tekstkleur
   },
+  'factuur-adres': {
+    iconClass: 'fas fa-briefcase', // Gebruik het gewenste FontAwesome icoon
+    iconColor: '#00588E', // Gouden kleur voor het icoon */
+   /*  imagePath: 'fas fa-briefcase', */
+   
+    textColor: '#00588E' // Tekstkleur
+  },
+  'iban': {
+    iconClass: 'fas fa-landmark', 
+    iconColor: '#00588E', 
+        /* imagePath: 'fas fa-landmark', */
+       /*  iconColor: '#FBC4AB', */
+    textColor: '#00588E' // Tekstkleur
+      },
   'organisatiemachtiging vog': {
     iconClass: 'fas fa-file-signature',
     iconColor: '#D4A5D7',
@@ -520,7 +564,8 @@ function displayCredentials() {
       cred.type === 'mandate' ||
       cred.type === 'signdoc' ||
       cred.type === 'signfromstorage' ||
-      cred.type === 'rdfcf'
+      cred.type === 'rdfcf' ||
+      cred.type === 'ppop'
     ) {
       console.log(`Credential at index ${index} has type:`, cred.type);
       return;
@@ -616,6 +661,30 @@ function loadDefaultCredentials() {
           'Foto': 'pasfoto.png', // Zorg dat deze afbeelding beschikbaar is in je projectmap
           'Lengte': '1,70 m'
         }
+      },
+      {
+        name: 'Factuur-adres',
+        issuedBy: 'KVK',
+        isShareAction: false,
+        data: {
+          'Voornaam': 'Willeke Liselotte',
+          'Achternaam': 'De Bruijn',
+          'Organisatie-nummer': 'NL_KVK_0000000000',
+          'Straat': 'Wilhelmina van Pruisenweg',
+          'Huisnummer': '52',
+          'Postcode': '2595 AN',
+          'Woonplaats': 'Den Haag'
+        }
+      },
+      {
+        name: 'IBAN',
+        issuedBy: 'Bank',
+        isShareAction: false,
+        data: {
+          'Bank': 'TEST',
+          'LEID': 'NL_KVK_0000000000',
+          'IBAN-account number': 'NL00TEST0123456789',
+        }
       }
   ];
 
@@ -694,7 +763,7 @@ function showDetails(credential, index) {
   };
 
   // Verwijderknop tonen of verbergen op basis van het type kaartje
-  if (credential.name !== 'Persoonlijke data' && credential.name !== 'Woonadres'  && credential.name !== 'Foto') {
+  if (credential.name !== 'Persoonlijke data' && credential.name !== 'Woonadres'  && credential.name !== 'Foto' && credential.name !== 'Factuur-adres' && credential.name !== 'IBAN') {
     deleteDetailsBtn.style.display = 'block';
     deleteDetailsBtn.onclick = () => {
       credentials.splice(index, 1);
@@ -788,6 +857,16 @@ function startQrScan() {
                       // Populate the RDFCF modal
                       populateRdfcfModal(data);
                     } 
+
+                    else if (data.type === "PPOP") {
+                      console.log("PPOP QR-code herkend.");
+                      // Sla de PPOP data op voor later gebruik
+                      window.currentPpopData = data;
+                      // Vul de modal met de gegevens van het PPOP-verzoek
+                      populatePpopModal(data);
+                      // Toon de PPOP modal
+                      ppopModal.style.display = 'flex';
+                  }     
 
               // Stap 3: Controleer of het een issuer QR-code is (rdfci)
                else if (data.issuedBy && data.name) {
@@ -1211,7 +1290,7 @@ function populateRdfciModal(data) {
         cardHeader.style.backgroundColor = '#445580'; 
         break;
       default:
-        cardHeader.style.backgroundColor = '#0072C6'; // Default kleur
+        cardHeader.style.backgroundColor = '#445580'; // Default kleur
     }
 
     // Voeg de header toe aan de kaartcontainer
@@ -1585,7 +1664,7 @@ function populateRdfcvModal(data) {
         cardHeader.style.backgroundColor = '#0061A6';
         break;
       default:
-        cardHeader.style.backgroundColor = '#0072C6'; // Default kleur
+        cardHeader.style.backgroundColor = '#445580'; // Default kleur
     }
 
     // Maak kaart content container aan
@@ -3676,16 +3755,18 @@ function populateRdfcfModal(data) {
 
     // Set the background color based on the card name if desired
     if (cardName === 'Persoonlijke data') {
-      cardHeader.style.backgroundColor = '#ffffff';
+      cardHeader.style.backgroundColor = '#dfeaf2';
     } else if (cardName === 'Verklaring Omtrent Gedrag (VOG)') {
-      cardHeader.style.backgroundColor = '#ffffff';
+      cardHeader.style.backgroundColor = '#dfeaf2';
     } else {
-      cardHeader.style.backgroundColor = '#ffffff'; // Default color
+      cardHeader.style.backgroundColor = '#dfeaf2'; // Default color
     }
 
     // Create card content container
     const cardContent = document.createElement('div');
     cardContent.className = 'card-content';
+
+    
 
     // Add the header and content to the card container
     cardContainer.appendChild(cardHeader);
@@ -3823,3 +3904,225 @@ closeRdfcfSuccessBtn.onclick = () => {
   walletScreen.style.display = 'block';
   bottomNav.style.display = 'flex';
 };
+
+
+function populatePpopModal(data) {
+  // Vul de requester en amount
+  ppopRequesterElement.textContent = data.requester || 'Onbekende partij';
+  ppopAmountElement.textContent = `${data.currency || 'EUR'} ${data.amount || '0.00'}`;
+
+  // Leeg de details-container
+  ppopDetailsContainer.innerHTML = '';
+
+  // Groepeer de velden en toon ze in kaartjes
+  let fieldsByCard = {};
+
+  data.rdfcppop.forEach((field) => {
+    const fieldName = fieldMapping[field] || field; // Gebruik field mapping
+
+    console.log(`Mapping field '${field}' to '${fieldName}'`);
+
+    // Zoek of het veld hoort bij een kaartje in credentials
+    let matchingCard = credentials.find(cred => {
+      // Zoek in cred.data of het veld bestaat
+      return cred.data && cred.data.hasOwnProperty(fieldName);
+    });
+
+    if (!matchingCard) {
+      console.warn(`Veld of kaartje '${fieldName}' niet gevonden in de credentials.`);
+      // Als niet gevonden, controleer of er een kaartje is waarvan de naam overeenkomt met fieldName
+      matchingCard = credentials.find(cred => cred.name === fieldName);
+    }
+
+    if (matchingCard) {
+      console.log(`Gevonden matching kaart voor '${fieldName}':`, matchingCard);
+      const cardName = matchingCard.name;
+
+      if (!fieldsByCard[cardName]) {
+        fieldsByCard[cardName] = { data: matchingCard.data, fields: [], showAllFields: false };
+      }
+
+      if (matchingCard.name === fieldName) {
+        // Als het veld overeenkomt met de kaartnaam, tonen we alle details
+        fieldsByCard[cardName].showAllFields = true;
+      } else {
+        // Voeg het specifieke veld toe
+        fieldsByCard[cardName].fields.push(fieldName);
+      }
+    } else {
+      console.warn(`Veld of kaartje '${fieldName}' niet gevonden in de credentials.`);
+    }
+  });
+
+  // Itereer over elk kaartje en maak de kaart elementen aan
+  Object.keys(fieldsByCard).forEach((cardName) => {
+    const cardInfo = fieldsByCard[cardName];
+
+    // Maak kaart container aan
+    const cardContainer = document.createElement('div');
+    cardContainer.className = 'card-container';
+
+    // Maak kaart header aan
+    const cardHeader = document.createElement('div');
+    cardHeader.className = 'card-header';
+    cardHeader.textContent = cardName;
+
+    // Stel de achtergrondkleur in op basis van de kaartnaam (optioneel)
+    switch (cardName) {
+      case 'IBAN-account number credentials':
+        cardHeader.style.backgroundColor = '#bdcedb';
+        break;
+      case 'e-invoice address':
+        cardHeader.style.backgroundColor = '#bdcedb';
+        break;
+      default:
+        cardHeader.style.backgroundColor = '#bdcedb'; // Default kleur
+    }
+
+    // Maak kaart content container aan
+    const cardContent = document.createElement('div');
+    cardContent.className = 'card-content';
+
+    // Voeg de header en content toe aan de kaartcontainer
+    cardContainer.appendChild(cardHeader);
+    cardContainer.appendChild(cardContent);
+
+    // Maak kaart details aan
+    const cardDetails = document.createElement('div');
+    cardDetails.className = 'card-details';
+
+    if (cardInfo.showAllFields) {
+      // Voeg alle details van het kaartje toe uit cred.data
+      for (let key in cardInfo.data) {
+        if (cardInfo.data.hasOwnProperty(key)) {
+          const detailRow = document.createElement('div');
+          detailRow.className = 'detail-row';
+
+          const labelDiv = document.createElement('div');
+          labelDiv.className = 'label';
+          labelDiv.textContent = `${key}:`;
+
+          const valueDiv = document.createElement('div');
+          valueDiv.className = 'value';
+          valueDiv.textContent = cardInfo.data[key] || 'Niet beschikbaar';
+
+          detailRow.appendChild(labelDiv);
+          detailRow.appendChild(valueDiv);
+
+          cardDetails.appendChild(detailRow);
+        }
+      }
+    } else {
+      // Voeg alleen de specifieke gevraagde velden toe
+      cardInfo.fields.forEach(fieldName => {
+        const value = cardInfo.data[fieldName];
+
+        const detailRow = document.createElement('div');
+        detailRow.className = 'detail-row';
+
+        const labelDiv = document.createElement('div');
+        labelDiv.className = 'label';
+        labelDiv.textContent = `${fieldName}:`;
+
+        const valueDiv = document.createElement('div');
+        valueDiv.className = 'value';
+        valueDiv.textContent = value || 'Niet beschikbaar';
+
+        detailRow.appendChild(labelDiv);
+        detailRow.appendChild(valueDiv);
+
+        cardDetails.appendChild(detailRow);
+      });
+    }
+
+    // Voeg de kaart details toe aan de kaart content
+    cardContent.appendChild(cardDetails);
+
+    // Voeg de kaart toe aan de container
+    ppopDetailsContainer.appendChild(cardContainer);
+  });
+}
+
+
+// Event listener voor de stop-knop in de PPOP modal
+ppopStopButton.addEventListener('click', () => {
+  ppopModal.style.display = 'none';
+  addCardScreen.style.display = 'none';
+  walletScreen.style.display = 'block';
+  bottomNav.style.display = 'flex';
+  resetQrScanner();
+});
+
+// Event listener voor de accept-knop in de PPOP modal
+ppopAcceptButton.addEventListener('click', () => {
+  ppopModal.style.display = 'none';
+  ppopPinConfirmationScreen.style.display = 'flex';
+  resetPinInputs(); // Reset de pincode-invoervelden
+});
+
+// Event listener voor de confirm-knop in de PPOP pincode confirmation
+confirmPinPpopBtn.addEventListener('click', () => {
+  // Hier kun je pincode verificatie toevoegen indien nodig
+
+  // Voor demonstratiedoeleinden gaan we ervan uit dat de pincode correct is
+
+  // Haal de huidige timestamp op
+  const timestamp = new Date().toLocaleString();
+
+    // Genereer een willekeurige transactie-ID
+    const transactionId = 'TX-' + Math.floor(Math.random() * 1000000000);
+
+    // Voeg de transactie-ID toe aan ppopData
+    window.currentPpopData.transactionId = transactionId;
+  
+
+  // Maak een nieuw credential object voor de PPOP actie
+  const newCredential = {
+    name: 'Betaling aan ' + (window.currentPpopData.requester || 'Onbekende partij'),
+    amount: window.currentPpopData.amount || '0.00',
+    currency: window.currentPpopData.currency || 'EUR',
+    issuedBy: window.currentPpopData.requester || 'Onbekende partij',
+    type: 'ppop',
+    actionTimestamp: timestamp,
+    isShareAction: false,
+    data: {
+      requester: window.currentPpopData.requester,
+      amount: window.currentPpopData.amount,
+      currency: window.currentPpopData.currency,
+      referenceId: window.currentPpopData.referenceId,
+      // Voeg indien nodig andere relevante data toe
+    }
+  };
+
+  // Voeg de nieuwe actie toe aan credentials
+  credentials.push(newCredential);
+  saveCredentials();
+  showActivities(); // Update het activiteitenoverzicht
+
+  // Verberg het pincode-confirmatiescherm
+  ppopPinConfirmationScreen.style.display = 'none';
+
+// Toon het successcherm
+ppopSuccessRequester.textContent = window.currentPpopData.requester || 'Onbekende partij';
+ppopSuccessScreen.style.display = 'flex';
+});
+
+// Event listener voor de sluitknop in het PPOP success scherm
+ppopCloseSuccessButton.addEventListener('click', () => {
+  ppopSuccessScreen.style.display = 'none';
+  addCardScreen.style.display = 'none';
+  walletScreen.style.display = 'block';
+  bottomNav.style.display = 'flex';
+});
+
+
+// Event listener voor de download-knop in het PPOP success scherm
+ppopDownloadButton.addEventListener('click', () => {
+  // Maak een tijdelijk anker-element
+  const link = document.createElement('a');
+  link.href = 'invoice.pdf';
+  link.download = 'invoice.pdf'; // Zorgt ervoor dat het bestand wordt gedownload
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+});
