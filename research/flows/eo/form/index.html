@@ -167,15 +167,16 @@
                         <label id="qr-code-label">
                             Scan bijgaande QR-code voor invoeren van velden met uw handelingsomgeving:
                         </label>
-                        <div class="qr-code-container">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?data=%7B%22type%22%3A%22signdoc%22%2C%22documentName%22%3A%22Model%20Opgaaf%20gegevens%20voor%20de%20loonheffingen%22%2C%22issuedBy%22%3A%22Innovatiemakers%22%7D&size=300x300" 
-                                 alt="QR Code for Signing Document" aria-labelledby="qr-code-label">
+                        <div class="qr-code">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?data=%7B%22type%22%3A%22form%22%2C%22formName%22%3A%22Model%20Opgaaf%20gegevens%20voor%20de%20loonheffingen%22%2C%22rdfcf%22%3A%5B%22vl%22%2C%22sn%22%2C%22bd%22%2C%22bsn%22%2C%22Woonadres%22%5D%7D&size=300x300" alt="QR Code for Model Opgaaf gegevens voor de loonheffingen">
                         </div>
+                    
                     </div>
 
                     <div class="form-row">
                         <label  id="auto-fill-label">
-                            Vanwege demo doeleinden: Klik op de knop om de velden automatisch in te vullen met voorbeeldgegevens:
+                            Scan QR code voor het tonen van het proces in de handelingsomgeving.
+                            Vanwege demo doeleinden werkt het invullen niet automatisch: Klik daarom op de knop om de velden automatisch in te vullen met voorbeeldgegevens:
                         </label>
                         <div class="autofill-button-container">
                             <button type="button" id="auto-fill-button">Velden automatisch invullen</button>
@@ -344,10 +345,14 @@
         <div class="subsection">
             <h1>Innovatiemakers</h1>
             <hr>
-            <h4>Verzoek formulier Model Opgaaf gegevens voor de loonheffingen invullen en ondertekenen</h4>
+            <h4>Geslaagd!</h4>
             <p>
-                
-
+                Je kunt het ondertekende document Model Opgaaf gegevens voor de loonheffingen downloaden via onderstaande knop.
+                <div class="container">
+                    <a href="path/to/your/document.pdf" class="download-button" onclick="showAlert(event)">
+                        Download document
+                    </a>
+                </div>
             </p>
             <hr>
             
@@ -383,14 +388,10 @@
         <div class="subsection">
             <h1>Einde demo</h1>
             <hr>
-            <h4><strong>Aanvraag VOG met handelingsomgeving afgerond</strong></h4><br>
+            <h4><strong></strong></h4><br>
             <p>
-                Het proces is rondom het ophalen delen van de VOG afgerond.<br>
-                De stap betaling voor de VOG aan Justis hebben we nog niet in dit proces laten zien. <br>
-                Technisch gezien zou de betaling ook met een handelingsomgeving kunnen worden uitgevoerd.<br>
-
-                Willeke kan nu verder met de volgende stappen in het proces van aanmelden als werknemer.
-
+     
+       
             </p>
         </div>
         <div class="button-container">
@@ -453,6 +454,43 @@
             document.getElementById('geboortedatum').value = '1980-03-11';
         });
         </script>
+    <script>
+        // URL van je PDF
+        const url = 'arbeidsvoorwaarden.pdf'; // Vervang dit met je eigen PDF-bestand.
+
+        // PDF.js laden
+        const pdfjsLib = window['pdfjs-dist/build/pdf'];
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+        // PDF-container en rendering
+        const pdfViewer = document.getElementById('pdfViewer');
+
+        pdfjsLib.getDocument(url).promise.then(pdf => {
+            for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                pdf.getPage(pageNum).then(page => {
+                    const canvas = document.createElement('canvas');
+                    pdfViewer.appendChild(canvas);
+                    const context = canvas.getContext('2d');
+                    const viewport = page.getViewport({ scale: 1.5 });
+
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
+
+                    page.render({
+                        canvasContext: context,
+                        viewport: viewport
+                    });
+                });
+            }
+        });
+    </script>
+
+<script>
+    function showAlert(event) {
+        event.preventDefault(); // Voorkomt het downloaden van het document
+        alert("Vanwege demodoeleinden wordt het document niet gedownload.");
+    }
+</script>
 
 </body>
 </html>

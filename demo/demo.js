@@ -2738,6 +2738,13 @@ confirmPinSigndocBtn.addEventListener('click', () => {
   signdocSuccessScreen.style.display = 'flex';
 });
 
+
+// Select the button by its ID
+  document.getElementById("signdoc-download-btn").addEventListener("click", function () {
+    // Show the alert message
+    alert("Vanwege demo doeleinden wordt het document niet gedownload.");
+});
+
 // Event listener voor de sluitknop in het Signdoc success scherm
 closeSigndocSuccessBtn.addEventListener('click', () => {
   signdocSuccessScreen.style.display = 'none';

@@ -377,6 +377,15 @@ button.close-tab i, button.go-home i {
   padding-top: 10px; /* Optionele ruimte boven de knop */
 }
 
+#pdfViewer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .container {
   display: flex;
   justify-content: center;
