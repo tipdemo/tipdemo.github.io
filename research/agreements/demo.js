@@ -1,5 +1,5 @@
 const demoConfig = {
-    totalSteps: 8 // Definieer hier het aantal stappen voor deze demo
+    totalSteps: 9 // Definieer hier het aantal stappen voor deze demo
 };
 
 let currentStep = 1; // Houd de huidige stap bij
@@ -105,9 +105,9 @@ function toggleButtons() {
         if (!document.querySelector('.go-example') && !document.querySelector('.go-home')) {
             // Voeg de 'Naar voorbeelden'-knop toe met Font Awesome icoon
             const exampleButton = document.createElement('button');
-            exampleButton.innerHTML = '<i class="fas fa-lightbulb"></i> Naar voorbeelden';
+            exampleButton.innerHTML = '<i class="fas fa-lightbulb"></i> Naar onderzoek';
             exampleButton.className = 'go-example';
-            exampleButton.onclick = () => window.location.href = 'https://www.tipdemo.nl/examples/eo';
+            exampleButton.onclick = () => window.location.href = 'https://www.tipdemo.nl/research';
 
             // Voeg de 'Terug naar hoofdwebsite'-knop toe met Font Awesome icoon
             const homeButton = document.createElement('button');
