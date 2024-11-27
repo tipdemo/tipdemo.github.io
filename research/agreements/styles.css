@@ -196,6 +196,34 @@ form {
   padding-top: 20px;
 }
 
+#scrollable-wallet {
+  max-height: 100%; /* Zorgt dat de hoogte beperkt blijft tot de container */
+  overflow-y: auto; /* Alleen verticale scrolling toestaan */
+  box-sizing: border-box; /* Houd padding en borders binnen de breedte/hoogte */
+  font-size: 10px;
+}
+
+#scrollable-wallet p {
+  font-size: 10px; /* Stel de lettergrootte in voor de lijst */
+  line-height: 1.4; /* Optioneel: Zorg voor een goede leesbaarheid */
+  margin: 0; /* Optioneel: Verminder standaardmarges */
+  padding: 0; /* Optioneel: Verwijder standaardpadding */
+}
+
+
+#scrollable-wallet ul {
+  font-size: 10px; /* Stel de lettergrootte in voor de lijst */
+  line-height: 1.4; /* Optioneel: Zorg voor een goede leesbaarheid */
+  margin: 0; /* Optioneel: Verminder standaardmarges */
+  padding: 0; /* Optioneel: Verwijder standaardpadding */
+  list-style-position: inside; /* Optioneel: Zorg dat lijstpunten binnen de lijst staan */
+}
+
+#scrollable-wallet li {
+  font-size: 10px; /* Zorg ervoor dat de lijstitems dezelfde grootte hebben */
+  margin-bottom: 5px; /* Optioneel: Voeg wat ruimte toe tussen lijstitems */
+}
+
 .wallet-screen ul {
   padding-left: 0; /* Verwijdert de standaard inspringing */
   margin-left: 0;  /* Verwijdert eventuele marge */
