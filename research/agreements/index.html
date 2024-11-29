@@ -524,7 +524,7 @@
 
         <div class="phone">
             <div class="phone-screen">
-                <div class="wallet-screen" id="smallest-wallet-p">
+                <div class="wallet-screen" id="scrollable-wallet">
                     <p><strong>Wil je de volgende data delen met Hypotheek kiezer?</strong></p>
                     <hr>
                     <ul>
@@ -535,21 +535,155 @@
                         <li>Woonplaats</li>
                         <li>Geboortedatum</li>
                         <li>Telefoonnummer</li>
+                        <li>Verzamelinkomen</li>
+                        <li>Nationaliteit</li>
+                        <li>Burgerlijke staat</li>
                     </ul>
+                    <p><br></p>
                     <p><strong>Overeenkomst:</strong></p>
-                    <p>Uw data wordt gebruikt voor de volgende doelen</p>
+                    <hr>
+                    <p>Uw data wordt gebruikt voor de volgende doelen:</p>
+                    <hr>
+                    <!-- Doel 1 -->
+                    <p><strong>Gepersonaliseerde aanbiedingen</strong></p>
+                    <p>Selecteer welke gegevens gebruikt mogen worden voor het afstemmen van aanbiedingen:</p>
                     <ul>
-                        <li>Achternaam, Woonplaats, geboortedatum voor: Personalisatie</li>
-                        <li>Achternaam, Woonplaats, geboortedatum voor: Marketing</li>
-                        <li>Achternaam, Woonplaats, geboortedatum voor: Begrijpen van publiek</li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="offers-firstname"> Voornaam - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="offers-lastname"> Achternaam - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="offers-location"> Woonplaats - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="offers-birthdate"> Geboortedatum - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="offers-income"> Verzamelinkomen - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="offers-marital-status"> Burgerlijke staat - Toestemming
+                            </label>
+                        </li>
                     </ul>
-                    <p>Uw data wordt gedeeld met derden</p>
+                    <p>Combinatie van gegevens met eerdere aankopen of interacties:</p>
+                    <label>
+                        <input type="checkbox" name="offers-combine"> Ik geef toestemming voor het combineren van gegevens voor gepersonaliseerde aanbiedingen
+                    </label>
+                    <p>Retentie: 1 jaar. Opslag: EU en VS.</p>
+                    <hr>
+                    <!-- Doel 2 -->
+                    <p><strong>Gepersonaliseerde advertenties</strong></p>
+                    <p>Selecteer welke gegevens mogen worden verwerkt voor advertenties afgestemd op jouw interesses:</p>
                     <ul>
-                        <li>Partij X</li>
-                        <li>Partij Y</li>
-                        <li>Partij Z</li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="ads-firstname"> Voornaam - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="ads-lastname"> Achternaam - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="ads-location"> Woonplaats - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="ads-birthdate"> Geboortedatum - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="ads-income"> Verzamelinkomen - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="ads-marital-status"> Burgerlijke staat - Toestemming
+                            </label>
+                        </li>
                     </ul>
-                    <p>Volgens onze <a href="privacyverklaring.html" target="_blank">privacyvoorwaarden.</a></p>
+                    <p>Combinatie van gegevens met online gedrag of eerdere aankopen:</p>
+                    <label>
+                        <input type="checkbox" name="ads-combine"> Ik geef toestemming voor het combineren van gegevens voor advertenties
+                    </label>
+                    <p>Retentie: 1 jaar. Opslag: EU en VS.</p>
+                    <hr>
+                    <!-- Doel 3 -->
+                    <p><strong>Direct mailcampagnes</strong></p>
+                    <p>Selecteer welke gegevens mogen worden gebruikt voor het verzenden van fysieke brochures:</p>
+                    <ul>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="mail-firstname"> Voornaam - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="mail-lastname"> Achternaam - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="mail-location"> Woonplaats - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="mail-marital-status"> Burgerlijke staat - Toestemming
+                            </label>
+                        </li>
+                    </ul>
+                    <p>Geen combinatie van gegevens. Retentie: 3 jaar. Opslag: EU.</p>
+                    <hr>
+                    <!-- Doel 4 -->
+                    <p><strong>Marktanalyse</strong></p>
+                    <p>Selecteer welke gegevens mogen worden verwerkt voor statistische analyses:</p>
+                    <ul>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="analysis-birthdate"> Geboortedatum - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="analysis-income"> Verzamelinkomen - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="analysis-nationality"> Nationaliteit - Toestemming
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" name="analysis-marital-status"> Burgerlijke staat - Toestemming
+                            </label>
+                        </li>
+                    </ul>
+                    <p>Geanonimiseerde gegevens worden gecombineerd met nationale statistieken. Retentie: 5 jaar. Opslag: EU en VS.</p>
+                    <label>
+                        <input type="checkbox" name="analysis-combine"> Ik geef toestemming voor het combineren van gegevens voor marktanalyse
+                    </label>
+                    <hr>
+                    <p>Uw data wordt gedeeld volgens onze <a href="privacyverklaring.html" target="_blank">privacyvoorwaarden</a>.</p>
                     <div class="button-container-wallet">
                         <button class="cancel-button">Stoppen</button>
                         <button class="accept-button">Akkoord</button>
@@ -557,28 +691,13 @@
                 </div>
             </div>
         </div>
+        
 
         <form>
-            <div class="question-block">
-                <div>
-                    <p class="question">Is het duidelijk welke data je moet delen voor uitvoering van de loyaliteitskaart en welke additioneel is?</p>
-                    <div class="divider-below-question"></div>
-                </div>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="loyalty-data-clear" value="ja" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Ja</div>
-                </label>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="loyalty-data-clear" value="nee" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Nee</div>
-                </label>
-            </div>
 
             <div class="question-block">
                 <div>
-                    <p class="question">Denk je dat mensen sneller geneigd zijn om op akkoord te klikken bij kortingen?</p>
+                    <p class="question">Denk je dat mensen sneller geneigd zijn om meer data te delen bij kortingen?</p>
                     <div class="divider-below-question"></div>
                 </div>
                 <label class="custom-checkbox">
@@ -593,44 +712,51 @@
                 </label>
             </div>
 
+
+
+
             <div class="question-block">
                 <div>
-                    <p class="question">Denk je dat mensen de implicaties minder, meer, of gelijk laten wegen bij korting?</p>
+                    <p class="question">Is het duidelijk welke data je verplicht moet delen en welke data optioneel is?</p>
                     <div class="divider-below-question"></div>
                 </div>
                 <label class="custom-checkbox">
-                    <input type="checkbox" name="implications-weight" value="minder" class="exclusive">
+                    <input type="checkbox" name="loyalty-data-clear" value="ja" class="exclusive">
                     <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Minder</div>
+                    <div class="checkbox-text">Ja</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="loyalty-data-clear" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+
+          
+
+            <div class="question-block">
+                <div>
+                    <p class="question">Waar gaat verplichte data over?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="implications-weight" value="minder" >
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Data die volgens de wet moet worden gedeeld</div>
                 </label>
                 <label class="custom-checkbox">
                     <input type="checkbox" name="implications-weight" value="meer" class="exclusive">
                     <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Meer</div>
+                    <div class="checkbox-text">Data die volgens de doelen die door de organisatie worden vermeld verplicht is</div>
                 </label>
                 <label class="custom-checkbox">
                     <input type="checkbox" name="implications-weight" value="gelijk" class="exclusive">
                     <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Gelijk</div>
+                    <div class="checkbox-text">Data die je moet delen anders kun je de dienst niet gebruiken</div>
                 </label>
             </div>
 
-            <div class="question-block">
-                <div>
-                    <p class="question">Stelling: Het weergeven van doelen en begrijpen van implicaties is dermate complex dat dit niet alleen moet worden overgelaten aan het individu maar net als in andere sectoren moeten worden geregeld door middel van een keurmerk of regels.</p>
-                    <div class="divider-below-question"></div>
-                </div>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="statement-agree" value="mee-eens" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Mee eens</div>
-                </label>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="statement-agree" value="mee-oneens" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Mee oneens</div>
-                </label>
-            </div>
+          
         </form>
     </div>
     <div class="button-container">
@@ -645,151 +771,9 @@
         <h1>Praktische implicaties en gedragspsychologie</h1>
 
         <form>
-            <div class="question-block">
-                <div>
-                    <p class="question">Hoe vaak lees je privacyvoorwaarden voordat je akkoord geeft?</p>
-                    <div class="divider-below-question"></div>
-                </div>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="read-privacy-terms" value="altijd" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Altijd</div>
-                </label>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="read-privacy-terms" value="soms" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Soms</div>
-                </label>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="read-privacy-terms" value="zelden" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Zelden</div>
-                </label>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="read-privacy-terms" value="nooit" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Nooit</div>
-                </label>
-            </div>
-
-            <div class="question-block">
-                <div>
-                    <p class="question">Denk je dat mensen die een overeenkomst voor het delen en verwerken van data beoordelen altijd de tijd en aandacht hebben om deze door te lezen?</p>
-                    <div class="divider-below-question"></div>
-                </div>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="read-time" value="ja" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Ja</div>
-                </label>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="read-time" value="nee" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Nee</div>
-                </label>
-            </div>
-
-            <div class="question-block">
-                <div>
-                    <p class="question">Denk je dat mensen die een overeenkomst voor het delen en verwerken van data beoordelen de voorwaardes en doelen begrijpen?</p>
-                    <div class="divider-below-question"></div>
-                </div>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="understand-terms" value="ja" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Ja</div>
-                </label>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="understand-terms" value="nee" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Nee</div>
-                </label>
-            </div>
-
-            <div class="question-block">
-                <div>
-                    <p class="question">Denk je dat mensen altijd de implicaties begrijpen die bij deze doelen horen?</p>
-                    <div class="divider-below-question"></div>
-                </div>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="understand-implications" value="ja-volledig" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Ja, volledig</div>
-                </label>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="understand-implications" value="nee" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Nee</div>
-                </label>
-            </div>
-
-            <div class="question-block">
-                <div>
-                    <p class="question">Denk je dat het specificeren van de doelen ervoor zorgt dat dan ook de implicaties volledig duidelijk zijn?</p>
-                    <div class="divider-below-question"></div>
-                </div>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="specifying-goals" value="ja-volledig" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Ja, volledig</div>
-                </label>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="specifying-goals" value="nee" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Nee</div>
-                </label>
-            </div>
-
-            <div class="question-block">
-                <div>
-                    <p class="question">Vind je dat bedrijven met een commercieel belang bij jouw data altijd duidelijk zijn over hoe ze data verwerken?</p>
-                    <div class="divider-below-question"></div>
-                </div>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="commercial-transparency" value="ja" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Ja</div>
-                </label>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="commercial-transparency" value="nee" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Nee</div>
-                </label>
-            </div>
-
-            <div class="question-block">
-                <div>
-                    <p class="question">Denk je dat bedrijven soms bewust technieken toepassen om je aan te sturen richting acceptatie van voorwaarden?</p>
-                    <div class="divider-below-question"></div>
-                </div>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="techniques" value="ja" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Ja</div>
-                </label>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="techniques" value="nee" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Nee</div>
-                </label>
-            </div>
-
-            <div class="question-block">
-                <div>
-                    <p class="question">Denk je dat er bedrijven of statelijke actoren met belangen zijn die waardevolle data in bezit willen krijgen voor gebruik en combineren van data?</p>
-                    <div class="divider-below-question"></div>
-                </div>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="actors-interest" value="ja" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Ja</div>
-                </label>
-                <label class="custom-checkbox">
-                    <input type="checkbox" name="actors-interest" value="nee" class="exclusive">
-                    <span class="checkbox-box"></span>
-                    <div class="checkbox-text">Nee</div>
-                </label>
-            </div>
+            
+           
+           
         </form>
     </div>
     <div class="button-container">
@@ -802,7 +786,9 @@
 <section id="step-7" class="step">
     <div class="subsection">
         <h1>Wettelijke bescherming en uitvoerbaarheid</h1>
-        <p>De Algemene Verordening Gegevensbescherming (AVG) biedt organisaties de mogelijkheid om persoonsgegevens te verwerken, mits zij zich kunnen beroepen op een wettelijke grondslag. Eén van deze grondslagen is het gerechtvaardigd belang.</p>
+
+        <p>De Algemene Verordening Gegevensbescherming (AVG) biedt organisaties de mogelijkheid om persoonsgegevens te verwerken, 
+            mits zij zich kunnen beroepen op een wettelijke grondslag. Eén van deze grondslagen is het gerechtvaardigd belang.</p>
 
         <form>
             <div class="question-block">
@@ -830,6 +816,24 @@
                     Daarnaast moeten betrokkenen redelijkerwijs kunnen verwachten dat hun gegevens op deze manier worden gebruikt.
                 </p>
             </div>
+
+            <div class="question-block">
+                <div>
+                    <p class="question">Vind je dat bedrijven met een commercieel belang bij jouw data altijd duidelijk zijn over hoe ze data verwerken?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="commercial-transparency" value="ja" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="commercial-transparency" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+
 
             <div class="question-block">
                 <div>
@@ -869,6 +873,245 @@
 
             <div class="question-block">
                 <div>
+                    <p class="question">Denk je dat bedrijven soms bewust technieken toepassen om je aan te sturen richting acceptatie van voorwaarden?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="techniques" value="ja" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="techniques" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+
+            <div class="question-block">
+                <div>
+                    <p class="question">Denk je dat er bedrijven of statelijke actoren met belangen zijn die waardevolle data in bezit willen krijgen voor gebruik en combineren van data?</p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="actors-interest" value="ja" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Ja</div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="actors-interest" value="nee" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+
+           
+        </form>
+    </div>
+    <div class="button-container">
+        <button class="prev">Terug</button>
+        <button class="next">Volgende</button>
+    </div>
+</section>
+
+<!-- Stap 8: Expliciete toestemming -->
+<section id="step-8" class="step">
+    <div class="subsection">
+        <h1>Expliciete toestemming</h1>
+
+        <p>Definitie van toestemming (Artikel 4, lid 11): <br>
+
+            "‘toestemming’ van de betrokkene: elke vrije, specifieke, geïnformeerde en ondubbelzinnige wilsuiting waarmee de betrokkene door middel van een verklaring of een ondubbelzinnige actieve handeling aanvaardt dat hem betreffende persoonsgegevens worden verwerkt."
+            <br>
+            De AVG schrijft dus voor dat toestemming:
+            <br>
+            Vrijwillig moet zijn (zonder dwang of afhankelijkheid van een andere dienst). <br>
+            Specifiek moet zijn voor een duidelijk omschreven doel. <br>
+            Geïnformeerd moet zijn (met volledige en begrijpelijke uitleg over wat er met de gegevens gebeurt). <br>
+            Ondubbelzinnig moet blijken uit een actieve keuze van de gebruiker. <br>
+        </p>
+
+        <form>
+
+        <div class="question-block">
+            <div>
+                <p class="question">Hoe vaak lees je privacyvoorwaarden voordat je akkoord geeft?</p>
+                <div class="divider-below-question"></div>
+            </div>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="read-privacy-terms" value="altijd" class="exclusive">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">Altijd</div>
+            </label>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="read-privacy-terms" value="soms" class="exclusive">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">Soms</div>
+            </label>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="read-privacy-terms" value="zelden" class="exclusive">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">Zelden</div>
+            </label>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="read-privacy-terms" value="nooit" class="exclusive">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">Nooit</div>
+            </label>
+        </div>
+
+        <div class="question-block">
+            <div>
+                <p class="question">Denk je dat mensen die een overeenkomst voor het delen en verwerken van data beoordelen altijd de tijd en aandacht hebben om deze door te lezen?</p>
+                <div class="divider-below-question"></div>
+            </div>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="read-time" value="ja" class="exclusive">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">Ja</div>
+            </label>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="read-time" value="nee" class="exclusive">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">Nee</div>
+            </label>
+        </div>
+
+        <div class="question-block">
+            <div>
+                <p class="question">Denk je dat mensen die een overeenkomst voor het delen en verwerken van data beoordelen de voorwaardes en doelen begrijpen?</p>
+                <div class="divider-below-question"></div>
+            </div>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="understand-terms" value="ja" class="exclusive">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">Ja</div>
+            </label>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="understand-terms" value="nee" class="exclusive">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">Nee</div>
+            </label>
+        </div>
+
+        <div class="question-block">
+            <div>
+                <p class="question">Denk je dat mensen altijd de implicaties begrijpen die bij deze doelen horen?</p>
+                <div class="divider-below-question"></div>
+            </div>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="understand-implications" value="ja-volledig" class="exclusive">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">Ja, volledig</div>
+            </label>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="understand-implications" value="nee" class="exclusive">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">Nee</div>
+            </label>
+        </div>
+
+        <div class="question-block">
+            <div>
+                <p class="question">Denk je dat het specificeren van de doelen ervoor zorgt dat dan ook de implicaties volledig duidelijk zijn?</p>
+                <div class="divider-below-question"></div>
+            </div>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="specifying-goals" value="ja-volledig" class="exclusive">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">Ja, volledig</div>
+            </label>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="specifying-goals" value="nee" class="exclusive">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">Nee</div>
+            </label>
+        </div>
+
+        <div class="question-block">
+            <div>
+                <p class="question" id="behavioral-barriers-question">
+                    Welke gedragspsychologische belemmeringen beïnvloeden expliciete toestemming op basis van bovenstaande criteria?
+                </p>
+                <div class="divider-below-question"></div>
+            </div>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="behavioral-barriers" value="cognitive-load">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">
+                    Cognitieve belasting: Bij digitale interacties worden gebruikers vaak overweldigd door de hoeveelheid keuzes en verplichtingen, wat leidt tot automatische of ondoordachte beslissingen (bijvoorbeeld snel klikken op "akkoord").
+                </div>
+            </label>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="behavioral-barriers" value="information-asymmetry">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">
+                    Informatie-asymmetrie: Gebruikers hebben doorgaans beperkte kennis van hoe gegevens daadwerkelijk worden verwerkt en welke risico's eraan verbonden zijn. Abstracte begrippen zoals "data-analyse", "profilering" of "gegevensdeling" zijn vaak moeilijk te begrijpen zonder aanvullende uitleg.
+                </div>
+            </label>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="behavioral-barriers" value="nudging" >
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">
+                    Beïnvloeding: Gebruikers kunnen gevoelig zijn voor dark patterns en nudging. Websites en applicaties kunnen psychologische nudging-technieken toepassen om gebruikers naar een bepaalde keuze te sturen, wat de vrijwilligheid kan beïnvloeden.
+                </div>
+            </label>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="behavioral-barriers" value="implication-understanding" >
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">
+                    Begrip van implicaties: Het combineren van gegevens, delen met derden, en opslag buiten de EU zijn concepten die moeilijk te doorgronden zijn voor de gemiddelde gebruiker.
+                </div>
+            </label>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="behavioral-barriers" value="access-requirement" >
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">
+                    Als toestemming een vereiste is om toegang te krijgen tot een dienst, kan het moeilijk worden geacht vrijwillig te zijn.
+                </div>
+            </label>
+        </div>
+        
+
+        
+        <div class="question-block">
+            <div>
+                <p class="question" id="user-support-question">
+                    Denk je dat het nuttig is om de gebruiker te ondersteunen?
+                </p>
+                <div class="divider-below-question"></div>
+            </div>
+           
+            <label class="custom-checkbox">
+                <input type="checkbox" name="user-support" value="user-friendly-interfaces" class="exclusive">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">Ja</div>
+            </label>
+            <label class="custom-checkbox">
+                <input type="checkbox" name="user-support" value="transparency-rules" class="exclusive">
+                <span class="checkbox-box"></span>
+                <div class="checkbox-text">Nee</div>
+            </label>
+        </div>
+      
+          
+        </form>
+    </div>
+    <div class="button-container">
+        <button class="prev">Terug</button>
+        <button class="next">Volgende</button>
+    </div>
+</section>
+
+
+<!-- Stap 9: Handhaving -->
+<section id="step-9" class="step">
+    <div class="subsection">
+        <h1>Praktische implicaties en gedragspsychologie</h1>
+
+        <form>
+            <div class="question-block">
+                <div>
                     <p class="question">Denk je dat er voldoende uitvoeringscapaciteit is om te reageren?</p>
                     <div class="divider-below-question"></div>
                 </div>
@@ -883,7 +1126,144 @@
                     <span class="checkbox-box"></span>
                     <div class="checkbox-text">Nee</div>
                 </label>
+            </div>           
+           
+           
+        </form>
+    </div>
+    <div class="button-container">
+        <button class="prev">Terug</button>
+        <button class="next">Volgende</button>
+    </div>
+</section>
+
+<!-- Stap 10: Uitleg registry en embedded policy -->
+<section id="step-10" class="step">
+    <div class="subsection">
+        <h1>Oplossingsrichtingen</h1>
+
+        <form>
+            <p>
+                In het relying party register moet de beschrijving van het beoogde gebruik duidelijk maken waarom attributen worden opgevraagd<br>
+                en of dit vereist is door EU- of nationale wetgeving.<br>
+                Bij de "intended use of the attributes to be requested by the wallet-relying party from wallet units"<br>
+                wordt momenteel machine leesbaarheid en standaardisatie niet expliciet benoemd.<br>
+                Zonder standaardisatie en machine leesbaarheid kunnen relying parties verschillende terminologie of structuren gebruiken,<br>
+                wat transparantie en automatische filtering bemoeilijkt.
+            </p>
+            <div class="question-block">
+                <div>
+                    <p class="question" id="relying-party-register-question">
+                        Wat moet worden toegevoegd aan het relying party register om beoogd gebruik duidelijker te maken en standaardisatie te bevorderen?
+                    </p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="relying-party-register" value="uniform-standard" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">
+                        Het ontwikkelen van een uniforme standaard voor het beschrijven van beoogde doelen zodat er duidelijke richtlijnen worden gecreëerd voor relying parties om consistente beschrijvingen van doeleinden te waarborgen.
+                    </div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="relying-party-register" value="explicit-criteria" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">
+                        Criteria zoals het combineren van gegevens, delen met derden, doorverkopen en opslag buiten de EU moeten expliciet worden beschreven.
+                    </div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="relying-party-register" value="machine-readable" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">
+                        Het verplicht stellen van machineleesbare structuren voor "intended use" (bijvoorbeeld JSON-schema's).
+                    </div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="solutions" value="andere">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text" id="text-area">
+                        Andere:
+                        <textarea name="solutions-other" placeholder="Specificeer..." rows="2"></textarea>
+                    </div>
+                </label>
             </div>
+
+            
+            <p>
+                Relatie met embedded policy:<br>
+                De authentic source kan in de embedded policy aangeven voor welke doeleinden (Checken)<br>
+                de data gebruikt mag worden door de gebruiker bij relying parties.<br>
+                Is een kader om een risicoafweging te maken voor een authentic source op basis van het relying party registry nuttig en nodig?
+            </p>
+            <div class="question-block">
+                <div>
+                    <p class="question" id="embedded-policy-question">
+                        Is een kader om een risicoafweging te maken voor een authentic source op basis van het relying party register nuttig en nodig?
+                    </p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                   
+                    <span class="checkbox-box" name="risk-framework" value="yes" class="exclusive"></span>
+                    <div class="checkbox-text">Ja</div>
+                </label>
+                <label class="custom-checkbox">
+                    
+                    <span class="checkbox-box" name="risk-framework" value="no" class="exclusive"></span>
+                    <div class="checkbox-text">Nee</div>
+                </label>
+            </div>
+
+            
+            <p>
+                Zo ja, welke middelen helpen mee om een kader te scheppen?<br>
+                Ja: Het ontwikkelen van een uniforme standaard voor het beschrijven van beoogde doelen<br>
+                    zodat er duidelijke richtlijnen worden gecreëerd voor relying parties om consistente beschrijvingen van doeleinden te waarborgen.<br>
+                Ja: Criteria zoals het combineren van gegevens, delen met derden, doorverkopen en opslag buiten de EU<br>
+                    moeten expliciet worden beschreven.<br>
+                Ja: Het verplicht stellen van machineleesbare structuren voor "intended use" (bijvoorbeeld JSON-schema's).
+            </p>
+            <div class="question-block">
+                <div>
+                    <p class="question" id="framework-support-question">
+                        Zo ja, welke middelen helpen mee om een kader te scheppen?
+                    </p>
+                    <div class="divider-below-question"></div>
+                </div>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="framework-support" value="uniform-standard" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">
+                        Het ontwikkelen van een uniforme standaard voor het beschrijven van beoogde doelen zodat er duidelijke richtlijnen worden gecreëerd voor relying parties om consistente beschrijvingen van doeleinden te waarborgen.
+                    </div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="framework-support" value="explicit-criteria" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">
+                        Criteria zoals het combineren van gegevens, delen met derden, doorverkopen en opslag buiten de EU moeten expliciet worden beschreven.
+                    </div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="framework-support" value="machine-readable" class="exclusive">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text">
+                        Het verplicht stellen van machineleesbare structuren voor "intended use" (bijvoorbeeld JSON-schema's).
+                    </div>
+                </label>
+                <label class="custom-checkbox">
+                    <input type="checkbox" name="solutions" value="andere">
+                    <span class="checkbox-box"></span>
+                    <div class="checkbox-text" id="text-area">
+                        Andere:
+                        <textarea name="solutions-other" placeholder="Specificeer..." rows="2"></textarea>
+                    </div>
+                </label>
+            </div>
+            
+           
+           
         </form>
     </div>
     <div class="button-container">
@@ -893,10 +1273,12 @@
 </section>
 
 
-<!-- Stap 8: Oplossingen -->
-<section id="step-8" class="step">
+
+
+<!-- Stap 11: Wanneer -->
+<section id="step-11" class="step">
     <div class="subsection">
-        <h1>Oplossingen</h1>
+        <h1>Wanneer</h1>
         <form>
             <div class="question-block">
                 <div>
@@ -994,8 +1376,8 @@
     </div>
 </section>
 
-<!-- Stap 9: Einde demo -->
-<section id="step-9" class="step">
+<!-- Stap 12: Einde demo -->
+<section id="step-11" class="step">
     <div class="subsection">
         <h1>Einde demo</h1>
         <hr>

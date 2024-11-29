@@ -276,6 +276,7 @@ form {
   background-color: #fff; /* Witte achtergrond */
   transition: all 0.3s; /* Soepele overgangseffecten */
   position: relative; /* Voor het plaatsen van het vinkje */
+  flex-shrink: 0;
 }
 
 /* Vinkje en blauwe achtergrond bij selectie */
