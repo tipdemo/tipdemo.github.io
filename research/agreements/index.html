@@ -252,175 +252,410 @@
         <h1>Weergave van verzoeken</h1>
         <p>Bekijk onderstaand scherm:</p>
 
-        <div class="phone">
-            <div class="phone-screen">
-                <div class="wallet-screen" id="scrollable-wallet">
-                    <p><strong>Wil je de volgende data delen met Hypotheek kiezer?</strong></p>
-                    <hr>
-                    <ul>
-                        <li>Voornaam</li>
-                        <li>Achternaam</li>
-                        <li>Straat</li>
-                        <li>Postcode</li>
-                        <li>Woonplaats</li>
-                        <li>Geboortedatum</li>
-                        <li>Telefoonnummer</li>
-                        <li>Verzamelinkomen</li>
-                        <li>Nationaliteit</li>
-                        <li>Burgerlijke staat</li>
-                    </ul>
-                    <p><br></p>
-                    <p><strong>Overeenkomst:</strong></p>
-                    <hr>
-                    <p>Uw data wordt gebruikt voor de volgende doelen:</p>
-                    <hr>
-                    <!-- Doel 1 -->
-                    <p><strong>Gepersonaliseerde aanbiedingen</strong></p>
-                    <p>Selecteer welke gegevens gebruikt mogen worden voor het afstemmen van aanbiedingen:</p>
-                    <ul>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="offers-firstname"> Voornaam - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="offers-lastname"> Achternaam - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="offers-location"> Woonplaats - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="offers-birthdate"> Geboortedatum - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="offers-income"> Verzamelinkomen - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="offers-marital-status"> Burgerlijke staat - Toestemming
-                            </label>
-                        </li>
-                    </ul>
-                    <p>Combinatie van gegevens met eerdere aankopen of interacties:</p>
+
+<div class="phone">
+    <div class="phone-screen">
+        <div class="wallet-screen" id="scrollable-wallet">
+            <p><strong>Wil je de volgende data delen met onze dienst?</strong></p>
+            <hr>
+            <!-- Dataonderdelen -->
+            <div class="data-list">
+                <div>
                     <label>
-                        <input type="checkbox" name="offers-combine"> Ik geef toestemming voor het combineren van gegevens voor gepersonaliseerde aanbiedingen
+                        <input type="checkbox" name="data-firstname"> Voornaam
                     </label>
-                    <p>Retentie: 1 jaar. Opslag: EU en VS.</p>
-                    <hr>
-                    <!-- Doel 2 -->
-                    <p><strong>Gepersonaliseerde advertenties</strong></p>
-                    <p>Selecteer welke gegevens mogen worden verwerkt voor advertenties afgestemd op jouw interesses:</p>
-                    <ul>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="ads-firstname"> Voornaam - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="ads-lastname"> Achternaam - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="ads-location"> Woonplaats - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="ads-birthdate"> Geboortedatum - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="ads-income"> Verzamelinkomen - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="ads-marital-status"> Burgerlijke staat - Toestemming
-                            </label>
-                        </li>
-                    </ul>
-                    <p>Combinatie van gegevens met online gedrag of eerdere aankopen:</p>
+                </div>
+                <div>
                     <label>
-                        <input type="checkbox" name="ads-combine"> Ik geef toestemming voor het combineren van gegevens voor advertenties
+                        <input type="checkbox" name="data-lastname"> Achternaam
                     </label>
-                    <p>Retentie: 1 jaar. Opslag: EU en VS.</p>
-                    <hr>
-                    <!-- Doel 3 -->
-                    <p><strong>Direct mailcampagnes</strong></p>
-                    <p>Selecteer welke gegevens mogen worden gebruikt voor het verzenden van fysieke brochures:</p>
-                    <ul>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="mail-firstname"> Voornaam - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="mail-lastname"> Achternaam - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="mail-location"> Woonplaats - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="mail-marital-status"> Burgerlijke staat - Toestemming
-                            </label>
-                        </li>
-                    </ul>
-                    <p>Geen combinatie van gegevens. Retentie: 3 jaar. Opslag: EU.</p>
-                    <hr>
-                    <!-- Doel 4 -->
-                    <p><strong>Marktanalyse</strong></p>
-                    <p>Selecteer welke gegevens mogen worden verwerkt voor statistische analyses:</p>
-                    <ul>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="analysis-birthdate"> Geboortedatum - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="analysis-income"> Verzamelinkomen - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="analysis-nationality"> Nationaliteit - Toestemming
-                            </label>
-                        </li>
-                        <li>
-                            <label>
-                                <input type="checkbox" name="analysis-marital-status"> Burgerlijke staat - Toestemming
-                            </label>
-                        </li>
-                    </ul>
-                    <p>Geanonimiseerde gegevens worden gecombineerd met nationale statistieken. Retentie: 5 jaar. Opslag: EU en VS.</p>
+                </div>
+                <div>
                     <label>
-                        <input type="checkbox" name="analysis-combine"> Ik geef toestemming voor het combineren van gegevens voor marktanalyse
+                        <input type="checkbox" name="data-street"> Straat
                     </label>
-                    <hr>
-                    <p>Uw data wordt gedeeld volgens onze <a href="privacyverklaring.html" target="_blank">privacyvoorwaarden</a>.</p>
-                    <div class="button-container-wallet">
-                        <button class="cancel-button">Stoppen</button>
-                        <button class="accept-button">Akkoord</button>
-                    </div>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="data-postcode"> Postcode
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="data-city"> Woonplaats
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="data-birthdate"> Geboortedatum
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="data-phone"> Telefoonnummer
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="data-income"> Verzamelinkomen
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="data-nationality"> Nationaliteit
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="data-marital-status"> Burgerlijke staat
+                    </label>
                 </div>
             </div>
+            <p><br></p>
+            <p><strong>Overeenkomst:</strong></p>
+            <hr>
+            <p>Selecteer per dataonderdeel voor welke verwerkingen je toestemming geeft:</p>
+            <!-- Verwerkingen per dataonderdeel -->
+            <div class="data-processing">
+                <!-- Voornaam -->
+                <div class="data-item">
+                    <div class="data-item">
+                        <p><strong>Voornaam</strong></p>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-approval">
+                                Uw aanvraag beoordelen en goedkeuren
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-account">
+                                Aanmaken en beheren van uw account
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-financial-overview">
+                                Overzicht financiële situatie bieden
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-preferences">
+                                Aanpassen abonnementen aan voorkeuren
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-delivery">
+                                Producten/diensten leveren
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-billing">
+                                Verwerken gegevens voor facturering
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-online-services">
+                                Registreren voor online diensten
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-support">
+                                Beantwoorden van vragen
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-inform">
+                                Informeren over wijzigingen
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-complaints">
+                                Behandelen van klachten
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-quality-training">
+                                Kwaliteits- en trainingsdoeleinden
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-credit-check">
+                                Kredietwaardigheid controleren
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-marketing">
+                                Versturen van marketingberichten
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-discounts">
+                                Bepalen van kortingen en aanbiedingen
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-reengage">
+                                Benaderen om opnieuw klant te worden
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-surveys">
+                                Klanttevredenheidsonderzoeken
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-internal-analysis">
+                                Interne analyses ter verbetering
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-improve-services">
+                                Diensten en producten verbeteren
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-ad-analysis">
+                                Analyseren voor advertentiecampagnes
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-personal-offers">
+                                Persoonlijke aanbiedingen doen
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-apps">
+                                Aanbieden via apps
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-cookies">
+                                Gebruik van cookies
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-it-security">
+                                Veilige IT-omgeving waarborgen
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-fraud-prevention">
+                                Fraude voorkomen en opsporen
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-legal-compliance">
+                                Voldoen aan wettelijke verplichtingen
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-admin-processing">
+                                Administratief verwerken aanmelding/opzegging
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-debt-assistance">
+                                Schuldhulpverlening regelen
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-audit">
+                                Accountantscontroles uitvoeren
+                            </label>
+                        </div>
+                        <div>
+                            <label>
+                                <input type="checkbox" name="process-firstname-merger">
+                                Verwerken bij fusie/overname
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Achternaam -->
+                <div class="data-item">
+                    <p><strong>Achternaam</strong></p>
+                    <div>
+                        <label>
+                            <input type="checkbox" name="process-lastname-approval">
+                            Uw aanvraag beoordelen en goedkeuren
+                        </label>
+                    </div>
+                    <div>
+                        <label>
+                            <input type="checkbox" name="process-lastname-account">
+                            Aanmaken en beheren van uw account
+                        </label>
+                    </div>
+                    <!-- Voeg alle andere verwerkingen toe voor Achternaam -->
+                    <!-- ... -->
+                </div>
+                <!-- Herhaal dit patroon voor alle dataonderdelen -->
+                <!-- Straat -->
+                <div class="data-item">
+                    <p><strong>Straat</strong></p>
+                    <!-- Verwerkingen voor Straat -->
+                    <div>
+                        <label>
+                            <input type="checkbox" name="process-street-delivery">
+                            Producten/diensten leveren
+                        </label>
+                    </div>
+                    <!-- ... -->
+                </div>
+                <!-- Postcode -->
+                <div class="data-item">
+                    <p><strong>Postcode</strong></p>
+                    <!-- Verwerkingen voor Postcode -->
+                    <div>
+                        <label>
+                            <input type="checkbox" name="process-postcode-delivery">
+                            Producten/diensten leveren
+                        </label>
+                    </div>
+                    <!-- ... -->
+                </div>
+                <!-- Woonplaats -->
+                <div class="data-item">
+                    <p><strong>Woonplaats</strong></p>
+                    <!-- Verwerkingen voor Woonplaats -->
+                    <div>
+                        <label>
+                            <input type="checkbox" name="process-city-delivery">
+                            Producten/diensten leveren
+                        </label>
+                    </div>
+                    <!-- ... -->
+                </div>
+                <!-- Geboortedatum -->
+                <div class="data-item">
+                    <p><strong>Geboortedatum</strong></p>
+                    <!-- Verwerkingen voor Geboortedatum -->
+                    <div>
+                        <label>
+                            <input type="checkbox" name="process-birthdate-approval">
+                            Uw aanvraag beoordelen en goedkeuren
+                        </label>
+                    </div>
+                    <!-- ... -->
+                </div>
+                <!-- Telefoonnummer -->
+                <div class="data-item">
+                    <p><strong>Telefoonnummer</strong></p>
+                    <!-- Verwerkingen voor Telefoonnummer -->
+                    <div>
+                        <label>
+                            <input type="checkbox" name="process-phone-support">
+                            Beantwoorden van vragen
+                        </label>
+                    </div>
+                    <!-- ... -->
+                </div>
+                <!-- Verzamelinkomen -->
+                <div class="data-item">
+                    <p><strong>Verzamelinkomen</strong></p>
+                    <!-- Verwerkingen voor Verzamelinkomen -->
+                    <div>
+                        <label>
+                            <input type="checkbox" name="process-income-credit-check">
+                            Kredietwaardigheid controleren
+                        </label>
+                    </div>
+                    <!-- ... -->
+                </div>
+                <!-- Nationaliteit -->
+                <div class="data-item">
+                    <p><strong>Nationaliteit</strong></p>
+                    <!-- Verwerkingen voor Nationaliteit -->
+                    <div>
+                        <label>
+                            <input type="checkbox" name="process-nationality-legal-compliance">
+                            Voldoen aan wettelijke verplichtingen
+                        </label>
+                    </div>
+                    <!-- ... -->
+                </div>
+                <!-- Burgerlijke staat -->
+                <div class="data-item">
+                    <p><strong>Burgerlijke staat</strong></p>
+                    <!-- Verwerkingen voor Burgerlijke staat -->
+                    <div>
+                        <label>
+                            <input type="checkbox" name="process-marital-status-personal-offers">
+                            Persoonlijke aanbiedingen doen
+                        </label>
+                    </div>
+                    <!-- ... -->
+                </div>
+            </div>
+            <p><br></p>
+            <!-- Toestemming voor combineren van gegevens per doel -->
+            <p><strong>Combineren van gegevens:</strong></p>
+            <p>Selecteer voor welke doeleinden je toestemming geeft om je gegevens te combineren:</p>
+            <div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="combine-offers"> Persoonlijke aanbiedingen doen
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="combine-ads"> Analyseren voor advertentiecampagnes
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="combine-internal-analysis"> Interne analyses ter verbetering
+                    </label>
+                </div>
+            </div>
+            <p><br></p>
+            <!-- Retentie en opslaginformatie -->
+            <p><strong>Retentie en opslag:</strong></p>
+            <div>
+                <p>Gepersonaliseerde aanbiedingen: Retentie 1 jaar, Opslag in EU en VS</p>
+                <p>Analyseren voor advertentiecampagnes: Retentie 1 jaar, Opslag in EU en VS</p>
+                <p>Interne analyses ter verbetering: Retentie 5 jaar, Opslag in EU</p>
+            </div>
+            <p><br></p>
+            <!-- Link naar privacyvoorwaarden -->
+            <p>Uw data wordt gedeeld volgens onze <a href="privacyverklaring.html" target="_blank">privacyvoorwaarden</a>.</p>
+            <!-- Buttons voor accepteren of annuleren -->
+            <div class="button-container-wallet">
+                <button class="cancel-button">Stoppen</button>
+                <button class="accept-button">Akkoord</button>
+            </div>
         </div>
+    </div>
+</div>
+
+        
+        
         
         
 
