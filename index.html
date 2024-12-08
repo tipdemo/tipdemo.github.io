@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demonstratie-omgeving TIP</title>
+  <title>Demo & Lab omgeving TIP</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="style.css">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -12,7 +12,7 @@
    <!-- Open Graph Meta Tags for Social Media Sharing -->
   <meta property="og:locale" content="nl_NL">
   <meta property="og:site_name" content="Demonstratie-omgeving Trusted Information Partners (TIP)">
-  <meta property="og:title" content="Demonstratie-omgeving TIP">
+  <meta property="og:title" content="Demo & Lab-omgeving TIP">
   <meta property="og:description" content="Een demonstratieomgeving voor visualisatie, onderzoek en dialoog door Trusted Information Partners (TIP).">
   <meta property="og:image" content="https://www.tipdemo.nl/social-share-image.png">
   <meta property="og:image:alt" content="Afbeelding van de demonstratie-omgeving van TIP met prototype, scenario's en onderzoeksopties">
@@ -28,22 +28,54 @@
   <meta name="twitter:image" content="https://www.tipdemo.nl/social-share-image.png">
 </head>
 <body>
+
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="navbar-container">
+    <img src="logo3.svg" alt="Logo" class="navbar-logo">
+    <button class="hamburger-menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero Image Section -->
+<section class="hero">
+  <img src="hero.png" alt="Hero Image" class="hero-image">
+  <div class="hero-text">
+    <h1 style="text-align: center;">
+      <span>onderzoekt, visualiseert en demonstreert digitale identiteiten en vertrouwensdiensten</span>
+    </h1>
+  </div>
+</section>
+
   <div class="main-container">
-    <img src="logotip.png" alt="Logo van Trusted Information Partners (TIP)" id="tip-logo">
+    <!-- <img src="logotip.png" alt="Logo van Trusted Information Partners (TIP)" id="tip-logo"> -->
 
-    <h1 id="title-mainpage">Demonstratie-omgeving</h1>
-    <h3 id="subtitle-mainpage">Een demonstratieomgeving voor visualisatie, onderzoek en dialoog</h3>
+   <!--  <h1 id="title-mainpage">Demonstratie-omgeving</h1>
+    <h3 id="subtitle-mainpage">Een demonstratieomgeving voor visualisatie, onderzoek en dialoog</h3> -->
     
-    <hr>
-    <p id="introtext-mainpage">
-      Deze website biedt een prototype van een persoonlijke digitale omgeving met geïntegreerde wallet-functies, en voorbeeldsituaties waarin je deze kunt toepassen. <br>
-      De demonstratie-omgeving is opgezet vanuit een ontwerpende aanpak, waarbij we de Europese digitale identiteit tastbaar maken en uitwerken in concrete scenario’s. Dit stelt ons in staat om doorlopend te leren, verbeteren en waardevolle inzichten te verkrijgen.<br>
+   <!--  <hr> -->
+   <div id="text-columns">
+    <div class="text-column">
+      Steeds meer van ons leven speelt zich online af. We communiceren via sociale media, regelen onze financiën online, doen aankopen via het internet en hebben digitaal contact 
+      met de overheid.
+
+      <br> Tegelijkertijd kunnen die digitale interacties veiliger, gebruiksvriendelijker en efficiënter. 
+      <br>Op deze website visualiseren we hoe die toekomst eruit kan zien. 
+      <br>Door middel van voorbeeldscenario's wordt gedemonstreerd hoe processen kunnen werken. 
+      <br>Daarnaast biedt deze omgeving ook een lab-omgeving waarin we onderzoek kunnen doen. <br>
+    
+    </div>
+    <div class="text-column">
+      Deze omgeving is opgezet vanuit een ontwerpende aanpak, waarbij we de Europese digitale identiteit en vertrouwensdiensten tastbaar maken en uitwerken in concrete scenario’s. Dit stelt ons in staat om doorlopend te leren, verbeteren en waardevolle inzichten te verkrijgen.
       Door abstracte zaken tastbaar te maken, ondersteunt deze omgeving gesprekken over de mogelijkheden, randvoorwaardes en ontwikkelpunten, en maakt daarnaast onderzoek en demonstraties mogelijk die inzicht geven in hoe processen kunnen werken.<br>
-      Deze demonstratie-omgeving is een intiatief van <a href="https://www.trustedinformationpartners.nl" target="_blank" aria-label="Bezoek de website van Trusted Information Partners, opent in een nieuw venster">Trusted Information Partners (TIP)</a>.
-      
-    </p>
+      Deze demonstratie-omgeving is een initiatief van <a href="https://www.trustedinformationpartners.nl" target="_blank" aria-label="Bezoek de website van Trusted Information Partners, opent in een nieuw venster">Trusted Information Partners (TIP)</a>.
+    </div>
+  </div>
     
-
+ <!--  Deze website biedt een prototype van een persoonlijke digitale omgeving en voorbeeldsituaties waarin je deze kunt toepassen.  -->
     <h3 class="accordion-header" id="hoofdpagina-accordion-header" aria-expanded="false" aria-controls="aanpak-content" role="button" tabindex="0" >
       Wat is een ontwerpende aanpak <i class="fas fa-chevron-down"></i>
     </h3>
@@ -107,31 +139,38 @@ Parallel hieraan wordt binnen Trusted Information Partners een
   </p>
 </div>
     <hr>
-    <!-- Voorbeelden sectie met knop naar de nieuwe voorbeeldenpagina -->
-    <section class="sectie">
-      <h2>Voorbeelden</h2>
-      <p>Ontdek hoe de handelingsomgeving kan worden gebruikt in verschillende situaties. Klik op de onderstaande knop om de voorbeelden te bekijken.</p>
-      <a class="read-more" href="examples/index.html" aria-label="Bekijk de voorbeelden waarop je de handelingsomgeving kunt toepassen"><i class="fas fa-lightbulb"></i>Bekijk de voorbeelden</a>
+
+
+
+    <section class="examples-section">
+      <div class="section-content">
+        <div class="section-image">
+          <img src="examples.png" alt="Voorbeelden" />
+        </div>
+        <div class="section-text">
+          <h2> Voorbeelden</h2>
+          <p>Ontdek hoe de handelingsomgeving kan worden gebruikt in verschillende situaties. Klik op de onderstaande knop om de voorbeelden te bekijken.</p>
+          <a class="read-more" href="examples/index.html" aria-label="Bekijk de voorbeelden waarop je de handelingsomgeving kunt toepassen"><i class="fas fa-play"></i> Bekijk de voorbeelden</a>
+        </div>
+      </div>
     </section>
-
-   
-
-    <section class="sectie">
-      <h2>Onderzoek</h2>
-      
-      <p>
-        Onderzoek vormt de basis voor een veilige en gebruiksvriendelijke ontwikkeling van handelingsomgevingen met walletfunctionaliteiten en vertrouwensdiensten. 
-        Door te kijken naar brede aspecten zoals gebruikerservaring, ethiek, organisatie, juridische kaders en techniek, kunnen we belangrijke randvoorwaarden en succesfactoren identificeren. 
-        Een gestructureerde agenda zorgt ervoor dat alle onderdelen in balans zijn en goed aansluiten, zodat er een betrouwbaar en toegankelijk ecosysteem ontstaat.
-        </p>
-      <a class="read-more" href="research/index.html" aria-label="Bekijk onderzoeksthema's"><i class="fas fa-flask"></i>Bekijk onderzoeksthema's</a>
     
-       
-  
-
-    
+    <section class="research-section">
+      <div class="section-content">
+        <div class="section-image">
+          <img src="research.png" alt="Onderzoek" />
+        </div>
+        <div class="section-text">
+          <h2> Onderzoek</h2>
+          <p>
+            Onderzoek vormt de basis voor een veilige en gebruiksvriendelijke ontwikkeling van digitale omgevingen. 
+            Door te kijken naar brede aspecten zoals gebruikerservaring, ethiek, organisatie, juridische kaders en techniek, kunnen we belangrijke randvoorwaarden en succesfactoren identificeren. 
+            
+          </p>
+          <a class="read-more" href="research/index.html" aria-label="Bekijk onderzoeksthema's"><i class="fas fa-flask"></i> Bekijk onderzoeksthema's</a>
+        </div>
+      </div>
     </section>
-    <!-- Einde sectie -->
 
 
 

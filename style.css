@@ -4,12 +4,11 @@ body {
   color: #555;
   background-color: #ffffff;
   margin: 0;
-  padding: 20px;
   line-height: 1.6;
 }
 
 .main-container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;
@@ -30,8 +29,110 @@ h2 {
 }
 
 a {
-  color: #575757; /* Vervang dit door de gewenste kleurcode */
+  color: #575757; 
 }
+
+
+/* Navbar styling */
+.navbar {
+
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-container {
+  max-width: 900px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  height:60px;
+  object-fit: contain;
+}
+
+.hamburger-menu {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+
+
+/* Hero section styling */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.hero-text h1 {
+  font-size: 40px;
+  margin: 0;
+  color: ;
+}
+
+.hero-text p {
+  font-size: 16px;
+}
+
+.hero-text span {
+  display: inline;
+  padding: 3px;
+  line-height: 1.5em;
+  color: #fff;
+  background-color:  #0097f5; 
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .hero {
+    height: 45vh;
+  }
+
+  .hero-text h1 {
+    font-size: 25px;
+  }
+
+  .hero-text p {
+    font-size: 14px;
+  }
+}
+
 
 #main-intro {
   margin-bottom: 0px;
@@ -59,6 +160,85 @@ padding-left: 10px;
 #introtext-mainpage {
   padding-left: 10px;
 }
+
+
+#introtext-mainpage {
+  margin: 20px 0;
+}
+
+#text-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.text-column {
+  flex: 1 1 calc(50% - 20px); /* Twee kolommen van gelijke breedte met een kleine marge */
+  min-width: 300px; /* Voorkom dat de kolom te smal wordt */
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .text-column {
+    flex: 1 1 100%; /* Eén kolom op mobiele apparaten */
+  }
+}
+
+
+/* Algemene styling voor secties */
+.examples-section, .research-section {
+  border: 1px solid #ccc; /* Rand rondom de sectie */
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px 0;
+  background-color: #ffffff;
+}
+
+/* Layout voor de sectie-inhoud */
+.section-content {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Kolommen styling */
+.section-image {
+  flex: 0 0 25%; /* Afbeelding neemt 25% van de breedte in */
+  text-align: center; /* Centraal uitlijnen */
+}
+
+.section-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px; /* Optioneel: afgeronde hoeken */
+}
+
+.section-text {
+  flex: 0 0 75%; /* Tekst neemt 75% van de breedte in */
+}
+
+.examples-section a{
+color: white;
+background-color: #0097f5;
+}
+
+.research-section a {
+  color: white;
+background-color: #22c573;
+}
+
+
+/* Responsieve aanpassingen */
+@media (max-width: 768px) {
+  .section-content {
+    flex-direction: column; /* Kolommen onder elkaar */
+  }
+
+  .section-image, .section-text {
+    flex: 1 1 100%; /* Beide kolommen vullen de volledige breedte */
+  }
+}
+
 
 
 
