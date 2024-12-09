@@ -160,6 +160,7 @@ a {
   width: 100%;
   justify-content: flex-end; /* Plaats de sluitknop rechts */
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .close-menu {
