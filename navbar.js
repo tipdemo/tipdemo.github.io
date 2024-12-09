@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
       { href: "/index.html", icon: "fas fa-home", text: "Home", ariaLabel: "Home" },
       { href: "/examples/index.html", icon: "fas fa-lightbulb", text: "Voorbeelden", ariaLabel: "Voorbeelden" },
       { href: "/research/index.html", icon: "fas fa-flask", text: "Onderzoek", ariaLabel: "Onderzoek" },
+      { href: "/about/index.html", icon: "fas fa-info-circle", text: "Over", ariaLabel: "Over" }, 
       { href: "/contact/index.html", icon: "fas fa-comments", text: "Contact en feedback", ariaLabel: "Contact en feedback" }
     /*   { href: "/requirements/index.html", icon: "fas fa-tasks", text: "Randvoorwaarden", ariaLabel: "Randvoowaarden" }, */
     ];

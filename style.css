@@ -59,10 +59,10 @@ a {
   object-fit: contain;
 }
 
-.hamburger-menu {
+#hamburger-menu {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 32px;
   cursor: pointer;
 }
 
@@ -131,6 +131,73 @@ a {
   .hero-text p {
     font-size: 14px;
   }
+}
+
+/* Algemene styling voor de fullscreen-menu */
+.fullscreen-menu {
+  display: none; /* Verborgen standaard */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 1); /* Donkere achtergrond */
+  color: #000000;
+  z-index: 1000;
+  align-items: center;
+}
+
+/* Actieve state */
+.fullscreen-menu.active {
+  display: flex;
+  flex-direction: column; /* Toon als flex-container */
+}
+
+/* Header met close button */
+.menu-header {
+  display: flex;
+  max-width: 1000px;
+  width: 100%;
+  justify-content: flex-end; /* Plaats de sluitknop rechts */
+  padding: 20px;
+}
+
+.close-menu {
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: #000000;
+  cursor: pointer;
+}
+
+/* Body met menu-links */
+.menu-body {
+  flex-grow: 1; /* Laat de menu-body groeien om de links te centreren */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Menu links styling */
+.menu-links {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.menu-links li {
+  margin: 20px 0;
+}
+
+.menu-links a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 24px;
+  transition: color 0.3s;
+}
+
+.menu-links a:hover {
+  color: #0068f0; /* Gele kleur bij hover */
 }
 
 

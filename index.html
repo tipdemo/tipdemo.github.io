@@ -33,12 +33,26 @@
 <!-- Navbar -->
 <nav class="navbar">
   <div class="navbar-container">
-    <img src="logo6.svg" alt="Logo" class="navbar-logo">
-    <button class="hamburger-menu">
+    <img id="navbar-logo" alt="Logo" class="navbar-logo">
+    <button id="hamburger-menu">
       <i class="fas fa-bars"></i>
     </button>
   </div>
 </nav>
+
+<!-- Menu -->
+<div id="fullscreen-menu" class="fullscreen-menu">
+  <div class="menu-header">
+    <button id="close-menu" class="close-menu">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="menu-container">
+    <div class="menu-body">
+      <ul id="menu-links" class="menu-links"></ul>
+    </div>
+  </div>
+</div>
 
 <!-- Hero Image Section -->
 <section class="hero">
@@ -56,7 +70,7 @@
    <!--  <h1 id="title-mainpage">Demonstratie-omgeving</h1>
     <h3 id="subtitle-mainpage">Een demonstratieomgeving voor visualisatie, onderzoek en dialoog</h3> -->
     
-   <!--  <hr> -->
+   
    <div id="text-columns">
     <div class="text-column">
       Steeds meer van ons leven speelt zich online af. We communiceren via sociale media, regelen onze financiën online, doen aankopen via het internet en hebben digitaal contact 
@@ -74,73 +88,8 @@
       Deze demonstratie-omgeving is een initiatief van <a href="https://www.trustedinformationpartners.nl" target="_blank" aria-label="Bezoek de website van Trusted Information Partners, opent in een nieuw venster">Trusted Information Partners (TIP)</a>.
     </div>
   </div>
-    
- <!--  Deze website biedt een prototype van een persoonlijke digitale omgeving en voorbeeldsituaties waarin je deze kunt toepassen.  -->
-    <h3 class="accordion-header" id="hoofdpagina-accordion-header" aria-expanded="false" aria-controls="aanpak-content" role="button" tabindex="0" >
-      Wat is een ontwerpende aanpak <i class="fas fa-chevron-down"></i>
-    </h3>
-    <div class="accordion-content" id="aanpak-content" aria-hidden="true" aria-live="polite" >
-      <p>
-        De Europese digitale identiteit gaat over digitale interacties tussen mensen, bedrijven en overheden en is daarmee een complex systeem. 
-        Er zijn allerlei thema's die meespelen: gebruikerservaring, communicatie, ethiek, organisatorische, technische, juridische en bedrijfsmatige aspecten, etc. <br>
-        Een ontwerpende aanpak is bedoeld om aandacht te besteden aan de samenhang van verschilende thema's en de perspectieven van verschillende belanghebbenden in complexe systemen.  <br>
-        Een ontwerpende aanpak gaat uit van een lerend proces van onderzoeken, ontwikkelen, implementeren, reflecteren en doorontwikkelen.  <br>
-
-        Door een demonstratie-omgeving maken we het abstracte tastbaar en concreet. Het ondersteunt het gesprek over de mogelijkheden en ontwikkelpunten, faciliteert ons in onderzoek, en ondersteunt bewustwording door zelf te ervaren hoe processen kunnen werken.<br><br> 
-
-        Het uitwerken van scenario's helpt bijvoorbeeld om ontwikkelpunten te ontdekken, zoals:<br> 
-        - Moet de wet worden aangepast om een proces daadwerkelijk mogelijk te maken? <br> 
-        - Kan een interactie-patroon makkelijker en gebruiksvriendelijker?<br> 
-        - Wat is het economisch model van een ecosysteem?<br> 
-        - etc.
-
-        <br>
-       
-      </p>
-    </div>
-   
-<!-- Accordeon voor "Wat is een handelingsomgeving" -->
-<h3 class="accordion-header" id="hoofdpagina-accordion-header" aria-expanded="false" aria-controls="handelingsomgeving-content" role="button" tabindex="0">
-  Wat is een handelingsomgeving <i class="fas fa-chevron-down"></i>
-</h3>
-<div id="handelingsomgeving-content" class="accordion-content" aria-hidden="true" aria-live="polite">
-  <p>
-Wat is het verschil tussen een handelingsomgeving met wallet functionaliteiten, en een wallet volgens de Europese verordening voor digitale identiteit? <br><br>
-
-Een wallet heeft functies zoals identificeren, authenticeren, ondertekenen en het opslaan en delen van digitale bewijzen. <br>
-De kaders voor een wallet volgens de Europese verordening voor digitale identiteit worden vastgesteld door de Europese Commissie. <br><br>
-
-
-Met TIP willen we digitaal transacties kunnen doen, ook als de financiële of juridische gevolgen groot zijn. Daarvoor zijn naast identificeren, authenticeren en ondertekenen ook functies nodig voor bijvoorbeeld
-bewaren en conserveren, aangetekend bezorgen van gegevens, en connectiviteit met netwerken voor uitwisseling.<br>
-Een handelingsomgeving kan naast de functies van een wallet ook bredere functionaliteiten bieden.
-Deze functies kunnen bijvoorbeeld meer gebruiksvriendelijkheid en een completer proces bieden. De kaders voor een handelingsomgeving worden vastgesteld binnen TIP.
+  <hr> 
  
-  </p>
-</div>
-
-    <h3 class="accordion-header" id="hoofdpagina-accordion-header" aria-expanded="false" aria-controls="disclaimer-content" role="button" tabindex="0">
-  Disclaimer <i class="fas fa-chevron-down"></i>
-</h3>
-<div id="disclaimer-content" class="accordion-content" aria-hidden="true" aria-live="polite">
-  <p> 
-    Deze website en handelingsomgeving worden stap voor stap (door)ontwikkeld. 
-    In de getoonde handelingsomgeving en onderdelen ontbreken bepaalde functies en deze representeert dus niet een volledig werkend eindproduct. 
-    Deze lichtgewicht handelingsomgeving is een prototype, heeft geen backend, en is puur voor demonstratie- en onderzoeksdoeleinden. 
-    Digitale bewijzen worden opgeslagen in de lokale browseropslag van je telefoon. 
-    De getoonde websites in de voorbeelden zijn fictieve websites.
-
-    <br><br>
-Deze handelingsomgeving is een eerste versie om de visie te tonen hoe een handelingsomgeving kan werken.<br>
-Dit is geen referentie-implementatie. <br>
-Parallel hieraan wordt binnen Trusted Information Partners een 
-    <a href="https://www.trustedinformationpartners.nl/wp-content/uploads/2024/09/TIP-assessmentframework-for-acting-spaces-0.91-voor-publicatie.pdf" target="_blank"  aria-label="Bezoek het document over handelingsomgevingen van Trusted Information Partners, opent in een nieuw venster">toetsingskader handelingsomgeving</a>
-    ontwikkeld voor bestaande oplossingen.
-  </p>
-</div>
-    <hr>
-
-
 
     <section class="examples-section">
       <div class="section-content">
@@ -148,8 +97,8 @@ Parallel hieraan wordt binnen Trusted Information Partners een
           <img src="examples.png" alt="Voorbeelden" />
         </div>
         <div class="section-text">
-          <h2> Voorbeelden</h2>
-          <p>Ontdek hoe een handelingsomgeving kan worden gebruikt in verschillende situaties.</p>
+          <h2>Demo's</h2>
+          <p>Ontdek hoe een handelingsomgeving kan worden gebruikt in verschillende situaties en scenario's.</p>
           <a class="read-more" href="examples/index.html" aria-label="Bekijk de voorbeelden waarop je de handelingsomgeving kunt toepassen"><i class="fas fa-play"></i> Bekijk de voorbeelden</a>
         </div>
       </div>
@@ -192,6 +141,7 @@ Parallel hieraan wordt binnen Trusted Information Partners een
 
   <!-- Verwijzing naar een JavaScript-bestand voor eventuele resterende functionaliteit -->
   <script src="/accordeon.js"></script>
+  <script src="/menu.js"></script>
 
 </body>
 </html>

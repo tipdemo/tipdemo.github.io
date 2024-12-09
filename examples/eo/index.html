@@ -8,11 +8,34 @@
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="navbar-container">
+    <img id="navbar-logo" alt="Logo" class="navbar-logo">
+    <button id="hamburger-menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- Menu -->
+<div id="fullscreen-menu" class="fullscreen-menu">
+  <div class="menu-header">
+    <button id="close-menu" class="close-menu">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <div class="menu-container">
+    <div class="menu-body">
+      <ul id="menu-links" class="menu-links"></ul>
+    </div>
+  </div>
+</div>
+
+
   <div class="main-container">
-    <nav id="main-nav" class="main-nav">
-     
-    </nav>
-  <hr>
+
     <div id="breadcrumbs"></div>
 
     <section class="sectie">
@@ -72,7 +95,7 @@ Het proces verloopt gestandaardiseerd en veilig, zonder handmatig overtypen. Bew
   </div>
 
   <script src="/breadcrumbs.js"></script>
-  <script src="/navbar.js"></script>
+  <script src="/menu.js"></script>
 
 </body>
 </html>
