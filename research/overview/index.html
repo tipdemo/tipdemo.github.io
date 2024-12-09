@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Vis.js | Clustering</title>
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <style>
+    #mynetwork {
+      width: 75%;
+      height: 600px;
+      border: 1px solid lightgray;
+      float: left;
+    }
+    #info {
+      width: 20%;
+      height: 600px;
+      float: right;
+      padding: 10px;
+      border: 1px solid lightgray;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <h3>Klik op een cluster om het te openen</h3>
+  <div id="mynetwork"></div>
+  <div id="info">
+    <h4>Node Info</h4>
+    <p id="details">Klik op een punt voor details.</p>
+  </div>
+
+  <script>
+    // Maak knooppunten
+    const nodes = new vis.DataSet([
+      { id: 1, label: "Centraal A", color: "orange", group: "ClusterA", info: "Centraal punt A" },
+      { id: 2, label: "Centraal B", color: "lime", group: "ClusterB", info: "Centraal punt B" },
+      { id: 3, label: "A1", color: "orange", group: "ClusterA", info: "Geïsoleerd punt in Cluster A" },
+      { id: 4, label: "A2", color: "orange", group: "ClusterA", info: "Geïsoleerd punt in Cluster A" },
+      { id: 5, label: "A3", color: "orange", group: "ClusterA", info: "Geïsoleerd punt in Cluster A" },
+      { id: 6, label: "B1", color: "lime", group: "ClusterB", info: "Geïsoleerd punt in Cluster B" },
+      { id: 7, label: "B2", color: "lime", group: "ClusterB", info: "Geïsoleerd punt in Cluster B" },
+      { id: 8, label: "B3", color: "lime", group: "ClusterB", info: "Geïsoleerd punt in Cluster B" },
+      { id: 9, label: "Los 1", color: "red", info: "Los punt verbonden met A" },
+      { id: 10, label: "Los 2", color: "blue", info: "Los punt verbonden met B" },
+    ]);
+
+    // Maak verbindingen
+    const edges = new vis.DataSet([
+      { from: 1, to: 3 },
+      { from: 1, to: 4 },
+      { from: 1, to: 5 },
+      { from: 2, to: 6 },
+      { from: 2, to: 7 },
+      { from: 2, to: 8 },
+      { from: 1, to: 2 }, // Verbinding tussen de centrale punten
+      { from: 1, to: 9 }, // Los punt
+      { from: 2, to: 10 }, // Los punt
+    ]);
+
+    // Maak een netwerk
+    const container = document.getElementById("mynetwork");
+    const data = { nodes, edges };
+    const options = {
+      nodes: {
+        shape: "dot",
+        size: 16,
+        font: { size: 14 },
+        borderWidth: 2,
+      },
+      edges: {
+        color: { color: "#000000" }, // Zwarte verbindingen
+        smooth: true,
+      },
+      physics: {
+        enabled: true,
+        solver: "forceAtlas2Based",
+        stabilization: { iterations: 200 },
+      },
+    };
+
+    const network = new vis.Network(container, data, options);
+
+    // Voeg clustering toe
+    function clusterByGroup(groupName, clusterId, clusterColor) {
+      const clusterOptionsByData = {
+        joinCondition: (nodeOptions) => nodeOptions.group === groupName,
+        clusterNodeProperties: {
+          id: clusterId,
+          label: `Cluster ${groupName}`,
+          color: clusterColor,
+          shape: "ellipse",
+        },
+      };
+      network.cluster(clusterOptionsByData);
+    }
+
+    // Cluster knooppunten
+    clusterByGroup("ClusterA", "ClusterA", "orange");
+    clusterByGroup("ClusterB", "ClusterB", "lime");
+
+    // Open cluster bij klikken
+    network.on("selectNode", (params) => {
+      if (params.nodes.length === 1) {
+        if (network.isCluster(params.nodes[0])) {
+          network.openCluster(params.nodes[0]);
+        } else {
+          const nodeId = params.nodes[0];
+          const nodeData = nodes.get(nodeId);
+          document.getElementById("details").innerText = nodeData.info;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
