@@ -243,6 +243,7 @@ padding-left: 10px;
   flex: 1 1 calc(50% - 20px); /* Twee kolommen van gelijke breedte met een kleine marge */
   min-width: 300px; /* Voorkom dat de kolom te smal wordt */
   box-sizing: border-box;
+  margin-bottom: 45px;
 }
 
 @media (max-width: 768px) {
@@ -261,17 +262,26 @@ padding-left: 10px;
   background-color: #ffffff;
 }
 
+.section-container {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start; /* Lijn de kolommen aan de bovenkant uit */
+  padding: 14px;
+}
+
 /* Layout voor de sectie-inhoud */
 .section-content {
   display: flex;
-  gap: 20px;
-  align-items: center;
+flex-direction: column;
+  align-items: left;
 }
 
 /* Kolommen styling */
 .section-image {
   flex: 0 0 23%; /* Afbeelding neemt 25% van de breedte in */
   text-align: center; /* Centraal uitlijnen */
+ align-self: center;
+ justify-self: center;
 }
 
 .section-image img {
@@ -297,7 +307,7 @@ background-color: #22c573;
 
 /* Responsieve aanpassingen */
 @media (max-width: 768px) {
-  .section-content {
+  .section-container {
     flex-direction: column; /* Kolommen onder elkaar */
   }
 
@@ -466,9 +476,9 @@ ul li {
 /* Styling voor "Lees meer" knoppen */
 .read-more {
   font-size: 16px;
-  color: #385168;
+  color: #ffffff;
   text-decoration: none;
-  background-color: #F0F4F8;
+  background-color: #2b94fd;
   padding: 20px;
   border-radius: 8px;
   display: inline-block;
@@ -477,6 +487,23 @@ ul li {
   transition: all 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
+  width: fit-content;
+}
+
+.read-more-research{
+  font-size: 16px;
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #22c573;
+  padding: 20px;
+  border-radius: 8px;
+  display: inline-block;
+  text-align: left;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+  width: fit-content;
 }
 
 .read-more:hover,
@@ -559,9 +586,8 @@ ul li {
   display: flex;
   flex-direction: column;
   border: 1px solid #ddd;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-bottom: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 /* Styling voor secties */
@@ -707,40 +733,7 @@ strong {
   top: 5px; /* Zorg dat het icoon goed gecentreerd staat */
 }
 
-/* Styling voor de navigatiebalk */
-.main-nav {
-  padding: 15px;
-}
 
-.main-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  padding-left: 0;
-  margin: 0;
-}
-
-.main-nav li {
-  display: inline;
-}
-
-/* Styling voor navigatielinks */
-.nav-link {
-  color: #a0a0a0; /* Grijze kleur voor niet-actieve links */
-  font-weight: normal;
-  text-decoration: none;
-  font-size: 16px;
-  transition: color 0.3s;
-}
-
-.nav-link:hover {
-  color: #385168; /* Donkere kleur bij hover voor alle links */
-}
-
-.nav-link.active {
-  color: #385168; /* De huidige kleur voor de actieve link */
-  font-weight: bold; /* Eventueel vetgedrukt om de actieve link extra te accentueren */
-}
 
 
 
@@ -862,6 +855,7 @@ strong {
   padding: 12px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  box-sizing: border-box;
 }
 
 .section-examples {
@@ -888,27 +882,7 @@ strong {
     max-width: 100%; /* Zorgt ervoor dat de container op kleinere schermen de volledige breedte benut */
   }
 
-  .main-nav {
-    padding: 1px;
-  }
-
-  .main-nav ul {
-    gap: 3px; /* Voeg wat ruimte tussen de links toe */
-    flex-direction: row;
-  }
-
-
-  .nav-link i {
-    display: none; /* Verberg de iconen */
-  }
-
-  .nav-link {
-    display: block; /* Zorg ervoor dat de link een blok-element is voor betere touch-navigatie */
-    padding: 10px; /* Voeg wat extra ruimte rond de links toe */
-    text-align: left; /* Links uitlijnen van de tekst */
-    font-size: 10px; /* Pas de tekstgrootte aan voor kleinere schermen */
-  }
-
+  
   /* Maak de knoppen responsief */
   .button-demolist, #io {
     min-width: unset;

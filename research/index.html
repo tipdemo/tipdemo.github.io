@@ -44,14 +44,61 @@ Door gericht te werken aan de verschillende aspecten zoals gebruikerservaring, e
 Een gestructureerde bovenliggende agenda zorgt ervoor dat alle elementen in balans zijn en goed op elkaar aansluiten: een belangrijke voorwaarde voor een gebruiksvriendelijk en veilig ecosysteem.
 
     </p>
-    <hr>
+    <div class="search-container" role="search">
+      <input type="text" id="searchBar" placeholder="Zoek voorbeelden...">
+    </div>
+    <p id="noResultsMessage" style="display:none;" aria-live="polite">Geen resultaten gevonden.</p>
+  
+
+
+      <!-- Sectie Interactiepatronen -->
     <section class="section-examples">
+
+      <div class="section-container">
+
+        <!-- Linker kolom: Afbeelding -->
+        <div class="section-image">
+          <img src="/assets/r-ipa.png" alt="afbeelding interactie patronen ">
+        </div>
+
+
+        <!-- Rechter kolom: Tekst, tags en knop -->
+        <div class="section-content">
       <h2>Onderzoek naar interactiepatronen</h2>
       <p>Om digitale bewijzen op te halen en te delen is onderzoek naar interactiepatronen relevant. 
         Om dit onderzoek inzichtelijk te maken, staat op de volgende pagina een lopend onderzoek naar een aantal interactiepatronen.
       </p>
-      <a class="read-more" href="/research/ipa/index.html" aria-label="Bekijk onderzoek over interactiepatronen"><i class="fas fa-flask"></i>Bekijk het onderzoek naar interactiepatronen</a>
+      <a class="read-more-research" href="/research/ipa/index.html" aria-label="Bekijk onderzoek over interactiepatronen"><i class="fas fa-flask"></i> Bekijk onderzoek</a>
+    </div>
+  </div>
     </section>   
+
+
+   <!-- Sectie social engineering -->
+    <section class="section-examples">
+
+      <div class="section-container">
+    
+        <!-- Linker kolom: Afbeelding -->
+        <div class="section-image">
+          <img src="/assets/r-agreements.png" alt="Afbeelding accepteren of weigeren voorwaardes ">
+        </div>
+    
+        <!-- Rechter kolom: Tekst, tags en knop -->
+        <div class="section-content">
+          <h2>Begrijpelijke verzoeken voor datadeling</h2>
+          <p>
+            Onderzoek naar social engineering en menselijk gedrag is essentieel om begrijpelijke verzoeken voor datadeling te ontwerpen. 
+            Dit onderzoek richt zich op hoe we gebruikers beter kunnen beschermen en bewust kunnen maken van de risico's van manipulatieve technieken.
+          </p>
+          <a class="read-more-research" href="/research/social-engineering/index.html" aria-label="Bekijk onderzoek over social engineering">
+            <i class="fas fa-flask"></i> Bekijk onderzoek
+          </a>
+        </div>
+    
+      </div>
+    
+    </section>
 
 <!-- 
     <section class="section-examples">
@@ -62,12 +109,6 @@ Een gestructureerde bovenliggende agenda zorgt ervoor dat alle elementen in bala
       <a class="read-more" href="/research/flows/index.html" aria-label="Bekijk onderzoek use cases"><i class="fas fa-flask"></i>Bekijk het onderzoek naar use cases</a>
     </section>    -->
 
-
-    <section class="section-examples">
-      <h2>Social engineering en menselijk gedrag - Begrijpelijke verzoeken voor datadeling</h2>
-      <p>Volgt later</p>
-    <!--<a class="read-more" href="research/index.html" aria-label="Bekijk onderzoek over interactiepatronen"><i class="fas fa-flask"></i>Bekijk het onderzoek naar interactiepatronen</a>--></section>   
-    </section>  
 
 
     <section class="section-examples">
@@ -110,5 +151,36 @@ Een gestructureerde bovenliggende agenda zorgt ervoor dat alle elementen in bala
   <script src="../breadcrumbs.js"></script>
   <script src="../accordeon.js"></script>
   <script src="/menu.js"></script>
+
+  <script>
+    // Event listener voor de zoekbalk
+    document.getElementById('searchBar').addEventListener('keyup', filterSections);
+
+    function filterSections() {
+  var input = document.getElementById('searchBar');
+  var filter = input.value.toUpperCase();
+  var sections = document.getElementsByClassName('section-examples');
+  var hasResults = false;
+
+  for (var i = 0; i < sections.length; i++) {
+    var txtValue = sections[i].textContent || sections[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      sections[i].style.display = "";
+      hasResults = true;
+    } else {
+      sections[i].style.display = "none";
+    }
+  }
+
+  document.getElementById('noResultsMessage').style.display = hasResults ? "none" : "block";
+}
+
+function filterByTag(tag) {
+  var input = document.getElementById('searchBar');
+  input.value = tag; // Zet het tag-woord in het zoekveld
+  filterSections(); // Roep de zoekfunctie opnieuw aan
+}
+  </script>
+
 </body>
 </html>

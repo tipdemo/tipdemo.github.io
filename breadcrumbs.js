@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     const urlMappings = {
-      "examples": "Voorbeelden",
+      "examples": "Demo's",
         "eo": "Aan de slag bij een nieuwe werkgever",
 
       "research": "Onderzoek",
