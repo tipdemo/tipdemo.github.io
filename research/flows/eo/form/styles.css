@@ -401,3 +401,19 @@ button.close-tab i, button.go-home i {
 .download-button:hover {
   background-color: #0056b3; /* Darker blue on hover */
 }
+
+@media (max-width: 768px) {
+  .form-grid {
+      grid-template-columns: 1fr; /* Maak de layout één kolom breed */
+  }
+
+  .form-row label, 
+  .form-row input {
+      width: 100%; /* Zorg dat labels en invoervelden 100% van de container gebruiken */
+  }
+
+  .input-group {
+      flex-direction: column; /* Zorg dat radio-opties en invoervelden onder elkaar staan */
+      gap: 10px; /* Behoud ruimte tussen elementen */
+  }
+}
