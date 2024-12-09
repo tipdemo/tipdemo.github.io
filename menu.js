@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const hamburgerMenu = document.getElementById("hamburger-menu");
   
     // Voeg het logo toe
-    const logoSrc = "https://www.tipdemo.nl/logo6.svg";
+    const logoSrc = "https://www.tipdemo.nl/assets/logo6.svg";
     const logoAlt = "Logo";
     const logoLink = "https://www.tipdemo.nl/index.html"; // Link naar de homepagina
 
