@@ -911,7 +911,7 @@ strong {
 
   /* Zorg ervoor dat de ul-lijst flexibele en mooie uitlijning heeft */
 ul {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     gap: 10px;
   }
