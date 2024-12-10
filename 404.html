@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagina niet gevonden</title>
+  <script>
+    // Haal het huidige pad op
+    const pathname = window.location.pathname;
+
+    // Controleer op demo-routes
+    if (pathname.startsWith('/demo')) {
+      // Laad de centrale app (demo/index.html) maar behoud de originele URL
+      window.history.replaceState({}, '', pathname);
+      window.location.href = '/demo/index.html';
+    } else {
+      // Toon een standaard 404-melding voor andere paden
+      document.body.innerHTML = `
+        <h1>404: Pagina niet gevonden</h1>
+        <p>De pagina die je zoekt bestaat niet.</p>
+        <p><a href="/index.html">Terug naar de startpagina</a></p>`;
+    }
+  </script>
+</head>
+<body></body>
+</html>
