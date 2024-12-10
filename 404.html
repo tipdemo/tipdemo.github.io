@@ -17,7 +17,12 @@
           .then((response) => response.text())
           .then((html) => {
             // Vervang de bestaande inhoud van de body
-            document.body.innerHTML = html; // Voeg de nieuwe inhoud toe
+            document.body.innerHTML = html;
+
+            // Dynamisch het script opnieuw laden
+            const script = document.createElement('script');
+            script.src = '/demo/demo.js';
+            document.body.appendChild(script);
           })
           .catch((error) => {
             console.error('Fout bij laden van demo:', error);
