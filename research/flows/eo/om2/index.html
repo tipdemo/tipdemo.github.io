@@ -44,48 +44,90 @@
 
     <section id="step-2" class="step">
         <div class="subsection">
-            <div class="logo-container" id="logo-container-innovatiemakers">
-              
-              <h1>Machtigingen Register</h1>
+            <div id="logo-container-machtigingen-register">
+                <h1 class="machtigingen-register-title">
+                    <span class="machtigingen">Machtigingen</span> <span class="register">Register</span>
+                </h1>
             </div>
             <hr>
             <h2>Inloggen</h2>
-           
-            <p>
-              
+    
+            <!-- Blokken voor Inloggen en Nieuwe Klant -->
+            <div class="login-container">
+                <!-- Inloggen-blok -->
+                <div class="login-block">
+                    <h3>Inloggen</h3>
+                    <form>
+                        <label for="username">Gebruikersnaam</label>
+                        <input type="text" id="username" name="username" placeholder="Vul hier uw gebruikersnaam in" required>
+                        
+                        <label for="password">Wachtwoord</label>
+                        <input type="password" id="password" name="password" placeholder="Vul hier uw wachtwoord in" required>
+    
+                        <button type="submit" class="login-button">Inloggen</button>
+                    </form>
+                </div>
+    
+                <!-- Nieuwe klant-blok -->
+                <div class="new-customer-block">
+                    <h3>Nieuwe klant</h3>
+                    <p>Bent u nog geen klant? Maak eenvoudig een account aan.</p>
+                    <button class="login-button">Registreren</button>
+                </div>
             </div>
+    
             <div class="button-container">
                 <button class="prev">Terug</button>
                 <button class="next">Volgende</button>
             </div>
-        </section>
+        </div>
+    </section>
 
 
-
-        <section id="step-3" class="step">
-            <div class="subsection">
-                <div class="logo-container" id="logo-container-innovatiemakers">
-                  
-                  <h1>Machtigingen Register</h1>
+    <section id="step-3" class="step">
+        <div class="subsection">
+            <div id="logo-container-machtigingen-register">
+                <h1 class="machtigingen-register-title">
+                    <span class="machtigingen">Machtigingen</span> <span class="register">Register</span>
+                </h1>
+            </div>
+            <hr>
+            <h2>Identificeren nieuwe klant</h2>
+    
+            <p id="identification-text">
+                Om uw identiteit te bevestigen, verzoeken wij u om onderstaande QR-code te scannen met uw <strong>handelingsomgeving</strong> (www.tipdemo.nl/demo). 
+                Dit proces is verplicht om u aan te melden bij het Machtigingen Register.
+            </p>
+    
+            <div class="qr-code-container">
+                <div class="qr-code-instructions">
+                    <p>Scan de QR-code met uw telefoon om verder te gaan:</p>
                 </div>
-                <hr>
-                <h2>Identificeren nieuwe klant</h2>
-               
-                <p>
-                  
+                <div class="qr-code">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?data=%7B%22type%22%3A%22verifier%22%2C%22requester%22%3A%22Machtigingen%20Register%22%2C%22reason%22%3A%22Identificatieplicht%20aanmelding%20Machtigingen%20Register%22%2C%22rdfcv%22%3A%5B%22gn%22%2C%22sn%22%2C%22bsn%22%5D%2C%22a%22%3A%22w%22%2C%22t%22%3A%22w%22%7D&size=300x300" 
+                         alt="QR Code voor Identificatieplicht aanmelding Machtigingen Register">
                 </div>
-                <div class="button-container">
-                    <button class="prev">Terug</button>
-                    <button class="next">Volgende</button>
-                </div>
-            </section>
+            </div>
+    
+            <p id="qr-footer-text">
+                Heeft u problemen met scannen? Neem contact op met onze klantenservice voor verdere assistentie.
+            </p>
+    
+            <div class="button-container">
+                <button class="prev">Terug</button>
+                <button class="next">Volgende</button>
+            </div>
+        </div>
+    </section>
+    
 
 
             <section id="step-4" class="step">
                 <div class="subsection">
-                    <div class="logo-container" id="logo-container-innovatiemakers">
-                      
-                      <h1>Machtigingen Register</h1>
+                    <div  id="logo-container-machtigingen-register">
+                        <h1 class="machtigingen-register-title">
+                            <span class="machtigingen">Machtigingen</span> <span class="register">Register</span>
+                        </h1>
                     </div>
                     <hr>
                     <h2>Betaling nieuwe klant</h2>
@@ -105,9 +147,10 @@
 
     <section id="step-5" class="step">
         <div class="subsection">
-            <div class="logo-container" id="logo-container-innovatiemakers">
-              
-              <h1>Innovatiemakers B.V. (fictief bedrijf)</h1>
+            <div  id="logo-container-machtigingen-register">
+                <h1 class="machtigingen-register-title">
+                    <span class="machtigingen">Machtigingen</span> <span class="register">Register</span>
+                </h1>
             </div>
             <hr>
             <h2>Aanvraag machtiging</h2>
@@ -330,9 +373,10 @@
     <section id="step-6" class="step">
         
         <div class="subsection">
-            <div class="logo-container" id="logo-container-innovatiemakers">
-                
-                <h1>Machtigingen Register</h1>
+            <div id="logo-container-machtigingen-register">
+                <h1 class="machtigingen-register-title">
+                    <span class="machtigingen">Machtigingen</span> <span class="register">Register</span>
+                </h1>
             </div>
               <h3>Verwerking aanvraag</h3>
             <hr>
@@ -350,7 +394,7 @@
     <section id="step-7" class="step">
         
         <div class="subsection">
-            <div class="logo-container">
+            <div>
                 
                 <h1>Toelichting verwerking</h1>
             </div>
@@ -369,6 +413,9 @@
 
     <section id="step-8" class="step">
         <div class="subsection">
+            <div class="logo-container">
+            <h2>Email</h2>
+        </div>
             <div id="email-container">
                 <div id="email-meta">
                     <table>
@@ -417,7 +464,11 @@
     <section id="step-9" class="step">
          
         <div class="subsection">
-            <h1>Machtigingen Register</h1>
+            <div id="logo-container-machtigingen-register">
+                <h1 class="machtigingen-register-title">
+                    <span class="machtigingen">Machtigingen</span> <span class="register">Register</span>
+                </h1>
+            </div>
             <hr>
             <h4>Uitgifte digitale machtiging namens organisatie toegekend</h4>
             <p>Beste Willeke,<br>
@@ -478,7 +529,7 @@
     
         <div class="subsection">
             
-            <h4 id="bd-subtitle">Inloggen namens organisatie</h4>
+            <h2 id="bd-subtitle">Inloggen namens organisatie</h2>
     
             <p id="bd-instructions">
                 Open de handelingsomgeving op uw telefoon (<a href="https://www.tipdemo.nl/demo">www.tipdemo.nl/demo</a>). <br>
@@ -537,7 +588,7 @@
 
     
 
-    <section id="step-9" class="step">
+    <section id="step-11" class="step">
         <div class="subsection">
             <h1>Einde demo</h1>
             <hr>
@@ -550,7 +601,7 @@
         </div>
     </section>
 
-    <section id="step-11" class="step">
+    <section id="step-12" class="step">
         <div class="subsection">
             <h1>test</h1>
             <hr>
@@ -563,7 +614,7 @@
         </div>
     </section>
 
-    <section id="step-12" class="step">
+    <section id="step-13" class="step">
         <div class="subsection">
             <h1>test</h1>
             <hr>
