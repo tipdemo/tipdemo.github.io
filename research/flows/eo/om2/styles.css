@@ -170,3 +170,39 @@ button.close-tab i, button.go-home i {
     align-items: center;
     justify-content: center;
 }
+
+
+/* Tabelstijlen */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+  font-size: 14px;
+}
+
+th {
+  background-color: #0078d7;
+  color: #fff;
+  font-weight: bold;
+}
+
+td {
+  font-size: 14px;
+}
+
+label {
+  display: inline-block;
+}
+
+/* Checkbox stijl */
+input[type="checkbox"] {
+  margin-right: 10px;
+}
