@@ -16,7 +16,8 @@
         .then((response) => response.text())
         .then((html) => {
           document.open();
-          document.write(html); // Laad de inhoud van demo/index.html
+          document.body.replaceChildren(); // Verwijder bestaande inhoud
+          document.body.innerHTML = html; // Voeg de nieuwe inhoud toe
           document.close();
 
           // Geen extra script-tag nodig omdat demo/index.html zelf naar demo.js verwijst

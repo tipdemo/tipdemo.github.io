@@ -457,21 +457,21 @@ const cardStyles = {
   'persoonlijke data': {
    /*  iconClass: 'fas fa-id-card',
     iconColor: '#D6E6F2', */
-    imagePath: 'bdlogo.svg',
+    imagePath: '/demo/bdlogo.svg',
     iconColor: null,
     textColor: '#4A6C85'
   },
   'woonadres': {
    /*  iconClass: 'fas fa-home',
     iconColor: '#DAEEDC', */
-    imagePath: 'bdlogo.svg',
+    imagePath: '/demo/bdlogo.svg',
     iconColor: null,
     textColor: '#4A6C85'
   },
   'foto': {
 /*     iconClass: 'fas fa-camera', // Gebruik het gewenste FontAwesome icoon
     iconColor: '#FFD700', // Gouden kleur voor het icoon */
-    imagePath: 'bdlogo.svg',
+    imagePath: '/demo/bdlogo.svg',
     iconColor: null,
     textColor: '#4A6C85' // Tekstkleur
   },
@@ -495,22 +495,22 @@ const cardStyles = {
     textColor: '#7A3E9D'
   },
   'inkomensverklaring': {
-    imagePath: 'bdlogo.svg',
+    imagePath: '/demo/bdlogo.svg',
     iconColor: null,
     textColor: '#2681cc' // Nieuwe kleur passend bij het logo
   },
   'kredietregistratie': {
-    imagePath: 'bkrlogo.svg',
+    imagePath: '/demo/bkrlogo.svg',
     iconColor: null,
     textColor: '#FDC830' // Kleur aangepast op basis van het logo
   },
   'aow-status': {
-    imagePath: 'svblogo.svg',
+    imagePath: '/demo/svblogo.svg',
     iconColor: null,
     textColor: '#57C4E5' // Kleur aangepast op basis van het logo
   },
   'verzekeringsgegevens': {
-    imagePath: 'uwvlogo.svg',
+    imagePath: '/demo/uwvlogo.svg',
     iconColor: null,
     textColor: '#00588E' // Kleur aangepast op basis van het logo
   },
@@ -520,7 +520,7 @@ const cardStyles = {
     textColor: '#D35400'
   },
   'verklaring omtrent gedrag (vog)': {
-    imagePath: 'justislogo.svg',
+    imagePath: '/demo/justislogo.svg',
     iconColor: null,
     textColor: '#00588E'
   },
@@ -532,7 +532,7 @@ const cardStyles = {
   },
 
   'diploma verpleegkunde': {
-  imagePath: 'duologo.svg',  // Path naar je diploma-afbeelding
+  imagePath: '/demo/duologo.svg',  // Path naar je diploma-afbeelding
   iconColor: null,
    textColor: '#4A6C85'
   },
@@ -3328,28 +3328,28 @@ function addMockMessageToTrustedContacts(sender, message, messageType) {
       let logoHTML = '';
       switch (sender.toLowerCase()) {
           case 'duo':
-              logoHTML = '<img src="duologo.svg" alt="DUO logo" class="logo-icon">';
+              logoHTML = '<img src="/demo/duologo.svg" alt="DUO logo" class="logo-icon">';
               break;
           case 'belastingdienst':
-              logoHTML = '<img src="belastingdienstlogo.svg" alt="Belastingdienst logo" class="logo-icon">';
+              logoHTML = '<img src="/demo/bdlogo.svg" alt="Belastingdienst logo" class="logo-icon">';
               break;
           case 'woningcorporatie leijendak':
-              logoHTML = '<img src="woningcorporatielogo.svg" alt="Leijendak logo" class="logo-icon">';
+              logoHTML = '<img src="/demo/woningcorporatielogo.svg" alt="Leijendak logo" class="logo-icon">';
               break;
           case 'werkgever ipa 5':
-              logoHTML = '<img src="ipa5logo.svg" alt="IPA 5 logo" class="logo-icon">';
+              logoHTML = '<img src="/demo/ipa5logo.svg" alt="IPA 5 logo" class="logo-icon">';
               break;
           case 'werkgever ipa 6':
-              logoHTML = '<img src="ipa6logo.svg" alt="IPA 6 logo" class="logo-icon">';
+              logoHTML = '<img src="/demo/ipa6logo.svg" alt="IPA 6 logo" class="logo-icon">';
               break;
           case 'werkgever ipa 7':
-              logoHTML = '<img src="ipa7logo.svg" alt="IPA 7 logo" class="logo-icon">';
+              logoHTML = '<img src="/demo/ipa7logo.svg" alt="IPA 7 logo" class="logo-icon">';
               break;
               case 'duo':
-                logoHTML = '<img src="duologo.svg" alt="DUO logo" class="logo-icon">';
+                logoHTML = '<img src="/demo/duologo.svg" alt="DUO logo" class="logo-icon">';
                 break;
             case 'justis':
-                logoHTML = '<img src="bdlogo.svg" alt="Justis logo" class="logo-icon">';
+                logoHTML = '<img src="/demo/bdlogo.svg" alt="Justis logo" class="logo-icon">';
                 break;
         case 'woningcorporatie':
         logoHTML = `
