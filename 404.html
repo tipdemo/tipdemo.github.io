@@ -5,37 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pagina niet gevonden</title>
   <script>
-    const pathname = window.location.pathname;
+    document.addEventListener('DOMContentLoaded', () => {
+      const pathname = window.location.pathname;
 
-    // Controleer of het pad geldig is voor een demo
-    const validDemoPaths = ['/demo', '/demo2', '/demo3'];
+      // Controleer of het pad geldig is voor een demo
+      const validDemoPaths = ['/demo', '/demo2', '/demo3'];
 
-    if (validDemoPaths.includes(pathname)) {
-      // Verwijs naar de bestaande demo/index.html
-      fetch('/demo/index.html')
-        .then((response) => response.text())
-        .then((html) => {
-          document.open();
-          document.body.replaceChildren(); // Verwijder bestaande inhoud
-          document.body.innerHTML = html; // Voeg de nieuwe inhoud toe
-          document.close();
-
-          // Geen extra script-tag nodig omdat demo/index.html zelf naar demo.js verwijst
-        })
-        .catch((error) => {
-          console.error('Fout bij laden van demo:', error);
-          document.body.innerHTML = `
-            <h1>404: Pagina niet gevonden</h1>
-            <p>De pagina die je zoekt bestaat niet.</p>
-            <p><a href="/demo/index.html">Terug naar de demo app</a></p>`;
-        });
-    } else {
-      // Toon een standaard 404-pagina als het geen demo-pad is
-      document.body.innerHTML = `
-        <h1>404: Pagina niet gevonden</h1>
-        <p>De pagina die je zoekt bestaat niet.</p>
-        <p><a href="/index.html">Terug naar hoofdpagina</a></p>`;
-    }
+      if (validDemoPaths.includes(pathname)) {
+        // Verwijs naar de bestaande demo/index.html
+        fetch('/demo/index.html')
+          .then((response) => response.text())
+          .then((html) => {
+            // Vervang de bestaande inhoud van de body
+            document.body.innerHTML = html; // Voeg de nieuwe inhoud toe
+          })
+          .catch((error) => {
+            console.error('Fout bij laden van demo:', error);
+            document.body.innerHTML = `
+              <h1>404: Pagina niet gevonden</h1>
+              <p>De pagina die je zoekt bestaat niet.</p>
+              <p><a href="/demo/index.html">Terug naar de demo app</a></p>`;
+          });
+      } else {
+        // Toon een standaard 404-pagina als het geen demo-pad is
+        document.body.innerHTML = `
+          <h1>404: Pagina niet gevonden</h1>
+          <p>De pagina die je zoekt bestaat niet.</p>
+          <p><a href="/index.html">Terug naar hoofdpagina</a></p>`;
+      }
+    });
   </script>
 </head>
 <body></body>
