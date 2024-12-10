@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
             goToStep(currentStep + 1);
         } else if (e.target.classList.contains('prev')) {
             goToStep(currentStep - 1);
+        } else if (e.target.classList.contains('register-button')) {
+            goToStep(currentStep + 1); // "Registreren" gaat naar de volgende stap
         }
     });
 
