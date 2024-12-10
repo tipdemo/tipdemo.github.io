@@ -66,6 +66,14 @@
     
                         <button type="submit" class="login-button">Inloggen</button>
                     </form>
+
+                    <!-- Extra optie: Inloggen met handelingsomgeving -->
+                <div class="or-divider">
+                    <span>of</span>
+                </div>
+                <button class="login-button fa-button">
+                    <i class="fas fa-mobile-alt"></i> Inloggen met handelingsomgeving
+                </button>
                 </div>
     
                 <!-- Nieuwe klant-blok -->
@@ -142,10 +150,46 @@
                 </section>
     
 
+                
+            <section id="step-5" class="step">
+                <div class="subsection">
+                    <div id="logo-container-machtigingen-register">
+                        <h1 class="machtigingen-register-title">
+                            <span class="machtigingen">Machtigingen</span> <span class="register">Register</span>
+                        </h1>
+                    </div>
+                    <hr>
+                    <h2>Uitgifte inlog attribuut</h2>
+            
+                    <p id="identification-text">
+                        Hierbij ontvangt u uw inlog attribuut om in de toekomst te kunnen inloggen bij het Machtigingen Register. Om uw inlog attribuut op te slaan scant u onderstaande QR code met uw <strong>handelingsomgeving</strong> (www.tipdemo.nl/demo). 
+                        Dit proces is verplicht om u aan te melden bij het Machtigingen Register.
+                    </p>
+            
+                    <div class="qr-code-container">
+                        <div class="qr-code-instructions">
+                            <p>Scan de QR-code met uw telefoon om verder te gaan:</p>
+                        </div>
+                        <div class="qr-code">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?data=%7B%22Issuer%22%3A%20true%2C%20%22name%22%3A%20%22Toegang%20Machtigingen%20Register%22%2C%20%22issuedBy%22%3A%20%22Machtigingen%20Register%22%2C%20%22LEID%22%3A%20%22NL_KVK_0000000%22%2C%20%22Issued_to_subject%22%3A%20%22Willeke%20Liselotte%20de%20Bruijn%22%2C%20%22Login_ID%22%3A%20%22WLdB%40platform%20%22%2C%20%22Issued_Date%22%3A%20%222025-01-14%22%2C%20%22Geldigheidsduur%22%3A%20%2212%20maanden%22%2C%20%22Intrekbaar%22%3A%20%22Ja%22%2C%20%22rdfci%22%3A%20%5B%5D%2C%20%22a%22%3A%20%22w%22%2C%20%22t%22%3A%20%22w%22%7D&size=300x300" 
+                                 alt="QR Code voor Toegang Machtigingen Register">
+                        </div>
+                    </div>
+            
+                    <p id="qr-footer-text">
+                        Heeft u problemen met scannen? Neem contact op met onze klantenservice voor verdere assistentie.
+                    </p>
+                      
+                    </div>
+                    <div class="button-container">
+                        <button class="prev">Terug</button>
+                        <button class="next">Volgende</button>
+                    </div>
+                </section>
 
 
 
-    <section id="step-5" class="step">
+    <section id="step-6" class="step">
         <div class="subsection">
             <div  id="logo-container-machtigingen-register">
                 <h1 class="machtigingen-register-title">
@@ -154,7 +198,8 @@
             </div>
             <hr>
             <h2>Aanvraag machtiging</h2>
-            <p>Beste aanvrager,</p>
+            <p>Beste aanvrager, <br>
+                Volg onderstaande stappen om een aanvraag voor een machtiging te voltooien. </p>
 
             <hr>
             <h2>Organisatie ID</h2>
@@ -204,8 +249,10 @@
 <hr>
 
 
-<h2>Organisatie</h2>
-<p>Geef de e-mailadressen op van de bevoegd vertegenwoordiger(s). <br>In geval van gedeelde bevoegdheden moeten alle e-mailadressen opgegeven worden.</p>
+<h2>Bevoegd vertegenwoordiger(s)</h2>
+<p>Bent u geen onbeperkt bevoegd vertegenwoordiger namens de organisatie?
+    <br>Geef de e-mailadressen op van de bevoegd vertegenwoordiger(s). 
+    <br><strong>Bealngrijk:</strong>In geval van gedeelde bevoegdheden moeten alle e-mailadressen opgegeven worden.</p>
 
 <form id="email-form">
     <table id="email-table">
@@ -370,7 +417,7 @@
         </div>
     </section>
 
-    <section id="step-6" class="step">
+    <section id="step-7" class="step">
         
         <div class="subsection">
             <div id="logo-container-machtigingen-register">
@@ -391,7 +438,7 @@
     </section>
 
 
-    <section id="step-7" class="step">
+    <section id="step-8" class="step">
         
         <div class="subsection">
             <div>
@@ -400,7 +447,11 @@
             </div>
               <h3>Verwerking aanvraag</h3>
             <hr>
-            <p>Om de aanvraag goed te keuren ontvangen de bevoegd vertegenwoordigers een bericht om de aanvraag te beoordelen.</p>
+            <p>Om de aanvraag goed te keuren ontvangen de bevoegd vertegenwoordigers een bericht om de aanvraag te beoordelen.
+            <br> Hierbij moeten alle bevoegd vertegenwoordigers zich aanmelden, een bewijs van bevoegdheid kunnen overleggen, die vervolgens gevalideerd worden. 
+
+
+            </p>
         </div>
         
        
@@ -411,7 +462,7 @@
     </section>
 
 
-    <section id="step-8" class="step">
+    <section id="step-9" class="step">
         <div class="subsection">
             <div class="logo-container">
             <h2>Email</h2>
@@ -461,7 +512,7 @@
     </section>
     
 
-    <section id="step-9" class="step">
+    <section id="step-10" class="step">
          
         <div class="subsection">
             <div id="logo-container-machtigingen-register">
@@ -500,7 +551,7 @@
         </div>
     </section>
 
-    <section id="step-10" class="step">
+    <section id="step-11" class="step">
       
             <div class="logo-container" id="logo-container-justis">
                 <div class="header-logo"></div>
@@ -588,7 +639,7 @@
 
     
 
-    <section id="step-11" class="step">
+    <section id="step-12" class="step">
         <div class="subsection">
             <h1>Einde demo</h1>
             <hr>
