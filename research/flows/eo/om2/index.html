@@ -40,7 +40,70 @@
         </div>
     </section>
 
+
+
     <section id="step-2" class="step">
+        <div class="subsection">
+            <div class="logo-container" id="logo-container-innovatiemakers">
+              
+              <h1>Machtigingen Register</h1>
+            </div>
+            <hr>
+            <h2>Inloggen</h2>
+           
+            <p>
+              
+            </div>
+            <div class="button-container">
+                <button class="prev">Terug</button>
+                <button class="next">Volgende</button>
+            </div>
+        </section>
+
+
+
+        <section id="step-3" class="step">
+            <div class="subsection">
+                <div class="logo-container" id="logo-container-innovatiemakers">
+                  
+                  <h1>Machtigingen Register</h1>
+                </div>
+                <hr>
+                <h2>Identificeren nieuwe klant</h2>
+               
+                <p>
+                  
+                </div>
+                <div class="button-container">
+                    <button class="prev">Terug</button>
+                    <button class="next">Volgende</button>
+                </div>
+            </section>
+
+
+            <section id="step-4" class="step">
+                <div class="subsection">
+                    <div class="logo-container" id="logo-container-innovatiemakers">
+                      
+                      <h1>Machtigingen Register</h1>
+                    </div>
+                    <hr>
+                    <h2>Betaling nieuwe klant</h2>
+                   
+                    <p>
+                      
+                    </div>
+                    <div class="button-container">
+                        <button class="prev">Terug</button>
+                        <button class="next">Volgende</button>
+                    </div>
+                </section>
+    
+
+
+
+
+    <section id="step-5" class="step">
         <div class="subsection">
             <div class="logo-container" id="logo-container-innovatiemakers">
               
@@ -49,6 +112,87 @@
             <hr>
             <h2>Aanvraag machtiging</h2>
             <p>Beste aanvrager,</p>
+
+            <hr>
+            <h2>Organisatie ID</h2>
+            <p>Ik wil een machtiging namens de volgende organisatie aanvragen:</p>
+            <form>
+                <table>
+                    <tr>
+                        <td><label for="organisatie-type">Type Organisatie ID:</label></td>
+                        <td>
+                            <div style="display: flex; align-items: center;">
+                                <select id="organisatie-type" name="organisatie-type" onchange="toggleCustomTypeInput()">
+                                    <option value="KvKnummer">KvK nummer</option>
+                                    <option value="ProbasNr">Probas Nummer</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <div id="custom-type-container" style="display: none; margin-left: 10px;">
+                                    <label for="custom-type">Ander type:</label>
+                                    <input type="text" id="custom-type" name="custom-type" placeholder="Bijv. organisatiecode">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="organisatie-id">Organisatie ID:</label></td>
+                        <td>
+                            <input type="text" id="organisatie-id" name="organisatie-id" placeholder="Vul hier de waarde in">
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <hr>
+
+            <h2>Bevoegdheid</h2>
+            <p>Als persoon ben ik:</p>
+            <form>
+                <label>
+                    <input type="checkbox" name="dienst" value="wel bevoegd" class="exclusive">
+                    wel onbeperkt bevoegd voor deze organisatie
+                </label><br>
+        
+                <label>
+                    <input type="checkbox" name="dienst" value="niet bevoegd"class="exclusive">
+                   niet onbeperkt bevoegd voor deze organisatie
+                </label><br>
+            </form>
+            
+<hr>
+
+
+<h2>Organisatie</h2>
+<p>Geef de e-mailadressen op van de bevoegd vertegenwoordiger(s). <br>In geval van gedeelde bevoegdheden moeten alle e-mailadressen opgegeven worden.</p>
+
+<form id="email-form">
+    <table id="email-table">
+        <tbody>
+            <tr id="email-row-1">
+                <td><label for="email-1">E-mailadres bevoegd vertegenwoordiger:</label></td>
+                <td>
+                    <input type="email" id="email-1" name="email-1" value="voorbeeld1@organisatie.nl" placeholder="Vul een e-mailadres in">
+                </td>
+            </tr>
+            <tr id="email-row-2">
+                <td><label for="email-2">E-mailadres bevoegd vertegenwoordiger:</label></td>
+                <td>
+                    <input type="email" id="email-2" name="email-2" value="voorbeeld2@organisatie.nl" placeholder="Vul een e-mailadres in">
+                </td>
+            </tr>
+            <tr id="add-email-row">
+                <td></td>
+                <td>
+                    <button type="button" id="add-email-button">Voeg nog een e-mailadres toe</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+<hr>
+
+
+
             <p>Onderstaand kunt u een machtiging voor een dienst aanvragen. Seleceteer de dienst waarvoor u een machtiging wil aanvragen.
               
         
@@ -165,21 +309,7 @@
                
                 </form>
                 <hr>
-                <h2>Bevoegdheid</h2>
-                <p>Als persoon ben ik:</p>
-                <form>
-                    <label>
-                        <input type="checkbox" name="dienst" value="wel bevoegd" class="exclusive">
-                        wel bevoegd
-                    </label><br>
-            
-                    <label>
-                        <input type="checkbox" name="dienst" value="niet bevoegd"class="exclusive">
-                       niet bevoegd
-                    </label><br>
-                </form>
-                
-<hr>
+
 
 <h2> Controle Identiteit behorende bij aanvraag</h2>
 
@@ -197,12 +327,12 @@
         </div>
     </section>
 
-    <section id="step-3" class="step">
+    <section id="step-6" class="step">
         
         <div class="subsection">
             <div class="logo-container" id="logo-container-innovatiemakers">
                 
-                <h1>Innovatiemakers</h1>
+                <h1>Machtigingen Register</h1>
             </div>
               <h3>Verwerking aanvraag</h3>
             <hr>
@@ -216,12 +346,80 @@
         </div>
     </section>
 
-    <section id="step-4" class="step">
+
+    <section id="step-7" class="step">
+        
+        <div class="subsection">
+            <div class="logo-container">
+                
+                <h1>Toelichting verwerking</h1>
+            </div>
+              <h3>Verwerking aanvraag</h3>
+            <hr>
+            <p>Om de aanvraag goed te keuren ontvangen de bevoegd vertegenwoordigers een bericht om de aanvraag te beoordelen.</p>
+        </div>
+        
+       
+        <div class="button-container">
+            <button class="prev">Terug</button>
+            <button class="next">Volgende</button>
+        </div>
+    </section>
+
+
+    <section id="step-8" class="step">
+        <div class="subsection">
+            <div id="email-container">
+                <div id="email-meta">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td class="meta-label">Aan:</td>
+                                <td class="meta-value">Willeke de Bruijn</td>
+                            </tr>
+                            <tr>
+                                <td class="meta-label">Afzender:</td>
+                                <td class="meta-value">Innovatiemakers B.V.</td>
+                            </tr>
+                            <tr>
+                                <td class="meta-label">Onderwerp:</td>
+                                <td class="meta-value">Uitgifte digitale machtiging namens organisatie toegekend</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+              
+                <div id="email-header">
+                    <h4 id="email-title">Uitgifte digitale machtiging namens organisatie toegekend</h4>
+                </div>
+                <p id="email-intro">
+                    Beste Willeke,<br><br>
+                    Uw organisatie heeft uw aanvraag voor een machtiging goedgekeurd voor:
+                </p>
+                <form>
+                    <ul id="email-list">
+                        <li name="dienst" value="omzetbelasting">Omzetbelasting (btw)</li>
+                    </ul>
+                </form>
+                <hr id="email-divider">
+                <p id="email-footer">
+                    U kunt de machtiging ophalen in het Machtigingen Register en deze toevoegen in uw handelingsomgeving.
+                </p>
+            </div>
+            <div class="button-container">
+                <button class="prev">Terug</button>
+                <button class="next">Volgende</button>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="step-9" class="step">
          
         <div class="subsection">
-            <h1>Uitgifte digitale machtiging namens organisatie toegekend</h1>
+            <h1>Machtigingen Register</h1>
             <hr>
-         
+            <h4>Uitgifte digitale machtiging namens organisatie toegekend</h4>
             <p>Beste Willeke,<br>
                 
                 Uw organisatie heeft uw aanvraag voor een machtiging goedgekeurd voor:<br>
@@ -251,36 +449,95 @@
         </div>
     </section>
 
-    <section id="step-5" class="step">
-        <div class="subsection">
+    <section id="step-10" class="step">
+      
             <div class="logo-container" id="logo-container-justis">
                 <div class="header-logo"></div>
                 <div class="header-text">Belastingdienst</div>
               </div>
-              <h1>Inloggen</h1>
-            <hr>
-            <h4>Inloggen namens organisatie</h4>
+
+
+              <div class="bd-navbar">
+                <div class="bd-navbar-left">
+                    <a  class="bd-nav-link"><i class="fas fa-home"></i> Home</a>
+                    <a class="bd-nav-link"><i class="fas fa-bars"></i> Menu</a>
+                </div>
+             
+                <div class="bd-navbar-right">
+                    <div class="bd-search-bar">
+                        <input type="text" class="bd-search-input" placeholder="Waar bent u naar op zoek?">
+                        <button class="bd-search-button"><i class="fas fa-search"></i></button>
+                    </div>
+                    <a class="bd-nav-link"><i class="fas fa-user"></i> Inloggen</a>
+                </div>
+            </div>
+            
+            <div class="bd-header-divider"></div>
+            <div class="bd-divider-high"></div>
+      
+    
+        <div class="subsection">
+            
+            <h4 id="bd-subtitle">Inloggen namens organisatie</h4>
+    
+            <p id="bd-instructions">
+                Open de handelingsomgeving op uw telefoon (<a href="https://www.tipdemo.nl/demo">www.tipdemo.nl/demo</a>). <br>
+                Zodra u de handelingsomgeving op uw telefoon heeft geopend, 
+                scan dan onderstaande QR-code <strong>met uw handelingsomgeving</strong> om in te loggen.<br>
+            </p>
+            <div id="bd-qr-code">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?data=%7B%22type%22%3A%22verifier%22%2C%22requester%22%3A%22Belastingdienst%22%2C%22reason%22%3A%22Inloggen%20namens%20organisatie%22%2C%22rdfcv%22%3A%5B%22gn%22%2C%22sn%22%2C%22bsn%22%2C%22Machtiging%20diensten%22%5D%2C%22a%22%3A%22w%22%2C%22t%22%3A%22w%22%7D&size=300x300" 
+                alt="QR Code voor Inloggen namens organisatie">
+            </div>
            
-            <p>
-            Open de handelingsomgeving op uw telefoon (www.tipdemo.nl/demo). <br>
-            Zodra u de handelingsomgeving op uw telefoon heeft geopend, 
-            scan dan onderstaande QR-code <strong>met uw handelingsomgeving</strong> om in te loggen<br>
-        </p>
-        <div class="qr-code">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?data=%7B%22type%22%3A%22verifier%22%2C%22requester%22%3A%22Belastingdienst%22%2C%22reason%22%3A%22Inloggen%20namens%20organisatie%22%2C%22rdfcv%22%3A%5B%22gn%22%2C%22sn%22%2C%22bsn%22%2C%22Machtiging%20diensten%22%5D%2C%22a%22%3A%22w%22%2C%22t%22%3A%22w%22%7D&size=300x300" 
-            alt="QR Code voor Inloggen namens organisatie">
-          </div>
-           
-          
-            <hr>
         </div>
+    
+        <div class="bd-footer">
+            <div class="bd-footer-column">
+                <h4>Over de Belastingdienst</h4>
+                <ul>
+                    <li><a >Contact</a></li>
+                    <li><a>Over ons</a></li>
+                    <li><a >Werken bij de Belastingdienst</a></li>
+                </ul>
+            </div>
+            <div class="bd-footer-column">
+                <h4>Inloggen</h4>
+                <ul>
+                    <li><a >Inloggen op Mijn Belastingdienst</a></li>
+                    <li><a >Inloggen op Mijn Toeslagen</a></li>
+                    <li><a >Inloggen voor ondernemers</a></li>
+                    <li><a >Inloggen voor douanezaken</a></li>
+                </ul>
+            </div>
+            <div class="bd-footer-column">
+                <h4>Over deze site</h4>
+                <ul>
+                    <li><a >Sitemap</a></li>
+                    <li><a >Help</a></li>
+                </ul>
+            </div>
+            <div class="bd-footer-column">
+                <h4>Language</h4>
+                <ul>
+                    <li><a >English</a></li>
+                    <li><a >Deutsch</a></li>
+                </ul>
+            </div>
+        </div>
+    
         <div class="button-container">
             <button class="prev">Terug</button>
             <button class="next">Volgende</button>
         </div>
     </section>
+    
 
-    <section id="step-6" class="step">
+
+
+    
+
+    <section id="step-9" class="step">
         <div class="subsection">
             <h1>Einde demo</h1>
             <hr>
@@ -293,7 +550,7 @@
         </div>
     </section>
 
-    <section id="step-7" class="step">
+    <section id="step-11" class="step">
         <div class="subsection">
             <h1>test</h1>
             <hr>
@@ -306,7 +563,7 @@
         </div>
     </section>
 
-    <section id="step-8" class="step">
+    <section id="step-12" class="step">
         <div class="subsection">
             <h1>test</h1>
             <hr>
@@ -340,5 +597,62 @@
             });
         });
     </script>
+
+
+<script>
+    function toggleCustomTypeInput() {
+        const organisatieType = document.getElementById('organisatie-type').value;
+        const customTypeContainer = document.getElementById('custom-type-container');
+
+        if (organisatieType === 'Other') {
+            customTypeContainer.style.display = 'flex'; // Toon invoerveld voor custom type
+        } else {
+            customTypeContainer.style.display = 'none'; // Verberg invoerveld voor custom type
+        }
+    }
+</script>
+<script>
+    let emailCount = 1; // Aantal huidige e-mailinvoervelden
+
+    // Functie om een nieuw e-mailveld toe te voegen
+    document.getElementById('add-email-button').addEventListener('click', () => {
+        emailCount++;
+        const emailTable = document.getElementById('email-table').querySelector('tbody');
+        const addEmailRow = document.getElementById('add-email-row');
+
+        // Controleer of de rij met de knop correct is gevonden
+        if (!addEmailRow || !emailTable.contains(addEmailRow)) {
+            console.error('Rij voor knop niet gevonden of niet binnen de tabel!');
+            return;
+        }
+
+        // Maak een nieuwe rij voor het e-mailadres
+        const emailRow = document.createElement('tr');
+        emailRow.id = `email-row-${emailCount}`;
+
+        // Kolom 1: Label
+        const labelCell = document.createElement('td');
+        const label = document.createElement('label');
+        label.setAttribute('for', `email-${emailCount}`);
+        label.innerText = `E-mailadres bevoegd vertegenwoordiger:`;
+        labelCell.appendChild(label);
+
+        // Kolom 2: Invoerveld
+        const inputCell = document.createElement('td');
+        const input = document.createElement('input');
+        input.setAttribute('type', 'email');
+        input.setAttribute('id', `email-${emailCount}`);
+        input.setAttribute('name', `email-${emailCount}`);
+        input.setAttribute('placeholder', 'Vul een e-mailadres in');
+        inputCell.appendChild(input);
+
+        // Voeg beide kolommen toe aan de nieuwe rij
+        emailRow.appendChild(labelCell);
+        emailRow.appendChild(inputCell);
+
+        // Voeg de nieuwe rij toe vóór de rij met de knop
+        emailTable.insertBefore(emailRow, addEmailRow);
+    });
+</script>
 </body>
 </html>

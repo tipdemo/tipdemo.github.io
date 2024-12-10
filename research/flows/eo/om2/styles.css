@@ -206,3 +206,284 @@ label {
 input[type="checkbox"] {
   margin-right: 10px;
 }
+
+/* Algemeen container styling voor de e-mail */
+#email-container {
+  font-family: Arial, sans-serif;
+  max-width: 600px;
+  margin: 20px auto;
+ 
+  border: 1px solid #ddd;
+
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+/* Meta tabel styling */
+#email-meta table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#email-meta td {
+  padding: 5px;
+  vertical-align: top;
+}
+
+.meta-label {
+  text-align: right;
+  font-weight: bold;
+  width: 25%;
+  color: #555;
+}
+
+.meta-value {
+  text-align: left;
+  width: 75%;
+  color: #333;
+}
+
+/* Divider voor de scheiding */
+#meta-divider {
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 10px 0;
+}
+
+/* Titel van de e-mail */
+#email-header {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+#email-title {
+  font-size: 18px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Introductietekst */
+#email-intro {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Lijst met machtigingen */
+#email-list {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+  list-style-type: disc;
+  padding-left: 40px;
+}
+
+/* Scheiding tussen secties */
+#email-divider {
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 20px 0;
+}
+
+/* Voettekst van de e-mail */
+#email-footer {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+}
+
+
+/* Header styling */
+.bd-header {
+  background-color: #002b80;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.bd-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bd-header-logo {
+  background-image: url('https://www.belastingdienst.nl/images/logo.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+
+.bd-header-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.bd-header-divider {
+  background-color: #8fcae7;
+  height: 2px;
+}
+
+/* Subsection styling */
+#bd-title {
+  text-align: center;
+  font-size: 28px;
+  color: #002b80;
+}
+
+.bd-divider {
+  border: 0;
+  border-top: 2px solid #01689b;
+  margin: 20px 0;
+}
+
+.bd-divider-high {
+  height: 36px;
+    background-color: #eef7fb;
+  
+}
+
+#bd-subtitle {
+  text-align: center;
+  font-size: 20px;
+  color: #333;
+}
+
+#bd-instructions {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+  margin: 20px 0;
+}
+
+#bd-qr-code {
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Footer styling */
+.bd-footer {
+  background-color: #eef7fb;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.bd-footer-column {
+  flex: 1;
+  margin: 10px;
+  min-width: 200px;
+}
+
+.bd-footer-column h4 {
+  color: #000000;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.bd-footer-column ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.bd-footer-column ul li {
+  margin: 5px 0;
+}
+
+.bd-footer-column ul li a {
+  color: #01689b;
+  text-decoration: none;
+}
+
+.bd-footer-column ul li a:hover {
+  text-decoration: underline;
+}
+
+
+/* Algemene styling voor de navbar */
+.bd-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+
+  padding: 4px 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Linker sectie styling */
+.bd-navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.bd-nav-link {
+  text-decoration: none;
+  color: #002b80;
+  font-size: 14px;
+  margin-right: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.bd-nav-link i {
+  margin-right: 5px;
+}
+
+/* Rechter sectie styling */
+.bd-navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-grow: 1;
+}
+
+/* Zoekbalk styling */
+.bd-search-bar {
+  display: flex;
+  align-items: center;
+  max-width: 400px;
+  margin-right: 20px;
+}
+
+.bd-search-input {
+  flex-grow: 1;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px 0 0 3px;
+  font-size: 14px;
+}
+
+.bd-search-button {
+  background-color: #01689b;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.bd-search-button i {
+  margin: 0;
+}
+
+/* Font Awesome iconen */
+.bd-nav-link i,
+.bd-search-button i {
+  font-size: 16px;
+}
+
+/* Hover-effect voor links */
+.bd-nav-link:hover,
+.bd-search-button:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
