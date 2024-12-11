@@ -260,6 +260,19 @@ IADR: 'Factuur-adres',
   }
 };
 
+// Nieuwe valueMapping voor verkorte values
+const valueMapping = {
+  "WDB": "Willeke de Bruijn",
+  "TMV": "Transportbedrijf Maasvlakte Vervoer",
+  "TGM": "Toegangspas Maasvlakte",
+  "ADRtr": "ADR training",
+  "IVPtr": "IVP training",
+  "ATEXtr": "ATEX training",
+  "EOOT": "Eigendomsbezit object truck",
+};
+
+
+
 
 let html5QrCode = null; // We zullen de QR-code scanner hier initialiseren
 let credentials = [];

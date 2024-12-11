@@ -362,3 +362,8 @@ button.close-tab i, button.go-home i {
         font-size: 18px;
     }
 }
+
+.important-message {
+    border: 3px solid #1853c0;
+    padding: 10px;
+}
