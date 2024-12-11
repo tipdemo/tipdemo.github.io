@@ -249,7 +249,7 @@ const fieldMapping = {
   Specifiek_profiel: 'Specifiek profiel',
   Attestation_Trust_Type: 'Type attestatie',
   IBAN: 'IBAN',
-IADR: 'Factuur-adres',
+  IADR: 'Factuur-adres',
   ATT: 'Type attestatie',
   dipvk: 'Diploma Verpleegkunde',
   a: {
@@ -269,6 +269,9 @@ const valueMapping = {
   "IVPtr": "IVP training",
   "ATEXtr": "ATEX training",
   "EOOT": "Eigendomsbezit object truck",
+  "ADR": "ADR-certificaat",
+  "IVP": "IVP-certificaat",
+  "ATEX": "ATEX-certificaat",
 };
 
 
@@ -1452,7 +1455,11 @@ confirmPinIssuerBtn.onclick = () => {
           // Voeg kaart header toe
           const cardHeader = document.createElement('div');
           cardHeader.className = 'card-header';
-          cardHeader.textContent = cardData.name;
+
+          // Pas valueMapping toe op de name
+          let mappedName = valueMapping[cardData.name] || cardData.name;
+          cardHeader.textContent = mappedName;
+
           cardContainer.appendChild(cardHeader);
 
           // Maak een div voor de kaartinhoud
@@ -1468,6 +1475,12 @@ confirmPinIssuerBtn.onclick = () => {
 
                   // Haal de leesbare veldnaam op via fieldMapping, anders gebruik de originele sleutel
                   const fieldName = fieldMapping[key] || key;
+                  let value = cardData[key]; // Gebruik 'key' in plaats van 'originalKey'
+          
+                  // Pas de value-mapping toe
+                  if (valueMapping[value]) {
+                    value = valueMapping[value];
+                  }
 
                   // Maak een div voor de detailrij
                   const detailRow = document.createElement('div');
@@ -1491,7 +1504,7 @@ confirmPinIssuerBtn.onclick = () => {
                       valueDiv.appendChild(img);
                   } else {
                       // Voor andere velden, toon de tekstwaarde
-                      valueDiv.textContent = cardData[key] || 'Niet beschikbaar';
+                      valueDiv.textContent = value || 'Niet beschikbaar';
                   }
 
                   // Voeg label en waarde toe aan de detailrij
@@ -1514,88 +1527,98 @@ confirmPinIssuerBtn.onclick = () => {
       rdfciMultipleModal.style.display = 'flex';
   }
 
-  // Accepteren van meerdere kaarten
   rdfciMultipleAcceptButton.onclick = () => {
-      const data = window.currentRdfciData;
-      if (!data) {
-          console.error("Data is niet beschikbaar.");
-          return;
-      }
-      const timestamp = new Date().toLocaleString();
+    const data = window.currentRdfciData;
+    if (!data) {
+        console.error("Data is niet beschikbaar.");
+        return;
+    }
+    const timestamp = new Date().toLocaleString();
 
-      // Itereer over elke kaart en sla deze op als een aparte credential
-      data.cardsToIssue.forEach(card => {
-          const mappedData = {};
+    data.cardsToIssue.forEach(card => {
+        const mappedData = {};
 
-          // Gebruik fieldMapping om de veldnamen te mappen indien nodig
-          for (let key in card) {
-              if (card.hasOwnProperty(key)) {
-                  const fieldName = fieldMapping[key] || key;
-                  mappedData[fieldName] = card[key];
-              }
-          }
+        let mappedName = valueMapping[card.name] || card.name || 'Onbekend kaartje';
+        let mappedIssuer = valueMapping[card.issuedBy] || card.issuedBy || 'Onbekende uitgever';
 
-          // Voeg het nieuwe credential toe
-          credentials.push({
-              name: card.name || 'Onbekend kaartje',
-              issuedBy: card.issuedBy || 'Onbekende uitgever',
-              actionTimestamp: timestamp,
-              isShareAction: false,
-              data: mappedData
-          });
-      });
+        for (let key in card) {
+            if (card.hasOwnProperty(key)) {
+                const fieldName = fieldMapping[key] || key;
+                let value = card[key];
 
-      saveCredentials();
-      console.log("Credentials na toevoegen multiple RDFCI:", credentials);
+                if (valueMapping[value]) {
+                  value = valueMapping[value];
+                }
 
-      // Toon het issuer success-scherm
-      goToMultipleIssuerSuccessScreen(data.cardsToIssue.map(card => card.name), data.issuedBy);
+                mappedData[fieldName] = value;
+            }
+        }
 
-      // Sluit de multiple RDFCI modal
-      rdfciMultipleModal.style.display = 'none';
-  };
+        credentials.push({
+            name: mappedName,
+            issuedBy: mappedIssuer,
+            actionTimestamp: timestamp,
+            isShareAction: false,
+            data: mappedData
+        });
+    });
 
-  // Event listener voor het stoppen van meerdere kaarten
-  rdfciMultipleStopButton.onclick = () => {
-      rdfciMultipleModal.style.display = 'none';
-      addCardScreen.style.display = 'none';
-      walletScreen.style.display = 'block';
-      bottomNav.style.display = 'flex';
-      resetQrScanner();
-  };
+    saveCredentials();
+    console.log("Credentials na toevoegen multiple RDFCI:", credentials);
+
+    // Toon het issuer success-scherm
+    goToMultipleIssuerSuccessScreen(data.cardsToIssue.map(card => card.name), data.issuedBy);
+
+    // Sluit de multiple RDFCI modal
+    rdfciMultipleModal.style.display = 'none';
+};
+
+// Event listener voor het stoppen van meerdere kaarten
+rdfciMultipleStopButton.onclick = () => {
+    rdfciMultipleModal.style.display = 'none';
+    addCardScreen.style.display = 'none';
+    walletScreen.style.display = 'block';
+    bottomNav.style.display = 'flex';
+    resetQrScanner();
+};
 
 
 
 
 
-function goToMultipleIssuerSuccessScreen(cardNames, issuerName) {
+  function goToMultipleIssuerSuccessScreen(cardNames, issuerName) {
+    const issuerMultipleSuccessScreen = document.getElementById('issuer-multiple-success-screen');
+    issuerMultipleSuccessScreen.style.display = 'flex';
   
-
-  const issuerMultipleSuccessScreen = document.getElementById('issuer-multiple-success-screen');
-  issuerMultipleSuccessScreen.style.display = 'flex';
-
-
-  // Vul de nieuwe tekstvelden in het successcherm
-  const cardNamesHTML = cardNames.map(name => `<li>${name}</li>`).join('');
-  document.getElementById('issuer-success-data').innerHTML = `<ul>${cardNamesHTML}</ul>`;
-  document.getElementById('issuer-success-issuedBy').innerText = issuerName;
-
-    // Sla op en werk de UI bij
+    // Pas valueMapping toe op issuerName
+    const mappedIssuerName = valueMapping[issuerName] || issuerName;
+  
+    // Pas valueMapping toe op elk van de cardNames
+    const mappedCardNames = cardNames.map(name => {
+      return valueMapping[name] || name;
+    });
+  
+    // Maak HTML voor de gemapte cardNames
+    const cardNamesHTML = mappedCardNames.map(name => `<li>${name}</li>`).join('');
+    document.getElementById('issuer-success-data').innerHTML = `<ul>${cardNamesHTML}</ul>`;
+  
+    // Toon de gemapte issuerName
+    document.getElementById('issuer-success-issuedBy').innerText = mappedIssuerName;
+  
+    // Sla op en werk UI bij
     saveCredentials();
     displayCredentials();
     console.log("Multiple RDFCI kaarten opgeslagen:", credentials);
-
-
-  // Sluitknop logica voor het sluiten van het successcherm
-  closeIssuerMultipleSuccessBtn.onclick = () => {
-    issuerMultipleSuccessScreen.style.display = 'none';
+  
+    // Sluitknop logica voor het sluiten van het successcherm
+    closeIssuerMultipleSuccessBtn.onclick = () => {
+      issuerMultipleSuccessScreen.style.display = 'none';
       addCardScreen.style.display = 'none';
       walletScreen.style.display = 'block';
       bottomNav.style.display = 'flex'; // Toon de navigatiebalk onderaan opnieuw
-  };
-}
-
-
+    };
+  }
+  
 
 
 // RDFCV vraagscherm vullen
