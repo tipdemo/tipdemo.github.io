@@ -84,9 +84,9 @@ function toggleButtons() {
         if (!document.querySelector('.go-example') && !document.querySelector('.go-home')) {
             // Voeg de 'Sluiten tabblad'-knop toe met Font Awesome icoon
             const exampleButton = document.createElement('button');
-            exampleButton.innerHTML = '<i class="fas fa-lightbulb"></i> Naar onderzoek';
+            exampleButton.innerHTML = '<i class="fas fa-flask"></i> Naar onderzoek';
             exampleButton.className = 'go-example';
-            exampleButton.onclick = ()=> window.location.href = 'https://www.tipdemo.nl/research/flows/';
+            exampleButton.onclick = ()=> window.location.href = 'https://www.tipdemo.nl/research';
 
             // Voeg de 'Terug naar hoofdwebsite'-knop toe met Font Awesome icoon
             const homeButton = document.createElement('button');
