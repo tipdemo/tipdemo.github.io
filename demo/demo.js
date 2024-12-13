@@ -803,227 +803,340 @@ displayCredentials();
 displayMachtigingen();
 
 
-// Functie om de QR-code scanner te starten
-function startQrScan() {
-  document.querySelector('.scan-container').style.display = 'none'; // Verberg scan-knop en tekst
-  closeScanButton.style.display = 'block'; // Toon de sluit-knop
-  readerDiv.style.display = 'block'; // Toon de camera
 
-  // Check of html5QrCode al bestaat, zo niet, initialiseer het
+// ==================================
+// ======== CATALOGUE ========
+// ==================================
+document.addEventListener('DOMContentLoaded', function () {
+  const toggleButton = document.getElementById('toggle-view-button');
+  const buttonList = document.querySelector('.button-list');
+  const sectionHeaders = document.getElementById('section-organisation-headers');
+
+  // Start logica: button-list zichtbaar, section-organisation-headers verborgen
+  toggleButton.addEventListener('click', function () {
+      const icon = toggleButton.querySelector('i');
+
+      if (buttonList.style.display === 'none') {
+          // Toon button-list, verberg de headers
+          buttonList.style.display = 'flex';
+          sectionHeaders.style.display = 'none';
+          icon.className = 'fas fa-building';
+          toggleButton.innerHTML = '<i class="fas fa-building"></i> Weergave per organisatie';
+      } else {
+          // Verberg button-list, toon de headers
+          buttonList.style.display = 'none';
+          sectionHeaders.style.display = 'block';
+          icon.className = 'fas fa-list';
+          toggleButton.innerHTML = '<i class="fas fa-list"></i> Weergave per attribuut';
+      }
+  });
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const headers = document.querySelectorAll('.header-bar');
+
+  headers.forEach(header => {
+    header.addEventListener('click', function () {
+      const formButtons = header.nextElementSibling;
+
+      // Wissel de zichtbaarheid van de form-buttons
+      if (formButtons.style.display === 'none' || formButtons.style.display === '') {
+        formButtons.style.display = 'block';
+        header.querySelector('.fa-chevron-down').classList.remove('fa-chevron-down');
+        header.querySelector('.header-right i').classList.add('fa-chevron-up');
+      } else {
+        formButtons.style.display = 'none';
+        header.querySelector('.header-right i').classList.remove('fa-chevron-up');
+        header.querySelector('.header-right i').classList.add('fa-chevron-down');
+      }
+    });
+  });
+});
+
+
+
+// ==================================
+// ======= QR SCANNER LOGICA =========
+// ==================================
+
+// Event listener voor de scan-knop
+scanButton.addEventListener('click', () => {
+  startQrScan();
+});
+
+
+// startQrScan()
+// ------------
+// Start de QR-code scanner. Verbergt initiële knoppen en toont de camera.
+// Initialiseert de scanner als deze nog niet bestaat en start vervolgens met scannen.
+// Bij succes/fout roept deze onScanSuccess / onScanError aan.
+
+function startQrScan() {
+  // Verberg scan-knop en tekst, toon sluitknop en camera
+  document.querySelector('.scan-container').style.display = 'none';
+  closeScanButton.style.display = 'block';
+  readerDiv.style.display = 'block';
+
+  // Initialiseer indien nodig
   if (!html5QrCode) {
-      html5QrCode = new Html5Qrcode("reader");
+    html5QrCode = new Html5Qrcode("reader");
   }
 
   console.log("Starting QR scanner...");
 
   html5QrCode.start(
-      { facingMode: "environment" },
-      { fps: 10, 
-        qrbox: 250 },
-      (decodedText) => {
-          console.log("QR code scanned: ", decodedText);
-          try {
-              const data = JSON.parse(decodedText);
-              const timestamp = new Date().toLocaleString();
-
-
-            // Stap 1: Controleer het type QR-code
-            if (data.type === "mandate") {
-              console.log("Mandate QR-code herkend.");
-              handleMandateQR(data, timestamp);
-          }
-
-              // Stap 1: Controleer of het een verifier QR-code is (csas)
-             else if (data.type === "verifier" && data.csas) {
-                console.log("CSAS QR-code herkend.");
-            
-                // Sla de CSAS data op voor later gebruik
-                window.currentCsasData = data;
-            
-                // Vul de modal met de gegevens van het CSAS-verzoek
-                populateCsasModal(data);
-            
-                // Toon de CSAS modal
-                csasModal.style.display = 'flex';     
-            
-              }
-              // ** Stap 2 codeblok voor RDFCV**
-              else if (data.type === "verifier" && data.rdfcv) {
-                    console.log("RDFCV QR-code herkend.");
-
-                    // Sla de RDFCV data op voor later gebruik
-                    window.currentRdfcvData = data;
-
-                    // Vul de modal met de gegevens van het RDFCV-verzoek
-                    populateRdfcvModal(data);
-
-                    // Toon de RDFCV modal
-                    rdfcvModal.style.display = 'flex';
-                  }
-              // ** Nieuwe stap voor Signdoc **
-              else if (data.type === "signdoc") {
-                        console.log("Signdoc QR-code herkend.");
-                        populateModalSignDoc(data);
-                    } 
-
-              else if (data.type === "form" && data.rdfcf) {
-                      console.log("RDFCF QR-code detected.");
-                      window.currentRdfcfData = data;
-            
-                      // Populate the RDFCF modal
-                      populateRdfcfModal(data);
-                    } 
-
-                    else if (data.type === "PPOP") {
-                      console.log("PPOP QR-code herkend.");
-                      // Sla de PPOP data op voor later gebruik
-                      window.currentPpopData = data;
-                      // Vul de modal met de gegevens van het PPOP-verzoek
-                      populatePpopModal(data);
-                      // Toon de PPOP modal
-                      ppopModal.style.display = 'flex';
-                  }     
-
-              // Stap 3: Controleer of het een issuer QR-code is (rdfci)
-               else if (data.issuedBy && data.name) {
-                  console.log("Issuer QR-code herkend.");
-
-                        if (data.rdfci) {
-                            console.log("Issuer QR-code met rdfci herkend.");
-
-                            // Check for multiple cards to issue
-                            if (Array.isArray(data.cardsToIssue) && data.cardsToIssue.length > 0) {
-                            console.log("Meerdere kaarten gevonden in rdfci flow.");
-
-                            // Vul de modal met de kaarten die uitgegeven moeten worden
-                            populateMultipleRdfciModal(data);
-
-                            // Toon de multiple RDFCI modal
-                            rdfciMultipleModal.style.display = 'flex';
-                            } else {
-
-                            // Vul de modal met de nieuwe functie
-                            populateRdfciModal(data);
-
-                            // Toon het extra vraagscherm
-                            rdfciModal.style.display = 'flex';
-
-                            rdfciAcceptButton.onclick = () => {
-                              const timestamp = new Date().toLocaleString();
-                            
-                              // Maak een nieuw object voor de gemapte data
-                              const mappedData = {};
-                            
-                              // Itereer over de keys in 'data' en map de veldnamen
-                              for (let key in data) {
-                                if (
-                                  data.hasOwnProperty(key) &&
-                                  key !== 'rdfci' &&
-                                  
-                                  key !== 'a' &&
-                                  key !== 't' &&
-                                  key !== 'name' &&
-                                  key !== 'reason' &&
-                                  key !== 'verifier' &&
-                                  key !== 'issuer' &&
-                                  key !== 'type' &&
-                                  key !== 'requester'
-                                ) {
-                                  const fieldName = fieldMapping[key] || key;
-                                  mappedData[fieldName] = data[key];
-                                }
-                              }
-                            
-                              // Sla het kaartje op met de gemapte data
-                              credentials.push({
-                                name: data.name || 'Onbekend kaartje',
-                                issuedBy: data.issuedBy || 'Onbekende uitgever',
-                                actionTimestamp: timestamp,
-                                isShareAction: false,
-                                data: mappedData // Gebruik de gemapte data
-                              });
-                            
-                              saveCredentials();
-                            
-                                // Toon het issuer success-scherm
-                                goToIssuerSuccessScreen(data.name, data.issuedBy);
-
-                                // Sluit het extra vraagscherm
-                                rdfciModal.style.display = 'none';
-                            };
-
-                            rdfciStopButton.onclick = () => {
-                                rdfciModal.style.display = 'none';
-                                addCardScreen.style.display = 'none';
-                                walletScreen.style.display = 'block';
-                                bottomNav.style.display = 'flex';
-                                resetQrScanner();
-                            };
-                          }
-
-                        } else {
-                            // Toon de bestaande issuer modal
-                            issuerQuestionModal.style.display = 'flex';
-                            console.log("Issuer modal geopend.");
-
-                            const issuerName = data.issuedBy || 'Onbekende uitgever';
-                            const cardName = data.name || 'Onbekend kaartje';
-                            document.getElementById('issuer-data').innerText = cardName;
-                            document.getElementById('issuer-issuedBy').innerText = issuerName;
-
-                            saveButton.onclick = () => {
-                                console.log("Opslaan-knop ingedrukt voor issuer.");
-                                credentials.push({
-                                    name: cardName,
-                                    issuedBy: issuerName,
-                                    actionTimestamp: timestamp,
-                                    isShareAction: false,
-                                    data: {
-                                      kaartDetails: data,  // Sla alle kaartdetails op
-                                      gevraagdeGegevens: data.rdfci.map(field => fieldMapping[field] || field)  // Gebruik fieldmapping om de gevraagde gegevens op te slaan
-                                  }
-                                });
-                                saveCredentials();
-                                console.log("Issuer gegevens opgeslagen in de wallet.");
-
-                                goToIssuerSuccessScreen(cardName, issuerName);
-                                console.log("Issuer success-scherm weergegeven.");
-
-                                issuerQuestionModal.style.display = 'none';
-                            };
-
-                            stopButtonIssuer.onclick = () => {
-                                console.log("Stop-knop ingedrukt. Issuer actie geannuleerd.");
-                                issuerQuestionModal.style.display = 'none';
-                                resetQrScanner();
-                            };
-                        }
-                }
-
-         
-               else {
-                  console.log("Onbekende QR-code structuur.");
-              }
-
-              // Sluit camera na succesvolle scan
-              html5QrCode.stop().then(() => {
-                  console.log("QR scanner stopped.");
-                  readerDiv.style.display = 'none';
-                  closeScanButton.style.display = 'none';
-                  document.querySelector('.scan-container').style.display = 'flex';
-              }).catch(err => {
-                  console.error("Failed to stop scanning: ", err);
-              });
-          } catch (error) {
-              console.error("QR-code parse error: ", error);
-          }
-      },
-      (errorMessage) => {
-          console.error(`QR scan failed: ${errorMessage}`);
-      }
+    { facingMode: "environment" },
+    { fps: 10, qrbox: 250 },
+    onScanSuccess,
+    onScanError
   );
 }
 
+// onScanSuccess(decodedText)
+// --------------------------
+// Callback-functie die wordt aangeroepen wanneer een QR-code succesvol is gescand.
+// Probeert de gescande tekst te parsen als JSON, haalt een timestamp op, 
+// en stuurt de gedecodeerde data door naar processScannedData().
+// Stopt daarna de scanner en herstelt de UI.
+
+function onScanSuccess(decodedText) {
+  console.log("QR succesfully code scanned: ", decodedText);
+
+  try {
+    const data = JSON.parse(decodedText);
+    const timestamp = new Date().toLocaleString();
+    processScannedData(data, timestamp);
+    stopScannerAndResetUI();
+  } catch (error) {
+    console.error("QR-code parse error: ", error);
+  }
+}
+
+// onScanError(errorMessage)
+// --------------------------
+// Callback-functie die wordt aangeroepen als het scannen van de QR-code mislukt.
+// Logt de fout en kan gebruikt worden voor het tonen van een foutmelding.
+function onScanError(errorMessage) {
+  console.error(`QR scan failed: ${errorMessage}`);
+}
+
+// stopScannerAndResetUI()
+// ------------------------
+// Stopt de QR-code scanner en zet de UI weer terug naar de beginstatus.
+// Wordt aangeroepen nadat we klaar zijn met het verwerken van de gescande data.
+function stopScannerAndResetUI() {
+  html5QrCode.stop().then(() => {
+    console.log("QR scanner stopped.");
+    readerDiv.style.display = 'none';
+    closeScanButton.style.display = 'none';
+    document.querySelector('.scan-container').style.display = 'flex';
+  }).catch(err => {
+    console.error("Failed to stop scanning: ", err);
+  });
+}
+
+// processScannedData(data, timestamp)
+// -----------------------------------
+// Ontvangt de JSON-geparse data en een timestamp. 
+// Op basis van het type en de inhoud van 'data' wordt bepaald welke verdere stappen nodig zijn.
+// Dit kan zijn: tonen van modals, opslaan van gegevens, of doorverwijzen naar specifieke handler-functies.
+function processScannedData(data, timestamp) {
+
+
+// Controleer het type QR-code
+
+// Als het een "mandate" QR-code is, voer de bijbehorende handler-functie uit:
+  if (data.type === "mandate") {
+    console.log("Mandate QR-code herkend.");
+    handleMandateQR(data, timestamp);
+
+
+// Als het een "verifier" en csas QR-code is, voer de bijbehorende handler-functie uit:
+
+  } else if (data.type === "verifier" && data.csas) {
+    console.log("CSAS QR-code herkend.");
+
+    // Sla de CSAS data op voor later gebruik
+    window.currentCsasData = data;
+
+    // Vul de modal met de gegevens van het CSAS-verzoek
+    populateCsasModal(data);
+
+    // Toon de CSAS modal
+    csasModal.style.display = 'flex';
+
+// Als het een "verifier" en rdfcv QR-code is, voer de bijbehorende handler-functie uit:    
+
+  } else if (data.type === "verifier" && data.rdfcv) {
+    console.log("RDFCV QR-code herkend.");
+
+    // Sla de RDFCV data op voor later gebruik
+    window.currentRdfcvData = data;
+
+    // Vul de modal met de gegevens van het RDFCV-verzoek
+    populateRdfcvModal(data);
+
+    // Toon de RDFCV modal
+    rdfcvModal.style.display = 'flex';
+
+  } else if (data.type === "signdoc") {
+    console.log("Signdoc QR-code herkend.");
+    populateModalSignDoc(data);
+
+  } else if (data.type === "form" && data.rdfcf) {
+    console.log("RDFCF QR-code detected.");
+    window.currentRdfcfData = data;
+
+    // Populate the RDFCF modal
+    populateRdfcfModal(data);
+
+  } else if (data.type === "PPOP") {
+    console.log("PPOP QR-code herkend.");
+    // Sla de PPOP data op voor later gebruik
+    window.currentPpopData = data;
+    // Vul de modal met de gegevens van het PPOP-verzoek
+    populatePpopModal(data);
+    // Toon de PPOP modal
+    ppopModal.style.display = 'flex';
+
+  // Stap 3: Controleer of het een issuer QR-code is (rdfci)
+  } else if (data.issuedBy && data.name) {
+    console.log("Issuer QR-code herkend.");
+
+    if (data.rdfci) {
+      console.log("Issuer QR-code met rdfci herkend.");
+
+      // Check for multiple cards to issue
+      if (Array.isArray(data.cardsToIssue) && data.cardsToIssue.length > 0) {
+        console.log("Meerdere kaarten gevonden in rdfci flow.");
+
+        // Vul de modal met de kaarten die uitgegeven moeten worden
+        populateMultipleRdfciModal(data);
+
+        // Toon de multiple RDFCI modal
+        rdfciMultipleModal.style.display = 'flex';
+      } else {
+
+        // Vul de modal met de nieuwe functie
+        populateRdfciModal(data);
+
+        // Toon het extra vraagscherm
+        rdfciModal.style.display = 'flex';
+
+        rdfciAcceptButton.onclick = () => {
+          const timestamp = new Date().toLocaleString();
+
+          // Maak een nieuw object voor de gemapte data
+          const mappedData = {};
+
+          // Itereer over de keys in 'data' en map de veldnamen
+          for (let key in data) {
+            if (
+              data.hasOwnProperty(key) &&
+              key !== 'rdfci' &&
+              key !== 'a' &&
+              key !== 't' &&
+              key !== 'name' &&
+              key !== 'reason' &&
+              key !== 'verifier' &&
+              key !== 'issuer' &&
+              key !== 'type' &&
+              key !== 'requester'
+            ) {
+              const fieldName = fieldMapping[key] || key;
+              mappedData[fieldName] = data[key];
+            }
+          }
+
+          // Sla het kaartje op met de gemapte data
+          credentials.push({
+            name: data.name || 'Onbekend kaartje',
+            issuedBy: data.issuedBy || 'Onbekende uitgever',
+            actionTimestamp: timestamp,
+            isShareAction: false,
+            data: mappedData // Gebruik de gemapte data
+          });
+
+          saveCredentials();
+
+          // Toon het issuer success-scherm
+          goToIssuerSuccessScreen(data.name, data.issuedBy);
+
+          // Sluit het extra vraagscherm
+          rdfciModal.style.display = 'none';
+        };
+
+        rdfciStopButton.onclick = () => {
+          rdfciModal.style.display = 'none';
+          addCardScreen.style.display = 'none';
+          walletScreen.style.display = 'block';
+          bottomNav.style.display = 'flex';
+          resetQrScanner();
+        };
+      }
+
+    } else {
+      // Toon de bestaande issuer modal
+      issuerQuestionModal.style.display = 'flex';
+      console.log("Issuer modal geopend.");
+
+      const issuerName = data.issuedBy || 'Onbekende uitgever';
+      const cardName = data.name || 'Onbekend kaartje';
+      document.getElementById('issuer-data').innerText = cardName;
+      document.getElementById('issuer-issuedBy').innerText = issuerName;
+
+      saveButton.onclick = () => {
+        console.log("Opslaan-knop ingedrukt voor issuer.");
+        credentials.push({
+          name: cardName,
+          issuedBy: issuerName,
+          actionTimestamp: timestamp,
+          isShareAction: false,
+          data: {
+            kaartDetails: data,  // Sla alle kaartdetails op
+            gevraagdeGegevens: data.rdfci.map(field => fieldMapping[field] || field)  // Gebruik fieldmapping
+          }
+        });
+        saveCredentials();
+        console.log("Issuer gegevens opgeslagen in de wallet.");
+
+        goToIssuerSuccessScreen(cardName, issuerName);
+        console.log("Issuer success-scherm weergegeven.");
+
+        issuerQuestionModal.style.display = 'none';
+      };
+
+      stopButtonIssuer.onclick = () => {
+        console.log("Stop-knop ingedrukt. Issuer actie geannuleerd.");
+        issuerQuestionModal.style.display = 'none';
+        resetQrScanner();
+      };
+    }
+
+  } else {
+    console.log("Onbekende QR-code structuur.");
+  }
+}
+
+
+function resetQrScanner() {
+  console.log("Resetting QR scanner...");
+
+  // Verberg de camera- en sluitknoppen
+  if (html5QrCode) {
+    html5QrCode.stop().then(() => {
+      console.log("QR scanner stopped.");
+    }).catch(err => {
+      console.error("Failed to stop scanning: ", err);
+    });
+  }
+  
+  // Verberg de camera en toon de scan-knop weer
+  readerDiv.style.display = 'none';
+  closeScanButton.style.display = 'none';
+  document.querySelector('.scan-container').style.display = 'flex'; // Toon scan-knop en tekst
+}
 
 
 /* // Sluit de scanner handmatig wanneer op "Scannen afsluiten" wordt geklikt
@@ -1043,13 +1156,12 @@ closeScanButton.addEventListener('click', () => {
   }
 }); */
 
-// Event listener voor de bestaande scan-knop, vervangt deze door de nieuwe functie
-scanButton.addEventListener('click', () => {
-  startQrScan();
-});
 
 
 
+// ==================================
+// ======== PIN-INPUT ===============
+// ==================================
 
 // Voeg pincode-invoerfunctionaliteit toe
 const pinInputs = document.querySelectorAll('.pin-box');
@@ -1062,7 +1174,6 @@ pinInputs.forEach((box, index) => {
 });
 
 
-
 // Reset pincode-scherm na gebruik
 function resetPinInputs() {
   pinInputs.forEach((input) => {
@@ -1073,94 +1184,10 @@ function resetPinInputs() {
 }
 
 
-function goToIssuerSuccessScreen(cardName, issuedBy) {
-  issuerSuccessScreen.style.display = 'flex';
 
-  // Vul de nieuwe tekstvelden in het successcherm
-  document.getElementById('issuer-success-data').innerText = cardName;
-  document.getElementById('issuer-success-issuedBy').innerText = issuedBy;
-
-  // Toon een kaartje met de gegevens
-  const successCard = document.getElementById('issuer-success-card');
-
-  // Haal stijlen op basis van kaartnaam
-  const nameLower = cardName.toLowerCase();
-  const styles = cardStyles[nameLower] || {
-    iconClass: 'far fa-id-badge',
-    iconColor: '#333',
-    textColor: '#333'
-  };
-
-  // Definieer grootte en marges
-  const iconSize = '30px';
-  const textSize = '18px';
-  const iconMarginBottom = '10px';
-
-  // Voeg FA-icoon en tekst toe aan de kaart met dynamische kleur en inline styles
-  successCard.innerHTML = `
-    <i class="${styles.iconClass}" 
-        style="color: ${styles.iconColor}; font-size: ${iconSize}; margin-bottom: ${iconMarginBottom};">
-    </i>
-    <div class="card-text" style="font-size: ${textSize};">
-      <h3 style="color: ${styles.textColor};">${cardName}</h3>
-    </div>
-  `;
-  successCard.classList.add('card'); // Voeg de kaartstijl toe
-}
-
-// Sluitknop voor het issuer success-scherm
-closeIssuerSuccessBtn.addEventListener('click', () => {
-  issuerSuccessScreen.style.display = 'none';
-  displayCredentials(); // Zorg dat het nieuwe kaartje wordt weergegeven
-
-  // Verberg het add-card scherm
-  addCardScreen.style.display = 'none';
-
-  // Toon het wallet-screen opnieuw
-  walletScreen.style.display = 'block';
-  bottomNav.style.display = 'flex'; // Toon de navbar onderaan opnieuw
-});
-
-// Functie om een waarde op te halen uit het "Personal data" kaartje of local storage
-function getFieldValue(field) {
-  // Mapping van veldnamen naar specifieke waarden in de HTML van het "Personal data" kaartje
-  const fieldMappings = {
-      gn: "Voornaam",
-      sn: "Achternaam",
-      bd: "Geboortedatum",
-      bsn: "Burgerservicenummer (BSN)"
-  };
-
-  // Haal de waarde uit het "Personal data" kaartje (HTML)
-  if (['gn', 'sn', 'bd', 'bsn'].includes(field)) {
-      const fieldName = fieldMappings[field];
-      const elements = document.querySelectorAll('#personal-data-details p');
-      for (let element of elements) {
-          if (element.innerText.startsWith(fieldName)) {
-              return element.innerText.split(': ')[1];
-          }
-      }
-      return 'Niet gevonden';
-  }
-
-  // Haal de waarde uit de opgeslagen gegevens in de local storage voor 'omv'
-  if (field === 'omv') {
-      for (let credential of credentials) {
-          if (credential.name === 'Organisatiemachtiging VOG' && credential.data) {
-              // Bouw de uiteindelijke string op met alle sleutel-waarde-paren in het opgeslagen kaartje
-              let details = [];
-              for (let key in credential.data) {
-                  if (credential.data.hasOwnProperty(key)) {
-                      details.push(`${key}: ${credential.data[key]}`);
-                  }
-              }
-              return details.join(', ');
-          }
-      }
-  }
-
-  return 'Niet gevonden';
-}
+// ==================================
+// ======== RDFCI FLOW ==============
+// ==================================
 
 
 function populateRdfciModal(data) {
@@ -1425,8 +1452,65 @@ confirmPinIssuerBtn.onclick = () => {
   resetQrScanner();
 };
 
+
+
+function goToIssuerSuccessScreen(cardName, issuedBy) {
+  issuerSuccessScreen.style.display = 'flex';
+
+  // Vul de nieuwe tekstvelden in het successcherm
+  document.getElementById('issuer-success-data').innerText = cardName;
+  document.getElementById('issuer-success-issuedBy').innerText = issuedBy;
+
+  // Toon een kaartje met de gegevens
+  const successCard = document.getElementById('issuer-success-card');
+
+  // Haal stijlen op basis van kaartnaam
+  const nameLower = cardName.toLowerCase();
+  const styles = cardStyles[nameLower] || {
+    iconClass: 'far fa-id-badge',
+    iconColor: '#333',
+    textColor: '#333'
+  };
+
+  // Definieer grootte en marges
+  const iconSize = '30px';
+  const textSize = '18px';
+  const iconMarginBottom = '10px';
+
+  // Voeg FA-icoon en tekst toe aan de kaart met dynamische kleur en inline styles
+  successCard.innerHTML = `
+    <i class="${styles.iconClass}" 
+        style="color: ${styles.iconColor}; font-size: ${iconSize}; margin-bottom: ${iconMarginBottom};">
+    </i>
+    <div class="card-text" style="font-size: ${textSize};">
+      <h3 style="color: ${styles.textColor};">${cardName}</h3>
+    </div>
+  `;
+  successCard.classList.add('card'); // Voeg de kaartstijl toe
+}
+
+// Sluitknop voor het issuer success-scherm
+closeIssuerSuccessBtn.addEventListener('click', () => {
+  issuerSuccessScreen.style.display = 'none';
+  displayCredentials(); // Zorg dat het nieuwe kaartje wordt weergegeven
+
+  // Verberg het add-card scherm
+  addCardScreen.style.display = 'none';
+
+  // Toon het wallet-screen opnieuw
+  walletScreen.style.display = 'block';
+  bottomNav.style.display = 'flex'; // Toon de navbar onderaan opnieuw
+});
+
+
+
+// ==================================
+// ======== MULTIPLE RDFCI kaarten ==
+// ==================================
+
+
     // Issuing meerdere kaarten
-    function populateMultipleRdfciModal(data) {
+function populateMultipleRdfciModal(data) {
       console.log("populateMultipleRdfciModal aangeroepen met data:", data);
       
       // Sla de data op voor de accept-knop
@@ -1583,9 +1667,6 @@ rdfciMultipleStopButton.onclick = () => {
 };
 
 
-
-
-
   function goToMultipleIssuerSuccessScreen(cardNames, issuerName) {
     const issuerMultipleSuccessScreen = document.getElementById('issuer-multiple-success-screen');
     issuerMultipleSuccessScreen.style.display = 'flex';
@@ -1619,6 +1700,11 @@ rdfciMultipleStopButton.onclick = () => {
     };
   }
   
+
+
+// ===============================
+// ======== RDFCV ================
+// ===============================
 
 
 // RDFCV vraagscherm vullen
@@ -1953,52 +2039,9 @@ if (closeScanButton) {
 }
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  const toggleButton = document.getElementById('toggle-view-button');
-  const buttonList = document.querySelector('.button-list');
-  const sectionHeaders = document.getElementById('section-organisation-headers');
-
-  // Start logica: button-list zichtbaar, section-organisation-headers verborgen
-  toggleButton.addEventListener('click', function () {
-      const icon = toggleButton.querySelector('i');
-
-      if (buttonList.style.display === 'none') {
-          // Toon button-list, verberg de headers
-          buttonList.style.display = 'flex';
-          sectionHeaders.style.display = 'none';
-          icon.className = 'fas fa-building';
-          toggleButton.innerHTML = '<i class="fas fa-building"></i> Weergave per organisatie';
-      } else {
-          // Verberg button-list, toon de headers
-          buttonList.style.display = 'none';
-          sectionHeaders.style.display = 'block';
-          icon.className = 'fas fa-list';
-          toggleButton.innerHTML = '<i class="fas fa-list"></i> Weergave per attribuut';
-      }
-  });
-});
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  const headers = document.querySelectorAll('.header-bar');
 
-  headers.forEach(header => {
-    header.addEventListener('click', function () {
-      const formButtons = header.nextElementSibling;
-
-      // Wissel de zichtbaarheid van de form-buttons
-      if (formButtons.style.display === 'none' || formButtons.style.display === '') {
-        formButtons.style.display = 'block';
-        header.querySelector('.fa-chevron-down').classList.remove('fa-chevron-down');
-        header.querySelector('.header-right i').classList.add('fa-chevron-up');
-      } else {
-        formButtons.style.display = 'none';
-        header.querySelector('.header-right i').classList.remove('fa-chevron-up');
-        header.querySelector('.header-right i').classList.add('fa-chevron-down');
-      }
-    });
-  });
-});
 
 // Functie om de CSAS Modal te vullen met de juiste gegevens uit de QR-code
 function populateCsasModal(data) {
@@ -2448,7 +2491,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
+// ==================================
+// ======== MANDATE AFHANDELING ========
+// ==================================
 
 
 // Functie om "mandate" QR-code te verwerken
@@ -2462,6 +2507,8 @@ function handleMandateQR(data, timestamp) {
   // Vul de mandate-modal met gegevens uit de QR-code
   populateMandateModal(data);
 }
+
+// Functie om de mandate-modal te vullen met de juiste gegevens
 
 function populateMandateModal(data) {
   console.log('populateMandateModal aangeroepen met data:', data); // Debugging log
@@ -2601,23 +2648,7 @@ document.getElementById('mandate-stop-button').addEventListener('click', () => {
   bottomNav.style.display = 'flex';
 });
 
-function resetQrScanner() {
-  console.log("Resetting QR scanner...");
 
-  // Verberg de camera- en sluitknoppen
-  if (html5QrCode) {
-    html5QrCode.stop().then(() => {
-      console.log("QR scanner stopped.");
-    }).catch(err => {
-      console.error("Failed to stop scanning: ", err);
-    });
-  }
-  
-  // Verberg de camera en toon de scan-knop weer
-  readerDiv.style.display = 'none';
-  closeScanButton.style.display = 'none';
-  document.querySelector('.scan-container').style.display = 'flex'; // Toon scan-knop en tekst
-}
 
 // Event listener voor de "Akkoord" knop in de mandate-modal
 document.getElementById('mandate-accept-button').addEventListener('click', () => {
