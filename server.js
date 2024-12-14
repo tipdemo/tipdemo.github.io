@@ -48,11 +48,11 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK' });
 });
 
-// Endpoint voor CSP-rapportage (optioneel)
-app.post('/csp-violation-report-endpoint', express.json(), (req, res) => {
-  console.log('CSP Violation: ', req.body);
-  res.status(204).end();
-});
+app.use((req, res, next) => {
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+    next();
+  });
+
 
 // Foutafhandeling
 app.use((err, req, res, next) => {
