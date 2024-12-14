@@ -34,7 +34,8 @@ const securityMiddleware = [
       imgSrc: [
         "'self'",
         "data:",
-         "https://api.qrserver.com"
+         "https://api.qrserver.com",
+          "https://tipdemo.nl"
       ],
       fontSrc: [
         "'self'",
