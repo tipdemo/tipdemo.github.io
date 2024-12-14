@@ -1,27 +1,52 @@
-// routes/api.js
 const express = require('express');
 const router = express.Router();
+const QRCode = require('qrcode');
 
-// Voorbeeld data
+// Data store met voorbeelddata
 const dataStore = {
   "12345": {
     type: "mandate",
-    requester: "Test Organisatie",
-    reason: "Toegang tot dienst X",
+    requester: "Jansen & Jansen belastingadvies",
+    LEID: "HRN 30217488",
+    reason: "Gegevens VIA 2024 ophalen",
+    geldigheidsduur: "30 dagen",
+    intrekbaar: "Niet intrekbaar",
+    a: "w",
     mandate: [
-      { issuedBy: "Dienstverlener Y", name: "ID-kaart", dienst: "Authenticatie" }
-    ],
-    LEID: "12345"
+      {
+        issuedBy: "BD",
+        dienst: "Inkomstenbelasting",
+        name: "VIA 2024"
+      }
+    ]
   }
 };
 
-// GET endpoint
+// GET endpoint om specifieke data op te halen
 router.get('/data/:id', (req, res) => {
   const id = req.params.id;
   if (dataStore[id]) {
     res.json(dataStore[id]);
   } else {
     res.status(404).json({ error: 'Data not found' });
+  }
+});
+
+// GET endpoint voor QR-code genereren
+router.get('/qrcode/:id', async (req, res) => {
+  const id = req.params.id;
+  if (!dataStore[id]) {
+    return res.status(404).send('Data not found for QR code');
+  }
+
+  // Genereer een QR-code met de JSON-data direct in de QR-code
+  const qrData = JSON.stringify(dataStore[id]);
+
+  try {
+    const qrCodeDataURL = await QRCode.toDataURL(qrData);
+    res.send(`<img src="${qrCodeDataURL}" alt="QR Code">`);
+  } catch (err) {
+    res.status(500).send('Error generating QR code');
   }
 });
 
