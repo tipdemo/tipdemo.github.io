@@ -28,19 +28,24 @@ const securityMiddleware = [
         "'self'",
         "https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js",
         "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js",
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js",
         "'unsafe-inline'" // Toestaan van inline scripts indien nodig
       ],
       imgSrc: [
         "'self'",
         "data:",
-        // Voeg jouw specifieke afbeeldings-CDN toe indien nodig, bijvoorbeeld:
-        // "https://your-image-cdn.com"
+         "https://api.qrserver.com"
       ],
       fontSrc: [
         "'self'",
         "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-solid-900.woff2",
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-solid-900.ttf",
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-regular-400.woff2",
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-regular-400.ttf",
         "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-brands-400.woff2",
-        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-brands-400.ttf"
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-brands-400.ttf",
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-v4compatibility.woff2",
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-v4compatibility.ttf"
       ],
       connectSrc: ["'self'"],
       objectSrc: ["'none'"],
