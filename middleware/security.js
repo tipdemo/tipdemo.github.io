@@ -52,6 +52,7 @@ const securityMiddleware = [
       connectSrc: ["'self'"],
       objectSrc: ["'none'"],
       upgradeInsecureRequests: [],
+      connectSrc: ["'self'", "http://tipdemo-1-8b909e25ac7d.herokuapp.com"], // Sta connecties naar de API toe
     },
     reportUri: '/csp-violation-report-endpoint', // Optioneel
   }),

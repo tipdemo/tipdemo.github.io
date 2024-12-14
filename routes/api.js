@@ -39,7 +39,7 @@ router.get('/qrcode/:id', async (req, res) => {
     }
   
     // Maak een API-URL die verwijst naar het data endpoint
-    const apiUrl = `${req.protocol}://${req.get('host')}/api/data/${id}`;
+    const apiUrl = `${req.protocol === 'https' ? 'https' : 'https'}://${req.get('host')}/api/data/${id}`;
   
     try {
       res.setHeader('Content-Type', 'image/png'); // Content-Type voor PNG instellen
