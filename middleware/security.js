@@ -17,30 +17,25 @@ const securityMiddleware = [
   helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: [
-        "'self'",
-        "https://unpkg.com",
-        "https://cdnjs.cloudflare.com",
-      ],
       styleSrc: [
         "'self'",
-        "https://cdnjs.cloudflare.com",
-        "'unsafe-inline'" 
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css",
+        "'unsafe-inline'" // Toestaan van inline styles
       ],
-      imgSrc: [
+      scriptSrc: [
         "'self'",
-        "data:",
-        "https://cdnjs.cloudflare.com",
+        "https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js",
+        "'unsafe-inline'" // Toestaan van inline scripts
       ],
-      connectSrc: ["'self'"],
+      imgSrc: ["'self'", "data:"],
       fontSrc: [
         "'self'",
-        "https://cdnjs.cloudflare.com",
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-solid-900.woff2"
       ],
+      connectSrc: ["'self'"],
       objectSrc: ["'none'"],
       upgradeInsecureRequests: [],
     },
-    // reportOnly: true, // Alleen rapporteren zonder CSP te handhaven (voor testen)
     reportUri: '/csp-violation-report-endpoint', // (Optioneel)
   }),
 
