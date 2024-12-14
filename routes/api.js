@@ -11,7 +11,6 @@ const dataStore = {
     reason: "Gegevens VIA 2024 ophalen",
     geldigheidsduur: "30 dagen",
     intrekbaar: "Niet intrekbaar",
-    a: "w",
     mandate: [
       {
         issuedBy: "BD",
@@ -39,11 +38,11 @@ router.get('/qrcode/:id', async (req, res) => {
     return res.status(404).send('Data not found for QR code');
   }
 
-  // Genereer een QR-code met de JSON-data direct in de QR-code
-  const qrData = JSON.stringify(dataStore[id]);
+  // Maak een API-URL die verwijst naar het data endpoint
+  const apiUrl = `${req.protocol}://${req.get('host')}/api/data/${id}`;
 
   try {
-    const qrCodeDataURL = await QRCode.toDataURL(qrData);
+    const qrCodeDataURL = await QRCode.toDataURL(apiUrl);
     res.send(`<img src="${qrCodeDataURL}" alt="QR Code">`);
   } catch (err) {
     res.status(500).send('Error generating QR code');

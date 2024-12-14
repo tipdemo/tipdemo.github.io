@@ -903,13 +903,23 @@ function startQrScan() {
 function onScanSuccess(decodedText) {
   console.log("QR succesfully code scanned: ", decodedText);
 
-  try {
-    const data = JSON.parse(decodedText);
-    const timestamp = new Date().toLocaleString();
-    processScannedData(data, timestamp);
-    stopScannerAndResetUI();
-  } catch (error) {
-    console.error("QR-code parse error: ", error);
+  // Controleer of de gescande tekst een API-URL bevat
+  const isApiUrl = decodedText.startsWith("http") && decodedText.includes("/api/data/");
+  
+  if (isApiUrl) {
+    // Behandel als een API-URL en haal data op via fetch
+    console.log("API URL detected. Fetching data...");
+    fetchQrScandata(decodedText);
+  } else {
+    // Probeer de tekst als JSON te parsen
+    try {
+      const data = JSON.parse(decodedText);
+      const timestamp = new Date().toLocaleString();
+      processScannedData(data, timestamp);
+      stopScannerAndResetUI();
+    } catch (error) {
+      console.error("QR-code parse error: ", error);
+    }
   }
 }
 
@@ -942,6 +952,24 @@ function stopScannerAndResetUI() {
 // Op basis van het type en de inhoud van 'data' wordt bepaald welke verdere stappen nodig zijn.
 // Dit kan zijn: tonen van modals, opslaan van gegevens, of doorverwijzen naar specifieke handler-functies.
 function processScannedData(data, timestamp) {
+
+
+function fetchQrScandata(apiUrl) {
+    fetch(apiUrl)
+      .then(response => response.json())
+      .then(data => {
+        try {
+          const timestamp = new Date().toLocaleString();
+          processScannedData(data, timestamp);
+          stopScannerAndResetUI(); // Optioneel: UI resetten
+        } catch (error) {
+          console.error("Simulatie van QR-code mislukt: ", error);
+        }
+      })
+      .catch(error => {
+        console.error("Fout bij het ophalen van data: ", error);
+      });
+  }
 
 
 // Controleer het type QR-code
