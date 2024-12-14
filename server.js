@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 
 // CORS Configuratie
 const corsOptions = {
-  origin: 'https://tipdemo.nl', // vervang door jouw domein
+  origin: 'https://tipdemo.nl', // vervang door met domein
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
@@ -47,11 +47,6 @@ app.use('/api', apiRoutes);
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK' });
 });
-
-app.use((req, res, next) => {
-    res.setHeader('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
-    next();
-  });
 
 
 // Foutafhandeling
