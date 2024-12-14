@@ -35,7 +35,8 @@ const securityMiddleware = [
         "'self'",
         "data:",
          "https://api.qrserver.com",
-          "https://tipdemo.nl"
+          "https://tipdemo.nl",
+          "https://*.tipdemo.nl"
       ],
       fontSrc: [
         "'self'",
