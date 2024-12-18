@@ -248,6 +248,8 @@ const fieldMapping = {
   Algemeen_profiel: 'Algemeen profiel',
   Specifiek_profiel: 'Specifiek profiel',
   Attestation_Trust_Type: 'Type attestatie',
+  LOA: 'Betrouwbaarheidsniveau',
+  Namens: 'Uitgegeven namens',
   IBAN: 'IBAN',
   IADR: 'Factuur-adres',
   ATT: 'Type attestatie',
@@ -618,14 +620,24 @@ function displayCredentials() {
       iconHtml = `<i class="${styles.iconClass}" style="color: ${styles.iconColor}; font-size: ${iconSize}; margin-bottom: ${iconMarginBottom};"></i>`;
     }
 
-    // Voeg de HTML voor het kaartje toe
-    card.innerHTML = `
-      ${iconHtml}
-      <div class="card-text" style="font-size: ${textSize};">
-        <h3 style="color: ${styles.textColor}; margin: 0;">${cred.name}</h3>
-        ${cred.issuedBy ? `<p style="font-size: ${issuerTextSize}; color: #555; margin: 5px 0 0 0;">${cred.issuedBy}</p>` : ''}
-      </div>
-    `;
+  // Voeg uitgeverinformatie toe
+  let issuedByText = '';
+  if (cred.Namens && cred.issuedBy) {
+    // Als zowel namens als issuedBy aanwezig is
+    issuedByText = `<p style="font-size: ${issuerTextSize}; color: #555; margin: 5px 0 0 0;">Namens: ${cred.namens}</p>`;
+  } else if (cred.issuedBy) {
+    // Alleen issuedBy aanwezig
+    issuedByText = `<p style="font-size: ${issuerTextSize}; color: #555; margin: 5px 0 0 0;">Uitgegeven door: ${cred.issuedBy}</p>`;
+  }
+
+  // Voeg de HTML voor het kaartje toe
+  card.innerHTML = `
+    ${iconHtml}
+    <div class="card-text" style="font-size: ${textSize};">
+      <h3 style="color: ${styles.textColor}; margin: 0;">${cred.name}</h3>
+      ${issuedByText}
+    </div>
+  `;
 
     // Voeg event listener toe voor het bekijken van kaartdetails
     card.addEventListener('click', () => showDetails(cred, index));
@@ -678,7 +690,7 @@ function loadDefaultCredentials() {
           'Lengte': '1,70 m'
         }
       },
-      {
+      /* {
         name: 'Factuur-adres',
         issuedBy: 'KVK',
         isShareAction: false,
@@ -701,7 +713,7 @@ function loadDefaultCredentials() {
           'LEID': 'NL_KVK_0000000000',
           'IBAN-account number': 'NL00TEST0123456789',
         }
-      }
+      } */
   ];
 
   defaultCards.forEach(defaultCard => {
