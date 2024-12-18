@@ -241,6 +241,7 @@ const fieldMapping = {
   ph: 'Foto',   
   issuedBy: 'Uitgegeven door',
   LEID: 'Organisatie nummer',
+  NLEID: 'Organisatie nummer'
   Issued_Date: 'Uitgiftedatum',
   ID: 'Uitgiftedatum',
   Issued_to_subject: 'Uitgegeven aan',
