@@ -1011,6 +1011,19 @@ font-weight: bold;
     cursor: pointer;
 }
 
+#close-rdfci-success-btn {
+    width: 150px;
+    background-color:#2681cc;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+
+
 #close-issuer-success-btn:hover {
     background-color: #2681cc;
     color: white;

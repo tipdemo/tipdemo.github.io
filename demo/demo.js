@@ -1406,10 +1406,12 @@ function populateRdfciModal(data) {
   console.log("Fields by card after grouping:", fieldsByCard);
 
 // Toon nu de modal
+console.log("Check modal elements:", rdfciModal, rdfciAcceptButton, rdfciStopButton);
 rdfciModal.style.display = 'flex';
 
 // Voeg de onclick voor accepteren toe
 rdfciAcceptButton.onclick = () => {
+  console.log("Accept button clicked, preparing to map data...");
   const timestamp = new Date().toLocaleString();
   const mappedData = {};
 
@@ -1432,6 +1434,13 @@ rdfciAcceptButton.onclick = () => {
     }
   }
 
+
+  console.log("Data before pushing to credentials:", {
+    name: data.name,
+    issuedBy: data.issuedBy,
+    timestamp: timestamp,
+    mappedData: mappedData
+  });
   credentials.push({
     name: data.name || 'Onbekend kaartje',
     issuedBy: data.issuedBy || 'Onbekende uitgever',
@@ -1442,6 +1451,8 @@ rdfciAcceptButton.onclick = () => {
 
   saveCredentials();
 
+
+  console.log("Voordat we naar success screen gaan:", data.name, data.issuedBy);
   // Toon success scherm
   goToIssuerSuccessScreen(data.name, data.issuedBy);
 
@@ -1457,6 +1468,9 @@ rdfciStopButton.onclick = () => {
   resetQrScanner();
 };
 }
+
+
+
 
 // rdfci pinconfirmation
 confirmPinIssuerBtn.onclick = () => {
@@ -1510,14 +1524,22 @@ confirmPinIssuerBtn.onclick = () => {
 
 
 function goToIssuerSuccessScreen(cardName, issuedBy) {
-  issuerSuccessScreen.style.display = 'flex';
+  const successScreen = document.getElementById('rdfci-success-screen');
+  const successDataElem = document.getElementById('rdfci-success-data');
+  const successIssuedByElem = document.getElementById('rdfci-success-issuedBy');
+  const successCard = document.getElementById('rdfci-success-card');
 
-  // Vul de nieuwe tekstvelden in het successcherm
-  document.getElementById('issuer-success-data').innerText = cardName;
-  document.getElementById('issuer-success-issuedBy').innerText = issuedBy;
+  successScreen.style.display = 'flex';
+  successDataElem.innerText = cardName;
+  successIssuedByElem.innerText = issuedBy;
 
-  // Toon een kaartje met de gegevens
-  const successCard = document.getElementById('issuer-success-card');
+  console.log("Computed style of successScreen:", window.getComputedStyle(successScreen).display);
+
+  console.log("After setting text:", 
+              "rdfci-success-data =", successDataElem.innerText, 
+              "rdfci-success-issuedBy =", successIssuedByElem.innerText);
+
+  console.log("successCard element:", successCard);
 
   // Haal stijlen op basis van kaartnaam
   const nameLower = cardName.toLowerCase();
@@ -1542,22 +1564,22 @@ function goToIssuerSuccessScreen(cardName, issuedBy) {
     </div>
   `;
   successCard.classList.add('card'); // Voeg de kaartstijl toe
-}
 
-// Sluitknop voor het issuer success-scherm
-closeIssuerSuccessBtn.addEventListener('click', () => {
-  issuerSuccessScreen.style.display = 'none';
+  console.log("After updating success card innerHTML.");
+}
+// Haal de nieuwe close-button op
+const closeRdfciSuccessBtn = document.getElementById('close-rdfci-success-btn');
+
+// Voeg event listener toe
+closeRdfciSuccessBtn.addEventListener('click', () => {
+  const successScreen = document.getElementById('rdfci-success-screen');
+  successScreen.style.display = 'none';
   displayCredentials(); // Zorg dat het nieuwe kaartje wordt weergegeven
 
-  // Verberg het add-card scherm
   addCardScreen.style.display = 'none';
-
-  // Toon het wallet-screen opnieuw
   walletScreen.style.display = 'block';
-  bottomNav.style.display = 'flex'; // Toon de navbar onderaan opnieuw
+  bottomNav.style.display = 'flex';
 });
-
-
 
 // ==================================
 // ======== MULTIPLE RDFCI kaarten ==
