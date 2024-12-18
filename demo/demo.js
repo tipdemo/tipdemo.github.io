@@ -1078,59 +1078,7 @@ function processScannedData(data, timestamp) {
         // Vul de modal met de nieuwe functie
         populateRdfciModal(data);
 
-        // Toon het extra vraagscherm
-        rdfciModal.style.display = 'flex';
-
-        rdfciAcceptButton.onclick = () => {
-          const timestamp = new Date().toLocaleString();
-
-          // Maak een nieuw object voor de gemapte data
-          const mappedData = {};
-
-          // Itereer over de keys in 'data' en map de veldnamen
-          for (let key in data) {
-            if (
-              data.hasOwnProperty(key) &&
-              key !== 'rdfci' &&
-              key !== 'a' &&
-              key !== 't' &&
-              key !== 'name' &&
-              key !== 'reason' &&
-              key !== 'verifier' &&
-              key !== 'issuer' &&
-              key !== 'type' &&
-              key !== 'requester'
-            ) {
-              const fieldName = fieldMapping[key] || key;
-              mappedData[fieldName] = data[key];
-            }
-          }
-
-          // Sla het kaartje op met de gemapte data
-          credentials.push({
-            name: data.name || 'Onbekend kaartje',
-            issuedBy: data.issuedBy || 'Onbekende uitgever',
-            actionTimestamp: timestamp,
-            isShareAction: false,
-            data: mappedData // Gebruik de gemapte data
-          });
-
-          saveCredentials();
-
-          // Toon het issuer success-scherm
-          goToIssuerSuccessScreen(data.name, data.issuedBy);
-
-          // Sluit het extra vraagscherm
-          rdfciModal.style.display = 'none';
-        };
-
-        rdfciStopButton.onclick = () => {
-          rdfciModal.style.display = 'none';
-          addCardScreen.style.display = 'none';
-          walletScreen.style.display = 'block';
-          bottomNav.style.display = 'flex';
-          resetQrScanner();
-        };
+       
       }
 
     } else {
@@ -1447,7 +1395,6 @@ function populateRdfciModal(data) {
     detailsContainer.appendChild(cardContainer);
   });
 
-  
 
   // Verwerk de overeenkomst informatie
   if (data.a) {
@@ -1458,6 +1405,57 @@ function populateRdfciModal(data) {
   }
   console.log("Fields by card after grouping:", fieldsByCard);
 
+// Toon nu de modal
+rdfciModal.style.display = 'flex';
+
+// Voeg de onclick voor accepteren toe
+rdfciAcceptButton.onclick = () => {
+  const timestamp = new Date().toLocaleString();
+  const mappedData = {};
+
+  // Data mappen
+  for (let key in data) {
+    if (
+      data.hasOwnProperty(key) &&
+      key !== 'rdfci' &&
+      key !== 'a' &&
+      key !== 't' &&
+      key !== 'name' &&
+      key !== 'reason' &&
+      key !== 'verifier' &&
+      key !== 'issuer' &&
+      key !== 'type' &&
+      key !== 'requester'
+    ) {
+      const fieldName = fieldMapping[key] || key;
+      mappedData[fieldName] = data[key];
+    }
+  }
+
+  credentials.push({
+    name: data.name || 'Onbekend kaartje',
+    issuedBy: data.issuedBy || 'Onbekende uitgever',
+    actionTimestamp: timestamp,
+    isShareAction: false,
+    data: mappedData
+  });
+
+  saveCredentials();
+
+  // Toon success scherm
+  goToIssuerSuccessScreen(data.name, data.issuedBy);
+
+  rdfciModal.style.display = 'none';
+};
+
+// Voeg de onclick voor stoppen toe
+rdfciStopButton.onclick = () => {
+  rdfciModal.style.display = 'none';
+  addCardScreen.style.display = 'none';
+  walletScreen.style.display = 'block';
+  bottomNav.style.display = 'flex';
+  resetQrScanner();
+};
 }
 
 // rdfci pinconfirmation
