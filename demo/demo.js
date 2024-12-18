@@ -562,9 +562,9 @@ const cardStyles = {
     textColor: '#58AE65'
     },
 
-    'machtiging diensten': {
-    iconClass: '  fas fa-key',
- iconColor: '#00588E', 
+    'Machtiging | Belastingdienst | Omzetbelasting': {
+    imagePath: '/demo/key.svg',  
+    iconColor: null,
     textColor: '#00588E'
     },
 
