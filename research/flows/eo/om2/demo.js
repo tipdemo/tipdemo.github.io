@@ -69,6 +69,9 @@ function showStep(step) {
         stepToShow.style.display = 'block'; // Toon alleen de actieve sectie
     }
 
+   // Scroll direct naar boven
+    window.scrollTo(0, 0);
+
     // Pas de knoppenlogica aan
     toggleButtons();
 }
