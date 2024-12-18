@@ -13,6 +13,10 @@ a {
     color: #555;
   }
 
+h1, h2, h3, h4 {
+  color: #152A62;
+}
+
 h1 {
     font-size: 28px;
     color: #152A62;
@@ -447,4 +451,28 @@ tr:nth-child(even) {
   .question {
     font-size: 16px;
   }
+}
+
+
+.research-section {
+   color: #333;
+font-size: 11px;
+
+}
+
+.research-section p {
+  color: #424242;
+  margin-bottom: 0;
+  font-size: 11px;
+  margin-bottom: 0;
+}
+
+.research-section ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 0px;
+}
+
+.research-section li {
+  color: #767676;
 }
