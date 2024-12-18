@@ -622,12 +622,16 @@ function displayCredentials() {
 
   // Voeg uitgeverinformatie toe
   let issuedByText = '';
-  if (cred.Namens && cred.issuedBy) {
-    // Als zowel namens als issuedBy aanwezig is
-    issuedByText = `<p style="font-size: ${issuerTextSize}; color: #555; margin: 5px 0 0 0;">Namens: ${cred.namens}</p>`;
+  if (cred["Uitgegeven namens"] && cred.issuedBy) {
+    // Toon alleen de waarde van "Uitgegeven namens"
+    issuedByText = `<p style="font-size: ${issuerTextSize}; color: #555; margin: 5px 0 0 0;">
+      ${cred["Uitgegeven namens"]}
+    </p>`;
   } else if (cred.issuedBy) {
-    // Alleen issuedBy aanwezig
-    issuedByText = `<p style="font-size: ${issuerTextSize}; color: #555; margin: 5px 0 0 0;">Uitgegeven door: ${cred.issuedBy}</p>`;
+    // Toon alleen de waarde van "issuedBy"
+    issuedByText = `<p style="font-size: ${issuerTextSize}; color: #555; margin: 5px 0 0 0;">
+      ${cred.issuedBy}
+    </p>`;
   }
 
   // Voeg de HTML voor het kaartje toe
