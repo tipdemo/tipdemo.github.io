@@ -621,28 +621,39 @@ function displayCredentials() {
       iconHtml = `<i class="${styles.iconClass}" style="color: ${styles.iconColor}; font-size: ${iconSize}; margin-bottom: ${iconMarginBottom};"></i>`;
     }
 
-  // Voeg uitgeverinformatie toe
-  let issuedByText = '';
-  if (cred["Uitgegeven namens"] && cred.issuedBy) {
-    // Toon alleen de waarde van "Uitgegeven namens"
-    issuedByText = `<p style="font-size: ${issuerTextSize}; color: #555; margin: 5px 0 0 0;">
-      ${cred["Uitgegeven namens"]}
-    </p>`;
-  } else if (cred.issuedBy) {
-    // Toon alleen de waarde van "issuedBy"
-    issuedByText = `<p style="font-size: ${issuerTextSize}; color: #555; margin: 5px 0 0 0;">
-      ${cred.issuedBy}
-    </p>`;
-  }
+      // Voeg uitgeverinformatie toe
+      let issuerText = '';
 
-  // Voeg de HTML voor het kaartje toe
-  card.innerHTML = `
-    ${iconHtml}
-    <div class="card-text" style="font-size: ${textSize};">
-      <h3 style="color: ${styles.textColor}; margin: 0;">${cred.name}</h3>
-      ${issuedByText}
-    </div>
-  `;
+      console.log("Credential object:", cred);
+  
+      // Controleer eerst op "Uitgegeven namens" binnen data
+      const issuedByOnBehalf = cred.data?.["Uitgegeven namens"] || null;
+  
+      // Als "Uitgegeven namens" niet aanwezig is, controleer op "issuedBy"
+      // Eerst direct op cred, dan binnen data als backup
+      const issuedByDirect = cred.issuedBy || cred.data?.["Uitgegeven door"] || null;
+  
+      if (issuedByOnBehalf) {
+        console.log('"Uitgegeven namens" gevonden:', issuedByOnBehalf);
+        issuerText = `<p style="font-size: ${issuerTextSize}; color: #555; margin: 5px 0 0 0;">
+          ${issuedByOnBehalf}
+        </p>`;
+      } else if (issuedByDirect) {
+        console.log('"issuedBy" gevonden:', issuedByDirect);
+        issuerText = `<p style="font-size: ${issuerTextSize}; color: #555; margin: 5px 0 0 0;">
+          ${issuedByDirect}
+        </p>`;
+      }
+  
+      // Voeg de HTML voor het kaartje toe
+      card.innerHTML = `
+        ${iconHtml}
+        <div class="card-text" style="font-size: ${textSize};">
+          <h3 style="color: ${styles.textColor}; margin: 0;">${cred.name}</h3>
+          ${issuerText}
+        </div>
+      `;
+  
 
     // Voeg event listener toe voor het bekijken van kaartdetails
     card.addEventListener('click', () => showDetails(cred, index));
@@ -3581,6 +3592,9 @@ openCurrentCardsBtn.addEventListener('click', function() {
   currentCardsSection.style.display = 'flex';  // Toon 'Mijn digitale bewijzen' sectie
   walletScreen.style.display = 'none';  // Verberg het wallet-scherm
   bottomNav.style.display = 'none';  // Verberg de bottom-nav
+
+  // Roep de functie aan om de kaartjes bij te werken en weer te geven
+  displayCredentials();
 });
 
 // Event listener voor de terug-knop
