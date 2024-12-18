@@ -4,11 +4,17 @@ const demoConfig = {
 
 let currentStep = 1; // Houd de huidige stap bij
 
-// Zorg ervoor dat de juiste secties worden getoond wanneer de DOM geladen is
 document.addEventListener('DOMContentLoaded', () => {
     const totalSteps = demoConfig.totalSteps;
 
-    // Verberg alle stappen boven het totale aantal
+    // Lees de huidige stap van de hash in de URL
+    const hash = window.location.hash;
+    const stepFromHash = hash ? parseInt(hash.replace('#', ''), 10) : 1;
+
+    // Stel de huidige stap in op basis van de hash of standaard naar 1
+    currentStep = (stepFromHash > 0 && stepFromHash <= totalSteps) ? stepFromHash : 1;
+
+    // Verberg stappen die niet worden gebruikt
     for (let i = totalSteps + 1; i <= 8; i++) {
         const stepElement = document.getElementById(`step-${i}`);
         if (stepElement) {  
@@ -16,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Toon de eerste stap
+    // Toon de juiste stap
     showStep(currentStep);
 
     // Voeg eventlisteners toe aan de knoppen voor 'Volgende' en 'Terug'
@@ -30,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-      // Voeg iconen en tekst aan de knoppen
-      document.querySelectorAll('.next').forEach(button => {
+    // Voeg iconen en tekst aan de knoppen
+    document.querySelectorAll('.next').forEach(button => {
         button.innerHTML = 'Volgende stap <i class="fas fa-arrow-right"></i>';
     });
     document.querySelectorAll('.prev').forEach(button => {
@@ -43,6 +49,9 @@ function goToStep(step) {
     if (step > 0 && step <= demoConfig.totalSteps) {
         currentStep = step;
         showStep(currentStep);
+
+        // Update de URL-hash
+        window.location.hash = `#${currentStep}`;
     }
 }
 
@@ -82,26 +91,22 @@ function toggleButtons() {
             nextButton.style.display = 'none'; // Verberg de 'Volgende'-knop
         }
 
-        // Controleer of de knoppen al bestaan voordat je ze toevoegt
         if (!document.querySelector('.go-example') && !document.querySelector('.go-home')) {
-            // Voeg de 'Sluiten tabblad'-knop toe met Font Awesome icoon
             const exampleButton = document.createElement('button');
             exampleButton.innerHTML = '<i class="fas fa-flask"></i> Naar onderzoek';
             exampleButton.className = 'go-example';
-            exampleButton.onclick = ()=> window.location.href = 'https://www.tipdemo.nl/research';
+            exampleButton.onclick = () => window.location.href = 'https://www.tipdemo.nl/research';
 
-            // Voeg de 'Terug naar hoofdwebsite'-knop toe met Font Awesome icoon
             const homeButton = document.createElement('button');
             homeButton.innerHTML = '<i class="fas fa-home"></i> Terug naar hoofdwebsite';
             homeButton.className = 'go-home';
-            homeButton.onclick = () => window.location.href = 'https://www.tipdemo.nl'; 
-            // Voeg de knoppen toe aan de button-container
+            homeButton.onclick = () => window.location.href = 'https://www.tipdemo.nl';
+
             buttonContainer.appendChild(exampleButton);
             buttonContainer.appendChild(homeButton);
         }
-
     } else if (nextButton) {
-        nextButton.style.display = 'inline-block'; // Toon de 'Volgende'-knop indien niet op de laatste stap
+        nextButton.style.display = 'inline-block';
     }
 }
 
