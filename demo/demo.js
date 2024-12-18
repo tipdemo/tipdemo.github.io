@@ -562,7 +562,7 @@ const cardStyles = {
     textColor: '#58AE65'
     },
 
-    'Machtiging | Belastingdienst | Omzetbelasting': {
+    'machtiging | belastingdienst | omzetbelasting': {
     imagePath: '/demo/key.svg',  
     iconColor: null,
     textColor: '#00588E'
