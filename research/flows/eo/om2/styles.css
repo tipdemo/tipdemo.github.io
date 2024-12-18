@@ -658,3 +658,55 @@ input[type="checkbox"] {
   color: #666;
   margin-top: 20px;
 }
+
+/* Subsectie styling */
+.subsection.omzetbelasting {
+  background-color: #eef7fb;
+  padding: 20px;
+  
+ 
+}
+
+.subsection.omzetbelasting h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* Horizontale lijst */
+.horizontal-list {
+  display: flex;
+  justify-content: flex-start;
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.horizontal-list li {
+  margin-right: 20px;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.horizontal-list li:first-child {
+  color: #3d65d1;
+  font-weight: bolder;
+}
+
+/* Verticale lijst met kwartalen */
+.vertical-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.vertical-list .quarter {
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+  color: #333;
+}
