@@ -265,6 +265,15 @@ const fieldMapping = {
 
 // Nieuwe valueMapping voor verkorte values
 const valueMapping = {
+ 
+  "WLDB": "Willeke Liselotte de Bruijn", 
+  "MBO": "Machtiging | Belastingdienst | Omzetbelasting",
+  "MR": "Machtigingen Register",
+  "KVK0": "NL_KVK_0000000",
+  "KVK1": "NL_KVK_0000001",
+  "IV": "Innovatiemakers",
+  "BD": "Belastingdienst",
+  "BTW": "Omzetbelasting (btw)",
   "WDB": "Willeke de Bruijn",
   "TMV": "Transportbedrijf Maasvlakte Vervoer",
   "TGM": "Toegangspas Maasvlakte",
