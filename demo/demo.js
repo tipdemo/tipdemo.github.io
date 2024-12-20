@@ -585,6 +585,12 @@ const cardStyles = {
     textColor: '#00588E'
     },
 
+    'toegang machtigingen register': {
+      imagePath: '/demo/key.svg',  
+      iconColor: null,
+      textColor: '#00588E'
+      },
+
   // Voeg meer kaartstijlen toe indien nodig
 };
 
