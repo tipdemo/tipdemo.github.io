@@ -1506,9 +1506,13 @@ function goToIssuerSuccessScreen(cardName, issuedBy) {
   const successIssuedByElem = document.getElementById('rdfci-success-issuedBy');
   const successCard = document.getElementById('rdfci-success-card');
 
-  successScreen.style.display = 'flex';
-  successDataElem.innerText = cardName;
-  successIssuedByElem.innerText = issuedBy;
+  // Map de cardName en issuedBy naar hun volledige waarden
+  const mappedCardName = mapValue(cardName) || cardName;
+  const mappedIssuedBy = mapValue(issuedBy) || issuedBy;
+
+  // Stel de gemapte waarden in de DOM-elementen in
+  successDataElem.innerText = mappedCardName;
+  successIssuedByElem.innerText = mappedIssuedBy;
 
   console.log("Computed style of successScreen:", window.getComputedStyle(successScreen).display);
 
@@ -1519,11 +1523,11 @@ function goToIssuerSuccessScreen(cardName, issuedBy) {
   console.log("successCard element:", successCard);
 
   // Haal stijlen op basis van kaartnaam
-  const nameLower = cardName.toLowerCase();
+  const nameLower = mappedCardName.toLowerCase();
   const styles = cardStyles[nameLower] || {
-    iconClass: 'far fa-id-badge',
-    iconColor: '#333',
-    textColor: '#333'
+      iconClass: 'far fa-id-badge',
+      iconColor: '#333',
+      textColor: '#333'
   };
 
   // Definieer grootte en marges
@@ -1533,17 +1537,23 @@ function goToIssuerSuccessScreen(cardName, issuedBy) {
 
   // Voeg FA-icoon en tekst toe aan de kaart met dynamische kleur en inline styles
   successCard.innerHTML = `
-    <i class="${styles.iconClass}" 
-        style="color: ${styles.iconColor}; font-size: ${iconSize}; margin-bottom: ${iconMarginBottom};">
-    </i>
-    <div class="card-text" style="font-size: ${textSize};">
-      <h3 style="color: ${styles.textColor};">${cardName}</h3>
-    </div>
+      <i class="${styles.iconClass}" 
+          style="color: ${styles.iconColor}; font-size: ${iconSize}; margin-bottom: ${iconMarginBottom};">
+      </i>
+      <div class="card-text" style="font-size: ${textSize};">
+        <h3 style="color: ${styles.textColor};">${mappedCardName}</h3>
+      </div>
   `;
   successCard.classList.add('card'); // Voeg de kaartstijl toe
 
   console.log("After updating success card innerHTML.");
+
+  // Toon het successcreen
+  successScreen.style.display = 'flex';
 }
+
+
+
 // Haal de nieuwe close-button op
 const closeRdfciSuccessBtn = document.getElementById('close-rdfci-success-btn');
 
