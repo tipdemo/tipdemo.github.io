@@ -173,97 +173,119 @@
 
 
 
-    <section id="step-5" class="step">
-        <div class="subsection">
-            <div  id="logo-container-machtigingen-register">
-                <h1 class="machtigingen-register-title">
-                    <span class="machtigingen">Machtigingen</span> <span class="register">Register</span>
-                </h1>
-            </div>
-            <hr>
-            <h2>Aanvraag machtiging</h2>
-            <p>Beste aanvrager, <br>
-                Volg onderstaande stappen om een aanvraag om een machtiging te voltooien. </p>
+                <section id="step-5" class="step">
+                    <div class="subsection">
+                        <div id="logo-container-machtigingen-register">
+                            <h1 class="machtigingen-register-title">
+                                <span class="machtigingen">Machtigingen</span> <span class="register">Register</span>
+                            </h1>
+                        </div>
+                        <hr>
+                        <h2>Aanvraag machtiging</h2>
+                        <p>Beste aanvrager, <br>
+                            Volg onderstaande stappen om een aanvraag om een machtiging te voltooien. </p>
+                
+                        <hr>
+                        <h2>Organisatie ID</h2>
+                        <p>Ik wil een machtiging namens de volgende organisatie aanvragen:</p>
+                        <form>
+                            <table>
+                                <tr>
+                                    <td><label for="organisatie-type">Type Organisatie ID:</label></td>
+                                    <td>
+                                        <div style="display: flex; align-items: center;">
+                                            <select id="organisatie-type" name="organisatie-type" onchange="toggleCustomTypeInput()">
+                                                <option value="KvKnummer" selected>KvK nummer</option>
+                                                <option value="ProbasNr">Probas Nummer</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                            <div id="custom-type-container" style="display: none; margin-left: 10px;">
+                                                <label for="custom-type">Ander type:</label>
+                                                <input type="text" id="custom-type" name="custom-type" placeholder="Bijv. organisatiecode">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="organisatie-id">Organisatie ID:</label></td>
+                                    <td>
+                                        <input type="text" id="organisatie-id" name="organisatie-id" placeholder="Vul hier de waarde in" value="KVK_NL_00000000">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="organisatie-naam">Naam organisatie:</label></td>
+                                    <td>
+                                        Innovatiemakers bv.
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                        <hr>
+                
+                        <h2>Bevoegdheid</h2>
+                        <p>Als persoon ben ik:</p>
+                        <form>
+                           
+                            <label>
+                                <input type="checkbox" name="dienst" value="niet bevoegd" class="exclusive" checked>
+                                niet onbeperkt bevoegd voor deze organisatie
+                            </label><br>
 
-            <hr>
-            <h2>Organisatie ID</h2>
-            <p>Ik wil een machtiging namens de volgende organisatie aanvragen:</p>
-            <form>
-                <table>
-                    <tr>
-                        <td><label for="organisatie-type">Type Organisatie ID:</label></td>
-                        <td>
-                            <div style="display: flex; align-items: center;">
-                                <select id="organisatie-type" name="organisatie-type" onchange="toggleCustomTypeInput()">
-                                    <option value="KvKnummer">KvK nummer</option>
-                                    <option value="ProbasNr">Probas Nummer</option>
-                                    <option value="Other">Other</option>
-                                </select>
-                                <div id="custom-type-container" style="display: none; margin-left: 10px;">
-                                    <label for="custom-type">Ander type:</label>
-                                    <input type="text" id="custom-type" name="custom-type" placeholder="Bijv. organisatiecode">
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><label for="organisatie-id">Organisatie ID:</label></td>
-                        <td>
-                            <input type="text" id="organisatie-id" name="organisatie-id" placeholder="Vul hier de waarde in">
-                        </td>
-                    </tr>
-                </table>
-            </form>
-            <hr>
-
-            <h2>Bevoegdheid</h2>
-            <p>Als persoon ben ik:</p>
-            <form>
-                <label>
-                    <input type="checkbox" name="dienst" value="wel bevoegd" class="exclusive">
-                    wel onbeperkt bevoegd voor deze organisatie
-                </label><br>
-        
-                <label>
-                    <input type="checkbox" name="dienst" value="niet bevoegd"class="exclusive">
-                   niet onbeperkt bevoegd voor deze organisatie
-                </label><br>
-            </form>
-            
-<hr>
-
-
-<h2>Bevoegd vertegenwoordiger(s)</h2>
-<p>Bent u geen onbeperkt bevoegd vertegenwoordiger namens de organisatie?
-    <br>Geef de e-mailadressen op van de bevoegd vertegenwoordiger(s). 
-    <br><strong>Bealngrijk:</strong>In geval van gedeelde bevoegdheden moeten alle e-mailadressen opgegeven worden.</p>
-
-<form id="email-form">
-    <table id="email-table">
-        <tbody>
-            <tr id="email-row-1">
-                <td><label for="email-1">E-mailadres bevoegd vertegenwoordiger:</label></td>
-                <td>
-                    <input type="email" id="email-1" name="email-1" value="voorbeeld1@organisatie.nl" placeholder="Vul een e-mailadres in">
-                </td>
-            </tr>
-            <tr id="email-row-2">
-                <td><label for="email-2">E-mailadres bevoegd vertegenwoordiger:</label></td>
-                <td>
-                    <input type="email" id="email-2" name="email-2" value="voorbeeld2@organisatie.nl" placeholder="Vul een e-mailadres in">
-                </td>
-            </tr>
-            <tr id="add-email-row">
-                <td></td>
-                <td>
-                    <button type="button" id="add-email-button">Voeg nog een e-mailadres toe</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</form>
-
-<hr>
+                            <label>
+                                <input type="checkbox" name="dienst" value="wel bevoegd" class="exclusive">
+                                wel onbeperkt bevoegd voor deze organisatie
+                            </label><br>
+                    
+                        </form>
+                        
+                        <hr>
+                
+                        <h2>Bevoegd vertegenwoordiger(s)</h2>
+                        <p>Bent u geen onbeperkt bevoegd vertegenwoordiger namens de organisatie?
+                            <br>Geef de e-mailadressen op van de bevoegd vertegenwoordiger(s). 
+                            <br><strong>Belangrijk:</strong> In geval van gedeelde bevoegdheden moeten alle e-mailadressen opgegeven worden.</p>
+                    
+                        <form id="email-form">
+                            <table id="email-table">
+                                <tbody>
+                                    <tr id="email-row-1">
+                                        <td>
+                                            <label for="email-1">E-mailadres bevoegd vertegenwoordiger:</label>
+                                            <select name="naam-1" id="naam-1" style="margin-left: 10px;">
+                                                <option value="Henk" selected>Henk Janssen</option>
+                                                <option value="Marjolein">Marjolein de Boer</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="email" id="email-1" name="email-1" value="Henk-dir@innovatiemakers" placeholder="Vul een e-mailadres in">
+                                        </td>
+                                    </tr>
+                                    <tr id="email-row-2">
+                                        <td>
+                                            <label for="email-2">E-mailadres bevoegd vertegenwoordiger:</label>
+                                            <select name="naam-2" id="naam-2" style="margin-left: 10px;">
+                                                <option value="Henk">Henk Janssen</option>
+                                                <option value="Marjolein" selected>Marjolein de Boer</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <input type="email" id="email-2" name="email-2" value="Marjolein-dir@innovatiemakers" placeholder="Vul een e-mailadres in">
+                                        </td>
+                                    </tr>
+                                    <tr id="add-email-row">
+                                        <td></td>
+                                        <td>
+                                            <button type="button" id="add-email-button">Voeg nog een e-mailadres toe</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    
+                        <hr>
+                    </div>
+           
+                
 
 
 <h2>Selectie Dienst en Dienstverlener</h2>
@@ -281,7 +303,7 @@
                             <tr>
                                 <td>
                                     <label>
-                                        <input type="checkbox" name="dienst" value="omzetbelasting">
+                                        <input type="checkbox" name="dienst" value="omzetbelasting" checked>
                                         Omzetbelasting (btw)
                                     </label>
                                 </td>

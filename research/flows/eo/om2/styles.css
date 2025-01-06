@@ -219,6 +219,10 @@ input[type="checkbox"] {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+#email-form #email-table input[type="email"] {
+  width: 100%;
+  box-sizing: border-box;
+}
 
 
 
