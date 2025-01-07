@@ -916,6 +916,23 @@ scanButton.addEventListener('click', () => {
   startQrScan();
 });
 
+// Event listener voor een post message in de presentatiemodus
+window.addEventListener("message", function(event) {
+  // event.data = object dat verstuurd is, bijvoorbeeld { action: 'simulateScan', qrData: '...' }
+  if (event.data.action === "simulateScan" && event.data.qrData) {
+    simulateQrScan(event.data.qrData);
+  }
+});
+
+// Simulatie van QR-code scannen
+// ------------
+//
+function simulateQrScan(decodedText) {
+  console.log("Simulating QR scan with:", decodedText);
+  // Hetzelfde gedrag als een geslaagde scan:
+  onScanSuccess(decodedText);
+}
+
 
 // startQrScan()
 // ------------
@@ -943,6 +960,9 @@ function startQrScan() {
     onScanError
   );
 }
+
+
+
 
 // onScanSuccess(decodedText)
 // --------------------------
