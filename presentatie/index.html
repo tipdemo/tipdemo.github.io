@@ -228,43 +228,32 @@
 
 
   <script>
-    // Referenties
     const iframeLeft = document.getElementById("iframeLeft");
     const iframeRight = document.getElementById("iframeRight");
     const qrList = document.getElementById("qrList");
-
+  
     function startPresentation() {
-      // 1) Verberg het intro-scherm
       document.getElementById("introContainer").style.display = "none";
-      // 2) Toon het hoofdscherm
       document.getElementById("mainContainer").style.display = "block";
-
-      // 3) Zet de eventlistener voor 'load' op de linker iframe
-      //    voordat we de src toekennen, zodat we het load-event niet missen
+  
+      // Listener vóór je de src zet, zodat je de load niet mist
       iframeLeft.addEventListener("load", handleLeftIframeLoad);
-
-      // 4) Nu pas de src's instellen
       iframeLeft.src = "https://www.tipdemo.nl/examples";
       iframeRight.src = "https://www.tipdemo.nl/demo";
     }
-
-    // Wordt aangeroepen elke keer als de linker iframe laadt
+  
     function handleLeftIframeLoad() {
       try {
         const leftDoc = iframeLeft.contentDocument || iframeLeft.contentWindow.document;
-
-        // Zoek alle <img> met 'create-qr-code' in hun src
         const qrImages = leftDoc.querySelectorAll('img[src*="create-qr-code"]');
-
-        // Leeg de lijst (indien opnieuw geladen)
+  
         qrList.innerHTML = "";
-
-        // Loop door alle gevonden QR's
+  
         qrImages.forEach((img, index) => {
           const qrUrl = img.getAttribute("src") || "";
           const paramMatch = qrUrl.match(/data=([^&]+)/);
           if (!paramMatch) return;
-
+  
           const rawData = decodeURIComponent(paramMatch[1]);
           let jsonData;
           try {
@@ -273,44 +262,47 @@
             console.warn("Kon de QR-data niet parsen:", rawData, e);
             return;
           }
-
+  
           // Lees de alt-tekst; indien niet aanwezig -> fallback
           const altText = img.getAttribute("alt") || `QR code #${index + 1}`;
-
-          // Maak een <li> en titel
+  
+          // 1) Maak een <li> als 'container' per QR
           const li = document.createElement("li");
-          const title = document.createElement("strong");
+  
+          // 2) Geen <strong>, maar een gewoon <div> voor de titel
+          const title = document.createElement("div");
           title.textContent = altText;
           li.appendChild(title);
-
-          // Maak een knop
+  
+          // 3) De knop "Simuleer scan"
           const btn = document.createElement("button");
           btn.textContent = "Simuleer scan";
-
           btn.addEventListener("click", () => {
-            // Stuur de data via postMessage naar iframeRight
             iframeRight.contentWindow.postMessage({
               action: "simulateScan",
               qrData: JSON.stringify(jsonData)
             }, "*");
           });
-
-          // Voeg de knop toe
-          li.appendChild(document.createElement("br"));
           li.appendChild(btn);
+  
+          // 4) Een <hr> na de knop (scheidingslijn)
+          const hr = document.createElement("hr");
+          li.appendChild(hr);
+  
+          // 5) Voeg alles toe aan de lijst
           qrList.appendChild(li);
         });
-
       } catch(err) {
         console.warn("Kan de DOM van iframeLeft niet benaderen (CORS?)", err);
       }
     }
-
-    // Eventueel luisteren naar berichten van de rechter iframe
+  
+    // Eventueel luisteren naar berichten van iframeRight
     window.addEventListener("message", (event) => {
       console.log("Presentatiepagina ontving message:", event.data);
     });
   </script>
+  
 
 
 
