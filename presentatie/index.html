@@ -1,121 +1,191 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
   <title>Presentatiemodus</title>
   <style>
+    html, body {
+      margin: 0; 
+      padding: 0; 
+      height: 100%; 
+      box-sizing: border-box;
+    }
+
     .container {
       display: flex;
-      height: 100vh;
-      margin: 0;
+      width: 100%;
+      height: 100vh; /* schermvullend */
+    }
+
+    /* Kolommen */
+    .left-pane {
+      flex: 0 0 50%;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    .middle-pane {
+      flex: 0 0 15%;
+      border: 1px solid #ccc;
+      overflow-y: auto; /* indien de lijst met knoppen groter wordt dan de kolomhoogte */
+      box-sizing: border-box;
+      padding: 10px;
+    }
+    .right-pane {
+      flex: 0 0 35%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f0f0;
+      box-sizing: border-box;
+    }
+
+    /* Iframe vul de hele kolom */
+    #iframeLeft {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Telefoonmockup (inhoud komt daarbinnen in een iframe) */
+    .phone {
+      width: 410px;
+      height: 850px;
+      background-color: #000; /* Zwarte rand zoals een telefoon */
+      border-radius: 40px;    /* Afgeronde hoeken */
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Schaduw */
+      padding: 20px;         /* Ruimte tussen scherm en rand */
+      box-sizing: border-box;
+    }
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background-color: #fff; /* Wit "scherm" */
+      border-radius: 30px; 
+      overflow: hidden;
+    }
+    .phone-screen iframe {
+      width: 100%;
+      height: 100%;
+      border: none; /* Geen rand rond het iframe */
+    }
+    .home-button {
+      width: 60px;
+      height: 60px;
+      background-color: #333;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50%;
+    }
+
+    /* Opmaak van de QR-lijst in de middenkolom */
+    #qrList {
+      margin: 0; 
       padding: 0;
     }
-    iframe {
-      border: 1px solid #ddd;
-      flex: 1;
+    #qrList li {
+      list-style: none;
+      margin-bottom: 15px;
+      padding: 0;
     }
-    #overlayContainer {
-      position: absolute; 
-      pointer-events: none; /* belangrijk: deze container vangt geen klik-events weg */
-      left: 0;
-      top: 0;
-      width: 50%; /* breedte van linker iframe */
-      height: 100%;
-    }
-    /* Stijling voor knoppen over de QR-code (indien je zoiets wilt) */
-    .qr-overlay-button {
-      position: absolute;
-      pointer-events: auto; /* deze WEL klikbaar */
-      background: #fff;
-      border: 1px solid #ccc;
+    #qrList button {
+      margin-top: 5px;
       cursor: pointer;
-      padding: 4px 8px;
-      border-radius: 4px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Linker iframe toont de normale site, die allerlei voorbeelden/QR-codes bevat -->
-    <iframe id="iframeLeft" src="https://www.tipdemo.nl/examples"></iframe>
 
-    <!-- Rechter iframe met je webapp (die postMessage luistert en simulateQrScan kent) -->
-    <iframe id="iframeRight" src="https://www.tipdemo.nl/demo"></iframe>
+    <!-- Linker pane: iframe met voorbeelden -->
+    <div class="left-pane">
+      <!-- Deze iframe laad je 'gewone' site met allerlei QR-codes -->
+      <iframe id="iframeLeft" src="https://www.tipdemo.nl/examples"></iframe>
+    </div>
+
+    <!-- Middenpaneel: knoppenlijst (op basis van gedetecteerde QR-codes) -->
+    <div class="middle-pane">
+      <h3>Gevonden QR-codes</h3>
+      <ul id="qrList"></ul>
+    </div>
+
+    <!-- Rechter paneel: telefoonmockup met de app-iframe -->
+    <div class="right-pane">
+      <div class="phone">
+        <div class="phone-screen">
+          <iframe id="iframeRight" src="https://www.tipdemo.nl/demo"></iframe>
+        </div>
+        <!-- eventueel een home-button -->
+        <!-- <div class="home-button"></div> -->
+      </div>
+    </div>
+
   </div>
-
-  <!-- Overlay-container om knoppen over de linker iframe te plaatsen (optioneel) -->
-  <div id="overlayContainer"></div>
 
   <script>
     const iframeLeft = document.getElementById("iframeLeft");
     const iframeRight = document.getElementById("iframeRight");
-    const overlayContainer = document.getElementById("overlayContainer");
+    const qrList = document.getElementById("qrList");
 
-    // 1) We wachten tot de linker iframe is geladen.
+    // Elke keer als de linker iframe is geladen, zoeken we naar QR-codes in de DOM
     iframeLeft.addEventListener("load", () => {
-      // Als beide iframes *op hetzelfde domein* en path staan, kunnen we de DOM lezen:
       try {
         const leftDoc = iframeLeft.contentDocument || iframeLeft.contentWindow.document;
 
-        // 2) Zoek in leftDoc naar QR-code element(en). 
-        //    In jouw voorbeeld is dat vaak <img src="https://api.qrserver.com/v1/create-qr-code/?data=...">
+        // Zoek alle <img> met 'create-qr-code' in hun src
         const qrImages = leftDoc.querySelectorAll('img[src*="create-qr-code"]');
 
-        // 3) Voor elk gevonden QR-code plaatje:
-        //    - Extract de ‘data=...’ uit de src
-        //    - Parse het JSON-deel
-        //    - Plaats een knop in je overlayContainer (of maak een lijst/knoppenbalk)
-        overlayContainer.innerHTML = ""; // wis oude knoppen als de user opnieuw navigeert
-        qrImages.forEach(img => {
+        // Leeg de lijst eerst (stel dat gebruiker doorklikt naar andere pagina)
+        qrList.innerHTML = "";
+
+        // Loop door alle gevonden QR's
+        qrImages.forEach((img, index) => {
           const qrUrl = img.getAttribute("src") || "";
+          // extract het deel "data=...json..."
           const paramMatch = qrUrl.match(/data=([^&]+)/);
-          if (!paramMatch) return; // geen data gevonden
+          if (!paramMatch) return;
 
-          // decodeURI zodat we de JSON terugkrijgen
-          let rawData = decodeURIComponent(paramMatch[1]);
-          // rawData is bv "%7B%22Issuer%22%3Atrue,...%7D"
-          // => na decodeURIComponent => '{"Issuer":true,"..."}'
-
-          // we controleren of het echt JSON is
-          let jsonData = null;
+          // decodeer en parse
+          const rawData = decodeURIComponent(paramMatch[1]);
+          let jsonData;
           try {
             jsonData = JSON.parse(rawData);
           } catch(e) {
-            console.warn("Kon data in QR src niet parsen als JSON:", rawData);
+            console.warn("Kon de QR-data niet parsen:", rawData, e);
             return;
           }
 
-          // 4) Plaats een knop ergens in de overlayContainer
+          // Maak een <li> met knop
+          const li = document.createElement("li");
+          li.textContent = "QR-code #" + (index + 1);
+
           const btn = document.createElement("button");
-          btn.className = "qr-overlay-button";
           btn.textContent = "Simuleer scan";
-          // Optioneel: Positioneer de knop bovenop de QR-code (coördinaten)
-          // We lezen de positie van de <img> in het leftDoc en vertalen dat naar 
-          // absolute positie in overlayContainer. (Kan tricky zijn — zie Tip hieronder.)
 
-          // Voor nu: Plaats m gewoon *onder elkaar* in je overlayContainer:
-          // (of positioneer exact met getBoundingClientRect())
-          overlayContainer.appendChild(btn);
-
-          // Bij klik: postMessage naar de rechter iframe
+          // Klik op knop => stuur 'simulateScan' naar de app in iframeRight
           btn.addEventListener("click", () => {
-            console.log("Simuleer-scan van data:", jsonData);
-            // Stuur bericht naar het rechter iframe
             iframeRight.contentWindow.postMessage({
               action: "simulateScan",
               qrData: JSON.stringify(jsonData)
             }, "*");
           });
+
+          // Voeg toe aan de lijst
+          li.appendChild(document.createElement("br"));
+          li.appendChild(btn);
+          qrList.appendChild(li);
         });
+
       } catch(err) {
         console.warn("Kan de DOM van iframeLeft niet benaderen (CORS-probleem?)", err);
       }
     });
 
-    // 5) Andersom: We kunnen ook nog luisteren naar messages vanuit de iframes, indien nodig
+    // Eventueel: als je nog iets wilt doen met berichten terug van de rechteriframe
     window.addEventListener("message", (event) => {
-      console.log("Parent got message:", event.data);
-      // ...
+      console.log("Presentatiepagina ontving message:", event.data);
     });
   </script>
 </body>
