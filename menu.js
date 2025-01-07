@@ -28,7 +28,7 @@ const links = [
     { href: "https://www.tipdemo.nl/examples/index.html", icon: "fas fa-play", text: "Demo's" },
     { href: "https://www.tipdemo.nl/research/index.html", icon: "fas fa-flask", text: "Onderzoek" },
     { hr: true }, // Voeg een scheidingslijn toe
-    { href: "https://www.tipdemo.nl/presentatie/index.html", icon: "fa-solid fa-desktop", text: "Presentatie-mode" },
+    { href: "https://www.tipdemo.nl/presentatie/index.html", icon: "fa-solid fa-desktop", text: "Presentatiemodus" },
     { hr: true }, // Voeg een scheidingslijn toe
     { href: "https://www.tipdemo.nl/about/index.html", icon: "fas fa-info-circle", text: "Over" },
     { href: "https://www.tipdemo.nl/contact/index.html", icon: "fas fa-comments", text: "Contact" },

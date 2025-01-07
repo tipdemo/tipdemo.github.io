@@ -177,13 +177,13 @@
     <!-- Drie placeholders in dezelfde breedteverdeling, maar klein en met tekst -->
     <div class="intro-iframes-container">
       <div class="intro-pane intro-left">
-        <h4>Hier wordt zo de website getoond</h4>
+        <h4>Bij activeren presentatiemodus wordt hier de TIP demo-website getoond waarin je use cases (voorbeelden of onderzoek) kunt selecteren</h4>
       </div>
       <div class="intro-pane intro-middle">
-        <h4>Hier worden knoppen getoond om het scannen van QR codes op de website te simuleren in het telefoonscherm</h4>
+        <h4>Bij activeren presentatiemodus worden hier knoppen getoond om het scannen van QR codes op de website (links) te simuleren in het telefoonscherm (rechts)</h4>
       </div>
       <div class="intro-pane intro-right">
-        <h4>Hier komt straks de app zoals je deze op je telefoon ook zou zien</h4>
+        <h4>Bij activeren presentatiemodus wordt hier wordt de app getoond zoals je deze op je telefoon ook zou zien</h4>
       </div>
     </div>
 
@@ -191,7 +191,7 @@
             <!-- Grote start-knop -->
         <button class="start-button" onclick="startPresentation()">
             <i class="fa-solid fa-desktop"></i>
-            Start presentatie mode
+            Start presentatiemodus
         </button>
         </div>
   </div>
@@ -238,7 +238,7 @@
   
       // Listener vóór je de src zet, zodat je de load niet mist
       iframeLeft.addEventListener("load", handleLeftIframeLoad);
-      iframeLeft.src = "https://www.tipdemo.nl/examples";
+      iframeLeft.src = "https://www.tipdemo.nl";
       iframeRight.src = "https://www.tipdemo.nl/demo";
     }
   
