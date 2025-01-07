@@ -3,18 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <title>Presentatiemodus</title>
+
+  <!-- Font Awesome voor icoontje op de startknop -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
   <style>
     html, body {
       margin: 0; 
       padding: 0; 
       height: 100%; 
       box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    h1, h2, h3 {
+      margin: 10px 0;
+    }
+    p {
+      margin: 10px 0;
     }
 
+    /* ===== 1) Het startscherm ===== */
+    #introContainer {
+      display: block; /* zichtbaar bij start */
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .intro-iframes-container {
+      display: flex;
+      width: 100%;
+      margin: 20px 0;
+      height: 220px; /* niet zo hoog, puur voor demo */
+    }
+    .intro-pane {
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      padding: 10px;
+      overflow: auto;
+      text-align: center;
+    }
+    .intro-left {
+      flex: 0 0 50%;
+    }
+    .intro-middle {
+      flex: 0 0 15%;
+    }
+    .intro-right {
+      flex: 0 0 35%;
+    }
+
+.start-button-container {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    }
+
+    /* Opmaak van de 'start' knop */
+    .start-button {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: #62a7f0;
+      color: #fff;
+      border: none;
+      padding: 14px 20px;
+      font-size: 25px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .start-button:hover {
+      background-color: #0056b3;
+    }
+
+    /* ===== 2) Het hoofdscherm met 3 kolommen ===== */
+    #mainContainer {
+      display: none; /* pas tonen na klikken */
+      width: 100%;
+      height: 100vh;
+      box-sizing: border-box;
+    }
     .container {
       display: flex;
       width: 100%;
-      height: 100vh; /* schermvullend */
+      height: 100%;
     }
 
     /* Kolommen */
@@ -26,8 +96,8 @@
     .middle-pane {
       flex: 0 0 15%;
       border: 1px solid #ccc;
-      overflow-y: auto; /* indien de lijst met knoppen groter wordt dan de kolomhoogte */
       box-sizing: border-box;
+      overflow-y: auto; 
       padding: 10px;
     }
     .right-pane {
@@ -39,7 +109,7 @@
       box-sizing: border-box;
     }
 
-    /* Iframe vul de hele kolom */
+    /* De iframe in de linker kolom */
     #iframeLeft {
       width: 100%;
       height: 100%;
@@ -51,23 +121,23 @@
       width: 410px;
       height: 850px;
       background-color: #000; /* Zwarte rand zoals een telefoon */
-      border-radius: 40px;    /* Afgeronde hoeken */
+      border-radius: 40px;    
       position: relative;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Schaduw */
-      padding: 20px;         /* Ruimte tussen scherm en rand */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      padding: 20px;
       box-sizing: border-box;
     }
     .phone-screen {
       width: 100%;
       height: 100%;
-      background-color: #fff; /* Wit "scherm" */
+      background-color: #fff; 
       border-radius: 30px; 
       overflow: hidden;
     }
     .phone-screen iframe {
       width: 100%;
       height: 100%;
-      border: none; /* Geen rand rond het iframe */
+      border: none; 
     }
     .home-button {
       width: 60px;
@@ -80,7 +150,7 @@
       border-radius: 50%;
     }
 
-    /* Opmaak van de QR-lijst in de middenkolom */
+    /* De lijst met QR-codes in de middenkolom */
     #qrList {
       margin: 0; 
       padding: 0;
@@ -94,60 +164,106 @@
       margin-top: 5px;
       cursor: pointer;
     }
+
   </style>
 </head>
 <body>
-  <div class="container">
 
-    <!-- Linker pane: iframe met voorbeelden -->
-    <div class="left-pane">
-      <!-- Deze iframe laad je 'gewone' site met allerlei QR-codes -->
-      <iframe id="iframeLeft" src="https://www.tipdemo.nl/examples"></iframe>
-    </div>
+  <!-- 1) STARTSCHERM (intro) -->
+  <div id="introContainer">
+    <h1 style="text-align: center;">Presentatiemodus</h1>
+  
 
-    <!-- Middenpaneel: knoppenlijst (op basis van gedetecteerde QR-codes) -->
-    <div class="middle-pane">
-      <h3>Gevonden QR-codes</h3>
-      <ul id="qrList"></ul>
-    </div>
-
-    <!-- Rechter paneel: telefoonmockup met de app-iframe -->
-    <div class="right-pane">
-      <div class="phone">
-        <div class="phone-screen">
-          <iframe id="iframeRight" src="https://www.tipdemo.nl/demo"></iframe>
-        </div>
-        <!-- eventueel een home-button -->
-        <!-- <div class="home-button"></div> -->
+    <!-- Drie placeholders in dezelfde breedteverdeling, maar klein en met tekst -->
+    <div class="intro-iframes-container">
+      <div class="intro-pane intro-left">
+        <h4>Hier wordt zo de website getoond</h4>
+      </div>
+      <div class="intro-pane intro-middle">
+        <h4>Hier worden knoppen getoond om het scannen van QR codes op de website te simuleren in het telefoonscherm</h4>
+      </div>
+      <div class="intro-pane intro-right">
+        <h4>Hier komt straks de app zoals je deze op je telefoon ook zou zien</h4>
       </div>
     </div>
 
+        <div class="start-button-container">
+            <!-- Grote start-knop -->
+        <button class="start-button" onclick="startPresentation()">
+            <i class="fa-solid fa-desktop"></i>
+            Start presentatie mode
+        </button>
+        </div>
   </div>
+
+
+  <!-- 2) HOOFDSCHERM (3 kolommen) - pas zichtbaar na start -->
+  <div id="mainContainer">
+    <div class="container">
+
+      <!-- Links: iframe met voorbeelden -->
+      <div class="left-pane">
+        <iframe id="iframeLeft"></iframe>
+      </div>
+
+      <!-- Midden: lijst met knoppen voor QR's -->
+      <div class="middle-pane">
+        <h4>Simulatie QR-codes</h4>
+        <ul id="qrList"></ul>
+      </div>
+
+      <!-- Rechts: telefoonmockup -->
+      <div class="right-pane">
+        <div class="phone">
+          <div class="phone-screen">
+            <iframe id="iframeRight"></iframe>
+          </div>
+          <!-- Eventueel kun je een home-button tonen, niet verplicht -->
+          <!-- <div class="home-button"></div> -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 
   <script>
     const iframeLeft = document.getElementById("iframeLeft");
     const iframeRight = document.getElementById("iframeRight");
     const qrList = document.getElementById("qrList");
 
-    // Elke keer als de linker iframe is geladen, zoeken we naar QR-codes in de DOM
-    iframeLeft.addEventListener("load", () => {
+    function startPresentation() {
+      // 1) Verberg het intro-scherm
+      document.getElementById("introContainer").style.display = "none";
+
+      // 2) Toon het hoofdscherm
+      document.getElementById("mainContainer").style.display = "block";
+
+      // 3) Nu pas de iframes laden
+      iframeLeft.src = "https://www.tipdemo.nl/examples";
+      iframeRight.src = "https://www.tipdemo.nl/demo";
+
+      // 4) Event listener zetten na we de src hebben ingesteld
+      //    zodat we pas scannen als de pagina in iframeLeft klaar is.
+      iframeLeft.addEventListener("load", handleLeftIframeLoad, { once: true });
+    }
+
+    function handleLeftIframeLoad() {
       try {
         const leftDoc = iframeLeft.contentDocument || iframeLeft.contentWindow.document;
 
         // Zoek alle <img> met 'create-qr-code' in hun src
         const qrImages = leftDoc.querySelectorAll('img[src*="create-qr-code"]');
 
-        // Leeg de lijst eerst (stel dat gebruiker doorklikt naar andere pagina)
+        // Leeg de lijst eerst 
         qrList.innerHTML = "";
 
         // Loop door alle gevonden QR's
         qrImages.forEach((img, index) => {
           const qrUrl = img.getAttribute("src") || "";
-          // extract het deel "data=...json..."
           const paramMatch = qrUrl.match(/data=([^&]+)/);
           if (!paramMatch) return;
 
-          // decodeer en parse
           const rawData = decodeURIComponent(paramMatch[1]);
           let jsonData;
           try {
@@ -157,33 +273,37 @@
             return;
           }
 
-          // Maak een <li> met knop
+          // Lees de alt-tekst (zo niet aanwezig -> fallback)
+          const altText = img.getAttribute("alt") || `QR code #${index+1}`;
+
+          // Maak een <li> en daaronder een knop
           const li = document.createElement("li");
-          li.textContent = "QR-code #" + (index + 1);
+          const title = document.createElement("strong");
+          title.textContent = altText;
+          li.appendChild(title);
 
           const btn = document.createElement("button");
           btn.textContent = "Simuleer scan";
 
-          // Klik op knop => stuur 'simulateScan' naar de app in iframeRight
           btn.addEventListener("click", () => {
+            // Stuur 'simulateScan' naar de app
             iframeRight.contentWindow.postMessage({
               action: "simulateScan",
               qrData: JSON.stringify(jsonData)
             }, "*");
           });
 
-          // Voeg toe aan de lijst
           li.appendChild(document.createElement("br"));
           li.appendChild(btn);
           qrList.appendChild(li);
         });
 
       } catch(err) {
-        console.warn("Kan de DOM van iframeLeft niet benaderen (CORS-probleem?)", err);
+        console.warn("Kan de DOM van iframeLeft niet benaderen (CORS?)", err);
       }
-    });
+    }
 
-    // Eventueel: als je nog iets wilt doen met berichten terug van de rechteriframe
+    // Als je eventueel berichten terug wilt ontvangen van iframeRight:
     window.addEventListener("message", (event) => {
       console.log("Presentatiepagina ontving message:", event.data);
     });
