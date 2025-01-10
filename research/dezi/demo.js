@@ -86,7 +86,7 @@ function toggleButtons() {
             const exampleButton = document.createElement('button');
             exampleButton.innerHTML = '<i class="fas fa-lightbulb"></i> Naar voorbeelden';
             exampleButton.className = 'go-example';
-            exampleButton.onclick = ()=> window.location.href = 'https://www.tipdemo.nl/examples/eo';
+            exampleButton.onclick = ()=> window.location.href = 'https://www.tipdemo.nl/examples';
 
             // Voeg de 'Terug naar hoofdwebsite'-knop toe met Font Awesome icoon
             const homeButton = document.createElement('button');
