@@ -1,5 +1,5 @@
 const demoConfig = {
-    totalSteps: 12 // Definieer hier het aantal stappen voor deze demo
+    totalSteps: 13 // Definieer hier het aantal stappen voor deze demo
 };
 
 let currentStep = 1; // Houd de huidige stap bij
@@ -119,4 +119,20 @@ window.addEventListener('pageshow', function(event) {
         // Als de pagina uit de cache is geladen, forceer dan een herlaad
         window.location.reload();
     }
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const handelingsButton = document.querySelector('.handelingsomgeving-button');
+    const qrCodeContainer = document.getElementById('qr-code-container');
+
+    handelingsButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Voorkom standaard form submission indien van toepassing
+        // Toggle de zichtbaarheid van de QR-code container
+        if (qrCodeContainer.style.display === 'none' || qrCodeContainer.style.display === '') {
+            qrCodeContainer.style.display = 'block';
+        } else {
+            qrCodeContainer.style.display = 'none';
+        }
+    });
 });
