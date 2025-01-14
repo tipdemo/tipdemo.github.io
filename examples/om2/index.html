@@ -53,11 +53,12 @@
             </div>
             <hr>
             <h2>Inloggen</h2>
-    
+
             <!-- Blokken voor Inloggen en Nieuwe Klant -->
             <div class="login-container">
                 <!-- Inloggen-blok -->
                 <div class="login-block">
+                    <div class="login-block1">
                     <h3>Inloggen</h3>
                     <form>
                         <label for="username">Gebruikersnaam</label>
@@ -68,31 +69,43 @@
     
                         <button type="submit" class="login-button">Inloggen</button>
                     </form>
-
+                    <div class="or-divider">
+                        <span>of</span>
+                </div>
                     <!-- Extra optie: Inloggen met handelingsomgeving -->
-                <div class="or-divider">
-                    <span>of</span>
+                 
+                    </div>
+                    <button class="login-button fa-button handelingsomgeving-button">
+                        <i class="fas fa-mobile-alt"></i> Inloggen met handelingsomgeving
+                    </button>
+                      <!-- Div voor QR-code, standaard verborgen -->
+                        <div id="qr-code-container" class="qr-code-container" style="display: none;">
+                            <div class="qr-code-instructions">
+                                <p>Scan de QR-code met uw handelingsomgeving om verder te gaan:</p>
+                            </div>
+                            <div class="qr-code">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?data=%7B%22type%22%3A%22verifier%22%2C%22requester%22%3A%22Machtigingen%20Register%22%2C%22reason%22%3A%22Inloggen%22%2C%22rdfcv%22%3A%5B%22Toegang%20Machtigingen%20Register%22%5D%2C%22a%22%3A%22w%22%2C%22t%22%3A%22w%22%7D&size=300x300" 
+                                    alt="QR Code voor Inloggen Machtigingen Register">
+                            </div>
+                        </div>
                 </div>
-                <button class="login-button fa-button">
-                    <i class="fas fa-mobile-alt"></i> Inloggen met handelingsomgeving
-                </button>
-                </div>
-    
+
                 <!-- Nieuwe klant-blok -->
-                <div class="new-customer-block">
+                <div class="new-customer-block2">
                     <h3>Nieuwe klant</h3>
                     <p>Bent u nog geen klant? Maak eenvoudig een account aan.</p>
                     <button class="login-button register-button">Registreren</button>
                 </div>
             </div>
-    
-            <div class="button-container">
+
+          
+
+            <div class="button-container2" style="display: none;">
                 <button class="prev">Terug</button>
-                <button class="next">Volgende</button>
+                <button class="next" data-go-step="5">Volgende</button>
             </div>
         </div>
     </section>
-
 
     <section id="step-3" class="step">
         <div class="subsection">
@@ -167,66 +180,12 @@
                     </div>
     </section>
 
+
+    
+    
+
+
     <section id="step-5" class="step">
-        <div class="subsection">
-            <div id="logo-container-machtigingen-register">
-                <h1 class="machtigingen-register-title">
-                    <span class="machtigingen">Machtigingen</span> <span class="register">Register</span>
-                </h1>
-            </div>
-            <hr>
-            <h2>Inloggen</h2>
-    
-            <!-- Blokken voor Inloggen en Nieuwe Klant -->
-            <div class="login-container">
-                <!-- Inloggen-blok -->
-                <div class="login-block">
-                    <h3>Inloggen</h3>
-                    <form>
-                        <label for="username">Gebruikersnaam</label>
-                        <input type="text" id="username" name="username" placeholder="Vul hier uw gebruikersnaam in" required>
-                        
-                        <label for="password">Wachtwoord</label>
-                        <input type="password" id="password" name="password" placeholder="Vul hier uw wachtwoord in" required>
-    
-                        <button type="submit" class="login-button">Inloggen</button>
-                    </form>
-
-                    <!-- Extra optie: Inloggen met handelingsomgeving -->
-                <div class="or-divider">
-                    <span>of</span>
-                </div>
-                <button class="login-button fa-button handelingsomgeving-button">
-                    <i class="fas fa-mobile-alt"></i> Inloggen met handelingsomgeving
-                </button>
-
- <!-- Div voor QR-code, standaard verborgen -->
- <div id="qr-code-container" class="qr-code-container">
-    <div class="qr-code">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?data=%7B%22type%22%3A%22verifier%22%2C%22requester%22%3A%22Machtigingen%20Register%22%2C%22reason%22%3A%22Inloggen%22%2C%22rdfcv%22%3A%5B%22Toegang%20Machtigingen%20Register%22%5D%2C%22a%22%3A%22w%22%2C%22t%22%3A%22w%22%7D&size=300x300" 
-             alt="QR Code voor Inloggen Machtigingen Register">
-    </div>
-</div>
-
-                </div>
-    
-                <!-- Nieuwe klant-blok -->
-                <div class="new-customer-block">
-                    <h3>Nieuwe klant</h3>
-                    <p>Bent u nog geen klant? Maak eenvoudig een account aan.</p>
-                    <button class="login-button">Registreren</button>
-                </div>
-            </div>
-    
-            <div class="button-container">
-                <button class="prev">Terug</button>
-                <button class="next">Volgende</button>
-            </div>
-        </div>
-    </section>
-
-
-    <section id="step-6" class="step">
                     <div class="subsection">
                         <div id="logo-container-machtigingen-register">
                             <h1 class="machtigingen-register-title">
@@ -475,7 +434,7 @@
         </div>
     </section>
 
-    <section id="step-7" class="step">
+    <section id="step-6" class="step">
         
         <div class="subsection">
             <div id="logo-container-machtigingen-register">
@@ -496,7 +455,7 @@
     </section>
 
 
-    <section id="step-8" class="step">
+    <section id="step-7" class="step">
         
         <div class="subsection">
             <div>
@@ -520,7 +479,7 @@
     </section>
 
 
-    <section id="step-9" class="step">
+    <section id="step-8" class="step">
         <div class="subsection">
             <div class="logo-container">
             <h2>Email</h2>
@@ -570,7 +529,7 @@
     </section>
     
 
-    <section id="step-10" class="step">
+    <section id="step-9" class="step">
          
         <div class="subsection">
             <div id="logo-container-machtigingen-register">
@@ -610,7 +569,7 @@
         </div>
     </section>
 
-    <section id="step-11" class="step">
+    <section id="step-10" class="step">
       
             <div class="logo-container" id="logo-container-justis">
                 <div class="header-logo"></div>
@@ -694,7 +653,7 @@
     </section>
     
 
-    <section id="step-12" class="step">
+    <section id="step-11" class="step">
         <div class="logo-container" id="logo-container-justis">
             <div class="header-logo"></div>
             <div class="header-text">Belastingdienst</div>
@@ -773,7 +732,7 @@
 
     
 
-    <section id="step-13" class="step">
+    <section id="step-12" class="step">
         <div class="subsection">
             <h1>Einde demo</h1>
             <hr>

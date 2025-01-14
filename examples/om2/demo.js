@@ -1,5 +1,5 @@
 const demoConfig = {
-    totalSteps: 13 // Definieer hier het aantal stappen voor deze demo
+    totalSteps: 12 // Definieer hier het aantal stappen voor deze demo
 };
 
 let currentStep = 1; // Houd de huidige stap bij
@@ -28,7 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Voeg eventlisteners toe aan de knoppen voor 'Volgende' en 'Terug'
     document.addEventListener('click', (e) => {
         if (e.target.classList.contains('next')) {
-            goToStep(currentStep + 1);
+            const goStep = e.target.getAttribute('data-go-step');
+            if (goStep) {
+                goToStep(parseInt(goStep, 10));
+            } else {
+                goToStep(currentStep + 1);
+            }
         } else if (e.target.classList.contains('prev')) {
             goToStep(currentStep - 1);
         } else if (e.target.classList.contains('register-button')) {
@@ -124,15 +129,30 @@ window.addEventListener('pageshow', function(event) {
 
 document.addEventListener('DOMContentLoaded', function() {
     const handelingsButton = document.querySelector('.handelingsomgeving-button');
+    const loginBlock1 = document.querySelector('.login-block1');
+    const newCustomerBlock2 = document.querySelector('.new-customer-block2');
+    const buttonContainer2 = document.querySelector('.button-container2');
     const qrCodeContainer = document.getElementById('qr-code-container');
 
-    handelingsButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Voorkom standaard form submission indien van toepassing
-        // Toggle de zichtbaarheid van de QR-code container
-        if (qrCodeContainer.style.display === 'none' || qrCodeContainer.style.display === '') {
+    // Debugging: Controleer of elementen correct zijn geselecteerd
+    console.log('handelingsButton:', handelingsButton);
+    console.log('loginBlock1:', loginBlock1);
+    console.log('newCustomerBlock2:', newCustomerBlock2);
+    console.log('qrCodeContainer:', qrCodeContainer);
+
+    if (handelingsButton && loginBlock1 && newCustomerBlock2 && qrCodeContainer) {
+        handelingsButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Voorkom standaard form submission indien van toepassing
+
+            // Verberg de login-block1 en newCustomerBlock
+            loginBlock1.style.display = 'none';
+            newCustomerBlock2.style.display = 'none';
+
+            // Toon de QR-code container
             qrCodeContainer.style.display = 'block';
-        } else {
-            qrCodeContainer.style.display = 'none';
-        }
-    });
+            buttonContainer2.style.display = 'flex';
+        });
+    } else {
+        console.warn('Een of meer elementen zijn niet gevonden. Controleer de class-namen en ID\'s.');
+    }
 });
