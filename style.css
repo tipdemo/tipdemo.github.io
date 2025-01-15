@@ -938,4 +938,10 @@ ul {
   font-size: 14px;
 }
 
+.section-image img {
+  width: 50%; /* Pas deze waarde aan naar wens */
+  margin: 0 auto; /* Centreer de afbeelding */
+  display: block; /* Zorg ervoor dat margin: auto werkt */
+}
+
 }
