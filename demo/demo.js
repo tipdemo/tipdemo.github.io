@@ -268,6 +268,7 @@ const valueMapping = {
  
   "WLDB": "Willeke Liselotte de Bruijn", 
   "MBO": "Machtiging | Belastingdienst | Omzetbelasting",
+  "MSVBA1LE": "Machtiging | SVB | A1",
   "MR": "Machtigingen Register",
   "KVK0": "NL_KVK_0000000",
   "KVK1": "NL_KVK_0000001",
