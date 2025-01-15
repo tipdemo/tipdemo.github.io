@@ -586,6 +586,12 @@ const cardStyles = {
     textColor: '#00588E'
     },
 
+    'machtiging | svb | a1': {
+      imagePath: '/demo/key.svg',  
+      iconColor: null,
+      textColor: '#00588E'
+      },
+  
     'toegang machtigingen register': {
       imagePath: '/demo/key.svg',  
       iconColor: null,
