@@ -101,9 +101,9 @@ function toggleButtons() {
 
         if (!document.querySelector('.go-example') && !document.querySelector('.go-home')) {
             const exampleButton = document.createElement('button');
-            exampleButton.innerHTML = '<i class="fas fa-flask"></i> Naar onderzoek';
+            exampleButton.innerHTML = '<i class="fas fa-play"></i> Naar demos';
             exampleButton.className = 'go-example';
-            exampleButton.onclick = () => window.location.href = 'https://www.tipdemo.nl/research';
+            exampleButton.onclick = () => window.location.href = 'https://www.tipdemo.nl/examples';
 
             const homeButton = document.createElement('button');
             homeButton.innerHTML = '<i class="fas fa-home"></i> Terug naar hoofdwebsite';
@@ -128,31 +128,62 @@ window.addEventListener('pageshow', function(event) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    const handelingsButton = document.querySelector('.handelingsomgeving-button');
+    const handelingsButton1 = document.querySelector('.handelingsomgeving-button1');
     const loginBlock1 = document.querySelector('.login-block1');
-    const newCustomerBlock2 = document.querySelector('.new-customer-block2');
-    const buttonContainer2 = document.querySelector('.button-container2');
-    const qrCodeContainer = document.getElementById('qr-code-container');
+    const newCustomerBlock1 = document.querySelector('.new-customer-block1');
+    const buttonContainer1 = document.querySelector('.button-container1');
+    const qrCodeContainer1 = document.getElementById('qr-code-container1');
 
     // Debugging: Controleer of elementen correct zijn geselecteerd
-    console.log('handelingsButton:', handelingsButton);
+    console.log('handelingsButton1:', handelingsButton1);
     console.log('loginBlock1:', loginBlock1);
-    console.log('newCustomerBlock2:', newCustomerBlock2);
-    console.log('qrCodeContainer:', qrCodeContainer);
+    console.log('newCustomerBlock1:', newCustomerBlock1);
+    console.log('qrCodeContainer1:', qrCodeContainer1);
 
-    if (handelingsButton && loginBlock1 && newCustomerBlock2 && qrCodeContainer) {
-        handelingsButton.addEventListener('click', function(event) {
+    if (handelingsButton1 && loginBlock1 && newCustomerBlock1 && qrCodeContainer1) {
+        handelingsButton1.addEventListener('click', function(event) {
             event.preventDefault(); // Voorkom standaard form submission indien van toepassing
 
             // Verberg de login-block1 en newCustomerBlock
             loginBlock1.style.display = 'none';
-            newCustomerBlock2.style.display = 'none';
+            newCustomerBlock1.style.display = 'none';
 
             // Toon de QR-code container
-            qrCodeContainer.style.display = 'block';
-            buttonContainer2.style.display = 'flex';
+            qrCodeContainer1.style.display = 'block';
+            buttonContainer1.style.display = 'flex';
         });
     } else {
         console.warn('Een of meer elementen zijn niet gevonden. Controleer de class-namen en ID\'s.');
+    }
+});
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const handelingsButton2 = document.querySelector('.handelingsomgeving-button2');
+    const loginBlock2 = document.querySelector('.login-block2');
+    const newCustomerBlock2 = document.querySelector('.new-customer-block2');
+    const buttonContainer2 = document.querySelector('.button-container2');
+    const qrCodeContainer2 = document.getElementById('qr-code-container2');
+
+    // Debugging: Controleer of elementen correct zijn geselecteerd
+    console.log('handelingsButton2:', handelingsButton2);
+    console.log('loginBlock2:', loginBlock2);
+    console.log('newCustomerBlock2:', newCustomerBlock2);
+    console.log('qrCodeContainer2:', qrCodeContainer2);
+
+    if (handelingsButton2 && loginBlock2 && newCustomerBlock2 && qrCodeContainer2) {
+        handelingsButton2.addEventListener('click', function(event) {
+            event.preventDefault(); // Voorkom standaard form submission indien van toepassing
+
+            // Verberg de login-block2 en newCustomerBlock2
+            loginBlock2.style.display = 'none';
+            newCustomerBlock2.style.display = 'none';
+
+            // Toon de QR-code container en de button-container2
+            qrCodeContainer2.style.display = 'block';
+            buttonContainer2.style.display = 'flex';
+        });
+    } else {
+        console.warn('Een of meer elementen voor stap 2 zijn niet gevonden. Controleer de class-namen en ID\'s.');
     }
 });

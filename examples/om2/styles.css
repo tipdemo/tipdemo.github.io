@@ -42,7 +42,7 @@ h4 {
     display: block; /* Alleen de actieve sectie wordt getoond */
 }
 
-.button-container, .button-container2 {
+.button-container, .button-container1, .button-container2 {
     margin-top: 20px;
     display: flex;
     justify-content: center; /* Zorgt ervoor dat de knoppen horizontaal gecentreerd zijn */
@@ -531,6 +531,7 @@ input[type="checkbox"] {
 /* Blokken styling */
 .login-block,
 .new-customer-block,
+.new-customer-block1,
 .new-customer-block2 {
   flex: 1;
   border: 1px solid #ddd;
@@ -544,13 +545,17 @@ input[type="checkbox"] {
 }
 
 .login-block h3,
-.new-customer-block h3 {
+.new-customer-block h3,
+.new-customer-block1 h3,
+.new-customer-block2 h3 {
   font-size: 18px;
   color: #002b80;
   margin-bottom: 10px;
 }
 
 .login-block label,
+.login-block1 label,
+.login-block2 label,
 .new-customer-block p {
   font-size: 14px;
   color: #333;
@@ -558,7 +563,9 @@ input[type="checkbox"] {
 }
 
 /* Invoervelden styling */
-.login-block input {
+.login-block input,
+.login-block1 input,
+.login-block2 input {
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
@@ -630,7 +637,7 @@ input[type="checkbox"] {
 }
 
 /* Algemene styling voor de QR-sectie */
-.qr-code-container {
+.qr-code-container, .qr-code-container1, .qr-code-container2 {
   text-align: center;
   margin: 20px 0;
   padding: 20px;
