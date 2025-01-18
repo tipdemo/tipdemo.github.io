@@ -276,6 +276,18 @@
 }
 
 /* Responsive aanpassingen */
+
+@media (max-width: 1730px) {
+    .right-sidebar {
+        display: none;
+    }
+    
+    .main-content {
+        margin-right: 0;
+    }
+}
+
+
 @media (max-width: 768px) {
     .research-table {
         display: block;
@@ -290,25 +302,15 @@
     .research-table td:first-child {
         min-width: 50px;
     }
-}
-
-/* Thema titels binnen de tabel */
+    /* Thema titels binnen de tabel */
 .research-table strong {
     display: block;
     color: #1e293b;
     margin-bottom: 0.5rem;
     font-size: 1rem;
 }
+}
 
-        @media (max-width: 1024px) {
-            .right-sidebar {
-                display: none;
-            }
-            
-            .main-content {
-                margin-right: 0;
-            }
-        }
 
         @media (min-width: 768px) {
             .subitem-cards {
@@ -400,6 +402,8 @@
                     <p>Hier vindt u algemene informatie over wat TIP is en de belangrijkste doelstellingen.
                         Inclusief een handleiding voor het effectief gebruiken van TIP. <br> <br> </p>
                
+
+                        <h2 id="over-tip">Schets website indeling</h2>
                         <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; background-color: white;">
                             <thead>
                                 <tr style="background-color: #f8f9fa;">
