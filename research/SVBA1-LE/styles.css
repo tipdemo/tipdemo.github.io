@@ -730,6 +730,18 @@ label {
   margin-top: auto;
 }
 
+
+.full-width-image {
+  width: 100%;
+  text-align: center; /* Zorgt ervoor dat de afbeelding netjes gecentreerd blijft */
+}
+
+.full-width-image img {
+  width: 100%; /* Zorgt ervoor dat de afbeelding de volledige breedte inneemt */
+  height: auto; /* Behoudt de originele hoogteverhouding */
+  display: block; /* Voorkomt extra witruimte onder de afbeelding */
+}
+
 /* Algemene styling voor de QR-sectie */
 .qr-code-container, .qr-code-container1, .qr-code-container2 {
   text-align: center;
