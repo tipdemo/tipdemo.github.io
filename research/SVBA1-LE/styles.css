@@ -1,3 +1,6 @@
+/* Formulier Verklaring toepasselijke sociale verzekeringswetgeving
+A1/Certificate of coverage voor werknemers
+ */
 body {
     font-family: 'Helvetica', sans-serif;
     color: #333;
@@ -205,10 +208,7 @@ label {
   display: inline-block;
 }
 
-/* Checkbox stijl */
-input[type="checkbox"] {
-  margin-right: 10px;
-}
+
 
 /* Algemeen container styling voor de e-mail */
 #email-container {
@@ -820,3 +820,438 @@ input[type="checkbox"] {
   font-size: 14px;
   color: #333;
 }
+
+/* Form grid styling */
+.form-grid {
+  display: grid;
+  grid-template-columns: 265px 1fr; /* Maak de eerste kolom breder */
+  row-gap: 10px; /* Ruimte tussen rijen */
+  column-gap: 20px; /* Ruimte tussen label en invoerveld */
+  margin-bottom: 20px;
+}
+
+
+.form-grid2 {
+  display: grid;
+  row-gap: 10px; /* Ruimte tussen rijen */
+  column-gap: 20px; /* Ruimte tussen label en invoerveld */
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: contents; /* Zorgt ervoor dat de inhoud de juiste kolomstructuur behoudt */
+}
+
+.form-row label {
+  text-align: left; /* Labels links uitlijnen */
+  padding-right: 10px; /* Extra ruimte tussen label en veld */
+  font-weight: bold; /* Labels standaard vetgedrukt */
+}
+
+.form-row input {
+  width: 100%; /* Zorg ervoor dat de invoervelden niet buiten de container vallen */
+  padding: 8px;
+  border: 1px solid #ccc;
+  background-color: #e7edf6;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box; /* Zorg ervoor dat padding wordt meegerekend in de breedte */
+}
+
+/* Checkbox stijl */
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+#bijlage-werkzaamheden, #bijlage-machtiging {
+  width: unset;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box; /* Zorg ervoor dat padding wordt meegerekend in de breedte */
+
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Ruimte tussen de invoervelden */
+}
+
+.radio-option {
+  display: grid;
+  grid-template-columns: 20px auto auto; /* Drie kolommen: radiobutton, tekst en invoerveld */
+  align-items: center; /* Zorg dat alles verticaal wordt uitgelijnd */
+  gap: 10px; /* Ruimte tussen elementen */
+}
+
+.qr-code-container {
+  display: flex;
+  justify-content: center; /* QR-code centreren in de tweede kolom */
+  align-items: center;
+  padding: 10px;
+  background: #f9f9f9; /* Optioneel: lichte achtergrond voor QR-code */
+  border: 1px solid #ccc; /* Rand rondom QR-code */
+  border-radius: 8px; /* Afgeronde hoeken */
+}
+
+.qr-code-container img {
+  max-width: 100%; /* QR-code responsief maken */
+  height: auto;
+  display: block;
+}
+
+#auto-fill-label {
+  font-size: 14px;
+  font-weight: normal;
+  color: #333;
+  line-height: 1.5;
+}
+
+#auto-fill-button {
+  background-color: #596f88;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#auto-fill-button:hover {
+  background-color: #0056b3;
+}
+
+.autofill-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 10px;
+}
+
+.form-help-text {
+  font-size: 12px;
+  color: #666;
+  margin: 5px 0 0 0;
+  line-height: 1.4;
+}
+
+.divider {
+  grid-column: 1 / -1;
+  border-bottom: 1px solid #d3d3d3;
+  margin: 20px 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* Accordion styling */
+.accordion-content {
+  display: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.accordion-content.expanded {
+  display: block;
+}
+
+.accordion-header {
+  cursor: pointer;
+  background: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.accordion-header i {
+  float: right;
+  transition: transform 0.3s;
+}
+
+.accordion-header i.rotate {
+  transform: rotate(180deg);
+}
+
+/* Screen reader only class voor toegankelijkheid */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Info sectie styling voor de Algemeen accordeon */
+.info-section {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.info-section h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.info-section h4 {
+  color: #444;
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.info-section p {
+  margin-bottom: 10px;
+}
+
+.info-section ul {
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
+
+.info-section ul li {
+  margin-bottom: 5px;
+}
+
+/* Contact info styling voor in de Algemeen sectie */
+
+#algemeen-section {
+  margin-bottom: 80px;
+}
+
+.contact-info {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.contact-info p {
+  margin: 5px 0;
+}
+
+/* Styling voor section headers en special sections binnen form-grid */
+.form-grid h3,
+.form-grid .qr-section {
+  grid-column: 1 / -1;  /* Laat het element de volledige breedte innemen */
+  margin-top: 20px;     /* Extra ruimte boven de header */
+  margin-bottom: 10px;  /* Ruimte onder de header */
+  padding-top: 20px;    /* Extra padding boven */
+  border-top: 1px solid #67c0b1;  /* Optionele visuele scheiding */
+}
+
+/* Specifieke styling voor de QR code sectie */
+.form-grid .qr-code-section {
+  grid-column: 1 / -1;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+/* Extra ruimte voor ondertekening sectie */
+.form-grid .ondertekening-section {
+  grid-column: 1 / -1;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px solid #eee;
+}
+
+/* Specifieke styling voor vraag 7 */
+/* Specifieke styling voor vraag 7 */
+.situatie-container {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.situatie-vraag {
+  padding-right: 20px;
+  border-right: 1px solid #eee;
+}
+
+.situatie-opties {
+  padding-left: 20px;
+}
+
+.situatie-sectie {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Zorgt voor ruimte tussen de secties */
+}
+
+/* Styling voor de vierkante checkboxes */
+.situatie-checkbox {
+  
+  -moz-appearance: none;
+ 
+  width: 16px;
+  height: 16px;
+  border: 1px solid #999;
+  background-color: white;
+  margin-right: 10px;
+  position: relative;
+  top: 2px;
+  cursor: pointer;
+}
+
+.situatie-checkbox:checked {
+  background-color: #002b80;
+  border-color: #002b80;
+}
+
+.situatie-checkbox:checked:after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 12px;
+  left: 3px;
+  top: -1px;
+}
+
+/* Styling voor de checkbox container */
+.checkbox-group {
+  display: flex;
+  gap: 20px; /* Zorgt voor ruimte tussen de opties */
+  margin: 10px 0;
+}
+
+
+
+
+.checkbox-option {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.checkbox-option label {
+  cursor: pointer;
+  margin-left: 5px;
+  font-weight: normal;
+}
+
+/* Styling voor de conditional fields */
+
+
+.conditional-field {
+  max-width: 100%;
+  margin-left: 26px;
+  margin-top: 10px;
+  padding: 10px;
+
+  border-radius: 4px;
+  margin-bottom: 20px;
+
+}
+
+.conditional-field input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color:#e7edf6;
+  box-sizing: border-box;
+}
+
+.conditional-field label {
+  display: block;
+  margin-top: 10px;
+  color: #333;
+}
+
+/* Styling voor landen grid */
+.landen-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* Help text styling */
+.help-text {
+  color: #666;
+  font-style: italic;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+/* Nederland werken sectie */
+.nederland-werken-vraag {
+  grid-column: 1;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.nederland-werken-opties {
+  grid-column: 2;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+/* Radio group styling binnen conditional fields */
+.conditional-field .radio-group {
+  display: flex;
+  gap: 20px;
+  margin: 10px 0;
+}
+
+.conditional-field .radio-group label {
+  margin-top: 0;
+  display: inline;
+}
+
+/* 'Ga naar vraag 8' styling */
+.goto-question {
+  color: #666;
+  font-style: italic;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+/* Media queries voor responsive design */
+@media (max-width: 768px) {
+  .situatie-container {
+    grid-template-columns: 1fr;
+  }
+
+  .situatie-vraag {
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+  }
+
+  .situatie-opties {
+    padding-left: 0;
+    padding-top: 20px;
+  }
+
+  .landen-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .form-grid {
+      grid-template-columns: 1fr;
+  }
+
+  .form-row label, 
+  .form-row input {
+      width: 100%;
+  }
+
+  .input-group {
+      flex-direction: column;
+      gap: 10px;
+  }
+}
+
