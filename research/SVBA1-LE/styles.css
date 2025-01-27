@@ -909,7 +909,7 @@ input[type="checkbox"] {
   line-height: 1.5;
 }
 
-#auto-fill-button {
+#auto-fill-button, #auto-fill-button-part2 {
   background-color: #596f88;
   color: #fff;
   border: none;
