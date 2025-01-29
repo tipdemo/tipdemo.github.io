@@ -873,6 +873,8 @@ label {
 /* Checkbox stijl */
 input[type="checkbox"] {
   margin-right: 10px;
+  width: 16px;
+  height: 16px;
 }
 
 #bijlage-werkzaamheden, #bijlage-machtiging {
@@ -938,7 +940,7 @@ input[type="checkbox"] {
 .autofill-button-container {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   padding-top: 10px;
 }
 
@@ -1096,13 +1098,13 @@ input[type="checkbox"] {
 
 /* Styling voor de vierkante checkboxes */
 .situatie-checkbox {
-  
+  -webkit-appearance: none;  /* Voor Chrome/Safari */
   -moz-appearance: none;
- 
+ flex-shrink: 0; 
   width: 16px;
   height: 16px;
   border: 1px solid #999;
-  background-color: white;
+  background-color: #E7EDF6;
   margin-right: 10px;
   position: relative;
   top: 2px;
