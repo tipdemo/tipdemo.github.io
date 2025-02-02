@@ -127,7 +127,7 @@ window.addEventListener('pageshow', function(event) {
 });
 
 
-document.addEventListener('DOMContentLoaded', function() {
+/* document.addEventListener('DOMContentLoaded', function() {
     const handelingsButton1 = document.querySelector('.handelingsomgeving-button1');
     const loginBlock1 = document.querySelector('.login-block1');
     const newCustomerBlock1 = document.querySelector('.new-customer-block1');
@@ -156,9 +156,9 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn('Een of meer elementen zijn niet gevonden. Controleer de class-namen en ID\'s.');
     }
 });
+ */
 
-
-document.addEventListener('DOMContentLoaded', function() {
+/* document.addEventListener('DOMContentLoaded', function() {
     const handelingsButton2 = document.querySelector('.handelingsomgeving-button2');
     const loginBlock2 = document.querySelector('.login-block2');
     const newCustomerBlock2 = document.querySelector('.new-customer-block2');
@@ -187,3 +187,91 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn('Een of meer elementen voor stap 2 zijn niet gevonden. Controleer de class-namen en ID\'s.');
     }
 });
+ */
+
+ // Exclusief checkbox gedrag
+ const exclusiveCheckboxes = document.querySelectorAll('input.exclusive[type="checkbox"]');
+        
+ exclusiveCheckboxes.forEach((checkbox) => {
+     checkbox.addEventListener('change', () => {
+         if (checkbox.checked) {
+             // Vind alle andere checkboxes met dezelfde 'name'
+             const name = checkbox.getAttribute('name');
+             const checkboxes = document.querySelectorAll(`input.exclusive[name="${name}"]`);
+             checkboxes.forEach((cb) => {
+                 if (cb !== checkbox) {
+                     cb.checked = false; // Deselecteer andere checkboxes
+                 }
+             });
+         }
+     });
+ });
+
+
+ function toggleCustomTypeInput() {
+    const organisatieType = document.getElementById('organisatie-type').value;
+    const customTypeContainer = document.getElementById('custom-type-container');
+
+    if (organisatieType === 'Other') {
+        customTypeContainer.style.display = 'flex'; // Toon invoerveld voor custom type
+    } else {
+        customTypeContainer.style.display = 'none'; // Verberg invoerveld voor custom type
+    }
+}
+
+/* let emailCount = 1; // Aantal huidige e-mailinvoervelden
+
+    // Functie om een nieuw e-mailveld toe te voegen
+    document.getElementById('add-email-button').addEventListener('click', () => {
+        emailCount++;
+        const emailTable = document.getElementById('email-table').querySelector('tbody');
+        const addEmailRow = document.getElementById('add-email-row');
+
+        // Controleer of de rij met de knop correct is gevonden
+        if (!addEmailRow || !emailTable.contains(addEmailRow)) {
+            console.error('Rij voor knop niet gevonden of niet binnen de tabel!');
+            return;
+        }
+
+        // Maak een nieuwe rij voor het e-mailadres
+        const emailRow = document.createElement('tr');
+        emailRow.id = `email-row-${emailCount}`;
+
+        // Kolom 1: Label
+        const labelCell = document.createElement('td');
+        const label = document.createElement('label');
+        label.setAttribute('for', `email-${emailCount}`);
+        label.innerText = `E-mailadres bevoegd vertegenwoordiger:`;
+        labelCell.appendChild(label);
+
+        // Kolom 2: Invoerveld
+        const inputCell = document.createElement('td');
+        const input = document.createElement('input');
+        input.setAttribute('type', 'email');
+        input.setAttribute('id', `email-${emailCount}`);
+        input.setAttribute('name', `email-${emailCount}`);
+        input.setAttribute('placeholder', 'Vul een e-mailadres in');
+        inputCell.appendChild(input);
+
+        // Voeg beide kolommen toe aan de nieuwe rij
+        emailRow.appendChild(labelCell);
+        emailRow.appendChild(inputCell);
+
+        // Voeg de nieuwe rij toe vóór de rij met de knop
+        emailTable.insertBefore(emailRow, addEmailRow);
+    }); */
+
+// Werkgever gegevens autofill met knop
+    document.getElementById('auto-fill-button').addEventListener('click', function () {
+        // Werkgever gegevens
+        document.getElementById('naam').value = 'Innovatiemakers B.V.';
+        document.getElementById('kvk').value = 'KVK_NL_00000000';
+        document.getElementById('vestigingsnr').value = '000000000000';
+        document.getElementById('loonheffingen').value = '123456789LO01';
+        
+        // Vestigingsadres
+        document.getElementById('locatie').value = '';
+        document.getElementById('straat').value = 'Wilhelmina van Pruisenweg 52';
+        document.getElementById('postcode').value = '2595 AN';
+        document.getElementById('land').value = 'Nederland';
+    });

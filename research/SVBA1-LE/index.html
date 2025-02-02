@@ -268,11 +268,11 @@
             <label>Behaalt de onderneming minstens 25% van de jaaromzet in Nederland?</label>
             <div class="checkbox-group">
                 <div class="checkbox-option">
-                    <input type="checkbox" id="optie-ja" name="optie" value="ja" class="situatie-checkbox">
+                    <input type="checkbox" id="omzet-optie-ja" name="optie" value="ja" class="situatie-checkbox">
                     <label for="optie-ja">Ja</label>
                 </div>
                 <div class="checkbox-option">
-                    <input type="checkbox" id="optie-nee" name="optie" value="nee" class="situatie-checkbox">
+                    <input type="checkbox" id="omzet-optie-nee" name="optie" value="nee" class="situatie-checkbox">
                     <label for="optie-nee">Nee</label>
                 </div>
             </div>
@@ -282,11 +282,11 @@
             <label>Is de onderneming al langer dan 3 jaar actief in Nederland?</label>
             <div class="checkbox-group">
                 <div class="checkbox-option">
-                    <input type="checkbox" id="optie-ja" name="optie" value="ja" class="situatie-checkbox">
+                    <input type="checkbox" id="actief-optie-ja" name="optie" value="ja" class="situatie-checkbox">
                     <label for="optie-ja">Ja</label>
                 </div>
                 <div class="checkbox-option">
-                    <input type="checkbox" id="optie-nee" name="optie" value="nee" class="situatie-checkbox">
+                    <input type="checkbox" id="actief-optie-nee" name="optie" value="nee" class="situatie-checkbox">
                     <label for="optie-nee">Nee</label>
                 </div>
             </div>
@@ -1265,81 +1265,7 @@
     <!-- Voeg het script hier toe zodat de DOM volledig is geladen -->
     <script src="demo.js"></script>
     <script src="accordeon.js"></script>
-    <script>
-        // Exclusief checkbox gedrag
-        const exclusiveCheckboxes = document.querySelectorAll('input.exclusive[type="checkbox"]');
-        
-        exclusiveCheckboxes.forEach((checkbox) => {
-            checkbox.addEventListener('change', () => {
-                if (checkbox.checked) {
-                    // Vind alle andere checkboxes met dezelfde 'name'
-                    const name = checkbox.getAttribute('name');
-                    const checkboxes = document.querySelectorAll(`input.exclusive[name="${name}"]`);
-                    checkboxes.forEach((cb) => {
-                        if (cb !== checkbox) {
-                            cb.checked = false; // Deselecteer andere checkboxes
-                        }
-                    });
-                }
-            });
-        });
-    </script>
+  
 
-
-<script>
-    function toggleCustomTypeInput() {
-        const organisatieType = document.getElementById('organisatie-type').value;
-        const customTypeContainer = document.getElementById('custom-type-container');
-
-        if (organisatieType === 'Other') {
-            customTypeContainer.style.display = 'flex'; // Toon invoerveld voor custom type
-        } else {
-            customTypeContainer.style.display = 'none'; // Verberg invoerveld voor custom type
-        }
-    }
-</script>
-<script>
-    let emailCount = 1; // Aantal huidige e-mailinvoervelden
-
-    // Functie om een nieuw e-mailveld toe te voegen
-    document.getElementById('add-email-button').addEventListener('click', () => {
-        emailCount++;
-        const emailTable = document.getElementById('email-table').querySelector('tbody');
-        const addEmailRow = document.getElementById('add-email-row');
-
-        // Controleer of de rij met de knop correct is gevonden
-        if (!addEmailRow || !emailTable.contains(addEmailRow)) {
-            console.error('Rij voor knop niet gevonden of niet binnen de tabel!');
-            return;
-        }
-
-        // Maak een nieuwe rij voor het e-mailadres
-        const emailRow = document.createElement('tr');
-        emailRow.id = `email-row-${emailCount}`;
-
-        // Kolom 1: Label
-        const labelCell = document.createElement('td');
-        const label = document.createElement('label');
-        label.setAttribute('for', `email-${emailCount}`);
-        label.innerText = `E-mailadres bevoegd vertegenwoordiger:`;
-        labelCell.appendChild(label);
-
-        // Kolom 2: Invoerveld
-        const inputCell = document.createElement('td');
-        const input = document.createElement('input');
-        input.setAttribute('type', 'email');
-        input.setAttribute('id', `email-${emailCount}`);
-        input.setAttribute('name', `email-${emailCount}`);
-        input.setAttribute('placeholder', 'Vul een e-mailadres in');
-        inputCell.appendChild(input);
-
-        // Voeg beide kolommen toe aan de nieuwe rij
-        emailRow.appendChild(labelCell);
-        emailRow.appendChild(inputCell);
-
-        // Voeg de nieuwe rij toe vóór de rij met de knop
-        emailTable.insertBefore(emailRow, addEmailRow);
-    });
-</script>
 </body>
 </html>
