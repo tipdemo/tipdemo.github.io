@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voorbeeld doorontwikkeling TIP Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <button class="menu-toggle" id="menuToggle">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12h18M3 6h18M3 18h18"></path>
+            </svg>
+        </button>
+        <div class="top-nav-title">TIP Website</div>
+    </nav>
+
+    <div class="page-container">
+        <nav class="left-sidebar" id="leftSidebar">
+            <div class="logo">
+                TIP Wegwijzer
+                <button class="close-menu" id="closeMenu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="nav-section">
+                <a href="#introductie" class="nav-item">Introductie</a>
+                
+                <a href="#propositie" class="nav-item">Propositie TIP</a>
+                <a href="#wat-lossen-we-op" class="subnav-item">Wat lossen we op als TIP</a>
+                <a href="#oplossingswijzer" class="subnav-item">Implementiewijzer</a>
+                
+                <a href="#afspraken" class="nav-item">Afspraken TIP</a>
+                <a href="#toetsingskader" class="subnav-item">Toetsingskader</a>
+                <a href="#implementatie" class="subnav-item">Implementatie afspraken</a>
+                <a href="#governance" class="subnav-item">Governance</a>
+                
+                <a href="#onderzoek" class="nav-item">Onderzoeks/Toekomstagenda</a>
+                <a href="#themas" class="subnav-item">Onderzoeksthema's</a>
+                
+                <a href="#beproevingen" class="nav-item">Beproevingen en implementaties</a>
+                <a href="#voorbeelden" class="subnav-item">Concrete voorbeelden</a>
+                
+                <a href="#contact" class="nav-item">Contact/Samenwerken</a>
+            </div>
+        </nav>
+
+        <main class="main-content">
+          <!-- Introductie pagina -->
+            <div id="content-introductie" class="content-section">
+                <h1>Introductie</h1>
+                <div class="content">
+                    <h2 id="over-tip">Over TIP</h2>
+                    <p>Algemene informatie over wat TIP is en de belangrijkste doelstellingen en informatie.
+                        <br> <br> </p>
+               
+
+                        <h2 id="over-tip">Schets website indeling</h2>
+                        <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; background-color: white;">
+                            <thead>
+                                <tr style="background-color: #f8f9fa;">
+                                    <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Onderdeel</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Sub-onderdeel</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Maakt duidelijk voor bezoeker / organisatie</th>
+                                    <th style="padding: 10px; border: 1px solid #ddd; text-align: left;">Relevant voor werkgroep</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top; text-align: left;" rowspan="2">Propositie TIP</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Wat lossen we op als TIP</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Wat heb ik eraan?</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">MarCOM</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px;">Verbreding</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Implementatiewijzer</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Wat moet ik doen om naar implementatie te komen?</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">Techniek</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">MarCOM</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">Verbreding</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px;">Kennis</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; vertical-align: top; text-align: left;" rowspan="3">Afspraken TIP</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Toetsingskader</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Waaraan moet ik voldoen?</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">Techniek</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">MarCOM</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">Verbreding</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">Kennis</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px;">Governance</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Implementatie afspraken</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Waaraan moet ik voldoen?</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">Techniek</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">MarCOM</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">Verbreding</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">Kennis</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px;">Governance</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Governance</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Waaraan moet ik voldoen?</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">MarCOM</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">Verbreding</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">Kennis</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px;">Governance</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Onderzoeks/Toekomstagenda</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;"></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Welke onderzoeksthema's zijn er en op welke onderwerpen kan ik samenwerken met TIP?</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">MarCOM</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">Kennis</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px;">Verbreding</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Beproevingen en implementaties</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;"></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Maakt duidelijk en tastbaar voor bezoeker wat zijn concrete voorbeelden</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">MarCOM</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">Kennis</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px;">Verbreding</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Contact/samenwerken</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;"></td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">Contactgegevens en manieren om samen te werken met TIP</td>
+                                    <td style="padding: 10px; border: 1px solid #ddd; text-align: left;">
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">MarCOM</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px; margin-right: 4px;">Kennis</span>
+                                        <span style="background: #e2e8f0; padding: 2px 8px; border-radius: 12px; font-size: 12px;">Verbreding</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                         </table>
+                </div>
+            </div>
+            
+            <!-- Propositie TIP hoofdpagina met kaarten -->
+            <div id="content-propositie" class="content-section" style="display: none;">
+                <h1>Propositie TIP</h1>
+            
+                <div class="subitem-cards">
+                    <a href="#wat-lossen-we-op" class="card">
+                        <h3>Wat lossen we op als TIP</h3>
+                    
+                        <p>Ontdek hoe TIP concrete oplossingen biedt voor uitdagingen.</p>
+                    </a>
+                    <a href="#oplossingswijzer" class="card">
+                        <h3>Implementatiewijzer</h3>
+                        <p>Stap voor stap begeleiding naar de juiste implementatie voor uw situatie.</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Propositie TIP subitems -->
+            <div id="content-wat-lossen-we-op" class="content-section" style="display: none;">
+                <h1>Wat lossen we op als TIP</h1>
+                <div class="content">
+                    <h2 id="overzicht">Overzicht</h2>
+                    <p>Gedetailleerde informatie over welke oplossingen we als TIP bieden voor welke maatschappelijke en economische uitdagingen <br> 
+                        en hoe TIP organisaties ondersteunt bij hun digitale transformatie door de ontwikkeling van een domein-overstijgend afsprakenkader.</p>
+                    
+                    <h2 id="details">Details</h2>
+                    <p>Specifieke problemen die TIP oplost en de waarde die het biedt voor verschillende stakeholders.</p>
+                </div>
+            </div>
+            
+            <div id="content-oplossingswijzer" class="content-section" style="display: none;">
+                <h1>Implementatiewijzer</h1>
+                <div class="content">
+                    <h2 id="overzicht-oplossingswijzer">Overzicht Implementatiewijzer</h2>
+                    <p>De implementatiewijzer helpt u stap voor stap bij het implementeren van oplossingen binnen uw organisatie volgens het TIP afsprakenkader.</p>
+                    
+                    <h2 id="details-oplossingswijzer">Stappenplan</h2>
+                    <p>Gedetailleerde uitleg van elke stap in het implementatieproces, inclusief best practices en aandachtspunten.</p>
+                </div>
+            </div>
+            
+            <!-- Afspraken TIP hoofdpagina met kaarten -->
+            <div id="content-afspraken" class="content-section" style="display: none;">
+                <h1>Afspraken TIP</h1>
+                <div class="subitem-cards">
+                    <a href="#toetsingskader" class="card">
+                        <h3>Toetsingskader</h3>
+                        <p>Richtlijnen en criteria voor implementatie.</p>
+                    </a>
+                    <a href="#implementatie" class="card">
+                        <h3>Implementatie afspraken</h3>
+                        <p>Overzicht van afspraken voor succesvolle implementatie.</p>
+                    </a>
+                    <a href="#governance" class="card">
+                        <h3>Governance</h3>
+                        <p>Beheer en organisatie van TIP implementaties.</p>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Afspraken TIP subitems -->
+            <div id="content-toetsingskader" class="content-section" style="display: none;">
+                <h1>Toetsingskader</h1>
+                <div class="content">
+                    <h2 id="toetsingskader-uitleg">Toetsingskader</h2>
+                    <p>Het toetsingskader bevat de criteria en richtlijnen voor het evalueren van TIP implementaties. Het helpt organisaties bij het bepalen of hun implementatie voldoet aan de gestelde eisen en best practices.</p>
+                    
+                    <h2 id="toetsingskader-criteria">Criteria</h2>
+                    <p>Overzicht van de specifieke criteria waaraan een implementatie moet voldoen, inclusief technische vereisten en functionele eisen.</p>
+                </div>
+            </div>
+            
+            <div id="content-implementatie" class="content-section" style="display: none;">
+                <h1>Implementatie afspraken</h1>
+                <div class="content">
+                    <h2 id="implementatie-afspraken">Implementatie afspraken</h2>
+                    <p>De implementatie afspraken beschrijven de voorwaarden en richtlijnen voor een succesvolle implementatie van TIP. Deze afspraken zorgen voor een gestandaardiseerde aanpak en waarborgen de kwaliteit van implementaties.</p>
+                    
+                    <h2 id="implementatie-voorwaarden">Voorwaarden</h2>
+                    <p>Specifieke voorwaarden en vereisten voor het implementeren van TIP, inclusief technische en organisatorische aspecten.</p>
+                </div>
+            </div>
+            
+            <div id="content-governance" class="content-section" style="display: none;">
+                <h1>Governance</h1>
+                <div class="content">
+                    <h2 id="governance-uitleg">Governance structuur</h2>
+                    <p>De governance structuur beschrijft hoe het beheer en de organisatie van TIP implementaties is ingericht. Dit omvat de besluitvormingsprocessen, verantwoordelijkheden en controlemechanismen.</p>
+                    
+                    <h2 id="governance-rollen">Rollen en verantwoordelijkheden</h2>
+                    <p>Beschrijving van de verschillende rollen binnen de governance structuur en hun specifieke verantwoordelijkheden.</p>
+                </div>
+            </div>
+            
+            <!-- Onderzoek hoofdpagina en subitems -->
+            <div id="content-onderzoek" class="content-section" style="display: none;">
+                <h1>Onderzoeks/Toekomstagenda</h1>
+                <div class="subitem-cards">
+                    <a href="#themas" class="card">
+                        <h3>Onderzoeksthema's</h3>
+                        <p>Overzicht van actuele onderzoeksthema's binnen TIP.</p>
+                    </a>
+                </div>
+            </div>
+            
+            <div id="content-themas" class="content-section" style="display: none;">
+                <h1>Onderzoeksthema's</h1>
+                <div class="content">
+                    <h2 id="onderzoeksthemas-uitleg">Onderzoeksthema's</h2>
+                    <p>Een overzicht van de actuele onderzoeksthema's binnen TIP. Deze thema's vormen de basis voor verdere ontwikkeling. <br>
+                        Een onderzoeks/toekomstagenda is een overzichtelijke lijst van hoofdonderzoeksvragen die TIP wil oplossen met een hiërarchie en subvragen. <br>
+                        Vanuit marcom/verbredingkennis in contact met potentiële partners kunnen we hiernaar verwijzen. <br>
+                        Deze agenda kunnen gelinkt worden met onderzoeksuitkomsten, en evt. (lopende) beproevingen en implementaties in die onderzoekscontext. <br>
+                    </p>
+
+                        <h2 id="onderzoeksthemas-uitleg">Doel</h2>
+                        <p>Het doel van een TIP toekomst/onderzoeksagenda is om een gemeenschappelijk overzicht te creëren waar we als TIP mee bezig zijn, en de samenwerking tussen verschillende belanghebbenden en andere initiatieven binnen de overheid kan stimuleren. <br>
+                        Dit is een (strategisch) middel voor TIP om zowel overzicht te houden, en kan meer samenwerking/invloed/sturing tot stand brengen met andere initiatieven (massaal gebruik TIP), en de beschikbaarheid van financiële middelen vergroten. <br>
+<br>
+Een toekomstagenda kan daarbij als katalysator fungeren om roadmaps op elkaar af te stemmen, en kennis en resources te bundelen rondom thema’s zodat er zo min mogelijk dubbelingen maar juist harmonisatie en efficiënte besteding van middelen en kennis ontstaat.
+Een meerjarige kennis- en onderzoeksagenda biedt daarnaast een solide basis voor de gestructureerde ontwikkeling van wallets, vertrouwensdiensten en het bijbehorende vertrouwensstelsel.
+Door over meerdere jaren gericht te werken aan de verschillende aspecten zoals ethiek, gebruikerservaring, organisatie, juridische kaders, techniek en economische aspecten etc., kan er op een diepgaande en samenhangende manier worden gekeken naar belangrijke invalshoeken. Een gestructureerde agenda zorgt ervoor dat alle elementen in balans zijn en goed op elkaar aansluiten: een belangrijke voorwaarde voor een gebruiksvriendelijk en veilig ecosysteem.
+                    </p>
+                    
+                    <h2 id="onderzoeksthemas-planning">Voorbeeld Onderzoeks/Toekomstagenda</h2>
+                    <p>Planning en prioritering van de verschillende onderzoeksthema's, inclusief verwachte resultaten en tijdlijnen.</p>
+
+                    <table class="research-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Onderzoeksthema</th>
+                                <th>Status</th>
+                                <th>Link</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>
+                                    <strong>Authentieke bronnen ontsluiten</strong>
+                                    <ul>
+                                        <li>Welke stappen moet ik als een authentieke bron ondernemen om mijn bron te ontsluiten?
+                                            <ul>
+                                                <li>Hoe kunnen authentieke bronnen op een gestandaardiseerde manier worden ontsloten/geverifieerd?</li>
+                                                <li>Welke uitdagingen spelen er voor authentieke bronnen en stakeholders?</li>
+                                                <li>Welke oplossingsrichtingen zijn voorhanden en welke diepere vragen moeten worden beantwoord?</li>
+                                                <li>Welke governance is nodig om deze te realiseren?</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>In uitvoering</td>
+                                <td><a href="#">Meer info</a></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>
+                                    <strong>Relying parties en gegevens/attribuut opvragen</strong>
+                                    <ul>
+                                        <li>Welke stappen moet ik als relying party ondernemen om gegevens/attribuut te vragen en te ontvangen?</li>
+                                    </ul>
+                                </td>
+                                <td>In uitvoering</td>
+                                <td><a href="#">Meer info</a></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>
+                                    <strong>Samenhang gegevensdeling</strong>
+                                    <ul>
+                                        <li>Hoe kunnen gegevensdeling publiek-publiek en publiek-privaat samenhangend werken
+                                            <ul>
+                                                <li>Hoe kan er samenhang ontstaan tussen een eenmalige machtiging en een "sluis"-oplossing</li>
+                                                <li>OOTS/Peppol/eDelivery</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>In uitvoering</td>
+                                <td><a href="#">Meer info</a></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>
+                                    <strong>Subattributen delen</strong>
+                                    <ul>
+                                        <li>Hoe werkt het delen van subattributen
+                                            <ul>
+                                                <li>Welke granulering is er nodig bij tonen kaartjes</li>
+                                                <li>Hoe werkt een machtiging door een machtiging register uitgegeven namens een andere partij</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td>In uitvoering</td>
+                                <td><a href="#">Meer info</a></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>
+                                    <strong>In-app catalogus</strong>
+                                    <ul>
+                                        <li>Welke randvoorwaardes zijn er nodig voor een in-app catalogus met attributen</li>
+                                    </ul>
+                                </td>
+                                <td>In uitvoering</td>
+                                <td><a href="#">Meer info</a></td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>
+                                    <strong>Gebruikersnotificaties</strong>
+                                    <ul>
+                                        <li>Welke patronen zijn er om een natuurlijk persoon op de hoogte te stellen van een verzoek tot gegevens?</li>
+                                        <li>Welke patronen zijn er om de natuurlijk persoon door te verwijzen naar een uitgever en hoe wordt de integriteit en betrouwbaarheid van de doorverwijzing gewaarborgd?</li>
+                                        <li>Welke patronen zijn er om de natuurlijk persoon op de hoogte te stellen bij een situatie waarbij uitgifte van het attribuut niet per direct mogelijk is?</li>
+                                        <li>Welke patronen zijn er om expliciete toestemming van een gebruiker te vragen voor het delen van gegevens?</li>
+                                    </ul>
+                                </td>
+                                <td>In uitvoering</td>
+                                <td><a href="#">Meer info</a></td>
+                            </tr>
+                        </tbody>
+                     </table>
+            
+                  
+                </div>
+            </div>
+            
+            <!-- Beproevingen hoofdpagina en subitems -->
+            <div id="content-beproevingen" class="content-section" style="display: none;">
+                <h1>Beproevingen en implementaties</h1>
+                <div class="subitem-cards">
+                    <a href="#voorbeelden" class="card">
+                        <h3>Concrete voorbeelden</h3>
+                        <p>Praktijkvoorbeelden van succesvolle TIP implementaties.</p>
+                    </a>
+                </div>
+            </div>
+            
+            <div id="content-voorbeelden" class="content-section" style="display: none;">
+                <h1>Concrete voorbeelden</h1>
+                <div class="content">
+                    <h2 id="voorbeelden-uitleg">Praktijkcases</h2>
+                    <p>Praktijkvoorbeelden van succesvolle TIP implementaties bij verschillende organisaties. Deze cases laten zien hoe TIP in de praktijk wordt toegepast en welke resultaten ermee zijn behaald.</p>
+                    
+                    <h2 id="voorbeelden-resultaten">Resultaten en lessons learned</h2>
+                    <p>Overzicht van de belangrijkste resultaten en leerpunten uit de verschillende implementaties, inclusief best practices en aandachtspunten.</p>
+                </div>
+            </div>
+            
+            <!-- Contact pagina -->
+            <div id="content-contact" class="content-section" style="display: none;">
+                <h1>Contact/Samenwerken</h1>
+                <div class="content">
+                    <h2 id="contact-info">Contact informatie</h2>
+                    <p>Hier vindt u onze contactgegevens en manieren om samen te werken met TIP.</p>
+                    
+                    <h2 id="samenwerken">Samenwerkingsmogelijkheden</h2>
+                    <p>Informatie over verschillende manieren waarop u kunt samenwerken met TIP en kunt bijdragen aan de ontwikkeling.</p>
+                </div>
+            </div>
+        </main>
+
+        <aside class="right-sidebar" id="rightSidebar">
+            <h2 style="font-size: 0.875rem; text-transform: uppercase; color: #6b7280; margin-bottom: 1rem;">Op deze pagina</h2>
+            <nav id="tableOfContents">
+                <!-- Wordt dynamisch gevuld -->
+            </nav>
+        </aside>
+    </div>
+
+    <script src="demo.js"></script>
+</body>
+</html>

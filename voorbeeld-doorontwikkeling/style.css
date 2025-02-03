@@ -1,0 +1,525 @@
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #f3f4f6;
+}
+
+.top-nav {
+    background: white;
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 40;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    display: none;
+}
+
+.menu-toggle {
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.top-nav-title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: bold;
+}
+
+.page-container {
+    display: flex;
+    padding-top: 0;
+    min-height: 100vh;
+}
+
+.left-sidebar {
+    width: 280px;
+    background: white;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    height: 100vh;
+    position: fixed;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 280px;
+    padding: 2rem;
+    max-width: 1200px;
+}
+
+.right-sidebar {
+    width: 300px;
+    background: white;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    padding: 2rem;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+}
+
+.logo {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.nav-section {
+    padding: 0.5rem 1rem;
+}
+
+.nav-item {
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #374151;
+    text-decoration: none;
+    display: block;
+    border-radius: 4px;
+}
+
+.nav-item:hover {
+    background: #f3f4f6;
+}
+
+.nav-item.active {
+    color: #2563eb;
+    font-weight: 500;
+}
+
+.subnav-item {
+    padding: 0.5rem 1rem 0.5rem 2rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-decoration: none;
+    display: block;
+}
+
+.subnav-item:hover {
+    color: #2563eb;
+}
+.subnav-item.active {
+color: #2563eb;
+font-weight: 500;
+}
+.close-menu {
+    display: none;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.subitem-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    color: #2563eb;
+}
+
+.card p {
+    color: #6b7280;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.content {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.content h2 {
+    margin: 2rem 0 1rem;
+    font-size: 1.5rem;
+    color: #111827;
+}
+
+.content p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+/* Basis tabel styling */
+.research-table {
+width: 100%;
+border-collapse: collapse;
+margin: 2rem 0;
+background: white;
+box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+border-radius: 8px;
+overflow: hidden;
+}
+
+/* Header styling */
+.research-table thead {
+background-color: #f8fafc;
+border-bottom: 2px solid #e2e8f0;
+}
+
+.research-table th {
+padding: 1rem;
+text-align: left;
+font-weight: 600;
+color: #475569;
+text-transform: uppercase;
+font-size: 0.875rem;
+}
+
+/* Nummer kolom */
+.research-table td:first-child {
+width: 50px;
+text-align: center;
+font-weight: 500;
+color: #64748b;
+}
+
+/* Cel styling */
+.research-table td {
+padding: 1rem;
+border-bottom: 1px solid #e2e8f0;
+vertical-align: top;
+}
+
+/* Status kolom */
+.research-table td:nth-child(3) {
+white-space: nowrap;
+color: #0284c7;
+font-weight: 500;
+}
+
+/* Link kolom */
+.research-table td:last-child a {
+color: #2563eb;
+text-decoration: none;
+font-weight: 500;
+}
+
+.research-table td:last-child a:hover {
+text-decoration: underline;
+}
+
+/* Lijst styling binnen de tabel */
+.research-table ul {
+margin: 0.5rem 0 0.5rem 1.25rem;
+padding: 0;
+}
+
+.research-table ul ul {
+margin-top: 0.25rem;
+}
+
+.research-table li {
+margin-bottom: 0.25rem;
+color: #475569;
+line-height: 1.5;
+}
+
+/* Rij hover effect */
+.research-table tbody tr:hover {
+background-color: #f8fafc;
+}
+
+/* Laatste rij zonder border */
+.research-table tr:last-child td {
+border-bottom: none;
+}
+
+/* Responsive aanpassingen */
+
+@media (max-width: 1730px) {
+.right-sidebar {
+display: none;
+}
+
+.main-content {
+margin-right: 0;
+}
+}
+
+
+@media (max-width: 768px) {
+.research-table {
+display: block;
+overflow-x: auto;
+}
+
+.research-table th, 
+.research-table td {
+min-width: 120px;
+}
+
+.research-table td:first-child {
+min-width: 50px;
+}
+/* Thema titels binnen de tabel */
+.research-table strong {
+display: block;
+color: #1e293b;
+margin-bottom: 0.5rem;
+font-size: 1rem;
+}
+}
+
+
+@media (min-width: 768px) {
+    .subitem-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .top-nav {
+        display: block;
+    }
+
+    .page-container {
+        padding-top: 60px;
+    }
+
+    .close-menu {
+        display: block;
+    }
+
+    .left-sidebar {
+        transform: translateX(-100%);
+        z-index: 50;
+    }
+
+    .left-sidebar.active {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 1rem;
+    }
+}
+
+/* ========== Kennisbank styles ========== */
+
+/* Zoekveld styling */
+.search-container {
+    margin-bottom: 20px;
+  }
+  .search-container input[type="search"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+  }
+  
+  /* Algemene styling van elke 'question' (accordion) */
+  .question {
+    border: 1px solid #ddd;
+    margin: 20px 0;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    overflow: hidden;
+  }
+  
+  /* Kop van de vraag (header) */
+  .question-header {
+    padding: 15px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid #ddd;
+  }
+  .question-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  .author {
+    color: #666;
+    font-size: 0.9em;
+    margin-left: 10px;
+  }
+  
+  /* Inhoud van de vraag */
+  .content-body {
+    padding: 15px;
+    display: none; /* Start onzichtbaar; accordion-klap */
+  }
+  
+  /* Container voor antwoorden */
+  .answer-list {
+    margin-top: 10px;
+  }
+  
+  /* Elk afzonderlijk antwoord-blok */
+  .answer {
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .answer-header {
+    background-color: #e9e9e9;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+  }
+  .answer-header h4 {
+    margin: 0;
+  }
+  .answer-body {
+    padding: 10px;
+    display: none; /* Ook als accordion verborgen */
+  }
+  
+  /* Markdown styling */
+  .markdown {
+    white-space: pre-wrap;
+  }
+  .markdown img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1em auto; /* Centreer en geef ruimte */
+  }
+
+/**********************************************************
+ *   STYLING VOOR VERTROUWENSDIENSTEN (voorkomt conflicts) *
+ **********************************************************/
+ #vd-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .vd-intro {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #007bff;
+  }
+  
+  .vd-search-container {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+  }
+  
+  .vd-search-input {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .vd-search-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+  }
+  
+  /* De eigen tabel voor Vertrouwensdiensten */
+  .vd-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 14px;
+    table-layout: fixed;
+  }
+  .vd-table th, .vd-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  .vd-table th {
+    background-color: #007bff;
+    color: white;
+    position: sticky;
+    top: 0;
+  }
+  .vd-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  .vd-table tr:hover {
+    background-color: #f2f2f2;
+  }
+  
+  /* YES / NO styling speciaal voor deze tabel */
+  .vd-yes {
+    color: #28a745;
+    font-weight: bold;
+  }
+  .vd-no {
+    color: #dc3545;
+    font-weight: bold;
+  }
+  
+  /* Verborgen */
+  .vd-hidden {
+    display: none !important;
+  }
+  
+  /* Geen resultaten melding */
+  .vd-no-results {
+    padding: 20px;
+    text-align: center;
+    color: #dc3545;
+    font-style: italic;
+  }
+  
+  /* Kolombreedtes (optioneel) */
+  .vd-table th:nth-child(1), .vd-table td:nth-child(1) { width: 20%; }
+  .vd-table th:nth-child(2), .vd-table td:nth-child(2) { width: 12%; }
+  .vd-table th:nth-child(3), .vd-table td:nth-child(3) { width: 8%; }
+  .vd-table th:nth-child(4), .vd-table td:nth-child(4) { width: 35%; }
+  .vd-table th:nth-child(5), .vd-table td:nth-child(5) { width: 13%; }
+  .vd-table th:nth-child(6), .vd-table td:nth-child(6) { width: 6%; }
+  .vd-table th:nth-child(7), .vd-table td:nth-child(7) { width: 6%; }
+  
