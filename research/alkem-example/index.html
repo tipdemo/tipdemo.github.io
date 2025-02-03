@@ -3,6 +3,7 @@
 <head>
     <title>TIP Kennisbank - met zoekfunctie + datum</title>
     <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -93,6 +94,13 @@
         .markdown {
             white-space: pre-wrap;
         }
+
+        .markdown img {
+    max-width: 100%;    /* Nooit breder dan parent container */
+    height: auto;       /* Behoud aspect ratio */
+    display: block;     /* Block element voor betere controle */
+    margin: 1em auto;   /* Centreer en voeg wat ruimte toe */
+}
     </style>
 </head>
 <body>
@@ -186,7 +194,7 @@
                     // Beschrijving
                     const questionDescription = document.createElement('div');
                     questionDescription.className = 'markdown';
-                    questionDescription.innerHTML = callout.framing?.profile?.description || '';
+                    questionDescription.innerHTML = marked.parse(callout.framing?.profile?.description || '');
 
                     // "Antwoorden (#):"
                     const answersHeading = document.createElement('h3');
@@ -223,7 +231,7 @@
                         const answerBodyDiv = document.createElement('div');
                         answerBodyDiv.className = 'answer-body';
                         // Gebruik innerHTML om eventuele markdown/HTML te behouden
-                        answerBodyDiv.innerHTML = `<div class="markdown">${postProfile.description || ''}</div>`;
+                        answerBodyDiv.innerHTML = `<div class="markdown">${marked.parse(postProfile.description || '')}</div>`;
 
                         // Klik op answer-header => toggle de weergave van answer-body
                         answerHeaderDiv.addEventListener('click', () => {
