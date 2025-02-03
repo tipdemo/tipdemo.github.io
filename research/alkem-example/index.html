@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TIP Kennisbank - met zoekfunctie + datum</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Zoekveld styling */
+        .search-container {
+            margin-bottom: 20px;
+        }
+        .search-container input[type="search"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        /* Algemene styling */
+        .question {
+            border: 1px solid #ddd;
+            margin: 20px 0;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            overflow: hidden;
+        }
+
+        /* VRAAG-kop (accordion-header) */
+        .question-header {
+            padding: 15px;
+            cursor: pointer;
+            background-color: #f1f1f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .question-header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .author {
+            color: #666;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+
+        /* VRAAG-inhoud (accordion-body) */
+        .content-body {
+            padding: 15px;
+            display: none; /* Start onzichtbaar */
+        }
+
+        /* ANSWERS-list is gewoon een container */
+        .answer-list {
+            margin-top: 10px;
+        }
+
+        /* Elke antwoord */
+        .answer {
+            margin-top: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        /* ANSWER-kop (sub-accordion-header) */
+        .answer-header {
+            background-color: #e9e9e9;
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .answer-header h4 {
+            margin: 0;
+        }
+
+        /* ANSWER-body */
+        .answer-body {
+            padding: 10px;
+            display: none; /* Start ook onzichtbaar */
+        }
+
+        .markdown {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>TIP Kennisbank</h1>
+
+    <!-- Zoekveld -->
+    <div class="search-container">
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Zoek op titel of tekst in vragen/antwoorden..."
+        />
+    </div>
+
+    <!-- Hier komen de vragen en antwoorden -->
+    <div id="content">Laden...</div>
+
+    <script>
+        // Globale variabele waarin we alle callouts opslaan
+        let allCallouts = [];
+
+        // Deze functie haalt de data op uit data.json
+        async function fetchKnowledgeBase() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+
+                // Sla alle callouts op in de globale variabele
+                allCallouts = data.data.space.collaboration.calloutsSet.callouts || [];
+
+                // Toon direct alle callouts (zonder zoekfilter)
+                displayKnowledgeBase(allCallouts);
+
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('content').innerHTML =
+                    `<p>Er is een fout opgetreden bij het laden van de data: ${error.message}</p>`;
+            }
+        }
+
+        // Deze functie maakt de HTML voor de gegeven lijst callouts
+        function displayKnowledgeBase(callouts) {
+            const content = document.getElementById('content');
+            content.innerHTML = '';  // wis de oude content
+
+            callouts
+                // Filter 'Toelichting' weg
+                .filter(callout => callout.framing?.profile?.displayName !== "Toelichting")
+                .forEach(callout => {
+                    // Outer container
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'question';
+
+                    // === KOP (vraag zelf, inklap/uitklap-header) ===
+                    const questionHeaderDiv = document.createElement('div');
+                    questionHeaderDiv.className = 'question-header';
+
+                    // Titel van de vraag
+                    const questionTitle = document.createElement('h2');
+                    questionTitle.textContent = callout.framing?.profile?.displayName || 'Geen titel';
+
+                    // Auteur van de vraag
+                    const authorDisplay = callout.createdBy?.profile?.displayName || 'Onbekend';
+
+                    // Datum (createdDate) - formatten naar locale
+                    let formattedDate = '';
+                    if (callout.framing?.createdDate) {
+                        try {
+                            const dateObj = new Date(callout.framing.createdDate);
+                            // Gebruik bijv. toLocaleDateString('nl-NL') of toLocaleString('nl-NL')
+                            formattedDate = dateObj.toLocaleDateString('nl-NL'); 
+                        } catch(e) {
+                            // als parsing mislukt, laten we 'formattedDate' leeg
+                        }
+                    }
+
+                    // We voegen auteur + datum samen in één <span>
+                    const authorSpan = document.createElement('span');
+                    authorSpan.className = 'author';
+                    // Example: "Geplaatst op 03-02-2025 door: Gijs"
+                    authorSpan.textContent = `Geplaatst op ${formattedDate} door: ${authorDisplay}`;
+
+                    // KOP opbouwen
+                    questionHeaderDiv.appendChild(questionTitle);
+                    questionHeaderDiv.appendChild(authorSpan);
+
+                    // === BODY (beschrijving + antwoorden), standaard verborgen ===
+                    const questionBodyDiv = document.createElement('div');
+                    questionBodyDiv.className = 'content-body';
+
+                    // Beschrijving
+                    const questionDescription = document.createElement('div');
+                    questionDescription.className = 'markdown';
+                    questionDescription.innerHTML = callout.framing?.profile?.description || '';
+
+                    // "Antwoorden (#):"
+                    const answersHeading = document.createElement('h3');
+                    const numContributions = (callout.contributions || []).length;
+                    answersHeading.textContent = `Antwoorden (${numContributions}):`;
+
+                    // Container voor alle antwoorden
+                    const answerListDiv = document.createElement('div');
+                    answerListDiv.className = 'answer-list';
+
+                    // Voor elke bijdrage (antwoord) een sub-accordion
+                    (callout.contributions || []).forEach(contribution => {
+                        const answerDiv = document.createElement('div');
+                        answerDiv.className = 'answer';
+
+                        // ====== ANSWER-kop ======
+                        const answerHeaderDiv = document.createElement('div');
+                        answerHeaderDiv.className = 'answer-header';
+
+                        const postProfile = contribution.post?.profile || {};
+                        const postAuthor = contribution.post?.createdBy?.profile?.displayName || 'Onbekend';
+
+                        const answerTitle = document.createElement('h4');
+                        answerTitle.textContent = postProfile.displayName || 'Naamloos antwoord';
+
+                        const answerAuthorSpan = document.createElement('span');
+                        answerAuthorSpan.className = 'author';
+                        answerAuthorSpan.textContent = `Antwoord van: ${postAuthor}`;
+
+                        answerHeaderDiv.appendChild(answerTitle);
+                        answerHeaderDiv.appendChild(answerAuthorSpan);
+
+                        // ====== ANSWER-body ======
+                        const answerBodyDiv = document.createElement('div');
+                        answerBodyDiv.className = 'answer-body';
+                        // Gebruik innerHTML om eventuele markdown/HTML te behouden
+                        answerBodyDiv.innerHTML = `<div class="markdown">${postProfile.description || ''}</div>`;
+
+                        // Klik op answer-header => toggle de weergave van answer-body
+                        answerHeaderDiv.addEventListener('click', () => {
+                            answerBodyDiv.style.display =
+                                (answerBodyDiv.style.display === 'block') ? 'none' : 'block';
+                        });
+
+                        // Voeg de answer-header en answer-body toe
+                        answerDiv.appendChild(answerHeaderDiv);
+                        answerDiv.appendChild(answerBodyDiv);
+
+                        // En uiteindelijk in de answer-list
+                        answerListDiv.appendChild(answerDiv);
+                    });
+
+                    // De vraag-body opbouwen
+                    questionBodyDiv.appendChild(questionDescription);
+                    questionBodyDiv.appendChild(answersHeading);
+                    questionBodyDiv.appendChild(answerListDiv);
+
+                    // Klik op vraag-header => toggle de weergave van questionBody
+                    questionHeaderDiv.addEventListener('click', () => {
+                        questionBodyDiv.style.display =
+                            (questionBodyDiv.style.display === 'block') ? 'none' : 'block';
+                    });
+
+                    // Samenvoegen tot één questionDiv
+                    questionDiv.appendChild(questionHeaderDiv);
+                    questionDiv.appendChild(questionBodyDiv);
+
+                    // Toevoegen aan content
+                    content.appendChild(questionDiv);
+                });
+        }
+
+        // Deze functie wordt aangeroepen bij elke toetsaanslag in het zoekveld
+        function filterKnowledgeBase(searchTerm) {
+            const term = searchTerm.toLowerCase();
+
+            // Filter de 'allCallouts' op basis van de vraag (title/description)
+            // of op basis van een antwoord (title/description)
+            const filtered = allCallouts.filter(callout => {
+                // Titel en omschrijving van de vraag
+                const questionTitle = callout.framing?.profile?.displayName?.toLowerCase() || '';
+                const questionDesc = callout.framing?.profile?.description?.toLowerCase() || '';
+                const questionMatches = questionTitle.includes(term) || questionDesc.includes(term);
+
+                // Als de vraag niet matcht, checken we de antwoorden
+                if (!questionMatches) {
+                    // Loop door alle contributions en kijk of er match is
+                    const hasMatchingAnswer = (callout.contributions || []).some(contribution => {
+                        const ansTitle = contribution.post?.profile?.displayName?.toLowerCase() || '';
+                        const ansDesc = contribution.post?.profile?.description?.toLowerCase() || '';
+                        return ansTitle.includes(term) || ansDesc.includes(term);
+                    });
+                    return hasMatchingAnswer;
+                }
+
+                // Als de vraag wél matcht, is filtering automatisch true
+                return true;
+            });
+
+            // Herteken de UI met de gefilterde callouts
+            displayKnowledgeBase(filtered);
+        }
+
+        // Event-listener voor het zoekveld
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const searchValue = e.target.value;
+            filterKnowledgeBase(searchValue);
+        });
+
+        // Start het laden van de data
+        fetchKnowledgeBase();
+    </script>
+</body>
+</html>
