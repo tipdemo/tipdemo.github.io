@@ -6,7 +6,7 @@
 
 body {
     font-family: system-ui, -apple-system, sans-serif;
-    background: #f3f4f6;
+    background: #ffffff;
 }
 
 .top-nav {
@@ -523,3 +523,278 @@ font-size: 1rem;
   .vd-table th:nth-child(6), .vd-table td:nth-child(6) { width: 6%; }
   .vd-table th:nth-child(7), .vd-table td:nth-child(7) { width: 6%; }
   
+
+
+#home-wat-wie{
+margin-top: 100px;
+margin-bottom: 100px;
+
+}
+
+
+
+
+  #home-examples-container {
+    margin-top: 1.5rem;
+    margin-bottom: 100px;
+  }
+
+  .examples-row {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    /* Zorg dat elk .example-block dezelfde hoogte krijgt
+       als de hoogste sibling */
+    align-items: stretch;
+    margin-bottom: 106px;
+  }
+  
+  .example-block {
+    /* Zorg voor verticale lay-out, zodat we
+       de knop naar onder kunnen duwen */
+    display: flex;
+    flex-direction: column;
+  
+    flex: 1;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1rem;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  /* Afbeelding netjes schalen */
+  .example-block img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Laat de paragrafen de verticale ruimte opvullen,
+     zodat de knop onderaan het blok komt */
+  .example-block p {
+    flex: 1;
+  }
+  
+  /* De "Lees meer"-knop krijgt een vaste achtergrondkleur.
+     margin-top: auto duwt 'm naar de onderkant. */
+  .example-block button, .example-button {
+    margin-top: auto;
+    background: rgb(106, 230, 130);
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    /* font-weight: bold; */
+    font-size: 22px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+
+  /* === Kennis en onderzoek blokken === */
+#knowledge-container {
+  margin-top: 1.5rem;
+  margin-bottom: 100px;
+}
+
+#knowledge-container h2 {
+  color: #080808;
+  margin-bottom: 0.5rem;
+}
+
+.knowledge-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: stretch; /* Blokken even hoog */
+}
+
+.knowledge-block {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.knowledge-number {
+  display: inline-block;
+  background: #0108a0; /* Donkerblauw */
+  color: #fff;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.knowledge-block img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+/* Drukt tekst omhoog, zodat de button onderaan kan staan */
+.knowledge-block p {
+  flex: 1;
+}
+
+.knowledge-button {
+  margin-top: auto;
+  background: rgb(106, 230, 130);
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  /* font-weight: bold; */
+  font-size: 22px;
+}
+
+/* === Afspraken blokken === */
+#afspraken-container {
+  margin-top: 1.5rem;
+  margin-bottom: 100px;
+}
+
+#afspraken-container h2 {
+  color: #19191a;
+  margin-bottom: 0.5rem;
+}
+
+.afspraken-row {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  align-items: stretch; /* Blokken even hoog */
+  
+}
+
+.afspraken-block {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 1rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.afspraken-number {
+  display: inline-block;
+  background: #0108a0;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.afspraken-block img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+/* Drukt tekst omhoog, zodat de button onderaan kan staan */
+.afspraken-block p {
+  flex: 1;
+}
+
+.afspraken-button {
+  margin-top: auto;
+  background: rgb(106, 230, 130);
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  /* font-weight: bold; */
+  font-size: 22px;
+}
+
+
+/* ====== Sector-intro styling ====== */
+.sector-intro {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  margin-top: 50px;
+  background-color: #f9f9f9;
+  border-left: 4px solid #0108a0;  /* Blauw accent links */
+}
+
+.sector-intro p {
+  margin: 0 0 0.5rem 0; 
+  font-size: 1.1rem;
+}
+
+/* Flex of inline-block container for the tags */
+.sector-tags-container {
+  display: flex;
+  flex-wrap: wrap;     /* tags lopen door op volgende regel als te weinig ruimte */
+  gap: 0.5rem;
+}
+
+/* De ‘tags’ zelf: maak ze op als badges of knoppen */
+.sector-tag {
+  display: inline-block;
+    padding: 10px 1.75rem;
+    text-align: center;
+    background-color: #7be67d;
+    color: #000000;
+    border-radius: 25px;
+    text-decoration: none;
+    /* font-weight: bold; */
+    font-size: 20px;
+    transition: background-color 0.2s ease;
+    min-width: 70px;
+}
+
+.sector-tag:hover {
+  background-color: rgb(1, 8, 160); /* iets donkerder grijs/blauw bij hover */
+  color: white;
+}
+
+
+/* Stijl voor alle h2 binnen #content-home */
+#content-home h2, #content-voorbeeld-machtigen-intermediair h2 {
+  color: rgb(1, 8, 160);      /* Blauwe tekst */
+  margin-top: 1rem;          /* Bovenruimte */
+  margin-bottom: 0.5rem;      /* Onderruimte vóór de lijn */
+  padding-bottom: 0.5rem;     /* Extra ruimte onder de tekst */
+  position: relative;         /* Nodig voor de pseudo-element positionering */
+  font-size: 2rem;            /* Pas de grootte aan naar wens */
+}
+
+/* Groene lijn onder elke h2 */
+#content-home h2::after, #content-voorbeeld-machtigen-intermediair h2::after {
+  content: "";
+  display: block;
+  width: 400px;              
+  height: 3px;                /* Dikte van de lijn */
+  background-color: #7be67d;  /* Groene kleur */
+  margin-top: 0.5rem;         /* Ruimte tussen de h2 en de lijn */
+}
+
+/* Stijl voor alle p binnen #content-home */
+#content-home p, #content-voorbeeld-machtigen-intermedia p {
+  font-size: 21px;
+  color: #232323;
+  line-height: 29px;          /* Line height 29px */
+  font-family: Arial, Helvetica, sans-serif;    /* Systeem sans-serif (zoals Arial of Helvetica, zonder externe fonts) */
+  margin-bottom: 1rem;        /* Onderruimte */
+}
+
+.subvraag {
+  color: grey;
+  font-style: italic;
+  /* Optioneel: extra marges of padding voor de opmaak */
+  margin-bottom: 0.5em;
+}

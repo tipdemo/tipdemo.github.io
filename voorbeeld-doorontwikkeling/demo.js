@@ -1,112 +1,119 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // DOM Elements
-    const menuToggle = document.getElementById('menuToggle');
-    const closeMenu = document.getElementById('closeMenu');
-    const leftSidebar = document.getElementById('leftSidebar');
-    const contentSections = document.querySelectorAll('.content-section');
-    const tableOfContents = document.getElementById('tableOfContents');
-    const navLinks = document.querySelectorAll('.nav-item, .subnav-item');
+  // DOM Elements
+  const menuToggle = document.getElementById('menuToggle');
+  const closeMenu = document.getElementById('closeMenu');
+  const leftSidebar = document.getElementById('leftSidebar');
+  const contentSections = document.querySelectorAll('.content-section');
+  const tableOfContents = document.getElementById('tableOfContents');
+  const navLinks = document.querySelectorAll('.nav-item, .subnav-item');
 
-    // Function to update content and table of contents
-    function updateContent(hash) {
-        const sectionId = hash.replace('#', '') || 'introductie';
-        
-        // Determine if this is a main section or subsection
-        const mainSections = ['introductie', 'propositie', 'afspraken', 'onderzoek', 'beproevingen', 'contact'];
-        const isMainSection = mainSections.includes(sectionId);
-        
-        // Hide all sections
-        contentSections.forEach(section => {
-            section.style.display = 'none';
-        });
-        
-        // Show the appropriate section
-        const targetSection = document.getElementById(`content-${sectionId}`);
-        if (targetSection) {
-            targetSection.style.display = 'block';
-            
-            // Update table of contents
-            tableOfContents.innerHTML = '';
-            
-            if (isMainSection && targetSection.querySelector('.subitem-cards')) {
-                // For main sections with cards, show card titles in TOC
-                const cards = targetSection.querySelectorAll('.card');
-                cards.forEach(card => {
-                    const heading = card.querySelector('h3');
-                    const link = document.createElement('a');
-                    link.href = card.getAttribute('href');
-                    link.className = 'nav-item';
-                    link.textContent = heading.textContent;
-                    tableOfContents.appendChild(link);
-                });
-            } else {
-                // For subsections or regular pages, show h2 headings
-                const headings = targetSection.querySelectorAll('h2');
-                headings.forEach(heading => {
-                    const link = document.createElement('a');
-                    link.href = `#${heading.id}`;
-                    link.className = 'nav-item';
-                    link.textContent = heading.textContent;
-                    tableOfContents.appendChild(link);
-                });
-            }
-        }
+  // 1) MAIN SECTIONS array uitgebreid met "home"
+  const mainSections = ['home', 'introductie', 'propositie', 'afspraken', 'onderzoek', 'beproevingen', 'contact'];
 
-        // Update active state in navigation
-        navLinks.forEach(link => {
-            if (link.getAttribute('href') === hash) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
-        });
-    }
+  // Function to update content and table of contents
+  function updateContent(hash) {
+      // 2) Als hash leeg is → default "home" i.p.v. "introductie"
+      const sectionId = hash.replace('#', '') || 'home';
+      
+      // Check if this is a main section
+      const isMainSection = mainSections.includes(sectionId);
+      
+      // Hide all sections
+      contentSections.forEach(section => {
+          section.style.display = 'none';
+      });
+      
+      // Show the appropriate section
+      const targetSection = document.getElementById(`content-${sectionId}`);
+      if (targetSection) {
+          targetSection.style.display = 'block';
+          
+          // Update table of contents
+          tableOfContents.innerHTML = '';
+          
+          // Als het een mainSection is én er staan .subitem-cards in,
+          // neem de card-titels in de TOC op
+          if (isMainSection && targetSection.querySelector('.subitem-cards')) {
+              const cards = targetSection.querySelectorAll('.card');
+              cards.forEach(card => {
+                  const heading = card.querySelector('h3');
+                  const link = document.createElement('a');
+                  link.href = card.getAttribute('href');
+                  link.className = 'nav-item';
+                  link.textContent = heading.textContent;
+                  tableOfContents.appendChild(link);
+              });
+          } else {
+              // Anders tonen we de h2-headings (bijv. in Home)
+              const headings = targetSection.querySelectorAll('h2');
+              headings.forEach(heading => {
+                  const link = document.createElement('a');
+                  // link direct naar de heading ID (scrollen in de pagina)
+                  link.href = `#${heading.id}`;
+                  link.className = 'nav-item';
+                  link.textContent = heading.textContent;
+                  tableOfContents.appendChild(link);
+              });
+          }
+      }
 
-    // Event Handlers
-    menuToggle.addEventListener('click', () => {
-        leftSidebar.classList.add('active');
-    });
-    
-    closeMenu.addEventListener('click', () => {
-        leftSidebar.classList.remove('active');
-    });
+      // Update active state in navigation
+      navLinks.forEach(link => {
+          if (link.getAttribute('href') === hash) {
+              link.classList.add('active');
+          } else {
+              link.classList.remove('active');
+          }
+      });
+  }
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
-                leftSidebar.classList.remove('active');
-            }
-            
-            const hash = link.getAttribute('href');
-            updateContent(hash);
-        });
-    });
+  // Event Handlers
+  menuToggle.addEventListener('click', () => {
+      leftSidebar.classList.add('active');
+  });
+  
+  closeMenu.addEventListener('click', () => {
+      leftSidebar.classList.remove('active');
+  });
 
-    window.addEventListener('hashchange', () => {
-        updateContent(window.location.hash);
-    });
+  navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+          if (window.innerWidth <= 768) {
+              leftSidebar.classList.remove('active');
+          }
+          
+          const hash = link.getAttribute('href');
+          updateContent(hash);
+      });
+  });
 
-    tableOfContents.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-            e.preventDefault();
-            const targetId = e.target.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-    });
+  window.addEventListener('hashchange', () => {
+      updateContent(window.location.hash);
+  });
 
-    document.querySelectorAll('.card').forEach(card => {
-        card.addEventListener('click', () => {
-            setTimeout(() => {
-                updateContent(card.getAttribute('href'));
-            }, 100);
-        });
-    });
+  // Als je in de TOC klikt, scroll naar de heading
+  tableOfContents.addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+          e.preventDefault();
+          const targetId = e.target.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+              targetElement.scrollIntoView({ behavior: 'smooth' });
+          }
+      }
+  });
 
-    // Initial content load
-    updateContent(window.location.hash);
+  // Zorg dat klikken op .card (bijv. sublinks) ook updateContent triggert
+  document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+          setTimeout(() => {
+              updateContent(card.getAttribute('href'));
+          }, 100);
+      });
+  });
+
+  // 3) Initial content load: gebruik je (nieuwe) default 'home'
+  updateContent(window.location.hash);
 });
 
 
