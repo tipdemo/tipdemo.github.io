@@ -3509,8 +3509,13 @@ function openMessageDetails(sender, message, datetime, messageType) {
                   a: "w"
               };
               
-              // Simuleer de invoer van de mock PPOP QR-code
-              handlePPOPPayment(mockPPOPData, new Date().toLocaleString());
+              // Sla de PPOP data op voor later gebruik
+              window.currentPpopData = mockPPOPData;
+              
+              // Vul de modal met de gegevens van het PPOP-verzoek
+              populatePpopModal(mockPPOPData);
+              
+              // Toon de PPOP modal
               ppopModal.style.display = 'flex';
               
               // Zorg ervoor dat de andere navbar-items niet meer actief zijn
