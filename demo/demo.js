@@ -3276,7 +3276,8 @@ const messageTexts = {
   verzekering: 'Test bericht',
   justis: 'Test bericht',
   duo: 'Test bericht',
-  pensioenfonds: 'Test bericht'
+  pensioenfonds: 'Test bericht',
+  innovatiemakers: 'Beste, uw factuur staat klaar om te betalen. Klik op <a href="#" id="invoice-payment-link">deze link</a> om de betaling te starten.'
 };
 
 
@@ -3384,7 +3385,21 @@ PensioenfondsMessageButton.addEventListener('click', (e) => {
 });
 
 
+const InnovatiemakersMessageButton = document.getElementById('innovatiemakers-message-button');
 
+InnovatiemakersMessageButton.addEventListener('click', () => {
+    // Voeg het mock-bericht toe
+    addMockMessageToTrustedContacts('Innovatiemakers', messageTexts.innovatiemakers, 'innovatiemakers'); 
+
+    // Verberg het instellingen-scherm
+    instellingenSection.style.display = 'none';
+
+    // Toon de bottom-nav weer
+    bottomNav.style.display = 'flex';
+
+    // Toon het wallet-scherm
+    walletScreen.style.display = 'block';
+});
 
 
 
@@ -3471,6 +3486,37 @@ function openMessageDetails(sender, message, datetime, messageType) {
   document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
               // Zet het overzicht-item actief in de navbar
   overviewNavbarItem.classList.add('active');
+          });
+      }
+
+    } else if (messageType === 'innovatiemakers') {
+      const paymentLink = document.getElementById('invoice-payment-link');
+      if (paymentLink) {
+          paymentLink.addEventListener('click', function(e) {
+              e.preventDefault();
+              messageDetailsScreen.style.display = 'none';
+              trustedContactsSection.style.display = 'none';
+              
+              // Mock PPOP QR data
+              const mockPPOPData = {
+                  type: "PPOP",
+                  requester: "Innovatiemakers",
+                  LEID: "NL_KVK_000000000",
+                  amount: "550.00",
+                  currency: "EUR",
+                  referenceId: "20241007",
+                  rdfcppop: ["IBAN", "IADR"],
+                  a: "w"
+              };
+              
+              // Simuleer de invoer van de mock PPOP QR-code
+              handlePPOPPayment(mockPPOPData, new Date().toLocaleString());
+              ppopModal.style.display = 'flex';
+              
+              // Zorg ervoor dat de andere navbar-items niet meer actief zijn
+              document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+              // Zet het overzicht-item actief in de navbar
+              overviewNavbarItem.classList.add('active');
           });
       }
   }
