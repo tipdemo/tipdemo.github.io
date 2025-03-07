@@ -829,7 +829,7 @@ a.login-card:hover {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
-    text-decoration: none;
+  
 }
 
 .burgerportaal-option-link:hover {
@@ -918,5 +918,469 @@ a.login-card:hover {
     
     .burgerportaal-title {
         font-size: 32px;
+    }
+}
+
+
+/* Rotterdam bijstandsaanvraag styling */
+.bijstandsaanvraag-screen {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+    position: relative;
+    
+    background-color: #fff;
+    min-height: 85vh !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.bijstandsaanvraag-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* Logout bar styling */
+.bijstandsaanvraag-logout-bar {
+    background-color: #f2f2f2;
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.bijstandsaanvraag-logout-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    justify-content: flex-end;
+}
+
+.bijstandsaanvraag-logout-icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-right: 5px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+/* Header styling */
+.bijstandsaanvraag-header {
+    background-color: #ffffff;
+    padding: 15px 0;
+    border-bottom: 1px solid #e9e9e9;
+}
+
+.bijstandsaanvraag-header .bijstandsaanvraag-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bijstandsaanvraag-logo {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.bijstandsaanvraag-logo img {
+    width: auto;
+    height: auto;
+}
+
+.bijstandsaanvraag-nav {
+    display: flex;
+    align-items: center;
+}
+
+.bijstandsaanvraag-nav-link {
+    color: #333;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Content styling */
+.bijstandsaanvraag-content {
+    flex: 1;
+    padding: 20px 0 40px;
+    background-color: #fff;
+}
+
+/* Breadcrumb styling */
+.bijstandsaanvraag-breadcrumb {
+    margin: 10px 0 20px;
+    font-size: 16px;
+    color: #666;
+}
+
+.bijstandsaanvraag-breadcrumb a {
+    color: #009900;
+   
+}
+
+.bijstandsaanvraag-breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+.bijstandsaanvraag-breadcrumb-separator {
+    margin: 0 5px;
+}
+
+.bijstandsaanvraag-breadcrumb-current {
+    color: #009900;
+}
+
+/* Title styling */
+.bijstandsaanvraag-title {
+    font-size: 32px;
+    color: #333;
+    margin: 0 0 20px;
+    font-weight: bold;
+}
+
+/* Steps styling */
+.bijstandsaanvraag-steps {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.bijstandsaanvraag-step {
+    flex: 1;
+    padding: 15px 10px;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ddd;
+    color: #666;
+}
+
+.bijstandsaanvraag-step:last-child {
+    border-right: none;
+}
+
+.bijstandsaanvraag-step.active {
+    background-color: #006400;
+    color: white;
+}
+
+.bijstandsaanvraag-step-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #ccc;
+    color: white;
+    margin-right: 5px;
+}
+
+.bijstandsaanvraag-step.active .bijstandsaanvraag-step-icon {
+    background-color: white;
+    color: #006400;
+}
+
+/* Form styling */
+.bijstandsaanvraag-form {
+    background-color: #fff;
+    border-radius: 4px;
+}
+
+.bijstandsaanvraag-form-title {
+    font-size: 24px;
+    color: #006400;
+    margin: 0 0 20px;
+    font-weight: normal;
+}
+
+/* Section styling */
+.bijstandsaanvraag-section {
+    margin-bottom: 30px;
+}
+
+.bijstandsaanvraag-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.bijstandsaanvraag-section-title {
+    font-size: 18px;
+    color: #333;
+    margin: 0;
+    font-weight: bold;
+}
+
+.bijstandsaanvraag-edit-link {
+    color: #006400;
+    text-decoration: none;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.bijstandsaanvraag-edit-link::before {
+    content: "✎";
+    margin-right: 5px;
+}
+
+/* Info box styling */
+.bijstandsaanvraag-info-box {
+    display: flex;
+    background-color: #e6f7ff;
+    border: 1px solid #b3e0ff;
+    border-radius: 4px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.bijstandsaanvraag-info-icon {
+    color: #0066cc;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.bijstandsaanvraag-info-text {
+    margin: 0;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Form data styling */
+.bijstandsaanvraag-form-data {
+    border-top: 1px solid #eee;
+}
+
+.bijstandsaanvraag-form-row {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.bijstandsaanvraag-form-label {
+    width: 250px;
+    padding-right: 20px;
+    color: #555;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.bijstandsaanvraag-form-value {
+    flex: 1;
+    color: #333;
+    font-size: 14px;
+}
+
+.bijstandsaanvraag-small {
+    font-size: 12px;
+    font-weight: normal;
+    font-style: italic;
+    color: #777;
+}
+
+/* Action buttons */
+.bijstandsaanvraag-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.bijstandsaanvraag-btn-primary {
+    background-color: #c93676;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.bijstandsaanvraag-btn-secondary {
+    background-color: #ffffff;
+    color: #404b4f;
+    border: 1px solid #7c8b90;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.bijstandsaanvraag-btn-arrow {
+    font-size: 18px;
+    margin-left: 5px;
+}
+
+/* Footer styling */
+.bijstandsaanvraag-footer {
+    margin-top: auto;
+    padding: 20px 0;
+    background-color: #f0f0f0;
+    border-top: 1px solid #e0e0e0;
+}
+
+.bijstandsaanvraag-footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bijstandsaanvraag-footer-links {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.bijstandsaanvraag-footer-links a {
+    color: #333;
+    text-decoration: none;
+    margin-right: 20px;
+    font-size: 14px;
+}
+
+.bijstandsaanvraag-footer-links a:hover {
+    text-decoration: underline;
+}
+
+.bijstandsaanvraag-footer-logo img {
+    height: 40px;
+}
+
+/* Zorg dat stap 5 de juiste layout heeft */
+#step-5 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+}
+
+#step-5.active {
+    display: flex;
+}
+
+/* Knoppen styling blijft hetzelfde als eerdere stappen */
+#step-5 .button-container {
+    width: 800px;
+    max-width: 100%;
+    padding: 20px;
+    margin: 20px auto 40px;
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .bijstandsaanvraag-steps {
+        flex-direction: column;
+    }
+    
+    .bijstandsaanvraag-step {
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    .bijstandsaanvraag-step:last-child {
+        border-bottom: none;
+    }
+    
+    .bijstandsaanvraag-form-row {
+        flex-direction: column;
+    }
+    
+    .bijstandsaanvraag-form-label {
+        width: 100%;
+        padding-bottom: 5px;
+    }
+    
+    .bijstandsaanvraag-actions {
+        flex-direction: column;
+    }
+    
+    .bijstandsaanvraag-btn-secondary {
+        margin-bottom: 10px;
+    }
+}
+
+
+#step-6 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+}
+
+#step-6.active {
+    display: flex;
+}
+
+/* Knoppen styling blijft hetzelfde als eerdere stappen */
+#step-6 .button-container {
+    width: 800px;
+    max-width: 100%;
+    padding: 20px;
+    margin: 20px auto 40px;
+    background-color: transparent;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+}
+
+/* Zorgen dat form rijen de juiste layout hebben in stap 6 */
+#step-6 .bijstandsaanvraag-form-data {
+    border-top: 1px solid #eee;
+}
+
+#step-6 .bijstandsaanvraag-form-row {
+    display: flex;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+#step-6 .bijstandsaanvraag-form-label {
+    width: 250px;
+    padding-right: 20px;
+    color: #555;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#step-6 .bijstandsaanvraag-form-value {
+    flex: 1;
+    color: #333;
+    font-size: 14px;
+}
+
+/* Responsive styling voor mobiele apparaten */
+@media (max-width: 768px) {
+    #step-6 .bijstandsaanvraag-form-group,
+    #step-6 .bijstandsaanvraag-form-row {
+        flex-direction: column;
+    }
+    
+    #step-6 .bijstandsaanvraag-label,
+    #step-6 .bijstandsaanvraag-form-label {
+        width: 100%;
+        padding-bottom: 5px;
+    }
+    
+    #step-6 .bijstandsaanvraag-select-wrapper,
+    #step-6 .bijstandsaanvraag-input {
+        max-width: 100%;
     }
 }
